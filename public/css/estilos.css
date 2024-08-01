@@ -1,0 +1,7 @@
+.input-group>.select2-container--default:not(:last-child) .select2-selection {
+    padding-bottom: 30px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 8px !important;
+}
