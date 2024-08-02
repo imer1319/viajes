@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5>Listado de Flotas</h5>
+            <h5>Listado de tipos de viaje</h5>
             <div>
                 <input type="text" placeholder="Buscar por nombre" class="form-control form-control-sm"
                     v-model="search">
@@ -11,21 +11,17 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Nombre</th>
-                    <th>DNI</th>
-                    <th>Saldo</th>
+                    <th>Descripcion</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="flota in filteredFlotas" :key="flota.id">
+                <tr v-for="tipo in filteredTipoViajes" :key="tipo.id">
                     <td>
-                        <a href="" @click.prevent="seleccionarFlota(flota.id)" class="btn btn-primary btn-sm">
+                        <a href="" @click.prevent="seleccionarTipoViaje(tipo.id)" class="btn btn-primary btn-sm">
                             <i class="fa fa-check"></i>
                         </a>
                     </td>
-                    <td>{{ flota.nombre }}</td>
-                    <td>{{ flota.placa }}</td>
-                    <td>{{ flota.anio }}</td>
+                    <td>{{ tipo.descripcion }}</td>
                 </tr>
             </tbody>
         </table>
@@ -34,7 +30,7 @@
 <script>
 export default {
     mounted() {
-        this.$store.dispatch("getFlotas");
+        this.$store.dispatch("getTipoViajes");
     },
     data() {
         return {
@@ -42,19 +38,19 @@ export default {
         }
     },
     methods: {
-        seleccionarFlota(flota_id) {
-            this.$emit('flotaSelected', flota_id);
+        seleccionarTipoViaje(tipo_id) {
+            this.$emit('tipoSelected', tipo_id);
         },
     },
     computed: {
-        filteredFlotas() {
+        filteredTipoViajes() {
             const searchTerm = this.search.toLowerCase();
-            return this.flotas.filter(flota =>
-                flota.nombre.toLowerCase().includes(searchTerm)
+            return this.tipoViajes.filter(tipo =>
+                tipo.descripcion.toLowerCase().includes(searchTerm)
             );
         },
-        flotas() {
-            return this.$store.state.flotas;
+        tipoViajes() {
+            return this.$store.state.tipoViajes;
         },
     },
 }

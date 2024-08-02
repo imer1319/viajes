@@ -13,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'descripcion' => 'required|string|max:255',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'descripcion.required' => 'La descripción es obligatoria.',
+            'descripcion.string' => 'La descripción debe ser una cadena de texto.',
+            'descripcion.max' => 'La descripción no puede exceder los 255 caracteres.',
         ];
     }
 }

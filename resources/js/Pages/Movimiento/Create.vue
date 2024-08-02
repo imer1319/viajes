@@ -251,7 +251,7 @@
         <modal-component modal_id="modal_tipo_viaje" titulo="Tipos de viaje">
             <tipo-viaje-create></tipo-viaje-create>
             <hr />
-            <tipo-viaje-table @tipo-viajeSelected="updateTipoViajeId"></tipo-viaje-table>
+            <tipo-viaje-table @tipoSelected="updateTipoViajeId"></tipo-viaje-table>
         </modal-component>
     </div>
 </template>
@@ -339,6 +339,11 @@ export default {
         "form.cliente_id": function (newVal) {
             this.$nextTick(() => {
                 $("#cliente_id").val(newVal).trigger("change");
+            });
+        },
+        "form.tipo_viaje_id": function (newVal) {
+            this.$nextTick(() => {
+                $("#tipo_viaje_id").val(newVal).trigger("change");
             });
         },
     },

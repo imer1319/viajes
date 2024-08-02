@@ -2551,6 +2551,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.$nextTick(function () {
         $("#cliente_id").val(newVal).trigger("change");
       });
+    },
+    "form.tipo_viaje_id": function formTipo_viaje_id(newVal) {
+      this.$nextTick(function () {
+        $("#tipo_viaje_id").val(newVal).trigger("change");
+      });
     }
   },
   methods: {
@@ -2621,19 +2626,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: {
-        nombre: "",
-        placa: "",
-        marca: "",
-        anio: "",
-        kilometraje: "",
-        identificacion: ""
+        descripcion: ""
       }
     };
   },
   methods: {
-    agregarFlota: function agregarFlota() {
+    agregarTipoViaje: function agregarTipoViaje() {
       var _this = this;
-      this.$store.dispatch("agregarFlota", this.form).then(function () {
+      this.$store.dispatch("agregarTipoViaje", this.form).then(function () {
         _this.resetForm();
         _this.$toast.open({
           message: "Flota agregado exitosamente!",
@@ -2650,12 +2650,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     resetForm: function resetForm() {
       this.form = {
-        nombre: "",
-        placa: "",
-        marca: "",
-        anio: "",
-        kilometraje: "",
-        identificacion: ""
+        descripcion: ""
       };
     },
     getErrorMessage: function getErrorMessage(error) {
@@ -2684,7 +2679,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
-    this.$store.dispatch("getFlotas");
+    this.$store.dispatch("getTipoViajes");
   },
   data: function data() {
     return {
@@ -2692,19 +2687,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    seleccionarFlota: function seleccionarFlota(flota_id) {
-      this.$emit('flotaSelected', flota_id);
+    seleccionarTipoViaje: function seleccionarTipoViaje(tipo_id) {
+      this.$emit('tipoSelected', tipo_id);
     }
   },
   computed: {
-    filteredFlotas: function filteredFlotas() {
+    filteredTipoViajes: function filteredTipoViajes() {
       var searchTerm = this.search.toLowerCase();
-      return this.flotas.filter(function (flota) {
-        return flota.nombre.toLowerCase().includes(searchTerm);
+      return this.tipoViajes.filter(function (tipo) {
+        return tipo.descripcion.toLowerCase().includes(searchTerm);
       });
     },
-    flotas: function flotas() {
-      return this.$store.state.flotas;
+    tipoViajes: function tipoViajes() {
+      return this.$store.state.tipoViajes;
     }
   }
 });
@@ -4809,7 +4804,7 @@ var render = function render() {
     }
   }, [_c("tipo-viaje-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("tipo-viaje-table", {
     on: {
-      "tipo-viajeSelected": _vm.updateTipoViajeId
+      tipoSelected: _vm.updateTipoViajeId
     }
   })], 1)], 1);
 };
@@ -4899,183 +4894,41 @@ var render = function render() {
   return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-4"
+    staticClass: "col-md-12"
   }, [_vm._m(1), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.form.nombre,
-      expression: "form.nombre"
+      value: _vm.form.descripcion,
+      expression: "form.descripcion"
     }],
     staticClass: "form-control form-control-sm",
     "class": {
-      "is-invalid": _vm.errors.nombre
+      "is-invalid": _vm.errors.descripcion
     },
     attrs: {
       type: "text",
-      id: "nombre"
+      id: "descripcion"
     },
     domProps: {
-      value: _vm.form.nombre
+      value: _vm.form.descripcion
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.$set(_vm.form, "nombre", $event.target.value);
+        _vm.$set(_vm.form, "descripcion", $event.target.value);
       }
     }
-  }), _vm._v(" "), _vm.errors.nombre ? _c("span", {
+  }), _vm._v(" "), _vm.errors.descripcion ? _c("span", {
     staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.nombre)))]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_vm._m(2), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.placa,
-      expression: "form.placa"
-    }],
-    staticClass: "form-control form-control-sm",
-    "class": {
-      "is-invalid": _vm.errors.placa
-    },
-    attrs: {
-      type: "text",
-      id: "placa"
-    },
-    domProps: {
-      value: _vm.form.placa
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form, "placa", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors.placa ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.placa)))]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_vm._m(3), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.marca,
-      expression: "form.marca"
-    }],
-    staticClass: "form-control form-control-sm",
-    "class": {
-      "is-invalid": _vm.errors.marca
-    },
-    attrs: {
-      type: "text",
-      id: "marca"
-    },
-    domProps: {
-      value: _vm.form.marca
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form, "marca", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors.marca ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.marca)))]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_vm._m(4), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.anio,
-      expression: "form.anio"
-    }],
-    staticClass: "form-control form-control-sm",
-    "class": {
-      "is-invalid": _vm.errors.anio
-    },
-    attrs: {
-      type: "number",
-      id: "anio",
-      min: "1886",
-      max: new Date().getFullYear()
-    },
-    domProps: {
-      value: _vm.form.anio
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form, "anio", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors.anio ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.anio)))]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_vm._m(5), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.kilometraje,
-      expression: "form.kilometraje"
-    }],
-    staticClass: "form-control form-control-sm",
-    "class": {
-      "is-invalid": _vm.errors.kilometraje
-    },
-    attrs: {
-      type: "text",
-      id: "kilometraje"
-    },
-    domProps: {
-      value: _vm.form.kilometraje
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form, "kilometraje", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors.kilometraje ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.kilometraje)))]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_vm._m(6), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.identificacion,
-      expression: "form.identificacion"
-    }],
-    staticClass: "form-control form-control-sm",
-    "class": {
-      "is-invalid": _vm.errors.identificacion
-    },
-    attrs: {
-      type: "text",
-      id: "identificacion"
-    },
-    domProps: {
-      value: _vm.form.identificacion
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form, "identificacion", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors.identificacion ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.identificacion)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.descripcion)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.agregarFlota.apply(null, arguments);
+        return _vm.agregarTipoViaje.apply(null, arguments);
       }
     }
   }, [_vm._v("\n                Agregar\n            ")])])])]);
@@ -5091,59 +4944,9 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("label", {
     attrs: {
-      "for": "nombre"
+      "for": "descripcion"
     }
-  }, [_vm._v("Nombre"), _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    attrs: {
-      "for": "placa"
-    }
-  }, [_vm._v("Placa"), _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    attrs: {
-      "for": "marca"
-    }
-  }, [_vm._v("Marca"), _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    attrs: {
-      "for": "anio"
-    }
-  }, [_vm._v("Año"), _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    attrs: {
-      "for": "kilometraje"
-    }
-  }, [_vm._v("Kilometraje"), _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    attrs: {
-      "for": "identificacion"
-    }
-  }, [_vm._v("Identificacion"), _c("span", {
+  }, [_vm._v("Descripcion"), _c("span", {
     staticClass: "text-danger"
   }, [_vm._v("*")])]);
 }];
@@ -5169,7 +4972,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", [_c("div", {
     staticClass: "d-flex justify-content-between align-items-center mb-3"
-  }, [_c("h5", [_vm._v("Listado de Flotas")]), _vm._v(" "), _c("div", [_c("input", {
+  }, [_c("h5", [_vm._v("Listado de tipos de viaje")]), _vm._v(" "), _c("div", [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5192,9 +4995,9 @@ var render = function render() {
     }
   })])]), _vm._v(" "), _c("table", {
     staticClass: "table"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.filteredFlotas, function (flota) {
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.filteredTipoViajes, function (tipo) {
     return _c("tr", {
-      key: flota.id
+      key: tipo.id
     }, [_c("td", [_c("a", {
       staticClass: "btn btn-primary btn-sm",
       attrs: {
@@ -5203,18 +5006,18 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.preventDefault();
-          return _vm.seleccionarFlota(flota.id);
+          return _vm.seleccionarTipoViaje(tipo.id);
         }
       }
     }, [_c("i", {
       staticClass: "fa fa-check"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(flota.placa))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(flota.anio))])]);
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(tipo.descripcion))])]);
   }), 0)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Nombre")]), _vm._v(" "), _c("th", [_vm._v("DNI")]), _vm._v(" "), _c("th", [_vm._v("Saldo")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Descripcion")])])]);
 }];
 render._withStripped = true;
 
