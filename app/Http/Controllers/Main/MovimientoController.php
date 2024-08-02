@@ -7,8 +7,15 @@ use App\Http\Requests\Movimiento\StoreRequest;
 use App\Http\Requests\Movimiento\UpdateRequest;
 use App\Models\Chofer;
 use App\Models\Cliente;
+use App\Models\CondicionIva;
+use App\Models\Departamento;
 use App\Models\Flota;
+use App\Models\Localidad;
 use App\Models\Movimiento;
+use App\Models\Provincia;
+use App\Models\RetencionGanancia;
+use App\Models\RetencionIngresosBruto;
+use App\Models\TipoDocumento;
 use App\Models\TipoViaje;
 use Illuminate\Http\Request;
 
@@ -51,5 +58,40 @@ class MovimientoController extends Controller
     {
         $movimiento->delete();
         return redirect()->route('admin.retencion-ganancias.index')->with('flash', 'Retencion de ganancias bruto eliminado corretamente');
+    }
+
+    public function provincias()
+    {
+        return Provincia::all();
+    }
+
+    public function departamentosProvincia($provincia_id)
+    {
+        return Departamento::where('provincia_id', $provincia_id)->get();
+    }
+
+    public function localidadesDepartamento($departamento_id)
+    {
+        return Localidad::where('departamento_id', $departamento_id)->get();
+    }
+
+    public function retencionGanancias()
+    {
+        return RetencionGanancia::all();
+    }
+
+    public function retencionIngresoBrutos()
+    {
+        return RetencionIngresosBruto::all();
+    }
+
+    public function condicionesIva()
+    {
+        return CondicionIva::all();
+    }
+
+    public function tipoDocumentos()
+    {
+        return TipoDocumento::all();
     }
 }

@@ -13,7 +13,7 @@
                     <slot></slot>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="cerrarModal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary" @click="cerrarModal">Cerrar</button>
                     <button v-if="show_action" type="button" class="btn btn-primary" @click="guardarCambios">Guardar
                         cambios</button>
                 </div>
@@ -29,7 +29,8 @@ export default {
             this.$emit('guardar');
         },
         cerrarModal() {
-            this.$emit('cerrarModal');
+            this.$store.dispatch('clearErrors');
+            $(`#${this.modal_id}`).modal('hide');
         }
     }
 }

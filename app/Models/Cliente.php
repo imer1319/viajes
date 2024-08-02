@@ -13,23 +13,17 @@ class Cliente extends Model
     use HasFactory;
 
     protected $fillable = [
-        'apellido_nombre',
-        'numero_documento',
-        'domicilio',
-        'tipo_documento_id',
-        'provincia_id',
-        'departamento_id',
-        'localidad_id',
-        'telefono',
-        'celular',
-        'email'
+        'razon_social', 'domicilio', 'cuit', 'numero_ingreso_bruto', 'condicion_iva_id',
+        'telefono', 'celular', 'provincia_id', 'departamento_id', 'localidad_id', 'codigo_postal',
+        'email', 'contacto', 'retencion_ganancia_id', 'retencion_ingreso_bruto_id', 'tipo_documento_id',
+        'numero_documento', 'estado', 'saldo'
     ];
 
     public function tipoDocumento(): BelongsTo
     {
         return $this->belongsTo(TipoDocumento::class);
     }
-    
+
     public function provincia(): BelongsTo
     {
         return $this->belongsTo(Provincia::class);

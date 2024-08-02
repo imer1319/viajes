@@ -1,3 +1,12 @@
 export const getErrors = state => state.errors
 export const getFlotas = state => state.flotas
 export const getChoferes = state => state.choferes
+export const getTipoViajes = state => state.tipoViajes
+export const getClientes = state => state.clientes
+export const getProvincias = state => state.provincias;
+export const getDepartamentos = state => state.departamentos;
+export const getLocalidades = state => state.localidades;
+export const getRetencionGanancias = state => state.retencionGanancias;
+export const getCondicionesIva = state => state.condicionesIva;
+export const getTipoDocumentos = state => state.tipoDocumentos;
+export const getRetencionIngresoBrutos = state => state.retencionIngresoBrutos;

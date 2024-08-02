@@ -3,5 +3,12 @@ export default {
     flotas: [],
     clientes: [],
     tipoViajes: [],
+    provincias: [],
+    departamentos: [],
+    localidades: [],
+    retencionGanancias: [],
+    condicionesIva: [],
+    retencionIngresoBrutos: [],
+    tipoDocumentos: [],
     errors: {}
 };

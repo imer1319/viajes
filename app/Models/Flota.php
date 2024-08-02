@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Flota extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'placa',
+        'marca',
+        'anio',
+        'kilometraje',
+        'identificacion',
+    ];
 }

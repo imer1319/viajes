@@ -18,7 +18,7 @@ class CreateFlotasTable extends Migration
             $table->string('nombre');
             $table->string('placa');
             $table->string('marca');
-            $table->string('anio');
+            $table->year('anio');
             $table->string('kilometraje');
             $table->string('identificacion');
             $table->timestamps();
