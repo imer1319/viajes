@@ -24,24 +24,23 @@ class TipoComprobante extends Model
         'recepcion'
     ];
 
-    public function liquidacion(): Attribute
+    public function setDescripcionAttribute($value)
     {
-        return Attribute::make(
-            get: fn () => $this->liquida_iva ? 'Si' :'No'
-        );
+        $this->attributes['descripcion'] = strtoupper($value);
+    }
+    
+    public function getLiquidacionAttribute()
+    {
+        return $this->liquida_iva ? 'Si' : 'No';
     }
 
-    public function emicion(): Attribute
+    public function getEmicionAttribute()
     {
-        return Attribute::make(
-            get: fn () => $this->emite ? 'Si':'No'
-        );
+        return $this->emite ? 'Si' : 'No';
     }
 
-    public function recepcion(): Attribute
+    public function getRecepcionAttribute()
     {
-        return Attribute::make(
-            get: fn () => $this->recibe ? 'Si':'No'
-        );
+        return $this->recibe ? 'Si' : 'No';
     }
 }

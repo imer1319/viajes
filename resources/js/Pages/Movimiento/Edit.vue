@@ -280,9 +280,9 @@
             <div class="col mt-3">
                 <button
                     class="btn btn-primary"
-                    @click.prevent="agregarMovimiento"
+                    @click.prevent="actualizarMovimiento"
                 >
-                    Guardar
+                    Actualizar
                 </button>
             </div>
         </div>
@@ -325,6 +325,7 @@ import TipoViajeCreate from "../../Pages/TipoViaje/Create.vue";
 import TipoViajeTable from "../../Pages/TipoViaje/Table.vue";
 import ModalComponent from "../../components/Modal.vue";
 import { mapGetters } from "vuex";
+import { actualizarMovimiento } from "../../store/actions";
 
 export default {
     components: {
@@ -338,14 +339,16 @@ export default {
         TipoViajeTable,
         ModalComponent,
     },
-    props: ["numero_interno"],
+    props: ["movimiento"],
     mounted() {
-        this.form.fecha = this.getTodayDate();
-        this.form.numero_interno = this.numero_interno;
+        if (this.movimiento) {
+            this.setFormValues(this.movimiento);
+        }
     },
     data() {
         return {
             form: {
+                id: "",
                 numero_interno: "",
                 fecha: "",
                 cliente_id: "",
@@ -412,22 +415,42 @@ export default {
         },
     },
     methods: {
+        setFormValues(movimiento) {
+            this.form.id = movimiento.id;
+            this.form.numero_interno = movimiento.numero_interno;
+            this.form.fecha = movimiento.fecha;
+            this.form.cliente_id = movimiento.cliente_id;
+            this.form.tipo_viaje_id = movimiento.tipo_viaje_id;
+            this.form.detalle = movimiento.detalle;
+            this.form.numero_factura_1 = movimiento.numero_factura_1;
+            this.form.numero_factura_2 = movimiento.numero_factura_2;
+            this.form.precio_real = movimiento.precio_real;
+            this.form.iva = movimiento.iva;
+            this.form.total = movimiento.total;
+            this.form.saldo_total = movimiento.saldo_total;
+            this.form.flota_id = movimiento.flota_id;
+            this.form.chofer_id = movimiento.chofer_id;
+            this.form.precio_chofer = movimiento.precio_chofer;
+            this.form.porcentaje_pago = movimiento.porcentaje_pago;
+            this.form.comision_chofer = movimiento.comision_chofer;
+            this.form.saldo_comision_chofer = movimiento.saldo_comision_chofer;
+        },
         getErrorMessage(error) {
             return Array.isArray(error) ? error[0] : error;
         },
-        agregarMovimiento() {
+        actualizarMovimiento() {
             this.form.saldo_total = this.form.total;
             this.form.saldo_comision_chofer = this.form.comision_chofer;
             this.$store
-                .dispatch("agregarMovimiento", this.form)
+                .dispatch("actualizarMovimiento", this.form)
                 .then(() => {
                     this.resetForm();
                     this.$toast.open({
-                        message: "Movimiento agregado exitosamente!",
+                        message: "Movimiento actualizado exitosamente!",
                         type: "success",
                         position: "top-right",
                     });
-                    window.location="/movimientos"
+                    window.location = "/movimientos";
                 })
                 .catch(() => {
                     this.$toast.open({
@@ -473,13 +496,6 @@ export default {
         updateTipoViajeId(tipo_viaje_id) {
             this.form.tipo_viaje_id = tipo_viaje_id;
             $("#modal_tipo_viaje").modal("hide");
-        },
-        getTodayDate() {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, "0"); // Enero es 0
-            const day = String(today.getDate()).padStart(2, "0");
-            return `${year}-${month}-${day}`;
         },
         padLeftZeros(value, length) {
             return value.toString().padStart(length, "0");

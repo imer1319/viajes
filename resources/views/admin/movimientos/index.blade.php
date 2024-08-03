@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Retencion Ganancias</h1>
+                    <h1>Movimientos</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -22,13 +22,13 @@
 
         <div class="card card-primary card-outline">
             <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
-                <h5>Retension de ganancias</h5>
-                <a href="{{ route('admin.retencion-ganancias.create') }}" class="btn btn-primary rounded-pill float-end">
+                <h5>Listado de movimientos</h5>
+                <a href="{{ route('admin.movimientos.create') }}" class="btn btn-primary rounded-pill float-end">
                     <i class="fa fa-plus"></i>
                 </a>
             </div>
             <div class="card-body">
-                @include('admin.retencionGanancias.table')
+                @include('admin.movimientos.table')
             </div>
         </div>
 

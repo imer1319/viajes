@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Movimientos</h1>
+                    <h1>Formas de pago</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -19,16 +19,18 @@
 
     <!-- Main content -->
     <section class="content mx-3">
+
         <div class="card card-primary card-outline ñpt-4">
-            <div class="card-header">Editar movimiento</div>
+            <div class="card-header">Editar tipo de comprobante</div>
+
             <div class="card-body">
-                <movimiento-edit  :movimiento="{{ $movimiento }}"/>
+                <form action="{{ route('admin.forma-pagos.update', $comprobante) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    @include('admin.formaPagos.form', ['button' => 'Actualizar'])
+                </form>
             </div>
         </div>
+
     </section>
-@endsection
-@section('scripts')
-    <script>
-        $('.select2').select2()
-    </script>
 @endsection

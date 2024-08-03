@@ -15,5 +15,24 @@ class Movimiento extends Model
         'precio_chofer', 'porcentaje_pago', 'comision_chofer', 'saldo_comision_chofer',
     ];
 
-    
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function tipoViaje()
+    {
+        return $this->belongsTo(TipoViaje::class);
+    }
+
+    public function flota()
+    {
+        return $this->belongsTo(Flota::class);
+    }
+
+    public function chofer()
+    {
+        return $this->belongsTo(Chofer::class);
+    }
+
 }

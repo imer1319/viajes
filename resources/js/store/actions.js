@@ -1,3 +1,25 @@
+export const agregarMovimiento = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.post('/movimientos', form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
+export const actualizarMovimiento = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.put('/movimientos/'+form.id, form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
 export const agregarChofer = async ({ commit, dispatch }, form) => {
     try {
         await axios.post('/api/choferes', form);
@@ -136,7 +158,7 @@ export const getProvincias = async ({ commit }) => {
 };
 export const getDepartamentosProvincia = async ({ commit }, provincia_id) => {
     try {
-        const response = await axios.get('/api/departamentos/'+provincia_id);
+        const response = await axios.get('/api/departamentos/' + provincia_id);
         commit('SET_DEPARTAMENTOS', response.data);
     } catch (error) {
         console.error("Error al traer a los departamentos:", error);
@@ -144,7 +166,7 @@ export const getDepartamentosProvincia = async ({ commit }, provincia_id) => {
 };
 export const getLocalidadesDepartamento = async ({ commit }, departamento_id) => {
     try {
-        const response = await axios.get('/api/localidades/'+departamento_id);
+        const response = await axios.get('/api/localidades/' + departamento_id);
         commit('SET_LOCALIDADES', response.data);
     } catch (error) {
         console.error("Error al traer a las localidades:", error);

@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Movimientos</h1>
+                    <h1>Tipos de comprobante</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -19,16 +19,19 @@
 
     <!-- Main content -->
     <section class="content mx-3">
-        <div class="card card-primary card-outline ñpt-4">
-            <div class="card-header">Editar movimiento</div>
+
+        <div class="card card-primary card-outline">
+            <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
+                <h5>Crear tipo de comprobante</h5>
+                <a href="{{ route('admin.tipo-comprobantes.create') }}" class="btn btn-primary rounded-pill float-end">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
+
             <div class="card-body">
-                <movimiento-edit  :movimiento="{{ $movimiento }}"/>
+                @include('admin.tipoComprobantes.table')
             </div>
         </div>
+
     </section>
-@endsection
-@section('scripts')
-    <script>
-        $('.select2').select2()
-    </script>
 @endsection

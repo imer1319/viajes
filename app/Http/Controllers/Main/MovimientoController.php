@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Events\MovimientoCreado;
+use App\Events\MovimientoEliminado;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Movimiento\StoreRequest;
 use App\Http\Requests\Movimiento\UpdateRequest;
@@ -18,46 +20,88 @@ use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
 use App\Models\TipoViaje;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MovimientoController extends Controller
 {
     public function index()
     {
-        return view('admin.retencionGanancias.index', [
+        return view('admin.movimientos.index', [
             'movimientos' => Movimiento::latest()->paginate(8)
         ]);
     }
 
     public function create()
     {
+        $ultimoMovimiento = Movimiento::latest()->first();
+        $numeroInterno = $ultimoMovimiento ? $ultimoMovimiento->id + 1 : 1;
+
         return view('admin.movimientos.create', [
             'movimiento' => new Movimiento(),
+            'numero_interno' => $numeroInterno
         ]);
     }
 
     public function store(StoreRequest $request)
     {
-        Movimiento::create($request->validated());
-        return redirect()->route('admin.retencion-ganancias.index')->with('flash', 'Retencion de ganancias creada corretamente');
+        try {
+            DB::beginTransaction();
+            $movimiento = Movimiento::create($request->validated());
+            event(new MovimientoCreado($movimiento));
+            DB::commit();
+            return response()->json([
+                'message' => 'Movimiento creado exitosamente.',
+                'movimiento' => $movimiento,
+            ], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Hubo un error al crear el movimiento.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function show(Movimiento $movimiento)
+    {
+        return view('admin.movimientos.show', [
+            'movimiento' => $movimiento
+        ]);
     }
 
     public function edit(Movimiento $movimiento)
     {
-        return view('admin.retencionGanancias.edit', [
-            'ganancia' => $movimiento
+        return view('admin.movimientos.edit', [
+            'movimiento' => $movimiento
         ]);
     }
 
     public function update(Movimiento $movimiento, UpdateRequest $request)
     {
-        $movimiento->update($request->validated());
-        return redirect()->route('admin.movimientos.index')->with('flash','Retencion de ganancias bruto actualizada corretamente');
+        try {
+            DB::beginTransaction();
+            event(new MovimientoEliminado($movimiento));
+            $movimiento->update($request->validated());
+            event(new MovimientoCreado($movimiento));
+            DB::commit();
+            return response()->json([
+                'message' => 'Movimiento creado exitosamente.',
+                'movimiento' => $movimiento,
+            ], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Hubo un error al crear el movimiento.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     public function destroy(Movimiento $movimiento)
     {
+        event(new MovimientoEliminado($movimiento));
         $movimiento->delete();
-        return redirect()->route('admin.retencion-ganancias.index')->with('flash', 'Retencion de ganancias bruto eliminado corretamente');
+        return redirect()->route('admin.movimientos.index')->with('flash', 'Movimiento eliminado corretamente');
     }
 
     public function provincias()

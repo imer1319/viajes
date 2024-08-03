@@ -10,4 +10,10 @@ class FormasPagos extends Model
     use HasFactory;
 
     protected $fillable = ['descripcion'];
+
+    public function setDescripcionAttribute($value)
+    {
+        $this->attributes['descripcion'] = strtoupper($value);
+    }
+    
 }

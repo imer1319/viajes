@@ -21,7 +21,7 @@
         <div class="card card-primary card-outline ñpt-4">
             <div class="card-header">Crear movimiento</div>
             <div class="card-body">
-                <movimiento-create />
+                <movimiento-create :numero_interno="{{ $numero_interno }}" />
             </div>
         </div>
     </section>

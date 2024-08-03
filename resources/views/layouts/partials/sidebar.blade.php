@@ -42,43 +42,43 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('admin.retencion-ingresos-bruto.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-keyboard nav-icon"></i>
                                 <p>Retenciones Ingresos</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.retencion-ganancias.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-chart-area nav-icon"></i>
                                 <p>Retenciones Ganancias</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('admin.tipo-comprobantes.index') }}" class="nav-link">
+                                <i class="fa fa-file nav-icon"></i>
                                 <p>Tipo Comprobante</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('admin.forma-pagos.index') }}" class="nav-link">
+                                <i class="fa fa-money-check nav-icon"></i>
                                 <p>Formas Pagos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('admin.condicion-pagos.index') }}" class="nav-link">
+                                <i class="fa fa-cash-register nav-icon"></i>
                                 <p>Condiciones Pagos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('admin.condicion-iva.index') }}" class="nav-link">
+                                <i class="fas fa-comments-dollar nav-icon"></i>
                                 <p>Condiciones Iva</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('admin.medidas.index') }}" class="nav-link">
+                                <i class="fas fa-ruler-combined nav-icon"></i>
                                 <p>Medidas</p>
                             </a>
                         </li>
@@ -94,20 +94,20 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.retencion-ingresos-bruto.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('admin.users.index') }}" class="nav-link">
+                                <i class="fa fa-user nav-icon"></i>
                                 <p>Usuarios</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('admin.clientes.index') }}" class="nav-link">
+                                <i class="fa fa-users nav-icon"></i>
                                 <p>Clientes</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('admin.proveedores.index') }}" class="nav-link">
+                                <i class="fas fa-user-friends nav-icon"></i>
                                 <p>Proveedores</p>
                             </a>
                         </li>

@@ -2497,8 +2497,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     TipoViajeTable: _Pages_TipoViaje_Table_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
+  props: ["numero_interno"],
   mounted: function mounted() {
     this.form.fecha = this.getTodayDate();
+    this.form.numero_interno = this.numero_interno;
   },
   data: function data() {
     return {
@@ -2513,7 +2515,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         precio_real: "",
         iva: 0,
         total: 0,
-        saldo_total: "",
+        saldo_total: 0,
         flota_id: "",
         chofer_id: "",
         precio_chofer: "",
@@ -2523,12 +2525,16 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       }
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_9__.mapGetters)({
-    choferes: 'getChoferes',
-    flotas: 'getFlotas',
-    clientes: 'getClientes',
-    tipoViajes: 'getTipoViajes'
-  })),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_9__.mapGetters)({
+    choferes: "getChoferes",
+    flotas: "getFlotas",
+    clientes: "getClientes",
+    tipoViajes: "getTipoViajes"
+  })), {}, {
+    errors: function errors() {
+      return this.$store.getters.getErrors;
+    }
+  }),
   watch: {
     "form.precio_real": function formPrecio_real(newVal) {
       this.form.iva = (newVal * 0.21).toFixed(2);
@@ -2559,6 +2565,50 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     }
   },
   methods: {
+    getErrorMessage: function getErrorMessage(error) {
+      return Array.isArray(error) ? error[0] : error;
+    },
+    agregarMovimiento: function agregarMovimiento() {
+      var _this = this;
+      this.form.saldo_total = this.form.total;
+      this.form.saldo_comision_chofer = this.form.comision_chofer;
+      this.$store.dispatch("agregarMovimiento", this.form).then(function () {
+        _this.resetForm();
+        _this.$toast.open({
+          message: "Movimiento agregado exitosamente!",
+          type: "success",
+          position: "top-right"
+        });
+        window.location = "/movimientos";
+      })["catch"](function () {
+        _this.$toast.open({
+          message: "Corrija los siguientes errores!",
+          type: "error",
+          position: "top-right"
+        });
+      });
+    },
+    resetForm: function resetForm() {
+      this.form = {
+        numero_interno: "",
+        fecha: "",
+        cliente_id: "",
+        tipo_viaje_id: "",
+        detalle: "",
+        numero_factura_1: "",
+        numero_factura_2: "",
+        precio_real: "",
+        iva: 0,
+        total: 0,
+        saldo_total: 0,
+        flota_id: "",
+        chofer_id: "",
+        precio_chofer: "",
+        porcentaje_pago: 16,
+        comision_chofer: 0,
+        saldo_comision_chofer: 0
+      };
+    },
     updateChoferId: function updateChoferId(chofer_id) {
       this.form.chofer_id = chofer_id;
       $("#modal_chofer").modal("hide");
@@ -2581,6 +2631,236 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var month = String(today.getMonth() + 1).padStart(2, "0"); // Enero es 0
       var day = String(today.getDate()).padStart(2, "0");
       return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+    padLeftZeros: function padLeftZeros(value, length) {
+      return value.toString().padStart(length, "0");
+    },
+    handleInput: function handleInput(event, maxLength) {
+      var value = event.target.value.replace(/\D/g, "");
+      if (value.length > maxLength) {
+        value = value.substring(0, maxLength);
+      }
+      event.target.value = value;
+      this.updateValue(event.target.id, value);
+    },
+    handleBlur: function handleBlur(event, maxLength) {
+      var value = event.target.value;
+      value = this.padLeftZeros(value, maxLength);
+      event.target.value = value;
+      this.updateValue(event.target.id, value);
+    },
+    updateValue: function updateValue(id, value) {
+      if (id === "numero_factura_1") {
+        this.form.numero_factura_1 = value;
+      } else if (id === "numero_factura_2") {
+        this.form.numero_factura_2 = value;
+      }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Movimiento/Edit.vue?vue&type=script&lang=js":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Movimiento/Edit.vue?vue&type=script&lang=js ***!
+  \****************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Pages_Chofer_Create_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Pages/Chofer/Create.vue */ "./resources/js/Pages/Chofer/Create.vue");
+/* harmony import */ var _Pages_Chofer_Table_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Pages/Chofer/Table.vue */ "./resources/js/Pages/Chofer/Table.vue");
+/* harmony import */ var _Pages_Cliente_Create_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Pages/Cliente/Create.vue */ "./resources/js/Pages/Cliente/Create.vue");
+/* harmony import */ var _Pages_Cliente_Table_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Pages/Cliente/Table.vue */ "./resources/js/Pages/Cliente/Table.vue");
+/* harmony import */ var _Pages_Flota_Create_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Pages/Flota/Create.vue */ "./resources/js/Pages/Flota/Create.vue");
+/* harmony import */ var _Pages_Flota_Table_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Pages/Flota/Table.vue */ "./resources/js/Pages/Flota/Table.vue");
+/* harmony import */ var _Pages_TipoViaje_Create_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Pages/TipoViaje/Create.vue */ "./resources/js/Pages/TipoViaje/Create.vue");
+/* harmony import */ var _Pages_TipoViaje_Table_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Pages/TipoViaje/Table.vue */ "./resources/js/Pages/TipoViaje/Table.vue");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../store/actions */ "./resources/js/store/actions.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    ChoferCreate: _Pages_Chofer_Create_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ChoferTable: _Pages_Chofer_Table_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ClienteCreate: _Pages_Cliente_Create_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ClienteTable: _Pages_Cliente_Table_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    FlotaCreate: _Pages_Flota_Create_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    FlotaTable: _Pages_Flota_Table_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    TipoViajeCreate: _Pages_TipoViaje_Create_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    TipoViajeTable: _Pages_TipoViaje_Table_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  },
+  props: ["movimiento"],
+  mounted: function mounted() {
+    if (this.movimiento) {
+      this.setFormValues(this.movimiento);
+    }
+  },
+  data: function data() {
+    return {
+      form: {
+        id: "",
+        numero_interno: "",
+        fecha: "",
+        cliente_id: "",
+        tipo_viaje_id: "",
+        detalle: "",
+        numero_factura_1: "",
+        numero_factura_2: "",
+        precio_real: "",
+        iva: 0,
+        total: 0,
+        saldo_total: 0,
+        flota_id: "",
+        chofer_id: "",
+        precio_chofer: "",
+        porcentaje_pago: 16,
+        comision_chofer: 0,
+        saldo_comision_chofer: 0
+      }
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_9__.mapGetters)({
+    choferes: "getChoferes",
+    flotas: "getFlotas",
+    clientes: "getClientes",
+    tipoViajes: "getTipoViajes"
+  })), {}, {
+    errors: function errors() {
+      return this.$store.getters.getErrors;
+    }
+  }),
+  watch: {
+    "form.precio_real": function formPrecio_real(newVal) {
+      this.form.iva = (newVal * 0.21).toFixed(2);
+      this.form.total = (parseFloat(newVal) + parseFloat(this.form.iva)).toFixed(2);
+    },
+    "form.precio_chofer": function formPrecio_chofer(newVal) {
+      this.form.comision_chofer = (newVal * (this.form.porcentaje_pago / 100)).toFixed(2);
+    },
+    "form.chofer_id": function formChofer_id(newVal) {
+      this.$nextTick(function () {
+        $("#chofer_id").val(newVal).trigger("change");
+      });
+    },
+    "form.flota_id": function formFlota_id(newVal) {
+      this.$nextTick(function () {
+        $("#flota_id").val(newVal).trigger("change");
+      });
+    },
+    "form.cliente_id": function formCliente_id(newVal) {
+      this.$nextTick(function () {
+        $("#cliente_id").val(newVal).trigger("change");
+      });
+    },
+    "form.tipo_viaje_id": function formTipo_viaje_id(newVal) {
+      this.$nextTick(function () {
+        $("#tipo_viaje_id").val(newVal).trigger("change");
+      });
+    }
+  },
+  methods: {
+    setFormValues: function setFormValues(movimiento) {
+      this.form.id = movimiento.id;
+      this.form.numero_interno = movimiento.numero_interno;
+      this.form.fecha = movimiento.fecha;
+      this.form.cliente_id = movimiento.cliente_id;
+      this.form.tipo_viaje_id = movimiento.tipo_viaje_id;
+      this.form.detalle = movimiento.detalle;
+      this.form.numero_factura_1 = movimiento.numero_factura_1;
+      this.form.numero_factura_2 = movimiento.numero_factura_2;
+      this.form.precio_real = movimiento.precio_real;
+      this.form.iva = movimiento.iva;
+      this.form.total = movimiento.total;
+      this.form.saldo_total = movimiento.saldo_total;
+      this.form.flota_id = movimiento.flota_id;
+      this.form.chofer_id = movimiento.chofer_id;
+      this.form.precio_chofer = movimiento.precio_chofer;
+      this.form.porcentaje_pago = movimiento.porcentaje_pago;
+      this.form.comision_chofer = movimiento.comision_chofer;
+      this.form.saldo_comision_chofer = movimiento.saldo_comision_chofer;
+    },
+    getErrorMessage: function getErrorMessage(error) {
+      return Array.isArray(error) ? error[0] : error;
+    },
+    actualizarMovimiento: function actualizarMovimiento() {
+      var _this = this;
+      this.form.saldo_total = this.form.total;
+      this.form.saldo_comision_chofer = this.form.comision_chofer;
+      this.$store.dispatch("actualizarMovimiento", this.form).then(function () {
+        _this.resetForm();
+        _this.$toast.open({
+          message: "Movimiento actualizado exitosamente!",
+          type: "success",
+          position: "top-right"
+        });
+        window.location = "/movimientos";
+      })["catch"](function () {
+        _this.$toast.open({
+          message: "Corrija los siguientes errores!",
+          type: "error",
+          position: "top-right"
+        });
+      });
+    },
+    resetForm: function resetForm() {
+      this.form = {
+        numero_interno: "",
+        fecha: "",
+        cliente_id: "",
+        tipo_viaje_id: "",
+        detalle: "",
+        numero_factura_1: "",
+        numero_factura_2: "",
+        precio_real: "",
+        iva: 0,
+        total: 0,
+        saldo_total: 0,
+        flota_id: "",
+        chofer_id: "",
+        precio_chofer: "",
+        porcentaje_pago: 16,
+        comision_chofer: 0,
+        saldo_comision_chofer: 0
+      };
+    },
+    updateChoferId: function updateChoferId(chofer_id) {
+      this.form.chofer_id = chofer_id;
+      $("#modal_chofer").modal("hide");
+    },
+    updateClienteId: function updateClienteId(cliente_id) {
+      this.form.cliente_id = cliente_id;
+      $("#modal_cliente").modal("hide");
+    },
+    updateFlotaId: function updateFlotaId(flota_id) {
+      this.form.flota_id = flota_id;
+      $("#modal_flota").modal("hide");
+    },
+    updateTipoViajeId: function updateTipoViajeId(tipo_viaje_id) {
+      this.form.tipo_viaje_id = tipo_viaje_id;
+      $("#modal_tipo_viaje").modal("hide");
     },
     padLeftZeros: function padLeftZeros(value, length) {
       return value.toString().padStart(length, "0");
@@ -4318,7 +4598,8 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "text"
+      type: "text",
+      disabled: ""
     },
     domProps: {
       value: _vm.form.numero_interno
@@ -4329,7 +4610,9 @@ var render = function render() {
         _vm.$set(_vm.form, "numero_interno", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.numero_interno ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.numero_interno)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
@@ -4355,14 +4638,16 @@ var render = function render() {
         _vm.$set(_vm.form, "fecha", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.fecha ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.fecha)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
       "for": "cliente_id"
     }
   }, [_vm._v("Cliente")]), _vm._v(" "), _c("div", {
-    staticClass: "input-group"
+    staticClass: "d-flex input-group"
   }, [_c("select", {
     directives: [{
       name: "model",
@@ -4392,7 +4677,9 @@ var render = function render() {
         value: cliente.id
       }
     }, [_vm._v("\n                        " + _vm._s(cliente.razon_social) + "\n                    ")]);
-  }), 0), _vm._v(" "), _vm._m(0)])]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm.errors.cliente_id ? _c("div", {
+    staticClass: "text-danger d-block"
+  }, [_vm._v("\n                " + _vm._s(_vm.getErrorMessage(_vm.errors.cliente_id)) + "\n            ")]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
@@ -4429,15 +4716,15 @@ var render = function render() {
         value: tipo.id
       }
     }, [_vm._v("\n                        " + _vm._s(tipo.descripcion) + "\n                    ")]);
-  }), 0), _vm._v(" "), _vm._m(1)])]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm.errors.tipo_viaje_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.tipo_viaje_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_c("label", {
     attrs: {
       "for": "detalle"
     }
-  }, [_vm._v("Detalle")]), _vm._v(" "), _c("div", {
-    staticClass: "input-group"
-  }, [_c("textarea", {
+  }, [_vm._v("Detalle")]), _vm._v(" "), _c("textarea", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -4457,7 +4744,9 @@ var render = function render() {
         _vm.$set(_vm.form, "detalle", $event.target.value);
       }
     }
-  })])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.detalle ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.detalle)))]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-4"
@@ -4495,7 +4784,9 @@ var render = function render() {
         return _vm.handleBlur($event, 4);
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.numero_factura_1 ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.numero_factura_1)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-8"
   }, [_c("input", {
     directives: [{
@@ -4523,7 +4814,9 @@ var render = function render() {
         return _vm.handleBlur($event, 8);
       }
     }
-  })])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.numero_factura_2 ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.numero_factura_2)))]) : _vm._e()])])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-4"
@@ -4553,7 +4846,9 @@ var render = function render() {
         _vm.$set(_vm.form, "precio_real", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.precio_real ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.precio_real)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     attrs: {
@@ -4581,7 +4876,9 @@ var render = function render() {
         _vm.$set(_vm.form, "iva", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.iva ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.iva)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     attrs: {
@@ -4609,7 +4906,9 @@ var render = function render() {
         _vm.$set(_vm.form, "total", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.total ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.total)))]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-6"
@@ -4648,7 +4947,9 @@ var render = function render() {
         value: flota.id
       }
     }, [_vm._v("\n                        " + _vm._s(flota.nombre) + "\n                    ")]);
-  }), 0), _vm._v(" "), _vm._m(2)])]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _vm.errors.flota_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.flota_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
@@ -4685,7 +4986,9 @@ var render = function render() {
         value: chofer.id
       }
     }, [_vm._v("\n                        " + _vm._s(chofer.nombre) + "\n                    ")]);
-  }), 0), _vm._v(" "), _vm._m(3)])])]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _vm.errors.chofer_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.chofer_id)))]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-4"
@@ -4715,7 +5018,9 @@ var render = function render() {
         _vm.$set(_vm.form, "precio_chofer", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.precio_chofer ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.precio_chofer)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     attrs: {
@@ -4742,7 +5047,9 @@ var render = function render() {
         _vm.$set(_vm.form, "porcentaje_pago", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors.porcentaje_pago ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.porcentaje_pago)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     attrs: {
@@ -4770,7 +5077,21 @@ var render = function render() {
         _vm.$set(_vm.form, "comision_chofer", $event.target.value);
       }
     }
-  })])]), _vm._v(" "), _vm._m(4), _vm._v(" "), _c("modal-component", {
+  }), _vm._v(" "), _vm.errors.comision_chofer ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.comision_chofer)))]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col mt-3"
+  }, [_c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.agregarMovimiento.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("\n                Guardar\n            ")])])]), _vm._v(" "), _c("modal-component", {
     attrs: {
       modal_id: "modal_chofer",
       titulo: "Choferes"
@@ -4860,16 +5181,627 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "fa fa-search"
   })]);
-}, function () {
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Movimiento/Edit.vue?vue&type=template&id=0dd85a6a":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Movimiento/Edit.vue?vue&type=template&id=0dd85a6a ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
+  return _c("div", [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "numero_interno"
+    }
+  }, [_vm._v("Numero interno")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.numero_interno,
+      expression: "form.numero_interno"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      disabled: ""
+    },
+    domProps: {
+      value: _vm.form.numero_interno
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "numero_interno", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.numero_interno ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.numero_interno)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "fecha"
+    }
+  }, [_vm._v("Fecha")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.fecha,
+      expression: "form.fecha"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.form.fecha
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "fecha", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.fecha ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.fecha)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "cliente_id"
+    }
+  }, [_vm._v("Cliente")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex input-group"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.cliente_id,
+      expression: "form.cliente_id"
+    }],
+    staticClass: "form-control select2",
+    attrs: {
+      id: "cliente_id"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form, "cliente_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(_vm.clientes, function (cliente) {
+    return _c("option", {
+      key: cliente.id,
+      domProps: {
+        value: cliente.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(cliente.razon_social) + "\n                    ")]);
+  }), 0), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm.errors.cliente_id ? _c("div", {
+    staticClass: "text-danger d-block"
+  }, [_vm._v("\n                " + _vm._s(_vm.getErrorMessage(_vm.errors.cliente_id)) + "\n            ")]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "tipo_viaje_id"
+    }
+  }, [_vm._v("Tipo de viajes")]), _vm._v(" "), _c("div", {
+    staticClass: "input-group"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.tipo_viaje_id,
+      expression: "form.tipo_viaje_id"
+    }],
+    staticClass: "form-control select2",
+    attrs: {
+      id: "tipo_viaje_id"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form, "tipo_viaje_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(_vm.tipoViajes, function (tipo) {
+    return _c("option", {
+      key: tipo.id,
+      domProps: {
+        value: tipo.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(tipo.descripcion) + "\n                    ")]);
+  }), 0), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm.errors.tipo_viaje_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.tipo_viaje_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("label", {
+    attrs: {
+      "for": "detalle"
+    }
+  }, [_vm._v("Detalle")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.detalle,
+      expression: "form.detalle"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      rows: "2"
+    },
+    domProps: {
+      value: _vm.form.detalle
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "detalle", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.detalle ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.detalle)))]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    attrs: {
+      "for": "numero_factura"
+    }
+  }, [_vm._v("Numero de factura")]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.numero_factura_1,
+      expression: "form.numero_factura_1"
+    }],
+    staticClass: "form-control text-right",
+    attrs: {
+      type: "text",
+      id: "numero_factura_1"
+    },
+    domProps: {
+      value: _vm.form.numero_factura_1
+    },
+    on: {
+      input: [function ($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "numero_factura_1", $event.target.value);
+      }, function ($event) {
+        return _vm.handleInput($event, 4);
+      }],
+      blur: function blur($event) {
+        return _vm.handleBlur($event, 4);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.numero_factura_1 ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.numero_factura_1)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-8"
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.numero_factura_2,
+      expression: "form.numero_factura_2"
+    }],
+    staticClass: "form-control text-right",
+    attrs: {
+      type: "text",
+      id: "numero_factura_2"
+    },
+    domProps: {
+      value: _vm.form.numero_factura_2
+    },
+    on: {
+      input: [function ($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "numero_factura_2", $event.target.value);
+      }, function ($event) {
+        return _vm.handleInput($event, 8);
+      }],
+      blur: function blur($event) {
+        return _vm.handleBlur($event, 8);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.numero_factura_2 ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.numero_factura_2)))]) : _vm._e()])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    attrs: {
+      "for": "precio_real"
+    }
+  }, [_vm._v("Precio real")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.precio_real,
+      expression: "form.precio_real"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      step: "0.1",
+      id: "precio_real"
+    },
+    domProps: {
+      value: _vm.form.precio_real
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "precio_real", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.precio_real ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.precio_real)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    attrs: {
+      "for": "iva"
+    }
+  }, [_vm._v("IVA")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.iva,
+      expression: "form.iva"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      readonly: "",
+      id: "iva"
+    },
+    domProps: {
+      value: _vm.form.iva
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "iva", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.iva ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.iva)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    attrs: {
+      "for": "total"
+    }
+  }, [_vm._v("Total")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.total,
+      expression: "form.total"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      readonly: "",
+      id: "total"
+    },
+    domProps: {
+      value: _vm.form.total
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "total", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.total ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.total)))]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "flota_id"
+    }
+  }, [_vm._v("Flota")]), _vm._v(" "), _c("div", {
+    staticClass: "input-group"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.flota_id,
+      expression: "form.flota_id"
+    }],
+    staticClass: "form-control select2",
+    attrs: {
+      id: "flota_id"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form, "flota_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(_vm.flotas, function (flota) {
+    return _c("option", {
+      key: flota.id,
+      domProps: {
+        value: flota.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(flota.nombre) + "\n                    ")]);
+  }), 0), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _vm.errors.flota_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.flota_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "chofer_id"
+    }
+  }, [_vm._v("Chofer")]), _vm._v(" "), _c("div", {
+    staticClass: "input-group"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.chofer_id,
+      expression: "form.chofer_id"
+    }],
+    staticClass: "form-control select2",
+    attrs: {
+      id: "chofer_id"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form, "chofer_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(_vm.choferes, function (chofer) {
+    return _c("option", {
+      key: chofer.id,
+      domProps: {
+        value: chofer.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(chofer.nombre) + "\n                    ")]);
+  }), 0), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _vm.errors.chofer_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.chofer_id)))]) : _vm._e()])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    attrs: {
+      "for": "precio_chofer"
+    }
+  }, [_vm._v("Precio Chofer")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.precio_chofer,
+      expression: "form.precio_chofer"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      step: "0.1",
+      id: "precio_chofer"
+    },
+    domProps: {
+      value: _vm.form.precio_chofer
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "precio_chofer", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.precio_chofer ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.precio_chofer)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    attrs: {
+      "for": "porcentaje_pago"
+    }
+  }, [_vm._v("Porcentaje Pago")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.porcentaje_pago,
+      expression: "form.porcentaje_pago"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      id: "porcentaje_pago"
+    },
+    domProps: {
+      value: _vm.form.porcentaje_pago
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "porcentaje_pago", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.porcentaje_pago ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.porcentaje_pago)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-4"
+  }, [_c("label", {
+    attrs: {
+      "for": "comision_chofer"
+    }
+  }, [_vm._v("Comision Chofer")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.comision_chofer,
+      expression: "form.comision_chofer"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      readonly: "",
+      id: "comision_chofer"
+    },
+    domProps: {
+      value: _vm.form.comision_chofer
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "comision_chofer", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.comision_chofer ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.comision_chofer)))]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col mt-3"
   }, [_c("button", {
-    staticClass: "btn btn-primary"
-  }, [_vm._v("Guardar")])])]);
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.actualizarMovimiento.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("\n                Actualizar\n            ")])])]), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_chofer",
+      titulo: "Choferes"
+    }
+  }, [_c("chofer-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("chofer-table", {
+    on: {
+      choferSelected: _vm.updateChoferId
+    }
+  })], 1), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_flota",
+      titulo: "Flotas"
+    }
+  }, [_c("flota-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("flota-table", {
+    on: {
+      flotaSelected: _vm.updateFlotaId
+    }
+  })], 1), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_cliente",
+      titulo: "Clientes"
+    }
+  }, [_c("cliente-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("cliente-table", {
+    on: {
+      clienteSelected: _vm.updateClienteId
+    }
+  })], 1), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_tipo_viaje",
+      titulo: "Tipos de viaje"
+    }
+  }, [_c("tipo-viaje-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("tipo-viaje-table", {
+    on: {
+      tipoSelected: _vm.updateTipoViajeId
+    }
+  })], 1)], 1);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_cliente"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_tipo_viaje"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_flota"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_chofer"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })]);
 }];
 render._withStripped = true;
 
@@ -5118,8 +6050,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 Vue.use((vue_toast_notification__WEBPACK_IMPORTED_MODULE_0___default()));
-Vue.component('chofer-create', (__webpack_require__(/*! ./Pages/Chofer/Create.vue */ "./resources/js/Pages/Chofer/Create.vue")["default"]));
 Vue.component('movimiento-create', (__webpack_require__(/*! ./Pages/Movimiento/Create.vue */ "./resources/js/Pages/Movimiento/Create.vue")["default"]));
+Vue.component('movimiento-edit', (__webpack_require__(/*! ./Pages/Movimiento/Edit.vue */ "./resources/js/Pages/Movimiento/Edit.vue")["default"]));
 var app = new Vue({
   el: '#app',
   store: _store__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -5176,9 +6108,11 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   actualizarMovimiento: () => (/* binding */ actualizarMovimiento),
 /* harmony export */   agregarChofer: () => (/* binding */ agregarChofer),
 /* harmony export */   agregarCliente: () => (/* binding */ agregarCliente),
 /* harmony export */   agregarFlota: () => (/* binding */ agregarFlota),
+/* harmony export */   agregarMovimiento: () => (/* binding */ agregarMovimiento),
 /* harmony export */   agregarTipoViaje: () => (/* binding */ agregarTipoViaje),
 /* harmony export */   clearErrors: () => (/* binding */ clearErrors),
 /* harmony export */   getChoferes: () => (/* binding */ getChoferes),
@@ -5198,7 +6132,7 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
-var agregarChofer = /*#__PURE__*/function () {
+var agregarMovimiento = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(_ref, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
@@ -5207,59 +6141,60 @@ var agregarChofer = /*#__PURE__*/function () {
           commit = _ref.commit, dispatch = _ref.dispatch;
           _context.prev = 1;
           _context.next = 4;
-          return axios.post('/api/choferes', form);
+          return axios.post('/movimientos', form);
         case 4:
           dispatch('clearErrors');
-          dispatch('getChoferes');
-          _context.next = 12;
+          _context.next = 11;
           break;
-        case 8:
-          _context.prev = 8;
+        case 7:
+          _context.prev = 7;
           _context.t0 = _context["catch"](1);
           if (_context.t0.response && _context.t0.response.data && _context.t0.response.data.errors) {
             commit('SET_ERRORS', _context.t0.response.data.errors);
           }
           throw _context.t0;
-        case 12:
+        case 11:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[1, 8]]);
+    }, _callee, null, [[1, 7]]);
   }));
-  return function agregarChofer(_x, _x2) {
+  return function agregarMovimiento(_x, _x2) {
     return _ref2.apply(this, arguments);
   };
 }();
-var getChoferes = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(_ref3) {
-    var commit, response;
+var actualizarMovimiento = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(_ref3, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          commit = _ref3.commit;
+          commit = _ref3.commit, dispatch = _ref3.dispatch;
           _context2.prev = 1;
           _context2.next = 4;
-          return axios.get('/api/choferes');
+          return axios.put('/movimientos/' + form.id, form);
         case 4:
-          response = _context2.sent;
-          commit('SET_CHOFERES', response.data);
+          dispatch('clearErrors');
           _context2.next = 11;
           break;
-        case 8:
-          _context2.prev = 8;
+        case 7:
+          _context2.prev = 7;
           _context2.t0 = _context2["catch"](1);
-          console.error("Error fetching choferes:", _context2.t0);
+          if (_context2.t0.response && _context2.t0.response.data && _context2.t0.response.data.errors) {
+            commit('SET_ERRORS', _context2.t0.response.data.errors);
+          }
+          throw _context2.t0;
         case 11:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[1, 8]]);
+    }, _callee2, null, [[1, 7]]);
   }));
-  return function getChoferes(_x3) {
+  return function actualizarMovimiento(_x3, _x4) {
     return _ref4.apply(this, arguments);
   };
 }();
-var agregarFlota = /*#__PURE__*/function () {
+var agregarChofer = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(_ref5, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -5268,10 +6203,10 @@ var agregarFlota = /*#__PURE__*/function () {
           commit = _ref5.commit, dispatch = _ref5.dispatch;
           _context3.prev = 1;
           _context3.next = 4;
-          return axios.post('/api/flotas', form);
+          return axios.post('/api/choferes', form);
         case 4:
           dispatch('clearErrors');
-          dispatch('getFlotas');
+          dispatch('getChoferes');
           _context3.next = 12;
           break;
         case 8:
@@ -5287,11 +6222,11 @@ var agregarFlota = /*#__PURE__*/function () {
       }
     }, _callee3, null, [[1, 8]]);
   }));
-  return function agregarFlota(_x4, _x5) {
+  return function agregarChofer(_x5, _x6) {
     return _ref6.apply(this, arguments);
   };
 }();
-var getFlotas = /*#__PURE__*/function () {
+var getChoferes = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(_ref7) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -5300,27 +6235,27 @@ var getFlotas = /*#__PURE__*/function () {
           commit = _ref7.commit;
           _context4.prev = 1;
           _context4.next = 4;
-          return axios.get('/api/flotas');
+          return axios.get('/api/choferes');
         case 4:
           response = _context4.sent;
-          commit('SET_FLOTAS', response.data);
+          commit('SET_CHOFERES', response.data);
           _context4.next = 11;
           break;
         case 8:
           _context4.prev = 8;
           _context4.t0 = _context4["catch"](1);
-          console.error("Error fetching flotas:", _context4.t0);
+          console.error("Error fetching choferes:", _context4.t0);
         case 11:
         case "end":
           return _context4.stop();
       }
     }, _callee4, null, [[1, 8]]);
   }));
-  return function getFlotas(_x6) {
+  return function getChoferes(_x7) {
     return _ref8.apply(this, arguments);
   };
 }();
-var agregarCliente = /*#__PURE__*/function () {
+var agregarFlota = /*#__PURE__*/function () {
   var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(_ref9, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
@@ -5329,10 +6264,10 @@ var agregarCliente = /*#__PURE__*/function () {
           commit = _ref9.commit, dispatch = _ref9.dispatch;
           _context5.prev = 1;
           _context5.next = 4;
-          return axios.post('/api/clientes', form);
+          return axios.post('/api/flotas', form);
         case 4:
           dispatch('clearErrors');
-          dispatch('getClientes');
+          dispatch('getFlotas');
           _context5.next = 12;
           break;
         case 8:
@@ -5348,11 +6283,11 @@ var agregarCliente = /*#__PURE__*/function () {
       }
     }, _callee5, null, [[1, 8]]);
   }));
-  return function agregarCliente(_x7, _x8) {
+  return function agregarFlota(_x8, _x9) {
     return _ref10.apply(this, arguments);
   };
 }();
-var getClientes = /*#__PURE__*/function () {
+var getFlotas = /*#__PURE__*/function () {
   var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(_ref11) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
@@ -5361,27 +6296,27 @@ var getClientes = /*#__PURE__*/function () {
           commit = _ref11.commit;
           _context6.prev = 1;
           _context6.next = 4;
-          return axios.get('/api/clientes');
+          return axios.get('/api/flotas');
         case 4:
           response = _context6.sent;
-          commit('SET_CLIENTES', response.data);
+          commit('SET_FLOTAS', response.data);
           _context6.next = 11;
           break;
         case 8:
           _context6.prev = 8;
           _context6.t0 = _context6["catch"](1);
-          console.error("Error fetching clientes:", _context6.t0);
+          console.error("Error fetching flotas:", _context6.t0);
         case 11:
         case "end":
           return _context6.stop();
       }
     }, _callee6, null, [[1, 8]]);
   }));
-  return function getClientes(_x9) {
+  return function getFlotas(_x10) {
     return _ref12.apply(this, arguments);
   };
 }();
-var agregarTipoViaje = /*#__PURE__*/function () {
+var agregarCliente = /*#__PURE__*/function () {
   var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(_ref13, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
@@ -5390,10 +6325,10 @@ var agregarTipoViaje = /*#__PURE__*/function () {
           commit = _ref13.commit, dispatch = _ref13.dispatch;
           _context7.prev = 1;
           _context7.next = 4;
-          return axios.post('/api/tipo-viajes', form);
+          return axios.post('/api/clientes', form);
         case 4:
           dispatch('clearErrors');
-          dispatch('getTipoViajes');
+          dispatch('getClientes');
           _context7.next = 12;
           break;
         case 8:
@@ -5409,11 +6344,11 @@ var agregarTipoViaje = /*#__PURE__*/function () {
       }
     }, _callee7, null, [[1, 8]]);
   }));
-  return function agregarTipoViaje(_x10, _x11) {
+  return function agregarCliente(_x11, _x12) {
     return _ref14.apply(this, arguments);
   };
 }();
-var getTipoViajes = /*#__PURE__*/function () {
+var getClientes = /*#__PURE__*/function () {
   var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(_ref15) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -5422,93 +6357,96 @@ var getTipoViajes = /*#__PURE__*/function () {
           commit = _ref15.commit;
           _context8.prev = 1;
           _context8.next = 4;
-          return axios.get('/api/tipo-viajes');
+          return axios.get('/api/clientes');
         case 4:
           response = _context8.sent;
-          commit('SET_TIPO_VIAJES', response.data);
+          commit('SET_CLIENTES', response.data);
           _context8.next = 11;
           break;
         case 8:
           _context8.prev = 8;
           _context8.t0 = _context8["catch"](1);
-          console.error("Error fetching tipo viajes:", _context8.t0);
+          console.error("Error fetching clientes:", _context8.t0);
         case 11:
         case "end":
           return _context8.stop();
       }
     }, _callee8, null, [[1, 8]]);
   }));
-  return function getTipoViajes(_x12) {
+  return function getClientes(_x13) {
     return _ref16.apply(this, arguments);
   };
 }();
-var updateErrors = function updateErrors(_ref17, errors) {
-  var commit = _ref17.commit;
-  commit('SET_ERRORS', errors);
-};
-var clearErrors = function clearErrors(_ref18) {
-  var commit = _ref18.commit;
-  commit('CLEAR_ERRORS');
-};
-var getRetencionGanancias = /*#__PURE__*/function () {
-  var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(_ref19) {
-    var commit, response;
+var agregarTipoViaje = /*#__PURE__*/function () {
+  var _ref18 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(_ref17, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee9$(_context9) {
       while (1) switch (_context9.prev = _context9.next) {
         case 0:
-          commit = _ref19.commit;
+          commit = _ref17.commit, dispatch = _ref17.dispatch;
           _context9.prev = 1;
           _context9.next = 4;
-          return axios.get('/api/retencion-ganancias');
+          return axios.post('/api/tipo-viajes', form);
         case 4:
-          response = _context9.sent;
-          commit('SET_RETENCION_GANANCIAS', response.data);
-          _context9.next = 11;
+          dispatch('clearErrors');
+          dispatch('getTipoViajes');
+          _context9.next = 12;
           break;
         case 8:
           _context9.prev = 8;
           _context9.t0 = _context9["catch"](1);
-          console.error("Error al traer a las retenciones de ganancias:", _context9.t0);
-        case 11:
+          if (_context9.t0.response && _context9.t0.response.data && _context9.t0.response.data.errors) {
+            commit('SET_ERRORS', _context9.t0.response.data.errors);
+          }
+          throw _context9.t0;
+        case 12:
         case "end":
           return _context9.stop();
       }
     }, _callee9, null, [[1, 8]]);
   }));
-  return function getRetencionGanancias(_x13) {
-    return _ref20.apply(this, arguments);
+  return function agregarTipoViaje(_x14, _x15) {
+    return _ref18.apply(this, arguments);
   };
 }();
-var getRetencionIngresoBrutos = /*#__PURE__*/function () {
-  var _ref22 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(_ref21) {
+var getTipoViajes = /*#__PURE__*/function () {
+  var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(_ref19) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee10$(_context10) {
       while (1) switch (_context10.prev = _context10.next) {
         case 0:
-          commit = _ref21.commit;
+          commit = _ref19.commit;
           _context10.prev = 1;
           _context10.next = 4;
-          return axios.get('/api/retencion-ingreso-brutos');
+          return axios.get('/api/tipo-viajes');
         case 4:
           response = _context10.sent;
-          commit('SET_RETENCION_INGRESO_BRUTOS', response.data);
+          commit('SET_TIPO_VIAJES', response.data);
           _context10.next = 11;
           break;
         case 8:
           _context10.prev = 8;
           _context10.t0 = _context10["catch"](1);
-          console.error("Error al traer a las retenciones de ingresos gruto:", _context10.t0);
+          console.error("Error fetching tipo viajes:", _context10.t0);
         case 11:
         case "end":
           return _context10.stop();
       }
     }, _callee10, null, [[1, 8]]);
   }));
-  return function getRetencionIngresoBrutos(_x14) {
-    return _ref22.apply(this, arguments);
+  return function getTipoViajes(_x16) {
+    return _ref20.apply(this, arguments);
   };
 }();
-var getCondicionesIva = /*#__PURE__*/function () {
+var updateErrors = function updateErrors(_ref21, errors) {
+  var commit = _ref21.commit;
+  commit('SET_ERRORS', errors);
+};
+var clearErrors = function clearErrors(_ref22) {
+  var commit = _ref22.commit;
+  commit('CLEAR_ERRORS');
+};
+var getRetencionGanancias = /*#__PURE__*/function () {
   var _ref24 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(_ref23) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee11$(_context11) {
@@ -5517,27 +6455,27 @@ var getCondicionesIva = /*#__PURE__*/function () {
           commit = _ref23.commit;
           _context11.prev = 1;
           _context11.next = 4;
-          return axios.get('/api/condiciones-iva');
+          return axios.get('/api/retencion-ganancias');
         case 4:
           response = _context11.sent;
-          commit('SET_CONDICIONES_IVA', response.data);
+          commit('SET_RETENCION_GANANCIAS', response.data);
           _context11.next = 11;
           break;
         case 8:
           _context11.prev = 8;
           _context11.t0 = _context11["catch"](1);
-          console.error("Error al traer a las condiciones iva:", _context11.t0);
+          console.error("Error al traer a las retenciones de ganancias:", _context11.t0);
         case 11:
         case "end":
           return _context11.stop();
       }
     }, _callee11, null, [[1, 8]]);
   }));
-  return function getCondicionesIva(_x15) {
+  return function getRetencionGanancias(_x17) {
     return _ref24.apply(this, arguments);
   };
 }();
-var getTipoDocumentos = /*#__PURE__*/function () {
+var getRetencionIngresoBrutos = /*#__PURE__*/function () {
   var _ref26 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(_ref25) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee12$(_context12) {
@@ -5546,27 +6484,27 @@ var getTipoDocumentos = /*#__PURE__*/function () {
           commit = _ref25.commit;
           _context12.prev = 1;
           _context12.next = 4;
-          return axios.get('/api/tipo-documentos');
+          return axios.get('/api/retencion-ingreso-brutos');
         case 4:
           response = _context12.sent;
-          commit('SET_TIPO_DOCUMENTOS', response.data);
+          commit('SET_RETENCION_INGRESO_BRUTOS', response.data);
           _context12.next = 11;
           break;
         case 8:
           _context12.prev = 8;
           _context12.t0 = _context12["catch"](1);
-          console.error("Error al traer a los tipos de documentos:", _context12.t0);
+          console.error("Error al traer a las retenciones de ingresos gruto:", _context12.t0);
         case 11:
         case "end":
           return _context12.stop();
       }
     }, _callee12, null, [[1, 8]]);
   }));
-  return function getTipoDocumentos(_x16) {
+  return function getRetencionIngresoBrutos(_x18) {
     return _ref26.apply(this, arguments);
   };
 }();
-var getProvincias = /*#__PURE__*/function () {
+var getCondicionesIva = /*#__PURE__*/function () {
   var _ref28 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(_ref27) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee13$(_context13) {
@@ -5575,28 +6513,28 @@ var getProvincias = /*#__PURE__*/function () {
           commit = _ref27.commit;
           _context13.prev = 1;
           _context13.next = 4;
-          return axios.get('/api/provincias');
+          return axios.get('/api/condiciones-iva');
         case 4:
           response = _context13.sent;
-          commit('SET_PROVINCIAS', response.data);
+          commit('SET_CONDICIONES_IVA', response.data);
           _context13.next = 11;
           break;
         case 8:
           _context13.prev = 8;
           _context13.t0 = _context13["catch"](1);
-          console.error("Error al traer a las provincias:", _context13.t0);
+          console.error("Error al traer a las condiciones iva:", _context13.t0);
         case 11:
         case "end":
           return _context13.stop();
       }
     }, _callee13, null, [[1, 8]]);
   }));
-  return function getProvincias(_x17) {
+  return function getCondicionesIva(_x19) {
     return _ref28.apply(this, arguments);
   };
 }();
-var getDepartamentosProvincia = /*#__PURE__*/function () {
-  var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(_ref29, provincia_id) {
+var getTipoDocumentos = /*#__PURE__*/function () {
+  var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(_ref29) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee14$(_context14) {
       while (1) switch (_context14.prev = _context14.next) {
@@ -5604,28 +6542,28 @@ var getDepartamentosProvincia = /*#__PURE__*/function () {
           commit = _ref29.commit;
           _context14.prev = 1;
           _context14.next = 4;
-          return axios.get('/api/departamentos/' + provincia_id);
+          return axios.get('/api/tipo-documentos');
         case 4:
           response = _context14.sent;
-          commit('SET_DEPARTAMENTOS', response.data);
+          commit('SET_TIPO_DOCUMENTOS', response.data);
           _context14.next = 11;
           break;
         case 8:
           _context14.prev = 8;
           _context14.t0 = _context14["catch"](1);
-          console.error("Error al traer a los departamentos:", _context14.t0);
+          console.error("Error al traer a los tipos de documentos:", _context14.t0);
         case 11:
         case "end":
           return _context14.stop();
       }
     }, _callee14, null, [[1, 8]]);
   }));
-  return function getDepartamentosProvincia(_x18, _x19) {
+  return function getTipoDocumentos(_x20) {
     return _ref30.apply(this, arguments);
   };
 }();
-var getLocalidadesDepartamento = /*#__PURE__*/function () {
-  var _ref32 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(_ref31, departamento_id) {
+var getProvincias = /*#__PURE__*/function () {
+  var _ref32 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(_ref31) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee15$(_context15) {
       while (1) switch (_context15.prev = _context15.next) {
@@ -5633,24 +6571,82 @@ var getLocalidadesDepartamento = /*#__PURE__*/function () {
           commit = _ref31.commit;
           _context15.prev = 1;
           _context15.next = 4;
-          return axios.get('/api/localidades/' + departamento_id);
+          return axios.get('/api/provincias');
         case 4:
           response = _context15.sent;
-          commit('SET_LOCALIDADES', response.data);
+          commit('SET_PROVINCIAS', response.data);
           _context15.next = 11;
           break;
         case 8:
           _context15.prev = 8;
           _context15.t0 = _context15["catch"](1);
-          console.error("Error al traer a las localidades:", _context15.t0);
+          console.error("Error al traer a las provincias:", _context15.t0);
         case 11:
         case "end":
           return _context15.stop();
       }
     }, _callee15, null, [[1, 8]]);
   }));
-  return function getLocalidadesDepartamento(_x20, _x21) {
+  return function getProvincias(_x21) {
     return _ref32.apply(this, arguments);
+  };
+}();
+var getDepartamentosProvincia = /*#__PURE__*/function () {
+  var _ref34 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(_ref33, provincia_id) {
+    var commit, response;
+    return _regeneratorRuntime().wrap(function _callee16$(_context16) {
+      while (1) switch (_context16.prev = _context16.next) {
+        case 0:
+          commit = _ref33.commit;
+          _context16.prev = 1;
+          _context16.next = 4;
+          return axios.get('/api/departamentos/' + provincia_id);
+        case 4:
+          response = _context16.sent;
+          commit('SET_DEPARTAMENTOS', response.data);
+          _context16.next = 11;
+          break;
+        case 8:
+          _context16.prev = 8;
+          _context16.t0 = _context16["catch"](1);
+          console.error("Error al traer a los departamentos:", _context16.t0);
+        case 11:
+        case "end":
+          return _context16.stop();
+      }
+    }, _callee16, null, [[1, 8]]);
+  }));
+  return function getDepartamentosProvincia(_x22, _x23) {
+    return _ref34.apply(this, arguments);
+  };
+}();
+var getLocalidadesDepartamento = /*#__PURE__*/function () {
+  var _ref36 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17(_ref35, departamento_id) {
+    var commit, response;
+    return _regeneratorRuntime().wrap(function _callee17$(_context17) {
+      while (1) switch (_context17.prev = _context17.next) {
+        case 0:
+          commit = _ref35.commit;
+          _context17.prev = 1;
+          _context17.next = 4;
+          return axios.get('/api/localidades/' + departamento_id);
+        case 4:
+          response = _context17.sent;
+          commit('SET_LOCALIDADES', response.data);
+          _context17.next = 11;
+          break;
+        case 8:
+          _context17.prev = 8;
+          _context17.t0 = _context17["catch"](1);
+          console.error("Error al traer a las localidades:", _context17.t0);
+        case 11:
+        case "end":
+          return _context17.stop();
+      }
+    }, _callee17, null, [[1, 8]]);
+  }));
+  return function getLocalidadesDepartamento(_x24, _x25) {
+    return _ref36.apply(this, arguments);
   };
 }();
 
@@ -6732,6 +7728,45 @@ component.options.__file = "resources/js/Pages/Movimiento/Create.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Movimiento/Edit.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Pages/Movimiento/Edit.vue ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Edit_vue_vue_type_template_id_0dd85a6a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=0dd85a6a */ "./resources/js/Pages/Movimiento/Edit.vue?vue&type=template&id=0dd85a6a");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js */ "./resources/js/Pages/Movimiento/Edit.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_0dd85a6a__WEBPACK_IMPORTED_MODULE_0__.render,
+  _Edit_vue_vue_type_template_id_0dd85a6a__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Movimiento/Edit.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/TipoViaje/Create.vue":
 /*!*************************************************!*\
   !*** ./resources/js/Pages/TipoViaje/Create.vue ***!
@@ -6961,6 +7996,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Movimiento/Edit.vue?vue&type=script&lang=js":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Movimiento/Edit.vue?vue&type=script&lang=js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Movimiento/Edit.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/TipoViaje/Create.vue?vue&type=script&lang=js":
 /*!*************************************************************************!*\
   !*** ./resources/js/Pages/TipoViaje/Create.vue?vue&type=script&lang=js ***!
@@ -7124,6 +8175,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_205e167d__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_205e167d__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Create.vue?vue&type=template&id=205e167d */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Movimiento/Create.vue?vue&type=template&id=205e167d");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Movimiento/Edit.vue?vue&type=template&id=0dd85a6a":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Movimiento/Edit.vue?vue&type=template&id=0dd85a6a ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_0dd85a6a__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_0dd85a6a__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_0dd85a6a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=template&id=0dd85a6a */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Movimiento/Edit.vue?vue&type=template&id=0dd85a6a");
 
 
 /***/ }),

@@ -15,23 +15,23 @@ class CreateMovimientosTable extends Migration
     {
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_interno');
+            $table->integer('numero_interno');
             $table->date('fecha');
             $table->foreignId('cliente_id')->constrained('clientes');
             $table->foreignId('tipo_viaje_id')->constrained('tipo_viajes');
             $table->text('detalle');
             $table->string('numero_factura_1');
             $table->string('numero_factura_2');
-            $table->bigInteger('precio_real');
+            $table->decimal('precio_real', 15, 2);
             $table->bigInteger('iva');
-            $table->bigInteger('total');
-            $table->bigInteger('saldo_total');
+            $table->decimal('total', 15, 2);
+            $table->decimal('saldo_total', 15, 2);
             $table->foreignId('flota_id')->constrained('flotas');
             $table->foreignId('chofer_id')->constrained('chofers');
             $table->bigInteger('precio_chofer');
-            $table->integer('porcentaje_pago');// default 16%
-            $table->integer('comision_chofer'); // CALCULO precio_chofer * porcnetaje pago
-            $table->bigInteger('saldo_comision_chofer');
+            $table->integer('porcentaje_pago');
+            $table->decimal('comision_chofer', 10, 2);
+            $table->decimal('saldo_comision_chofer', 15, 2);
             $table->timestamps();
         });
     }
