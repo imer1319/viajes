@@ -10,4 +10,9 @@ class CondicionesPago extends Model
     use HasFactory;
 
     protected $fillable = ['condicion', 'dias'];
+
+    public function setCondicionAttribute($value)
+    {
+        $this->attributes['condicion'] = strtoupper($value);
+    }
 }
