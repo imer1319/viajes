@@ -10,7 +10,7 @@
                     type="text"
                     v-model="form.descripcion"
                     :class="{ 'is-invalid': errors.descripcion }"
-                    class="form-control form-control-sm"
+                    class="form-control"
                     id="descripcion"
                 />
                 <span v-if="errors.descripcion" class="text-danger">{{

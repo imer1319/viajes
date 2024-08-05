@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5>Listado de Clientes</h5>
             <div>
-                <input type="text" placeholder="Buscar por razon social" class="form-control form-control-sm"
+                <input type="text" placeholder="Buscar por razon social" class="form-control"
                     v-model="search">
             </div>
         </div>

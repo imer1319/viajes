@@ -8,6 +8,8 @@ Vue.use(ToastPlugin)
 
 Vue.component('movimiento-create', require('./Pages/Movimiento/Create.vue').default);
 Vue.component('movimiento-edit', require('./Pages/Movimiento/Edit.vue').default);
+Vue.component('cliente-create', require('./Pages/Cliente/Create.vue').default);
+Vue.component('cliente-edit', require('./Pages/Cliente/Edit.vue').default);
 
 const app = new Vue({
     el: '#app',

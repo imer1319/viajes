@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5>Listado de Flotas</h5>
             <div>
-                <input type="text" placeholder="Buscar por nombre" class="form-control form-control-sm"
+                <input type="text" placeholder="Buscar por nombre" class="form-control"
                     v-model="search">
             </div>
         </div>

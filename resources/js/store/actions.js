@@ -76,7 +76,17 @@ export const agregarCliente = async ({ commit, dispatch }, form) => {
         throw error;
     }
 };
-
+export const actualizarCliente = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.put('/clientes/'+form.id, form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
 export const getClientes = async ({ commit }) => {
     try {
         const response = await axios.get('/api/clientes');

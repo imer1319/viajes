@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Usuarios</h1>
+                    <h1>Clientes</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -14,23 +14,20 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
-    <!-- Main content -->
     <section class="content mx-3">
-
-        <div class="card card-primary card-outline ñpt-4">
-            <div class="card-header">Editar usuario</div>
-
+        <div class="card card-primary card-outline">
+            <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
+                <h5>Listado de clientes</h5>
+                <a href="{{ route('admin.clientes.create') }}" class="btn btn-primary rounded-pill float-end">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </div>
             <div class="card-body">
-                <form action="{{ route('admin.usuarios.update', $usuario) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    @include('admin.usuarios.form', ['button' => 'Actualizar'])
-                </form>
+                @include('admin.clientes.table')
             </div>
         </div>
-
     </section>
 @endsection

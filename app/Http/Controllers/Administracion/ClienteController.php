@@ -2,10 +2,53 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Models\Cliente;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Cliente\StoreRequest;
+use App\Http\Requests\Cliente\UpdateRequest;
 
 class ClienteController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('admin.clientes.index', [
+            'clientes' => Cliente::paginate(8)
+        ]);
+    }
+
+    public function create()
+    {
+        return view('admin.clientes.create', [
+            'cliente' => new Cliente(),
+        ]);
+    }
+
+    public function store(StoreRequest $request)
+    {
+        Cliente::create($request->validated());
+        return redirect()->route('admin.clientes.index')->with('flash', 'Cliente creado corretamente');
+    }
+
+    public function edit(Cliente $cliente)
+    {
+        return view('admin.clientes.edit', [
+            'cliente' => $cliente
+        ]);
+    }
+
+    public function update(UpdateRequest $request,Cliente $cliente)
+    {
+        $res = $cliente->update($request->validated());
+
+        if ($res) {
+            return response()->json(['message' => 'Cliente actualizado correctamente'], 201);
+        }
+        return response()->json(['message' => 'Error al actualizar el nuevo chofer'], 500);
+    }
+
+    public function destroy(Cliente $cliente)
+    {
+        $cliente->delete();
+        return redirect()->route('admin.clientes.index')->with('flash', 'Cliente eliminado corretamente');
+    }
 }

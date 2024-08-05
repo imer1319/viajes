@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Usuarios</h1>
+                    <h1>Clientes</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -21,14 +21,10 @@
     <section class="content mx-3">
 
         <div class="card card-primary card-outline ñpt-4">
-            <div class="card-header">Editar usuario</div>
+            <div class="card-header">Editar cliente</div>
 
             <div class="card-body">
-                <form action="{{ route('admin.usuarios.update', $usuario) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    @include('admin.usuarios.form', ['button' => 'Actualizar'])
-                </form>
+                <cliente-edit :cliente="{{ $cliente }}" redirect="true"></cliente-edit>
             </div>
         </div>
 

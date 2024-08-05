@@ -319,9 +319,9 @@
             <div class="col-12 d-flex justify-content-end mt-3">
                 <button
                     class="btn btn-primary btn-sm"
-                    @click.prevent="agregarCliente"
+                    @click.prevent="actualizarCliente"
                 >
-                    Agregar
+                    Actualizar
                 </button>
             </div>
         </div>
@@ -330,17 +330,30 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    props:['redirect'],
-    mounted() {
+    props: ["redirect", "cliente"],
+    created() {
+        if (this.cliente) {
+            this.setFormValues(this.cliente);
+        }
+    },
+    async mounted() {
+        this.$store.dispatch("getProvincias");
         this.$store.dispatch("getProvincias");
         this.$store.dispatch("getRetencionGanancias");
         this.$store.dispatch("getRetencionIngresoBrutos");
         this.$store.dispatch("getCondicionesIva");
         this.$store.dispatch("getTipoDocumentos");
+        if (this.form.provincia_id) {
+            await this.fetchDepartamentos();
+        }
+        if (this.form.departamento_id) {
+            await this.fetchLocalidades();
+        }
     },
     data() {
         return {
             form: {
+                id: "",
                 razon_social: "",
                 cuit: "",
                 celular: "",
@@ -364,9 +377,9 @@ export default {
         };
     },
     methods: {
-        agregarCliente() {
+        actualizarCliente() {
             this.$store
-                .dispatch("agregarCliente", this.form)
+                .dispatch("actualizarCliente", this.form)
                 .then(() => {
                     if (this.redirect) {
                         window.location = "/clientes";
@@ -387,23 +400,50 @@ export default {
                     });
                 });
         },
-        fetchDepartamentos() {
+        setFormValues(cliente) {
+            this.form.id = cliente.id;
+            this.form.razon_social = cliente.razon_social;
+            this.form.cuit = cliente.cuit;
+            this.form.celular = cliente.celular;
+            this.form.domicilio = cliente.domicilio;
+            this.form.numero_ingreso_bruto = cliente.numero_ingreso_bruto;
+            this.form.condicion_iva_id = cliente.condicion_iva_id;
+            this.form.telefono = cliente.telefono;
+            this.form.provincia_id = cliente.provincia_id;
+            this.form.localidad_id = cliente.localidad_id;
+            this.form.departamento_id = cliente.departamento_id;
+            this.form.codigo_postal = cliente.codigo_postal;
+            this.form.email = cliente.email;
+            this.form.contacto = cliente.contacto;
+            this.form.retencion_ganancia_id = cliente.retencion_ganancia_id;
+            this.form.retencion_ingreso_bruto_id =
+                cliente.retencion_ingreso_bruto_id;
+            this.form.saldo = cliente.saldo;
+            this.form.tipo_documento_id = cliente.tipo_documento_id;
+            this.form.numero_documento = cliente.numero_documento;
+            this.form.estado = cliente.estado;
+        },
+        async fetchDepartamentos() {
             if (this.form.provincia_id) {
-                this.$store.dispatch(
+                await this.$store.dispatch(
                     "getDepartamentosProvincia",
                     this.form.provincia_id
                 );
-                this.form.departamento_id = "";
-                this.form.localidad_id = "";
+                if (this.cliente) {
+                    this.form.departamento_id = this.cliente.departamento_id;
+                    await this.fetchLocalidades();
+                }
             }
         },
-        fetchLocalidades() {
+        async fetchLocalidades() {
             if (this.form.departamento_id) {
-                this.$store.dispatch(
+                await this.$store.dispatch(
                     "getLocalidadesDepartamento",
                     this.form.departamento_id
                 );
-                this.form.localidad_id = "";
+                if (this.cliente) {
+                    this.form.localidad_id = this.cliente.localidad_id;
+                }
             }
         },
         resetForm() {

@@ -10,7 +10,7 @@
                     type="text"
                     v-model="form.nombre"
                     :class="{ 'is-invalid': errors.nombre }"
-                    class="form-control form-control-sm"
+                    class="form-control"
                     id="nombre"
                 />
                 <span v-if="errors.nombre" class="text-danger">{{
@@ -25,7 +25,7 @@
                     type="text"
                     v-model="form.placa"
                     :class="{ 'is-invalid': errors.placa }"
-                    class="form-control form-control-sm"
+                    class="form-control"
                     id="placa"
                 />
                 <span v-if="errors.placa" class="text-danger">{{
@@ -40,7 +40,7 @@
                     type="text"
                     v-model="form.marca"
                     :class="{ 'is-invalid': errors.marca }"
-                    class="form-control form-control-sm"
+                    class="form-control"
                     id="marca"
                 />
                 <span v-if="errors.marca" class="text-danger">{{
@@ -53,7 +53,7 @@
                     type="number"
                     v-model="form.anio"
                     :class="{ 'is-invalid': errors.anio }"
-                    class="form-control form-control-sm"
+                    class="form-control"
                     id="anio"
                     min="1886"
                     :max="new Date().getFullYear()"
@@ -70,7 +70,7 @@
                     type="text"
                     v-model="form.kilometraje"
                     :class="{ 'is-invalid': errors.kilometraje }"
-                    class="form-control form-control-sm"
+                    class="form-control"
                     id="kilometraje"
                 />
                 <span v-if="errors.kilometraje" class="text-danger">{{
@@ -85,7 +85,7 @@
                     type="text"
                     v-model="form.identificacion"
                     :class="{ 'is-invalid': errors.identificacion }"
-                    class="form-control form-control-sm"
+                    class="form-control"
                     id="identificacion"
                 />
                 <span v-if="errors.identificacion" class="text-danger">{{
