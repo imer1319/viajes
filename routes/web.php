@@ -30,7 +30,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('tipo-comprobantes', TipoComprobanteController::class);
     Route::resource('forma-pagos', FormaPagoController::class);
     Route::resource('condicion-pagos', CondicionPagoController::class);
-    Route::resource('condicion-iva', CondicionIvaController::class);
+    Route::resource('condiciones-iva', CondicionIvaController::class);
     Route::resource('medidas', MedidaController::class);
     // Administracion
     Route::resource('users', UserController::class);

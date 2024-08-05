@@ -2,27 +2,27 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Codigo</th>
-            <th>Descripcion</th>
+            <th>Condicion</th>
+            <th>Dias</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($condicionesIva as $condicion)
+        @foreach ($condicionesPago as $condicion)
             <tr>
                 <td>{{ $condicion->id }}</td>
-                <td>{{ $condicion->codigo }}</td>
-                <td>{{ $condicion->descripcion }}</td>
+                <td>{{ $condicion->condicion }}</td>
+                <td>{{ $condicion->dias }}</td>
                 <td>
-                    <a href="{{ route('admin.condiciones-iva.edit', $condicion) }}"
+                    <a href="{{ route('admin.condicion-pagos.edit', $condicion) }}"
                         class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <form action="{{ route('admin.condiciones-iva.destroy', $condicion) }}" style="display:inline" method="post">
+                    <form action="{{ route('admin.condicion-pagos.destroy', $condicion) }}" style="display:inline" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
-                            onclick="return confirm('¿Realmente desea eliminar condicion IVA?')"><i
+                            onclick="return confirm('¿Realmente desea eliminar el condicion de pago?')"><i
                                 class="fa fa-trash"></i>
                         </button>
                     </form>
@@ -32,5 +32,5 @@
     </tbody>
 </table>
 <div class="mt-3 d-flex justify-content-end">
-    {{ $condicionesIva->links() }}
+    {{ $condicionesPago->links() }}
 </div>

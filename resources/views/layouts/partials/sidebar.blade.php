@@ -71,7 +71,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.condicion-iva.index') }}" class="nav-link">
+                            <a href="{{ route('admin.condiciones-iva.index') }}" class="nav-link">
                                 <i class="fas fa-comments-dollar nav-icon"></i>
                                 <p>Condiciones Iva</p>
                             </a>
