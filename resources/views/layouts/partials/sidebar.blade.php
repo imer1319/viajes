@@ -100,12 +100,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.clientes.index') }}" class="nav-link">
-                                <i class="fa fa-users nav-icon"></i>
-                                <p>Clientes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('admin.proveedores.index') }}" class="nav-link">
                                 <i class="fas fa-user-friends nav-icon"></i>
                                 <p>Proveedores</p>
@@ -129,17 +123,26 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index2.html" class="nav-link">
+                            <a href="{{ route('admin.flotas.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Flota</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../index3.html" class="nav-link">
+                            <a href="../../index2.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Pago cliente</p>
+                                <p>Choferes</p>
+                                {{-- agregar anticipo choferes --}}
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="../../index2.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Clientes</p>
+                                {{-- agregar pago de clientes --}}
+                            </a>
+                        </li>
+                        
                     </ul>
                 </li>
                 <li class="nav-item">

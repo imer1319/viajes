@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Cliente;
+namespace App\Http\Requests\Proveedor;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -39,8 +39,7 @@ class StoreRequest extends FormRequest
             'contacto' => 'required|string|max:255',
             'retencion_ganancia_id' => 'required|exists:retencion_ganancias,id',
             'retencion_ingreso_bruto_id' => 'required|exists:retencion_ingresos_brutos,id',
-            'tipo_documento_id' => 'required|exists:tipo_documentos,id',
-            'numero_documento' => 'required|string|max:20',
+            'plan_cuenta_id' => 'required|exists:plan_cuentas,id',
             'saldo' => 'required|numeric',
             'estado' => 'required',
         ];
@@ -83,6 +82,9 @@ class StoreRequest extends FormRequest
 
             'localidad_id.required' => 'La localidad es obligatoria.',
             'localidad_id.exists' => 'La localidad seleccionada no es válida.',
+
+            'plan_cuenta_id.required' => 'El plan de cuenta es obligatoria.',
+            'plan_cuenta_id.exists' => 'El plan de cuenta seleccionada no es válida.',
 
             'codigo_postal.required' => 'El código postal es obligatorio.',
             'codigo_postal.string' => 'El código postal debe ser una cadena de texto.',

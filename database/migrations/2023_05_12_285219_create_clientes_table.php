@@ -33,7 +33,7 @@ return new class extends Migration
             $table->foreignId('tipo_documento_id')->constrained('tipo_documentos');
             $table->string('numero_documento');
             $table->bigInteger('saldo')->default(0);
-            $table->enum('estado', ['ACTIVO', 'INACTIVO'])->default('ACTIVO');
+            $table->boolean('estado');
             $table->timestamps();
         });
     }

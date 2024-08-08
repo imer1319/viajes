@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
         Marca::truncate();
         Deposito::truncate();
         Rubro::truncate();
-        Proveedor::truncate();
+        // Proveedor::truncate();
         OrdenCompra::truncate();
         Ubicacion::truncate();
         CentroCosto::truncate();
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             MarcaSeeder::class,
             DepositoSeeder::class,
             RubroSeeder::class,
-            ProveedorSeeder::class,
+            // ProveedorSeeder::class,
             ProductoSeeder::class,
             OrdenCompraSeeder::class,
             UbicacionSeeder::class,

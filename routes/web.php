@@ -10,6 +10,7 @@ use App\Http\Controllers\Configuracion\MedidaController;
 use App\Http\Controllers\Configuracion\RetencionGananciasController;
 use App\Http\Controllers\Configuracion\RetencionIngresosBrutoController;
 use App\Http\Controllers\Configuracion\TipoComprobanteController;
+use App\Http\Controllers\Main\FlotaController;
 use App\Http\Controllers\Main\MovimientoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,6 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     // Configuracion
     Route::resource('retencion-ingresos-bruto', RetencionIngresosBrutoController::class);
     Route::resource('retencion-ganancias', RetencionGananciasController::class);
-    Route::resource('movimientos', MovimientoController::class);
     Route::resource('tipo-comprobantes', TipoComprobanteController::class);
     Route::resource('forma-pagos', FormaPagoController::class);
     Route::resource('condicion-pagos', CondicionPagoController::class);
@@ -37,5 +37,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('clientes', ClienteController::class);
     Route::resource('proveedores', ProveedorController::class);
     // Acciones
-
+    Route::resource('movimientos', MovimientoController::class);
+    Route::resource('flotas', FlotaController::class);
+    
 });

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Administracion\ProveedorController;
 use App\Http\Controllers\Api\ChoferController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\FlotaController;
+use App\Http\Controllers\Api\PlanCuentaController;
 use App\Http\Controllers\Api\TipoViajeController;
 use App\Http\Controllers\Main\MovimientoController;
 use Illuminate\Http\Request;
@@ -29,3 +31,4 @@ Route::get('retencion-ingreso-brutos', [MovimientoController::class, 'retencionI
 Route::get('retencion-ganancias', [MovimientoController::class, 'retencionGanancias']);
 Route::get('condiciones-iva', [MovimientoController::class, 'condicionesIva']);
 Route::get('tipo-documentos', [MovimientoController::class, 'tipoDocumentos']);
+Route::get('plan-cuentas', [PlanCuentaController::class, 'index']);

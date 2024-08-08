@@ -10,5 +10,6 @@ export default {
     condicionesIva: [],
     retencionIngresoBrutos: [],
     tipoDocumentos: [],
+    planCuentas: [],
     errors: {}
 };

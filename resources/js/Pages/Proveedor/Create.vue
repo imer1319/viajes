@@ -278,48 +278,31 @@
                 >
             </div>
             <div class="col-md-4">
-                <label for="tipo_documento_id"
-                    >Tipo de documento<span class="text-danger">*</span></label
+                <label for="plan_cuenta_id"
+                    >Plan de cuenta<span class="text-danger">*</span></label
                 >
                 <select
-                    v-model="form.tipo_documento_id"
-                    :class="{ 'is-invalid': errors.tipo_documento_id }"
+                    v-model="form.plan_cuenta_id"
+                    :class="{ 'is-invalid': errors.plan_cuenta_id }"
                     class="form-control"
-                    id="tipo_documento_id"
+                    id="plan_cuenta_id"
                 >
                     <option
-                        v-for="tipo in tipoDocumentos"
-                        :key="tipo.id"
-                        :value="tipo.id"
+                        v-for="plan in planCuentas"
+                        :key="plan.id"
+                        :value="plan.id"
                     >
-                        {{ tipo.codigo }}
+                        {{ plan.descripcion }}
                     </option>
                 </select>
-                <span v-if="errors.tipo_documento_id" class="text-danger">{{
-                    getErrorMessage(errors.tipo_documento_id)
-                }}</span>
-            </div>
-            <div class="col-md-4">
-                <label for="numero_documento"
-                    >Numero de documento<span class="text-danger"
-                        >*</span
-                    ></label
-                >
-                <input
-                    type="text"
-                    v-model="form.numero_documento"
-                    :class="{ 'is-invalid': errors.numero_documento }"
-                    class="form-control"
-                    id="numero_documento"
-                />
-                <span v-if="errors.numero_documento" class="text-danger">{{
-                    getErrorMessage(errors.numero_documento)
+                <span v-if="errors.plan_cuenta_id" class="text-danger">{{
+                    getErrorMessage(errors.plan_cuenta_id)
                 }}</span>
             </div>
             <div class="col-12 d-flex justify-content-end mt-3">
                 <button
                     class="btn btn-primary btn-sm"
-                    @click.prevent="agregarCliente"
+                    @click.prevent="agregarProveedor"
                 >
                     Agregar
                 </button>
@@ -330,13 +313,14 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    props:['redirect'],
+    props: ["redirect"],
     mounted() {
         this.$store.dispatch("getProvincias");
         this.$store.dispatch("getRetencionGanancias");
         this.$store.dispatch("getRetencionIngresoBrutos");
         this.$store.dispatch("getCondicionesIva");
         this.$store.dispatch("getTipoDocumentos");
+        this.$store.dispatch("getPlanCuentas");
     },
     data() {
         return {
@@ -348,33 +332,33 @@ export default {
                 numero_ingreso_bruto: "",
                 condicion_iva_id: "",
                 telefono: "",
+                celular: "",
                 provincia_id: "",
-                localidad_id: "",
                 departamento_id: "",
+                localidad_id: "",
                 codigo_postal: "",
                 email: "",
                 contacto: "",
+                plan_cuenta_id: "",
                 retencion_ganancia_id: "",
                 retencion_ingreso_bruto_id: "",
                 saldo: 0,
-                tipo_documento_id: "",
-                numero_documento: "",
                 estado: 1,
             },
         };
     },
     methods: {
-        agregarCliente() {
+        agregarProveedor() {
             this.$store
-                .dispatch("agregarCliente", this.form)
+                .dispatch("agregarProveedor", this.form)
                 .then(() => {
                     if (this.redirect) {
-                        window.location = "/clientes";
+                        window.location = "/proveedores";
                         return;
                     }
                     this.resetForm();
                     this.$toast.open({
-                        message: "Cliente agregado exitosamente!",
+                        message: "Proveedor agregado exitosamente!",
                         type: "success",
                         position: "top-right",
                     });
@@ -415,18 +399,18 @@ export default {
                 numero_ingreso_bruto: "",
                 condicion_iva_id: "",
                 telefono: "",
+                celular: "",
                 provincia_id: "",
-                localidad_id: "",
                 departamento_id: "",
+                localidad_id: "",
                 codigo_postal: "",
                 email: "",
                 contacto: "",
+                plan_cuenta_id: "",
                 retencion_ganancia_id: "",
                 retencion_ingreso_bruto_id: "",
                 saldo: 0,
-                tipo_documento_id: "",
-                numero_documento: "",
-                estado: "ACTIVO",
+                estado: 1,
             };
         },
         getErrorMessage(error) {
@@ -442,6 +426,7 @@ export default {
             "getCondicionesIva",
             "getRetencionGanancias",
             "getTipoDocumentos",
+            "getPlanCuentas",
         ]),
         errors() {
             return this.$store.getters.getErrors;
@@ -463,6 +448,9 @@ export default {
         },
         tipoDocumentos() {
             return this.getTipoDocumentos;
+        },
+        planCuentas() {
+            return this.getPlanCuentas;
         },
         condicionesIva() {
             return this.getCondicionesIva;

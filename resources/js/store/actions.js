@@ -11,7 +11,7 @@ export const agregarMovimiento = async ({ commit, dispatch }, form) => {
 };
 export const actualizarMovimiento = async ({ commit, dispatch }, form) => {
     try {
-        await axios.put('/movimientos/'+form.id, form);
+        await axios.put('/movimientos/' + form.id, form);
         dispatch('clearErrors');
     } catch (error) {
         if (error.response && error.response.data && error.response.data.errors) {
@@ -76,9 +76,34 @@ export const agregarCliente = async ({ commit, dispatch }, form) => {
         throw error;
     }
 };
+
+export const agregarProveedor = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.post('/proveedores', form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
+
+export const actualizarProveedor = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.put('/proveedores/' + form.id, form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
+
 export const actualizarCliente = async ({ commit, dispatch }, form) => {
     try {
-        await axios.put('/clientes/'+form.id, form);
+        await axios.put('/clientes/' + form.id, form);
         dispatch('clearErrors');
     } catch (error) {
         if (error.response && error.response.data && error.response.data.errors) {
@@ -93,6 +118,14 @@ export const getClientes = async ({ commit }) => {
         commit('SET_CLIENTES', response.data);
     } catch (error) {
         console.error("Error fetching clientes:", error);
+    }
+};
+export const getPlanCuentas = async ({ commit }) => {
+    try {
+        const response = await axios.get('/api/plan-cuentas');
+        commit('SET_PLAN_CUENTAS', response.data);
+    } catch (error) {
+        console.error("Error fetching plan de cuentas:", error);
     }
 };
 

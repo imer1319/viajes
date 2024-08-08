@@ -278,50 +278,33 @@
                 >
             </div>
             <div class="col-md-4">
-                <label for="tipo_documento_id"
-                    >Tipo de documento<span class="text-danger">*</span></label
+                <label for="plan_cuenta_id"
+                    >Plan de cuenta<span class="text-danger">*</span></label
                 >
                 <select
-                    v-model="form.tipo_documento_id"
-                    :class="{ 'is-invalid': errors.tipo_documento_id }"
+                    v-model="form.plan_cuenta_id"
+                    :class="{ 'is-invalid': errors.plan_cuenta_id }"
                     class="form-control"
-                    id="tipo_documento_id"
+                    id="plan_cuenta_id"
                 >
                     <option
-                        v-for="tipo in tipoDocumentos"
-                        :key="tipo.id"
-                        :value="tipo.id"
+                        v-for="plan in planCuentas"
+                        :key="plan.id"
+                        :value="plan.id"
                     >
-                        {{ tipo.codigo }}
+                        {{ plan.descripcion }}
                     </option>
                 </select>
-                <span v-if="errors.tipo_documento_id" class="text-danger">{{
-                    getErrorMessage(errors.tipo_documento_id)
-                }}</span>
-            </div>
-            <div class="col-md-4">
-                <label for="numero_documento"
-                    >Numero de documento<span class="text-danger"
-                        >*</span
-                    ></label
-                >
-                <input
-                    type="text"
-                    v-model="form.numero_documento"
-                    :class="{ 'is-invalid': errors.numero_documento }"
-                    class="form-control"
-                    id="numero_documento"
-                />
-                <span v-if="errors.numero_documento" class="text-danger">{{
-                    getErrorMessage(errors.numero_documento)
+                <span v-if="errors.plan_cuenta_id" class="text-danger">{{
+                    getErrorMessage(errors.plan_cuenta_id)
                 }}</span>
             </div>
             <div class="col-12 d-flex justify-content-end mt-3">
                 <button
                     class="btn btn-primary btn-sm"
-                    @click.prevent="agregarCliente"
+                    @click.prevent="actualizarProveedor"
                 >
-                    Agregar
+                    Actualizar
                 </button>
             </div>
         </div>
@@ -329,18 +312,32 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
+import { actualizarProveedor } from "../../store/actions";
 export default {
-    props:['redirect'],
-    mounted() {
+    props: ["redirect", "proveedor"],
+    created() {
+        if (this.proveedor) {
+            this.setFormValues(this.proveedor);
+        }
+    },
+    async mounted() {
         this.$store.dispatch("getProvincias");
         this.$store.dispatch("getRetencionGanancias");
         this.$store.dispatch("getRetencionIngresoBrutos");
         this.$store.dispatch("getCondicionesIva");
         this.$store.dispatch("getTipoDocumentos");
+        this.$store.dispatch("getPlanCuentas");
+        if (this.form.provincia_id) {
+            await this.fetchDepartamentos();
+        }
+        if (this.form.departamento_id) {
+            await this.fetchLocalidades();
+        }
     },
     data() {
         return {
             form: {
+                id: "",
                 razon_social: "",
                 cuit: "",
                 celular: "",
@@ -348,33 +345,33 @@ export default {
                 numero_ingreso_bruto: "",
                 condicion_iva_id: "",
                 telefono: "",
+                celular: "",
                 provincia_id: "",
-                localidad_id: "",
                 departamento_id: "",
+                localidad_id: "",
                 codigo_postal: "",
                 email: "",
                 contacto: "",
+                plan_cuenta_id: "",
                 retencion_ganancia_id: "",
                 retencion_ingreso_bruto_id: "",
                 saldo: 0,
-                tipo_documento_id: "",
-                numero_documento: "",
                 estado: 1,
             },
         };
     },
     methods: {
-        agregarCliente() {
+        actualizarProveedor() {
             this.$store
-                .dispatch("agregarCliente", this.form)
+                .dispatch("actualizarProveedor", this.form)
                 .then(() => {
                     if (this.redirect) {
-                        window.location = "/clientes";
+                        window.location = "/proveedores";
                         return;
                     }
                     this.resetForm();
                     this.$toast.open({
-                        message: "Cliente agregado exitosamente!",
+                        message: "Proveedor agregado exitosamente!",
                         type: "success",
                         position: "top-right",
                     });
@@ -387,23 +384,50 @@ export default {
                     });
                 });
         },
-        fetchDepartamentos() {
+        setFormValues(proveedor) {
+            this.form.id = proveedor.id;
+            this.form.razon_social = proveedor.razon_social;
+            this.form.cuit = proveedor.cuit;
+            this.form.celular = proveedor.celular;
+            this.form.domicilio = proveedor.domicilio;
+            this.form.numero_ingreso_bruto = proveedor.numero_ingreso_bruto;
+            this.form.condicion_iva_id = proveedor.condicion_iva_id;
+            this.form.telefono = proveedor.telefono;
+            this.form.celular = proveedor.celular;
+            this.form.provincia_id = proveedor.provincia_id;
+            this.form.departamento_id = proveedor.departamento_id;
+            this.form.localidad_id = proveedor.localidad_id;
+            this.form.codigo_postal = proveedor.codigo_postal;
+            this.form.email = proveedor.email;
+            this.form.contacto = proveedor.contacto;
+            this.form.plan_cuenta_id = proveedor.plan_cuenta_id;
+            this.form.retencion_ganancia_id = proveedor.retencion_ganancia_id;
+            this.form.retencion_ingreso_bruto_id =
+                proveedor.retencion_ingreso_bruto_id;
+            this.form.saldo = proveedor.saldo;
+            this.form.estado = proveedor.estado;
+        },
+        async fetchDepartamentos() {
             if (this.form.provincia_id) {
-                this.$store.dispatch(
+                await this.$store.dispatch(
                     "getDepartamentosProvincia",
                     this.form.provincia_id
                 );
-                this.form.departamento_id = "";
-                this.form.localidad_id = "";
+                if (this.proveedor) {
+                    this.form.departamento_id = this.proveedor.departamento_id;
+                    await this.fetchLocalidades();
+                }
             }
         },
-        fetchLocalidades() {
+        async fetchLocalidades() {
             if (this.form.departamento_id) {
-                this.$store.dispatch(
+                await this.$store.dispatch(
                     "getLocalidadesDepartamento",
                     this.form.departamento_id
                 );
-                this.form.localidad_id = "";
+                if (this.proveedor) {
+                    this.form.localidad_id = this.proveedor.localidad_id;
+                }
             }
         },
         resetForm() {
@@ -415,18 +439,18 @@ export default {
                 numero_ingreso_bruto: "",
                 condicion_iva_id: "",
                 telefono: "",
+                celular: "",
                 provincia_id: "",
-                localidad_id: "",
                 departamento_id: "",
+                localidad_id: "",
                 codigo_postal: "",
                 email: "",
                 contacto: "",
+                plan_cuenta_id: "",
                 retencion_ganancia_id: "",
                 retencion_ingreso_bruto_id: "",
                 saldo: 0,
-                tipo_documento_id: "",
-                numero_documento: "",
-                estado: "ACTIVO",
+                estado: 1,
             };
         },
         getErrorMessage(error) {
@@ -442,6 +466,7 @@ export default {
             "getCondicionesIva",
             "getRetencionGanancias",
             "getTipoDocumentos",
+            "getPlanCuentas",
         ]),
         errors() {
             return this.$store.getters.getErrors;
@@ -463,6 +488,9 @@ export default {
         },
         tipoDocumentos() {
             return this.getTipoDocumentos;
+        },
+        planCuentas() {
+            return this.getPlanCuentas;
         },
         condicionesIva() {
             return this.getCondicionesIva;

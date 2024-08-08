@@ -10,3 +10,4 @@ export const getRetencionGanancias = state => state.retencionGanancias;
 export const getCondicionesIva = state => state.condicionesIva;
 export const getTipoDocumentos = state => state.tipoDocumentos;
 export const getRetencionIngresoBrutos = state => state.retencionIngresoBrutos;
+export const getPlanCuentas = state => state.planCuentas;
