@@ -72,9 +72,4 @@ class Proveedor extends Model
     {
         return $this->belongsTo(RetencionGanancia::class);
     }
-
-    public function getEstadoAttribute($value)
-    {
-        return $value == 1 ? 'ACTIVO' : 'INACTIVO';
-    }
 }

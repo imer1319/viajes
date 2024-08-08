@@ -121,9 +121,9 @@
             <div class="col-12 d-flex justify-content-end mt-3">
                 <button
                     class="btn btn-primary btn-sm"
-                    @click.prevent="agregarChofer"
+                    @click.prevent="actualizarChofer"
                 >
-                    Agregar
+                    Actualizar
                 </button>
             </div>
         </div>
@@ -131,10 +131,16 @@
 </template>
 <script>
 export default {
-    props: ["redirect"],
+    props: ["redirect", "chofer"],
+    created() {
+        if (this.chofer) {
+            this.setFormValues(this.chofer);
+        }
+    },
     data() {
         return {
             form: {
+                id: "",
                 nombre: "",
                 fecha_nacimiento: "",
                 cuil: "",
@@ -147,9 +153,20 @@ export default {
         };
     },
     methods: {
-        agregarChofer() {
+        setFormValues(chofer) {
+            this.form.id = chofer.id;
+            this.form.nombre = chofer.nombre;
+            this.form.fecha_nacimiento = chofer.fecha_nacimiento;
+            this.form.cuil = chofer.cuil;
+            this.form.dni = chofer.dni;
+            this.form.domicilio = chofer.domicilio;
+            this.form.email = chofer.email;
+            this.form.telefono = chofer.telefono;
+            this.form.saldo = chofer.saldo;
+        },
+        actualizarChofer() {
             this.$store
-                .dispatch("agregarChofer", this.form)
+                .dispatch("actualizarChofer", this.form)
                 .then(() => {
                     if (this.redirect) {
                         window.location = "/choferes";
@@ -172,6 +189,7 @@ export default {
         },
         resetForm() {
             this.form = {
+                id: "",
                 nombre: "",
                 fecha_nacimiento: "",
                 cuil: "",

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administracion\ChoferController;
 use App\Http\Controllers\Administracion\ClienteController;
 use App\Http\Controllers\Administracion\ProveedorController;
 use App\Http\Controllers\Administracion\UserController;
@@ -35,6 +36,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     // Administracion
     Route::resource('users', UserController::class);
     Route::resource('clientes', ClienteController::class);
+    Route::resource('choferes', ChoferController::class);
     Route::resource('proveedores', ProveedorController::class);
     // Acciones
     Route::resource('movimientos', MovimientoController::class);

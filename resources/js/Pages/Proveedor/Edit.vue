@@ -312,7 +312,6 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import { actualizarProveedor } from "../../store/actions";
 export default {
     props: ["redirect", "proveedor"],
     created() {

@@ -41,7 +41,7 @@ class UpdateRequest extends FormRequest
             'retencion_ingreso_bruto_id' => 'required|exists:retencion_ingresos_brutos,id',
             'plan_cuenta_id' => 'required|exists:plan_cuentas,id',
             'saldo' => 'required|numeric',
-            'estado' => 'required',
+            'estado' => 'required|in:1,0',
         ];
     }
 

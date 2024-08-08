@@ -29,6 +29,13 @@ class ClienteController extends Controller
         return redirect()->route('admin.clientes.index')->with('flash', 'Cliente creado corretamente');
     }
 
+    public function show(Cliente $cliente)
+    {
+        return view('admin.clientes.show', [
+            'cliente' => $cliente
+        ]);
+    }
+
     public function edit(Cliente $cliente)
     {
         return view('admin.clientes.edit', [

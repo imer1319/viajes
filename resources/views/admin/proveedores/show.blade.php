@@ -36,7 +36,7 @@
                         <p class="text-muted">Email: {{ $proveedor->email }}</p>
                         <p class="text-muted">Contacto: {{ $proveedor->contacto }}</p>
                         <p class="text-muted">Saldo: {{ $proveedor->saldo }}</p>
-                        <p class="text-muted">Estado: {{ $proveedor->estado }}</p>
+                        <p class="text-muted">Estado: {{ $proveedor->estado = 1 ? 'ACTIVO' : 'INACTIVO' }}</p>
                     </div>
                     <div class="col-7">
                         <strong><i class="fas fa-comments-dollar mr-1"></i> Condicion IVA</strong>
@@ -58,7 +58,6 @@
                         <p class="text-muted">Descripcion: {{ $proveedor->retencionIngresoBruto->descripcion }}</p>
                     </div>
                 </div>
-
             </div>
         </div>
 

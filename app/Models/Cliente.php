@@ -19,9 +19,9 @@ class Cliente extends Model
         'numero_documento', 'estado', 'saldo'
     ];
 
-    public function tipoDocumento(): BelongsTo
+    public function condicionIva(): BelongsTo
     {
-        return $this->belongsTo(TipoDocumento::class);
+        return $this->belongsTo(CondicionIva::class);
     }
 
     public function provincia(): BelongsTo
@@ -39,16 +39,18 @@ class Cliente extends Model
         return $this->belongsTo(Localidad::class);
     }
 
-    public function scopeMainSearch(Builder $query, Collection $data): Builder
+    public function retencionIngresoBruto(): BelongsTo
     {
-        if ($data->get('apellido_nombre')) {
-            $query->where('apellido_nombre', 'like', "%{$data->get('apellido_nombre')}%");
-        }
+        return $this->belongsTo(RetencionIngresosBruto::class);
+    }
 
-        if ($data->get('numero_documento')) {
-            $query->where('numero_documento', 'like', "%{$data->get('numero_documento')}%");
-        }
+    public function planCuenta(): BelongsTo
+    {
+        return $this->belongsTo(PlanCuenta::class);
+    }
 
-        return $query;
+    public function retencionGanancia(): BelongsTo
+    {
+        return $this->belongsTo(RetencionGanancia::class);
     }
 }
