@@ -24,12 +24,6 @@ class FlotaController extends Controller
         ]);
     }
 
-    public function store(StoreRequest $request)
-    {
-        Flota::create($request->validated());
-        return redirect()->route('admin.flotas.index')->with('flash', 'Flota creada corretamente');
-    }
-
     public function edit(Flota $flota)
     {
         return view('admin.flotas.edit', [

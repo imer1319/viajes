@@ -64,7 +64,17 @@ export const agregarFlota = async ({ commit, dispatch }, form) => {
         throw error;
     }
 };
-
+export const actualizarFlota = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.put('/flotas/' + form.id, form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
 export const getFlotas = async ({ commit }) => {
     try {
         const response = await axios.get('/api/flotas');

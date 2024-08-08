@@ -95,9 +95,9 @@
             <div class="col-12 d-flex justify-content-end mt-3">
                 <button
                     class="btn btn-primary btn-sm"
-                    @click.prevent="agregarFlota"
+                    @click.prevent="actualizarFlota"
                 >
-                    Agregar
+                    Actualizar
                 </button>
             </div>
         </div>
@@ -105,9 +105,16 @@
 </template>
 <script>
 export default {
+    props: ["flota", "redirect"],
+    created() {
+        if (this.flota) {
+            this.setFormValues(this.flota);
+        }
+    },
     data() {
         return {
             form: {
+                id:"",
                 nombre: "",
                 placa: "",
                 marca: "",
@@ -118,10 +125,14 @@ export default {
         };
     },
     methods: {
-        agregarFlota() {
+        actualizarFlota() {
             this.$store
-                .dispatch("agregarFlota", this.form)
+                .dispatch("actualizarFlota", this.form)
                 .then(() => {
+                    if (this.redirect) {
+                        window.location = "/flotas";
+                        return;
+                    }
                     this.resetForm();
                     this.$toast.open({
                         message: "Flota agregado exitosamente!",
@@ -136,6 +147,16 @@ export default {
                         position: "top-right",
                     });
                 });
+        },
+
+        setFormValues(flota) {
+            this.form.id = flota.id;
+            this.form.nombre = flota.nombre;
+            this.form.placa = flota.placa;
+            this.form.marca = flota.marca;
+            this.form.anio = flota.anio;
+            this.form.kilometraje = flota.kilometraje;
+            this.form.identificacion = flota.identificacion;
         },
         resetForm() {
             this.form = {

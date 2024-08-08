@@ -2760,9 +2760,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["flota", "redirect"],
+  created: function created() {
+    if (this.flota) {
+      this.setFormValues(this.flota);
+    }
+  },
   data: function data() {
     return {
       form: {
+        id: "",
         nombre: "",
         placa: "",
         marca: "",
@@ -2773,9 +2780,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    agregarFlota: function agregarFlota() {
+    actualizarFlota: function actualizarFlota() {
       var _this = this;
-      this.$store.dispatch("agregarFlota", this.form).then(function () {
+      this.$store.dispatch("actualizarFlota", this.form).then(function () {
+        if (_this.redirect) {
+          window.location = "/flotas";
+          return;
+        }
         _this.resetForm();
         _this.$toast.open({
           message: "Flota agregado exitosamente!",
@@ -2789,6 +2800,15 @@ __webpack_require__.r(__webpack_exports__);
           position: "top-right"
         });
       });
+    },
+    setFormValues: function setFormValues(flota) {
+      this.form.id = flota.id;
+      this.form.nombre = flota.nombre;
+      this.form.placa = flota.placa;
+      this.form.marca = flota.marca;
+      this.form.anio = flota.anio;
+      this.form.kilometraje = flota.kilometraje;
+      this.form.identificacion = flota.identificacion;
     },
     resetForm: function resetForm() {
       this.form = {
@@ -6518,10 +6538,10 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.agregarFlota.apply(null, arguments);
+        return _vm.actualizarFlota.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                Agregar\n            ")])])])]);
+  }, [_vm._v("\n                Actualizar\n            ")])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -9614,6 +9634,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   actualizarChofer: () => (/* binding */ actualizarChofer),
 /* harmony export */   actualizarCliente: () => (/* binding */ actualizarCliente),
+/* harmony export */   actualizarFlota: () => (/* binding */ actualizarFlota),
 /* harmony export */   actualizarMovimiento: () => (/* binding */ actualizarMovimiento),
 /* harmony export */   actualizarProveedor: () => (/* binding */ actualizarProveedor),
 /* harmony export */   agregarChofer: () => (/* binding */ agregarChofer),
@@ -9827,68 +9848,67 @@ var agregarFlota = /*#__PURE__*/function () {
     return _ref12.apply(this, arguments);
   };
 }();
-var getFlotas = /*#__PURE__*/function () {
-  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(_ref13) {
-    var commit, response;
+var actualizarFlota = /*#__PURE__*/function () {
+  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(_ref13, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
-          commit = _ref13.commit;
+          commit = _ref13.commit, dispatch = _ref13.dispatch;
           _context7.prev = 1;
           _context7.next = 4;
-          return axios.get('/api/flotas');
+          return axios.put('/flotas/' + form.id, form);
         case 4:
-          response = _context7.sent;
-          commit('SET_FLOTAS', response.data);
+          dispatch('clearErrors');
           _context7.next = 11;
           break;
-        case 8:
-          _context7.prev = 8;
+        case 7:
+          _context7.prev = 7;
           _context7.t0 = _context7["catch"](1);
-          console.error("Error fetching flotas:", _context7.t0);
+          if (_context7.t0.response && _context7.t0.response.data && _context7.t0.response.data.errors) {
+            commit('SET_ERRORS', _context7.t0.response.data.errors);
+          }
+          throw _context7.t0;
         case 11:
         case "end":
           return _context7.stop();
       }
-    }, _callee7, null, [[1, 8]]);
+    }, _callee7, null, [[1, 7]]);
   }));
-  return function getFlotas(_x12) {
+  return function actualizarFlota(_x12, _x13) {
     return _ref14.apply(this, arguments);
   };
 }();
-var agregarCliente = /*#__PURE__*/function () {
-  var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(_ref15, form) {
-    var commit, dispatch;
+var getFlotas = /*#__PURE__*/function () {
+  var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(_ref15) {
+    var commit, response;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) switch (_context8.prev = _context8.next) {
         case 0:
-          commit = _ref15.commit, dispatch = _ref15.dispatch;
+          commit = _ref15.commit;
           _context8.prev = 1;
           _context8.next = 4;
-          return axios.post('/api/clientes', form);
+          return axios.get('/api/flotas');
         case 4:
-          dispatch('clearErrors');
-          dispatch('getClientes');
-          _context8.next = 12;
+          response = _context8.sent;
+          commit('SET_FLOTAS', response.data);
+          _context8.next = 11;
           break;
         case 8:
           _context8.prev = 8;
           _context8.t0 = _context8["catch"](1);
-          if (_context8.t0.response && _context8.t0.response.data && _context8.t0.response.data.errors) {
-            commit('SET_ERRORS', _context8.t0.response.data.errors);
-          }
-          throw _context8.t0;
-        case 12:
+          console.error("Error fetching flotas:", _context8.t0);
+        case 11:
         case "end":
           return _context8.stop();
       }
     }, _callee8, null, [[1, 8]]);
   }));
-  return function agregarCliente(_x13, _x14) {
+  return function getFlotas(_x14) {
     return _ref16.apply(this, arguments);
   };
 }();
-var agregarProveedor = /*#__PURE__*/function () {
+var agregarCliente = /*#__PURE__*/function () {
   var _ref18 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(_ref17, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee9$(_context9) {
@@ -9897,29 +9917,30 @@ var agregarProveedor = /*#__PURE__*/function () {
           commit = _ref17.commit, dispatch = _ref17.dispatch;
           _context9.prev = 1;
           _context9.next = 4;
-          return axios.post('/proveedores', form);
+          return axios.post('/api/clientes', form);
         case 4:
           dispatch('clearErrors');
-          _context9.next = 11;
+          dispatch('getClientes');
+          _context9.next = 12;
           break;
-        case 7:
-          _context9.prev = 7;
+        case 8:
+          _context9.prev = 8;
           _context9.t0 = _context9["catch"](1);
           if (_context9.t0.response && _context9.t0.response.data && _context9.t0.response.data.errors) {
             commit('SET_ERRORS', _context9.t0.response.data.errors);
           }
           throw _context9.t0;
-        case 11:
+        case 12:
         case "end":
           return _context9.stop();
       }
-    }, _callee9, null, [[1, 7]]);
+    }, _callee9, null, [[1, 8]]);
   }));
-  return function agregarProveedor(_x15, _x16) {
+  return function agregarCliente(_x15, _x16) {
     return _ref18.apply(this, arguments);
   };
 }();
-var actualizarProveedor = /*#__PURE__*/function () {
+var agregarProveedor = /*#__PURE__*/function () {
   var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(_ref19, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee10$(_context10) {
@@ -9928,7 +9949,7 @@ var actualizarProveedor = /*#__PURE__*/function () {
           commit = _ref19.commit, dispatch = _ref19.dispatch;
           _context10.prev = 1;
           _context10.next = 4;
-          return axios.put('/proveedores/' + form.id, form);
+          return axios.post('/proveedores', form);
         case 4:
           dispatch('clearErrors');
           _context10.next = 11;
@@ -9946,11 +9967,11 @@ var actualizarProveedor = /*#__PURE__*/function () {
       }
     }, _callee10, null, [[1, 7]]);
   }));
-  return function actualizarProveedor(_x17, _x18) {
+  return function agregarProveedor(_x17, _x18) {
     return _ref20.apply(this, arguments);
   };
 }();
-var actualizarCliente = /*#__PURE__*/function () {
+var actualizarProveedor = /*#__PURE__*/function () {
   var _ref22 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(_ref21, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee11$(_context11) {
@@ -9959,7 +9980,7 @@ var actualizarCliente = /*#__PURE__*/function () {
           commit = _ref21.commit, dispatch = _ref21.dispatch;
           _context11.prev = 1;
           _context11.next = 4;
-          return axios.put('/clientes/' + form.id, form);
+          return axios.put('/proveedores/' + form.id, form);
         case 4:
           dispatch('clearErrors');
           _context11.next = 11;
@@ -9977,40 +9998,42 @@ var actualizarCliente = /*#__PURE__*/function () {
       }
     }, _callee11, null, [[1, 7]]);
   }));
-  return function actualizarCliente(_x19, _x20) {
+  return function actualizarProveedor(_x19, _x20) {
     return _ref22.apply(this, arguments);
   };
 }();
-var getClientes = /*#__PURE__*/function () {
-  var _ref24 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(_ref23) {
-    var commit, response;
+var actualizarCliente = /*#__PURE__*/function () {
+  var _ref24 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(_ref23, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee12$(_context12) {
       while (1) switch (_context12.prev = _context12.next) {
         case 0:
-          commit = _ref23.commit;
+          commit = _ref23.commit, dispatch = _ref23.dispatch;
           _context12.prev = 1;
           _context12.next = 4;
-          return axios.get('/api/clientes');
+          return axios.put('/clientes/' + form.id, form);
         case 4:
-          response = _context12.sent;
-          commit('SET_CLIENTES', response.data);
+          dispatch('clearErrors');
           _context12.next = 11;
           break;
-        case 8:
-          _context12.prev = 8;
+        case 7:
+          _context12.prev = 7;
           _context12.t0 = _context12["catch"](1);
-          console.error("Error fetching clientes:", _context12.t0);
+          if (_context12.t0.response && _context12.t0.response.data && _context12.t0.response.data.errors) {
+            commit('SET_ERRORS', _context12.t0.response.data.errors);
+          }
+          throw _context12.t0;
         case 11:
         case "end":
           return _context12.stop();
       }
-    }, _callee12, null, [[1, 8]]);
+    }, _callee12, null, [[1, 7]]);
   }));
-  return function getClientes(_x21) {
+  return function actualizarCliente(_x21, _x22) {
     return _ref24.apply(this, arguments);
   };
 }();
-var getPlanCuentas = /*#__PURE__*/function () {
+var getClientes = /*#__PURE__*/function () {
   var _ref26 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(_ref25) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee13$(_context13) {
@@ -10019,125 +10042,125 @@ var getPlanCuentas = /*#__PURE__*/function () {
           commit = _ref25.commit;
           _context13.prev = 1;
           _context13.next = 4;
-          return axios.get('/api/plan-cuentas');
+          return axios.get('/api/clientes');
         case 4:
           response = _context13.sent;
-          commit('SET_PLAN_CUENTAS', response.data);
+          commit('SET_CLIENTES', response.data);
           _context13.next = 11;
           break;
         case 8:
           _context13.prev = 8;
           _context13.t0 = _context13["catch"](1);
-          console.error("Error fetching plan de cuentas:", _context13.t0);
+          console.error("Error fetching clientes:", _context13.t0);
         case 11:
         case "end":
           return _context13.stop();
       }
     }, _callee13, null, [[1, 8]]);
   }));
-  return function getPlanCuentas(_x22) {
+  return function getClientes(_x23) {
     return _ref26.apply(this, arguments);
   };
 }();
-var agregarTipoViaje = /*#__PURE__*/function () {
-  var _ref28 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(_ref27, form) {
-    var commit, dispatch;
+var getPlanCuentas = /*#__PURE__*/function () {
+  var _ref28 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(_ref27) {
+    var commit, response;
     return _regeneratorRuntime().wrap(function _callee14$(_context14) {
       while (1) switch (_context14.prev = _context14.next) {
         case 0:
-          commit = _ref27.commit, dispatch = _ref27.dispatch;
+          commit = _ref27.commit;
           _context14.prev = 1;
           _context14.next = 4;
-          return axios.post('/api/tipo-viajes', form);
+          return axios.get('/api/plan-cuentas');
         case 4:
-          dispatch('clearErrors');
-          dispatch('getTipoViajes');
-          _context14.next = 12;
+          response = _context14.sent;
+          commit('SET_PLAN_CUENTAS', response.data);
+          _context14.next = 11;
           break;
         case 8:
           _context14.prev = 8;
           _context14.t0 = _context14["catch"](1);
-          if (_context14.t0.response && _context14.t0.response.data && _context14.t0.response.data.errors) {
-            commit('SET_ERRORS', _context14.t0.response.data.errors);
-          }
-          throw _context14.t0;
-        case 12:
+          console.error("Error fetching plan de cuentas:", _context14.t0);
+        case 11:
         case "end":
           return _context14.stop();
       }
     }, _callee14, null, [[1, 8]]);
   }));
-  return function agregarTipoViaje(_x23, _x24) {
+  return function getPlanCuentas(_x24) {
     return _ref28.apply(this, arguments);
   };
 }();
-var getTipoViajes = /*#__PURE__*/function () {
-  var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(_ref29) {
-    var commit, response;
+var agregarTipoViaje = /*#__PURE__*/function () {
+  var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(_ref29, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee15$(_context15) {
       while (1) switch (_context15.prev = _context15.next) {
         case 0:
-          commit = _ref29.commit;
+          commit = _ref29.commit, dispatch = _ref29.dispatch;
           _context15.prev = 1;
           _context15.next = 4;
-          return axios.get('/api/tipo-viajes');
+          return axios.post('/api/tipo-viajes', form);
         case 4:
-          response = _context15.sent;
-          commit('SET_TIPO_VIAJES', response.data);
-          _context15.next = 11;
+          dispatch('clearErrors');
+          dispatch('getTipoViajes');
+          _context15.next = 12;
           break;
         case 8:
           _context15.prev = 8;
           _context15.t0 = _context15["catch"](1);
-          console.error("Error fetching tipo viajes:", _context15.t0);
-        case 11:
+          if (_context15.t0.response && _context15.t0.response.data && _context15.t0.response.data.errors) {
+            commit('SET_ERRORS', _context15.t0.response.data.errors);
+          }
+          throw _context15.t0;
+        case 12:
         case "end":
           return _context15.stop();
       }
     }, _callee15, null, [[1, 8]]);
   }));
-  return function getTipoViajes(_x25) {
+  return function agregarTipoViaje(_x25, _x26) {
     return _ref30.apply(this, arguments);
   };
 }();
-var updateErrors = function updateErrors(_ref31, errors) {
-  var commit = _ref31.commit;
-  commit('SET_ERRORS', errors);
-};
-var clearErrors = function clearErrors(_ref32) {
-  var commit = _ref32.commit;
-  commit('CLEAR_ERRORS');
-};
-var getRetencionGanancias = /*#__PURE__*/function () {
-  var _ref34 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(_ref33) {
+var getTipoViajes = /*#__PURE__*/function () {
+  var _ref32 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(_ref31) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee16$(_context16) {
       while (1) switch (_context16.prev = _context16.next) {
         case 0:
-          commit = _ref33.commit;
+          commit = _ref31.commit;
           _context16.prev = 1;
           _context16.next = 4;
-          return axios.get('/api/retencion-ganancias');
+          return axios.get('/api/tipo-viajes');
         case 4:
           response = _context16.sent;
-          commit('SET_RETENCION_GANANCIAS', response.data);
+          commit('SET_TIPO_VIAJES', response.data);
           _context16.next = 11;
           break;
         case 8:
           _context16.prev = 8;
           _context16.t0 = _context16["catch"](1);
-          console.error("Error al traer a las retenciones de ganancias:", _context16.t0);
+          console.error("Error fetching tipo viajes:", _context16.t0);
         case 11:
         case "end":
           return _context16.stop();
       }
     }, _callee16, null, [[1, 8]]);
   }));
-  return function getRetencionGanancias(_x26) {
-    return _ref34.apply(this, arguments);
+  return function getTipoViajes(_x27) {
+    return _ref32.apply(this, arguments);
   };
 }();
-var getRetencionIngresoBrutos = /*#__PURE__*/function () {
+var updateErrors = function updateErrors(_ref33, errors) {
+  var commit = _ref33.commit;
+  commit('SET_ERRORS', errors);
+};
+var clearErrors = function clearErrors(_ref34) {
+  var commit = _ref34.commit;
+  commit('CLEAR_ERRORS');
+};
+var getRetencionGanancias = /*#__PURE__*/function () {
   var _ref36 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17(_ref35) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee17$(_context17) {
@@ -10146,27 +10169,27 @@ var getRetencionIngresoBrutos = /*#__PURE__*/function () {
           commit = _ref35.commit;
           _context17.prev = 1;
           _context17.next = 4;
-          return axios.get('/api/retencion-ingreso-brutos');
+          return axios.get('/api/retencion-ganancias');
         case 4:
           response = _context17.sent;
-          commit('SET_RETENCION_INGRESO_BRUTOS', response.data);
+          commit('SET_RETENCION_GANANCIAS', response.data);
           _context17.next = 11;
           break;
         case 8:
           _context17.prev = 8;
           _context17.t0 = _context17["catch"](1);
-          console.error("Error al traer a las retenciones de ingresos gruto:", _context17.t0);
+          console.error("Error al traer a las retenciones de ganancias:", _context17.t0);
         case 11:
         case "end":
           return _context17.stop();
       }
     }, _callee17, null, [[1, 8]]);
   }));
-  return function getRetencionIngresoBrutos(_x27) {
+  return function getRetencionGanancias(_x28) {
     return _ref36.apply(this, arguments);
   };
 }();
-var getCondicionesIva = /*#__PURE__*/function () {
+var getRetencionIngresoBrutos = /*#__PURE__*/function () {
   var _ref38 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18(_ref37) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee18$(_context18) {
@@ -10175,27 +10198,27 @@ var getCondicionesIva = /*#__PURE__*/function () {
           commit = _ref37.commit;
           _context18.prev = 1;
           _context18.next = 4;
-          return axios.get('/api/condiciones-iva');
+          return axios.get('/api/retencion-ingreso-brutos');
         case 4:
           response = _context18.sent;
-          commit('SET_CONDICIONES_IVA', response.data);
+          commit('SET_RETENCION_INGRESO_BRUTOS', response.data);
           _context18.next = 11;
           break;
         case 8:
           _context18.prev = 8;
           _context18.t0 = _context18["catch"](1);
-          console.error("Error al traer a las condiciones iva:", _context18.t0);
+          console.error("Error al traer a las retenciones de ingresos gruto:", _context18.t0);
         case 11:
         case "end":
           return _context18.stop();
       }
     }, _callee18, null, [[1, 8]]);
   }));
-  return function getCondicionesIva(_x28) {
+  return function getRetencionIngresoBrutos(_x29) {
     return _ref38.apply(this, arguments);
   };
 }();
-var getTipoDocumentos = /*#__PURE__*/function () {
+var getCondicionesIva = /*#__PURE__*/function () {
   var _ref40 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19(_ref39) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee19$(_context19) {
@@ -10204,27 +10227,27 @@ var getTipoDocumentos = /*#__PURE__*/function () {
           commit = _ref39.commit;
           _context19.prev = 1;
           _context19.next = 4;
-          return axios.get('/api/tipo-documentos');
+          return axios.get('/api/condiciones-iva');
         case 4:
           response = _context19.sent;
-          commit('SET_TIPO_DOCUMENTOS', response.data);
+          commit('SET_CONDICIONES_IVA', response.data);
           _context19.next = 11;
           break;
         case 8:
           _context19.prev = 8;
           _context19.t0 = _context19["catch"](1);
-          console.error("Error al traer a los tipos de documentos:", _context19.t0);
+          console.error("Error al traer a las condiciones iva:", _context19.t0);
         case 11:
         case "end":
           return _context19.stop();
       }
     }, _callee19, null, [[1, 8]]);
   }));
-  return function getTipoDocumentos(_x29) {
+  return function getCondicionesIva(_x30) {
     return _ref40.apply(this, arguments);
   };
 }();
-var getProvincias = /*#__PURE__*/function () {
+var getTipoDocumentos = /*#__PURE__*/function () {
   var _ref42 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20(_ref41) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee20$(_context20) {
@@ -10233,28 +10256,28 @@ var getProvincias = /*#__PURE__*/function () {
           commit = _ref41.commit;
           _context20.prev = 1;
           _context20.next = 4;
-          return axios.get('/api/provincias');
+          return axios.get('/api/tipo-documentos');
         case 4:
           response = _context20.sent;
-          commit('SET_PROVINCIAS', response.data);
+          commit('SET_TIPO_DOCUMENTOS', response.data);
           _context20.next = 11;
           break;
         case 8:
           _context20.prev = 8;
           _context20.t0 = _context20["catch"](1);
-          console.error("Error al traer a las provincias:", _context20.t0);
+          console.error("Error al traer a los tipos de documentos:", _context20.t0);
         case 11:
         case "end":
           return _context20.stop();
       }
     }, _callee20, null, [[1, 8]]);
   }));
-  return function getProvincias(_x30) {
+  return function getTipoDocumentos(_x31) {
     return _ref42.apply(this, arguments);
   };
 }();
-var getDepartamentosProvincia = /*#__PURE__*/function () {
-  var _ref44 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21(_ref43, provincia_id) {
+var getProvincias = /*#__PURE__*/function () {
+  var _ref44 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21(_ref43) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee21$(_context21) {
       while (1) switch (_context21.prev = _context21.next) {
@@ -10262,28 +10285,28 @@ var getDepartamentosProvincia = /*#__PURE__*/function () {
           commit = _ref43.commit;
           _context21.prev = 1;
           _context21.next = 4;
-          return axios.get('/api/departamentos/' + provincia_id);
+          return axios.get('/api/provincias');
         case 4:
           response = _context21.sent;
-          commit('SET_DEPARTAMENTOS', response.data);
+          commit('SET_PROVINCIAS', response.data);
           _context21.next = 11;
           break;
         case 8:
           _context21.prev = 8;
           _context21.t0 = _context21["catch"](1);
-          console.error("Error al traer a los departamentos:", _context21.t0);
+          console.error("Error al traer a las provincias:", _context21.t0);
         case 11:
         case "end":
           return _context21.stop();
       }
     }, _callee21, null, [[1, 8]]);
   }));
-  return function getDepartamentosProvincia(_x31, _x32) {
+  return function getProvincias(_x32) {
     return _ref44.apply(this, arguments);
   };
 }();
-var getLocalidadesDepartamento = /*#__PURE__*/function () {
-  var _ref46 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee22(_ref45, departamento_id) {
+var getDepartamentosProvincia = /*#__PURE__*/function () {
+  var _ref46 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee22(_ref45, provincia_id) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee22$(_context22) {
       while (1) switch (_context22.prev = _context22.next) {
@@ -10291,24 +10314,53 @@ var getLocalidadesDepartamento = /*#__PURE__*/function () {
           commit = _ref45.commit;
           _context22.prev = 1;
           _context22.next = 4;
-          return axios.get('/api/localidades/' + departamento_id);
+          return axios.get('/api/departamentos/' + provincia_id);
         case 4:
           response = _context22.sent;
-          commit('SET_LOCALIDADES', response.data);
+          commit('SET_DEPARTAMENTOS', response.data);
           _context22.next = 11;
           break;
         case 8:
           _context22.prev = 8;
           _context22.t0 = _context22["catch"](1);
-          console.error("Error al traer a las localidades:", _context22.t0);
+          console.error("Error al traer a los departamentos:", _context22.t0);
         case 11:
         case "end":
           return _context22.stop();
       }
     }, _callee22, null, [[1, 8]]);
   }));
-  return function getLocalidadesDepartamento(_x33, _x34) {
+  return function getDepartamentosProvincia(_x33, _x34) {
     return _ref46.apply(this, arguments);
+  };
+}();
+var getLocalidadesDepartamento = /*#__PURE__*/function () {
+  var _ref48 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee23(_ref47, departamento_id) {
+    var commit, response;
+    return _regeneratorRuntime().wrap(function _callee23$(_context23) {
+      while (1) switch (_context23.prev = _context23.next) {
+        case 0:
+          commit = _ref47.commit;
+          _context23.prev = 1;
+          _context23.next = 4;
+          return axios.get('/api/localidades/' + departamento_id);
+        case 4:
+          response = _context23.sent;
+          commit('SET_LOCALIDADES', response.data);
+          _context23.next = 11;
+          break;
+        case 8:
+          _context23.prev = 8;
+          _context23.t0 = _context23["catch"](1);
+          console.error("Error al traer a las localidades:", _context23.t0);
+        case 11:
+        case "end":
+          return _context23.stop();
+      }
+    }, _callee23, null, [[1, 8]]);
+  }));
+  return function getLocalidadesDepartamento(_x35, _x36) {
+    return _ref48.apply(this, arguments);
   };
 }();
 
