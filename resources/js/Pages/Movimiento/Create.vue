@@ -24,19 +24,12 @@
             <div class="col-md-6">
                 <label for="cliente_id">Cliente</label>
                 <div class="d-flex input-group">
-                    <select
-                        class="form-control select2"
+                    <v-select
+                        :options="clientes"
                         v-model="form.cliente_id"
-                        id="cliente_id"
-                    >
-                        <option
-                            v-for="cliente in clientes"
-                            :key="cliente.id"
-                            :value="cliente.id"
-                        >
-                            {{ cliente.razon_social }}
-                        </option>
-                    </select>
+                        :reduce="(cliente) => cliente.id"
+                        label="razon_social"
+                    ></v-select>
                     <button
                         class="btn btn-primary"
                         type="button"
@@ -54,19 +47,12 @@
             <div class="col-md-6">
                 <label for="tipo_viaje_id">Tipo de viajes</label>
                 <div class="input-group">
-                    <select
-                        class="form-control select2"
+                    <v-select
+                        :options="tipoViajes"
                         v-model="form.tipo_viaje_id"
-                        id="tipo_viaje_id"
-                    >
-                        <option
-                            v-for="tipo in tipoViajes"
-                            :key="tipo.id"
-                            :value="tipo.id"
-                        >
-                            {{ tipo.descripcion }}
-                        </option>
-                    </select>
+                        :reduce="(tipo) => tipo.id"
+                        label="descripcion"
+                    ></v-select>
                     <button
                         class="btn btn-primary"
                         type="button"
@@ -179,19 +165,12 @@
             <div class="col-md-6">
                 <label for="flota_id">Flota</label>
                 <div class="input-group">
-                    <select
-                        class="form-control select2"
+                    <v-select
+                        :options="flotas"
                         v-model="form.flota_id"
-                        id="flota_id"
-                    >
-                        <option
-                            v-for="flota in flotas"
-                            :key="flota.id"
-                            :value="flota.id"
-                        >
-                            {{ flota.nombre }}
-                        </option>
-                    </select>
+                        :reduce="(flota) => flota.id"
+                        label="nombre"
+                    ></v-select>
                     <button
                         class="btn btn-primary"
                         type="button"
@@ -208,19 +187,12 @@
             <div class="col-md-6">
                 <label for="chofer_id">Chofer</label>
                 <div class="input-group">
-                    <select
-                        class="form-control select2"
+                    <v-select
+                        :options="choferes"
                         v-model="form.chofer_id"
-                        id="chofer_id"
-                    >
-                        <option
-                            v-for="chofer in choferes"
-                            :key="chofer.id"
-                            :value="chofer.id"
-                        >
-                            {{ chofer.nombre }}
-                        </option>
-                    </select>
+                        :reduce="(chofer) => chofer.id"
+                        label="nombre"
+                    ></v-select>
                     <button
                         class="btn btn-primary"
                         type="button"
@@ -427,7 +399,7 @@ export default {
                         type: "success",
                         position: "top-right",
                     });
-                    window.location="/movimientos"
+                    window.location = "/movimientos";
                 })
                 .catch(() => {
                     this.$toast.open({

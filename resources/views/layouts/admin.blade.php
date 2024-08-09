@@ -17,8 +17,13 @@
     <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
-    
+
     @yield('estilos')
+    <style>
+        .vs--searchable .vs__dropdown-toggle {
+            height: 39px;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
