@@ -152,9 +152,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('admin.anticipos.index') }}" class="nav-link">
                                         <i class="fas fa-money-bill-wave-alt nav-icon"></i>
-                                        <p>Anticipo de choferes</p>
+                                        <p>Agregar anticipo</p>
                                     </a>
                                 </li>
                             </ul>
@@ -177,10 +177,16 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-money-bill-wave-alt nav-icon"></i>
-                                        <p>Pago de clientes</p>
+                                        <p>Pagar al cliente</p>
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.liquidaciones.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Lquidacion</p>
+                            </a>
                         </li>
                     </ul>
                 </li>

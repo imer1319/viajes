@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administracion\AnticipoController;
 use App\Http\Controllers\Administracion\ChoferController;
 use App\Http\Controllers\Administracion\ClienteController;
 use App\Http\Controllers\Administracion\ProveedorController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\Administracion\UserController;
 use App\Http\Controllers\Configuracion\CondicionIvaController;
 use App\Http\Controllers\Configuracion\CondicionPagoController;
 use App\Http\Controllers\Configuracion\FormaPagoController;
+use App\Http\Controllers\Configuracion\LiquidacionController;
 use App\Http\Controllers\Configuracion\MedidaController;
 use App\Http\Controllers\Configuracion\RetencionGananciasController;
 use App\Http\Controllers\Configuracion\RetencionIngresosBrutoController;
@@ -37,9 +39,11 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('clientes', ClienteController::class);
     Route::resource('choferes', ChoferController::class);
+    Route::resource('anticipos', AnticipoController::class);
     Route::resource('proveedores', ProveedorController::class);
     // Acciones
     Route::resource('movimientos', MovimientoController::class);
     Route::resource('flotas', FlotaController::class);
+    Route::resource('liquidaciones', LiquidacionController::class);
     
 });

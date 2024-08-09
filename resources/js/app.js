@@ -19,6 +19,8 @@ Vue.component('flota-create', require('./Pages/Flota/Create.vue').default);
 Vue.component('flota-edit', require('./Pages/Flota/Edit.vue').default);
 Vue.component('chofer-create', require('./Pages/Chofer/Create.vue').default);
 Vue.component('chofer-edit', require('./Pages/Chofer/Edit.vue').default);
+Vue.component('anticipo-create', require('./Pages/Anticipo/Create.vue').default);
+Vue.component('anticipo-edit', require('./Pages/Anticipo/Edit.vue').default);
 
 const app = new Vue({
     el: '#app',

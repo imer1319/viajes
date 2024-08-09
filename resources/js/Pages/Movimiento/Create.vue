@@ -23,18 +23,21 @@
 
             <div class="col-md-6">
                 <label for="cliente_id">Cliente</label>
-                <div class="d-flex input-group">
-                    <v-select
-                        :options="clientes"
-                        v-model="form.cliente_id"
-                        :reduce="(cliente) => cliente.id"
-                        label="razon_social"
-                    ></v-select>
+                <div class="d-flex w-100">
+                    <div class="flex-grow-1">
+                        <v-select
+                            :options="clientes"
+                            v-model="form.cliente_id"
+                            :reduce="(cliente) => cliente.id"
+                            label="razon_social"
+                        ></v-select>
+                    </div>
                     <button
-                        class="btn btn-primary"
+                        class="btn btn-primary ml-2"
                         type="button"
                         data-toggle="modal"
                         data-target="#modal_cliente"
+                        style="flex-shrink: 0"
                     >
                         <i class="fa fa-search"></i>
                     </button>
@@ -46,18 +49,21 @@
 
             <div class="col-md-6">
                 <label for="tipo_viaje_id">Tipo de viajes</label>
-                <div class="input-group">
-                    <v-select
-                        :options="tipoViajes"
-                        v-model="form.tipo_viaje_id"
-                        :reduce="(tipo) => tipo.id"
-                        label="descripcion"
-                    ></v-select>
+                <div class="d-flex w-100">
+                    <div class="flex-grow-1">
+                        <v-select
+                            :options="tipoViajes"
+                            v-model="form.tipo_viaje_id"
+                            :reduce="(tipo) => tipo.id"
+                            label="descripcion"
+                        ></v-select>
+                    </div>
                     <button
-                        class="btn btn-primary"
+                        class="btn btn-primary ml-2"
                         type="button"
                         data-toggle="modal"
                         data-target="#modal_tipo_viaje"
+                        style="flex-shrink: 0"
                     >
                         <i class="fa fa-search"></i>
                     </button>
@@ -164,18 +170,21 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="flota_id">Flota</label>
-                <div class="input-group">
-                    <v-select
-                        :options="flotas"
-                        v-model="form.flota_id"
-                        :reduce="(flota) => flota.id"
-                        label="nombre"
-                    ></v-select>
+                <div class="d-flex w-100">
+                    <div class="flex-grow-1">
+                        <v-select
+                            :options="flotas"
+                            v-model="form.flota_id"
+                            :reduce="(flota) => flota.id"
+                            label="nombre"
+                        ></v-select>
+                    </div>
                     <button
-                        class="btn btn-primary"
+                        class="btn btn-primary ml-2"
                         type="button"
                         data-toggle="modal"
                         data-target="#modal_flota"
+                        style="flex-shrink: 0"
                     >
                         <i class="fa fa-search"></i>
                     </button>
@@ -186,18 +195,21 @@
             </div>
             <div class="col-md-6">
                 <label for="chofer_id">Chofer</label>
-                <div class="input-group">
-                    <v-select
-                        :options="choferes"
-                        v-model="form.chofer_id"
-                        :reduce="(chofer) => chofer.id"
-                        label="nombre"
-                    ></v-select>
+                <div class="d-flex w-100">
+                    <div class="flex-grow-1">
+                        <v-select
+                            :options="choferes"
+                            v-model="form.chofer_id"
+                            :reduce="(chofer) => chofer.id"
+                            label="nombre"
+                        ></v-select>
+                    </div>
                     <button
-                        class="btn btn-primary"
+                        class="btn btn-primary ml-2"
                         type="button"
                         data-toggle="modal"
                         data-target="#modal_chofer"
+                        style="flex-shrink: 0"
                     >
                         <i class="fa fa-search"></i>
                     </button>

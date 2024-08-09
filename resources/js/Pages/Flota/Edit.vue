@@ -148,7 +148,6 @@ export default {
                     });
                 });
         },
-
         setFormValues(flota) {
             this.form.id = flota.id;
             this.form.nombre = flota.nombre;

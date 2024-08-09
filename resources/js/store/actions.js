@@ -51,7 +51,28 @@ export const getChoferes = async ({ commit }) => {
         console.error("Error fetching choferes:", error);
     }
 };
-
+export const agregarAnticipo = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.post('/anticipos', form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
+export const actualizarAnticipo = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.put('/anticipos/' + form.id, form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
 export const agregarFlota = async ({ commit, dispatch }, form) => {
     try {
         await axios.post('/api/flotas', form);
