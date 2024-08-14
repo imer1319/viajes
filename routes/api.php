@@ -4,6 +4,7 @@ use App\Http\Controllers\Administracion\ProveedorController;
 use App\Http\Controllers\Api\ChoferController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\FlotaController;
+use App\Http\Controllers\Api\LiquidacionController;
 use App\Http\Controllers\Api\PlanCuentaController;
 use App\Http\Controllers\Api\TipoViajeController;
 use App\Http\Controllers\Main\MovimientoController;
@@ -32,3 +33,7 @@ Route::get('retencion-ganancias', [MovimientoController::class, 'retencionGananc
 Route::get('condiciones-iva', [MovimientoController::class, 'condicionesIva']);
 Route::get('tipo-documentos', [MovimientoController::class, 'tipoDocumentos']);
 Route::get('plan-cuentas', [PlanCuentaController::class, 'index']);
+
+//Liquidacion
+Route::post('/liquidacion/head', [LiquidacionController::class, 'head'])->name('liquidacion.head');
+Route::get('movimientos/{chofer}', [MovimientoController::class, 'movimientosChofer']);

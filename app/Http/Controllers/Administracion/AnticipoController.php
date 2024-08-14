@@ -25,7 +25,7 @@ class AnticipoController extends Controller
         ]);
     }
 
-        
+
     public function store(StoreRequest $request)
     {
         $res = AnticipoChofer::create($request->validated());

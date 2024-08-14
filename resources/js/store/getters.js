@@ -11,3 +11,6 @@ export const getCondicionesIva = state => state.condicionesIva;
 export const getTipoDocumentos = state => state.tipoDocumentos;
 export const getRetencionIngresoBrutos = state => state.retencionIngresoBrutos;
 export const getPlanCuentas = state => state.planCuentas;
+export const getMovimientos = state => state.movimientos;
+export const getChoferId = state => state.chofer_id;
+export const getChofer = state => state.chofer;

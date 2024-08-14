@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\Administracion\AnticipoChoferController;
 use App\Http\Controllers\Administracion\AnticipoController;
 use App\Http\Controllers\Administracion\ChoferController;
 use App\Http\Controllers\Administracion\ClienteController;
+use App\Http\Controllers\Administracion\LiquidacionController;
 use App\Http\Controllers\Administracion\ProveedorController;
 use App\Http\Controllers\Administracion\UserController;
 use App\Http\Controllers\Configuracion\CondicionIvaController;
 use App\Http\Controllers\Configuracion\CondicionPagoController;
 use App\Http\Controllers\Configuracion\FormaPagoController;
-use App\Http\Controllers\Configuracion\LiquidacionController;
 use App\Http\Controllers\Configuracion\MedidaController;
 use App\Http\Controllers\Configuracion\RetencionGananciasController;
 use App\Http\Controllers\Configuracion\RetencionIngresosBrutoController;
@@ -45,5 +46,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('movimientos', MovimientoController::class);
     Route::resource('flotas', FlotaController::class);
     Route::resource('liquidaciones', LiquidacionController::class);
-    
+    Route::get('anticipos/{chofer}/chofer', [AnticipoChoferController::class, 'index'])->name('anticipos.chofer.index');
+    Route::get('anticipos/{chofer}/chofer/create', [AnticipoChoferController::class, 'create'])->name('anticipos.chofer.create');
+    Route::get('anticipos/{chofer}/chofer/{anticipo}/edit', [AnticipoChoferController::class, 'edit'])->name('anticipos.chofer.edit');
 });

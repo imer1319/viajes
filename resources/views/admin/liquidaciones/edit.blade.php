@@ -14,24 +14,19 @@
                     </ol>
                 </div>
             </div>
-        </div>
+        </div><!-- /.container-fluid -->
     </section>
 
+    <!-- Main content -->
     <section class="content mx-3">
-        <div class="card card-primary card-outline">
-            <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
-                @if (isset($chofer))
-                    <h5>Listado de anticipos del chofer: <b>{{ $chofer->nombre }}</b></h5>
-                @else
-                    <h5>Listado de anticipos</h5>
-                @endif
-                <a href="{{ route('admin.anticipos.create') }}" class="btn btn-primary rounded-pill float-end">
-                    <i class="fa fa-plus"></i>
-                </a>
-            </div>
+
+        <div class="card card-primary card-outline ñpt-4">
+            <div class="card-header">Editar anticipo</div>
+
             <div class="card-body">
-                @include('admin.anticipos.table')
+                <anticipo-edit :anticipo="{{ $anticipo }}" redirect="true"></anticipo-edit>
             </div>
         </div>
+
     </section>
 @endsection

@@ -256,3 +256,22 @@ export const getLocalidadesDepartamento = async ({ commit }, departamento_id) =>
         console.error("Error al traer a las localidades:", error);
     }
 };
+export const validarHead = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.post('/api/liquidacion/head', form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
+export const getMovimientosChofer = async ({ commit }, chofer_id) => {
+    try {
+        const response = await axios.get('/api/movimientos/' + chofer_id);
+        commit('SET_CHOFER', response.data);
+    } catch (error) {
+        console.error("Error al traer a los movimientos:", error);
+    }
+};

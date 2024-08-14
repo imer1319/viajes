@@ -21,6 +21,7 @@ Vue.component('chofer-create', require('./Pages/Chofer/Create.vue').default);
 Vue.component('chofer-edit', require('./Pages/Chofer/Edit.vue').default);
 Vue.component('anticipo-create', require('./Pages/Anticipo/Create.vue').default);
 Vue.component('anticipo-edit', require('./Pages/Anticipo/Edit.vue').default);
+Vue.component('liquidacion-create', require('./Pages/Liquidacion/Create.vue').default);
 
 const app = new Vue({
     el: '#app',

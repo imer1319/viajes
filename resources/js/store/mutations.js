@@ -1,6 +1,15 @@
 export const SET_CHOFERES = (state, choferes) => {
     state.choferes = choferes
 }
+export const SET_CHOFER = (state, chofer) => {
+    state.chofer = chofer
+}
+export const SET_MOVIMIENTOS = (state, movimientos) => {
+    state.movimientos = movimientos
+}
+export const SET_CHOFER_ID = (state, chofer_id) => {
+    state.chofer_id = chofer_id
+}
 export const SET_PLAN_CUENTAS = (state, planCuentas) => {
     state.planCuentas = planCuentas
 }

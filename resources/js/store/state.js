@@ -1,4 +1,6 @@
 export default {
+    chofer_id: '',
+    chofer: '',
     choferes: [],
     flotas: [],
     clientes: [],
@@ -10,6 +12,7 @@ export default {
     condicionesIva: [],
     retencionIngresoBrutos: [],
     tipoDocumentos: [],
+    movimientos: [],
     planCuentas: [],
     errors: {}
 };

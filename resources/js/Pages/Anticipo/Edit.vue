@@ -50,6 +50,7 @@ saldo
                             v-model="form.chofer_id"
                             :reduce="(chofer) => chofer.id"
                             label="nombre"
+                            :disabled="chofer_id != null"
                         ></v-select>
                     </div>
                     <button
@@ -58,6 +59,7 @@ saldo
                         data-toggle="modal"
                         data-target="#modal_chofer"
                         style="flex-shrink: 0"
+                        :disabled="chofer_id != null"
                     >
                         <i class="fa fa-search"></i>
                     </button>
@@ -95,10 +97,13 @@ export default {
         ChoferTable,
         ModalComponent,
     },
-    props: ["anticipo", "redirect"],
+    props: ["numero_interno", "chofer_id", "redirect", "anticipo"],
     created() {
         if (this.anticipo) {
             this.setFormValues(this.anticipo);
+        }
+        if(this.chofer_id){
+            this.form.chofer_id = this.chofer_id;
         }
     },
     data() {
@@ -126,7 +131,7 @@ export default {
                 .dispatch("actualizarAnticipo", this.form)
                 .then(() => {
                     if (this.redirect) {
-                        window.location = "/anticipos";
+                        window.location = `/anticipos/${this.form.chofer_id}/chofer`;
                         return;
                     }
                     this.resetForm();
@@ -162,12 +167,12 @@ export default {
             return Array.isArray(error) ? error[0] : error;
         },
         setFormValues(anticipo) {
-                this.form.id = anticipo.id
-                this.form.numero_interno = anticipo.numero_interno
-                this.form.fecha = anticipo.fecha
-                this.form.chofer_id = anticipo.chofer_id
-                this.form.importe = anticipo.importe
-                this.form.saldo = anticipo.saldo
+            this.form.id = anticipo.id;
+            this.form.numero_interno = anticipo.numero_interno;
+            this.form.fecha = anticipo.fecha;
+            this.form.chofer_id = anticipo.chofer_id;
+            this.form.importe = anticipo.importe;
+            this.form.saldo = anticipo.saldo;
         },
     },
     computed: {

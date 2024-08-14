@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Events\MovimientoActualizado;
 use App\Events\MovimientoCreado;
 use App\Events\MovimientoEliminado;
 use App\Http\Controllers\Controller;
@@ -18,8 +19,6 @@ use App\Models\Provincia;
 use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
-use App\Models\TipoViaje;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class MovimientoController extends Controller
@@ -47,6 +46,7 @@ class MovimientoController extends Controller
             DB::beginTransaction();
             $movimiento = Movimiento::create($request->validated());
             event(new MovimientoCreado($movimiento));
+            //crear factura movimiento
             DB::commit();
             return response()->json([
                 'message' => 'Movimiento creado exitosamente.',
@@ -82,6 +82,7 @@ class MovimientoController extends Controller
             event(new MovimientoEliminado($movimiento));
             $movimiento->update($request->validated());
             event(new MovimientoCreado($movimiento));
+            event(new MovimientoActualizado($movimiento));
             DB::commit();
             return response()->json([
                 'message' => 'Movimiento creado exitosamente.',
@@ -136,5 +137,19 @@ class MovimientoController extends Controller
     public function tipoDocumentos()
     {
         return TipoDocumento::all();
+    }
+
+    public function movimientosChofer(Chofer $chofer)
+    {
+        return Chofer::with([
+            'movimientos' => function ($query) {
+                $query->where('saldo_total', '!=', 0)
+                    ->with('tipoViaje', 'flota', 'cliente');
+            },
+            'anticipos' => function ($query) {
+                $query->where('saldo', '!=', 0)
+                ->with('chofer');
+            }
+        ])->find($chofer->id);
     }
 }

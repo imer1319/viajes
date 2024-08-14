@@ -19,4 +19,19 @@ class Chofer extends Model
         'telefono',
         'saldo'
     ];
+
+    public function movimientos()
+    {
+        return $this->hasMany(Movimiento::class);
+    }
+
+    public function anticipos()
+    {
+        return $this->hasMany(AnticipoChofer::class);
+    }
+
+    public function gastos()
+    {
+        // return $this->hasMany(Gastos::class);
+    }
 }

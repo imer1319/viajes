@@ -50,6 +50,7 @@ saldo
                             v-model="form.chofer_id"
                             :reduce="(chofer) => chofer.id"
                             label="nombre"
+                            :disabled="chofer_id != null"
                         ></v-select>
                     </div>
                     <button
@@ -58,6 +59,7 @@ saldo
                         data-toggle="modal"
                         data-target="#modal_chofer"
                         style="flex-shrink: 0"
+                        :disabled="chofer_id != null"
                     >
                         <i class="fa fa-search"></i>
                     </button>
@@ -95,10 +97,13 @@ export default {
         ChoferTable,
         ModalComponent,
     },
-    props: ["numero_interno"],
+    props: ["numero_interno", "chofer_id", "redirect"],
     mounted() {
         this.form.fecha = this.getTodayDate();
         this.form.numero_interno = this.numero_interno;
+        if(this.chofer_id){
+            this.form.chofer_id = this.chofer_id;
+        }
     },
     data() {
         return {
@@ -125,7 +130,7 @@ export default {
                 .dispatch("agregarAnticipo", this.form)
                 .then(() => {
                     if (this.redirect) {
-                        window.location = "/anticipos";
+                        window.location = `/anticipos/${this.form.chofer_id}/chofer`;
                         return;
                     }
                     this.resetForm();
