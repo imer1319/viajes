@@ -8,4 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class GastoChofer extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'numero_interno',
+        'fecha',
+        'importe',
+        'saldo',
+        'flota_id',
+        'chofer_id',
+        'proveedor_id',
+        'detalle',
+    ];
+
+    public function chofer()
+    {
+        return $this->belongsTo(Chofer::class);
+    }
+
+    public function proveedor()
+    {
+        return $this->belongsTo(Proveedor::class);
+    }
+
+    public function flota()
+    {
+        return $this->belongsTo(Flota::class);
+    }
 }

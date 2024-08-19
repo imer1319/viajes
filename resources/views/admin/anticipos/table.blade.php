@@ -16,13 +16,13 @@
                 <td>{{ $anticipo->id }}</td>
                 <td>{{ $anticipo->numero_interno }}</td>
                 <td>{{ $anticipo->fecha }}</td>
-                <td>{{ $anticipo->chofer->nombre }}</td>
+                <td>
+                    <a
+                        href="{{ route('admin.anticipos.chofer.index', $anticipo->chofer->id) }}">{{ $anticipo->chofer->nombre }}</a>
+                </td>
                 <td>{{ $anticipo->importe }}</td>
                 <td>{{ $anticipo->saldo }}</td>
                 <td>
-                    <a href="{{ route('admin.anticipos.show', $anticipo) }}" class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-eye"></i>
-                    </a>
                     <a href="{{ route('admin.anticipos.edit', $anticipo) }}" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-edit"></i>
                     </a>

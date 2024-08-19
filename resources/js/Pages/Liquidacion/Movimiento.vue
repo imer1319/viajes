@@ -8,29 +8,53 @@
         <table class="table table-bordered col-md-12">
             <thead>
                 <tr>
+                    <th></th>
                     <th>#</th>
                     <th>Fecha</th>
                     <th>Cliente</th>
                     <th>Tipo de viaje</th>
-                    <th>Precio real</th>
-                    <th>Total</th>
-                    <th>Flota</th>
+                    <th>Precio chofer</th>
+                    <th>%</th>
+                    <th>Comision chofer</th>
+                    <th>Saldo comision chofer</th>
                 </tr>
             </thead>
             <tbody>
                 <tr
-                    v-for="(movimiento, index) in chofer.movimientos"
+                    v-for="(movimiento, index) in movimientos"
                     :key="movimiento.id"
                 >
+                    <td>
+                        <a
+                            @click.prevent="quitarMovimiento(index)"
+                            class="btn btn-sm btn-danger"
+                            ><i class="fa fa-trash"></i
+                        ></a>
+                    </td>
                     <td>{{ index + 1 }}</td>
                     <td>{{ movimiento.fecha }}</td>
                     <td>{{ movimiento.cliente.razon_social }}</td>
                     <td>{{ movimiento.tipo_viaje.descripcion }}</td>
-                    <td>{{ movimiento.precio_real }}</td>
-                    <td>{{ movimiento.total }}</td>
-                    <td>{{ movimiento.flota.nombre }}</td>
+                    <td>{{ movimiento.precio_chofer | formatNumber }}</td>
+                    <td>{{ movimiento.porcentaje_pago }}</td>
+                    <td>{{ movimiento.comision_chofer | formatNumber }}</td>
+                    <td>
+                        {{ movimiento.saldo_comision_chofer | formatNumber }}
+                    </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"><b>Totales</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ totalPrecioChofer | formatNumber }}</td>
+                    <td></td>
+                    <td>{{ totalComisionChofer | formatNumber }}</td>
+                    <td>{{ totalSaldoComisionChofer | formatNumber }}</td>
+                </tr>
+            </tfoot>
         </table>
         <div class="col-12 d-flex justify-content-end mt-3">
             <button class="btn btn-primary" @click.prevent="siguiente()">
@@ -46,14 +70,35 @@ export default {
         siguiente() {
             this.$emit("siguiente");
         },
+        quitarMovimiento(index) {
+            this.$store.commit("REMOVE_MOVIMIENTO", index);
+        },
     },
     computed: {
         ...mapGetters({
             chofer: "getChofer",
-            chofer_id: "getChoferId",
+            movimientos: "getMovimientos",
         }),
-        errors() {
-            return this.$store.getters.getErrors;
+        totalPrecioChofer() {
+            return this.movimientos.reduce(
+                (total, movimiento) =>
+                    total + parseFloat(movimiento.precio_chofer),
+                0
+            );
+        },
+        totalComisionChofer() {
+            return this.movimientos.reduce(
+                (total, movimiento) =>
+                    total + parseFloat(movimiento.comision_chofer),
+                0
+            );
+        },
+        totalSaldoComisionChofer() {
+            return this.movimientos.reduce(
+                (total, movimiento) =>
+                    total + parseFloat(movimiento.saldo_comision_chofer),
+                0
+            );
         },
     },
 };

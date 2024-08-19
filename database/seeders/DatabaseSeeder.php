@@ -4,11 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Categoria;
 use App\Models\CentroCosto;
+use App\Models\Chofer;
 use App\Models\Cliente;
 use App\Models\CondicionesPago;
 use App\Models\CondicionIva;
 use App\Models\Departamento;
 use App\Models\Deposito;
+use App\Models\Flota;
 use App\Models\FormasPagos;
 use App\Models\Localidad;
 use App\Models\Marca;
@@ -60,7 +62,10 @@ class DatabaseSeeder extends Seeder
         Marca::truncate();
         Deposito::truncate();
         Rubro::truncate();
-        // Proveedor::truncate();
+        Proveedor::truncate();
+        Cliente::truncate();
+        Chofer::truncate();
+        Flota::truncate();
         OrdenCompra::truncate();
         Ubicacion::truncate();
         CentroCosto::truncate();
@@ -74,7 +79,6 @@ class DatabaseSeeder extends Seeder
             DepartamentoSeeder::class,
             LocalidadSeeder::class,
             TipoDocumentoSeeder::class,
-            // ClienteSeeder::class,
             CategoriaSeeder::class,
             TipoComprobanteSeeder::class,
             CondicionIvaSeeder::class,
@@ -88,11 +92,14 @@ class DatabaseSeeder extends Seeder
             MarcaSeeder::class,
             DepositoSeeder::class,
             RubroSeeder::class,
-            // ProveedorSeeder::class,
+            ProveedorSeeder::class,
+            ClienteSeeder::class,
+            ChoferSeedeer::class,
             ProductoSeeder::class,
             OrdenCompraSeeder::class,
             UbicacionSeeder::class,
             CentroCostoSeeder::class,
+            FlotaSeedeer::class,
         ]);
     }
 }

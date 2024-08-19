@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Anticipos</h1>
+                    <h1>Liquidacion</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.liquidaciones.index') }}">Listado de liquidaciones</a></li>
+                        <li class="breadcrumb-item active">Editar liquidacion</li>
                     </ol>
                 </div>
             </div>
@@ -21,10 +21,10 @@
     <section class="content mx-3">
 
         <div class="card card-primary card-outline ñpt-4">
-            <div class="card-header">Editar anticipo</div>
+            <div class="card-header">Editar liquidacion</div>
 
             <div class="card-body">
-                <anticipo-edit :anticipo="{{ $anticipo }}" redirect="true"></anticipo-edit>
+                <liquidacion-edit :liquidacion="{{ $liquidacion }}" redirect="true"></liquidacion-edit>
             </div>
         </div>
 

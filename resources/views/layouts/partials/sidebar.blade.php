@@ -157,6 +157,12 @@
                                         <p>Agregar anticipo</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.gastos.index') }}" class="nav-link">
+                                        <i class="fas fa-money-bill-wave-alt nav-icon"></i>
+                                        <p>Agregar gasto</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">

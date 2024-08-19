@@ -32,6 +32,6 @@ class Chofer extends Model
 
     public function gastos()
     {
-        // return $this->hasMany(Gastos::class);
+        return $this->hasMany(GastoChofer::class);
     }
 }

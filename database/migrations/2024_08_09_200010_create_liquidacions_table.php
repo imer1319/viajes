@@ -18,6 +18,7 @@ class CreateLiquidacionsTable extends Migration
             $table->bigInteger('numero_interno');
             $table->date('fecha');
             $table->foreignId('chofer_id')->constrained('chofers');
+            $table->bigInteger('total_liquidacion');
             $table->timestamps();
         });
     }

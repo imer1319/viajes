@@ -4,6 +4,8 @@ use App\Http\Controllers\Administracion\AnticipoChoferController;
 use App\Http\Controllers\Administracion\AnticipoController;
 use App\Http\Controllers\Administracion\ChoferController;
 use App\Http\Controllers\Administracion\ClienteController;
+use App\Http\Controllers\Administracion\GastoChoferController;
+use App\Http\Controllers\Administracion\GastoController;
 use App\Http\Controllers\Administracion\LiquidacionController;
 use App\Http\Controllers\Administracion\ProveedorController;
 use App\Http\Controllers\Administracion\UserController;
@@ -46,7 +48,13 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('movimientos', MovimientoController::class);
     Route::resource('flotas', FlotaController::class);
     Route::resource('liquidaciones', LiquidacionController::class);
+    Route::resource('gastos', GastoController::class);
+    // anticipos chofer
     Route::get('anticipos/{chofer}/chofer', [AnticipoChoferController::class, 'index'])->name('anticipos.chofer.index');
     Route::get('anticipos/{chofer}/chofer/create', [AnticipoChoferController::class, 'create'])->name('anticipos.chofer.create');
     Route::get('anticipos/{chofer}/chofer/{anticipo}/edit', [AnticipoChoferController::class, 'edit'])->name('anticipos.chofer.edit');
+    // gastos chofer
+    Route::get('gastos/{chofer}/chofer', [GastoChoferController::class, 'index'])->name('gastos.chofer.index');
+    Route::get('gastos/{chofer}/chofer/create', [GastoChoferController::class, 'create'])->name('gastos.chofer.create');
+    Route::get('gastos/{chofer}/chofer/{anticipo}/edit', [GastoChoferController::class, 'edit'])->name('gastos.chofer.edit');
 });

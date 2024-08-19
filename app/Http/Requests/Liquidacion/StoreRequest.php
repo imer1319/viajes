@@ -24,6 +24,24 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'fecha' => 'required|date',
+            'chofer_id' => 'required|exists:chofers,id',
+            'observaciones' => 'nullable|string',
+            'total_liquidacion' => 'required|numeric',
+            'numero_interno' => 'required|numeric',
+            // movimientos
+            'movimientos' => 'required|array',
+            'movimientos.*.saldo_total' => 'required|numeric',
+            'movimientos.*.chofer_id' => 'required|exists:chofers,id',
+            'movimientos.*.fecha' => 'required|date',
+            //gastos
+            'gastos' => 'required|array',
+            'gastos.*.importe' => 'required|numeric',
+            'gastos.*.chofer_id' => 'required|exists:chofers,id',
+            //anticipos
+            'anticipos' => 'required|array',
+            'anticipos.*.importe' => 'required|numeric',
+            'anticipos.*.chofer_id' => 'required|exists:chofers,id',
         ];
     }
 }

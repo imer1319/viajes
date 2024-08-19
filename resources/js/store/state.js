@@ -1,6 +1,16 @@
 export default {
-    chofer_id: '',
-    chofer: '',
+    chofer: {},
+    form: {
+        id: "",
+        fecha: "",
+        chofer_id: "",
+        numero_interno: "",
+        observaciones: "",
+        total_liquidacion: "",
+        movimientos:[],
+        gastos:[],
+        anticipos:[],
+    },
     choferes: [],
     flotas: [],
     clientes: [],
@@ -13,6 +23,9 @@ export default {
     retencionIngresoBrutos: [],
     tipoDocumentos: [],
     movimientos: [],
+    anticipos: [],
+    gastos: [],
+    proveedores: [],
     planCuentas: [],
     errors: {}
 };

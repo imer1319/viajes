@@ -46,7 +46,6 @@ class MovimientoController extends Controller
             DB::beginTransaction();
             $movimiento = Movimiento::create($request->validated());
             event(new MovimientoCreado($movimiento));
-            //crear factura movimiento
             DB::commit();
             return response()->json([
                 'message' => 'Movimiento creado exitosamente.',
@@ -141,15 +140,31 @@ class MovimientoController extends Controller
 
     public function movimientosChofer(Chofer $chofer)
     {
-        return Chofer::with([
+        $choferData = Chofer::with([
             'movimientos' => function ($query) {
                 $query->where('saldo_total', '!=', 0)
                     ->with('tipoViaje', 'flota', 'cliente');
             },
             'anticipos' => function ($query) {
                 $query->where('saldo', '!=', 0)
-                ->with('chofer');
+                    ->with('chofer');
+            },
+            'gastos' => function ($query) {
+                $query->where('saldo', '!=', 0)
+                    ->with('flota', 'proveedor', 'chofer');
             }
         ])->find($chofer->id);
+    
+        return response()->json([
+            'chofer' => [
+                'id' => $choferData->id,
+                'nombre' => $choferData->nombre, 
+                'dni' => $choferData->dni,
+                'cuil' => $choferData->cuil,
+            ],
+            'movimientos' => $choferData->movimientos,
+            'anticipos' => $choferData->anticipos,
+            'gastos' => $choferData->gastos,
+        ]);
     }
 }

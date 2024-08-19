@@ -130,9 +130,8 @@
             <div class="col-md-4">
                 <label for="precio_real">Precio real</label>
                 <input
-                    type="number"
+                    type="text"
                     class="form-control"
-                    step="0.1"
                     v-model="form.precio_real"
                     id="precio_real"
                 />

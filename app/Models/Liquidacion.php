@@ -10,6 +10,29 @@ class Liquidacion extends Model
     use HasFactory;
 
     protected $fillable = [
-        
+        'numero_interno',
+        'fecha',
+        'chofer_id',
+        'total_liquidacion',
     ];
+
+    public function movimientos()
+    {
+        return $this->hasMany(LiquidacionMovimiento::class);
+    }
+
+    public function gastos()
+    {
+        return $this->hasMany(LiquidacionGasto::class);
+    }
+
+    public function anticipos()
+    {
+        return $this->hasMany(LiquidacionAnticipo::class);
+    }
+
+    public function chofer()
+    {
+        return $this->belongsTo(Chofer::class);
+    }
 }

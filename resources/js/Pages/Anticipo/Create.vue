@@ -2,11 +2,6 @@
     <div>
         <h6><span class="text-danger">*</span>Obligatorio</h6>
         <div class="row">
-            <!-- 
-chofer_id
-importe
-saldo
- -->
             <div class="col-md-6">
                 <label for="numero_interno">Numero interno</label>
                 <input

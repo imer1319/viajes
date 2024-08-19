@@ -3106,6 +3106,316 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Pages_Chofer_Create_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Pages/Chofer/Create.vue */ "./resources/js/Pages/Chofer/Create.vue");
+/* harmony import */ var _Pages_Chofer_Table_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Pages/Chofer/Table.vue */ "./resources/js/Pages/Chofer/Table.vue");
+/* harmony import */ var _Pages_Proveedor_Create_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Pages/Proveedor/Create.vue */ "./resources/js/Pages/Proveedor/Create.vue");
+/* harmony import */ var _Pages_Proveedor_Table_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Pages/Proveedor/Table.vue */ "./resources/js/Pages/Proveedor/Table.vue");
+/* harmony import */ var _Pages_Flota_Create_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Pages/Flota/Create.vue */ "./resources/js/Pages/Flota/Create.vue");
+/* harmony import */ var _Pages_Flota_Table_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Pages/Flota/Table.vue */ "./resources/js/Pages/Flota/Table.vue");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    ChoferCreate: _Pages_Chofer_Create_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ChoferTable: _Pages_Chofer_Table_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ProveedorCreate: _Pages_Proveedor_Create_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ProveedorTable: _Pages_Proveedor_Table_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    FlotaCreate: _Pages_Flota_Create_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    FlotaTable: _Pages_Flota_Table_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  },
+  props: ["numero_interno", "chofer_id", "redirect"],
+  mounted: function mounted() {
+    this.form.fecha = this.getTodayDate();
+    this.form.numero_interno = this.numero_interno;
+    if (this.chofer_id) {
+      this.form.chofer_id = this.chofer_id;
+    }
+  },
+  data: function data() {
+    return {
+      form: {
+        numero_interno: "",
+        fecha: "",
+        chofer_id: "",
+        importe: "",
+        flota_id: "",
+        proveedor_id: "",
+        saldo: "",
+        detalle: ""
+      }
+    };
+  },
+  watch: {
+    "form.chofer_id": function formChofer_id(newVal) {
+      this.$nextTick(function () {
+        $("#chofer_id").val(newVal).trigger("change");
+      });
+    },
+    "form.proveedor_id": function formProveedor_id(newVal) {
+      this.$nextTick(function () {
+        $("#proveedor_id").val(newVal).trigger("change");
+      });
+    },
+    "form.flota_id": function formFlota_id(newVal) {
+      this.$nextTick(function () {
+        $("#flota_id").val(newVal).trigger("change");
+      });
+    }
+  },
+  methods: {
+    agregarGasto: function agregarGasto() {
+      var _this = this;
+      this.form.saldo = this.form.importe;
+      this.$store.dispatch("agregarGasto", this.form).then(function () {
+        if (_this.redirect) {
+          window.location = "/gastos";
+          return;
+        }
+        _this.resetForm();
+        _this.$toast.open({
+          message: "Anticipo agregado exitosamente!",
+          type: "success",
+          position: "top-right"
+        });
+      })["catch"](function () {
+        _this.$toast.open({
+          message: "Corrija los siguientes errores!",
+          type: "error",
+          position: "top-right"
+        });
+      });
+    },
+    getTodayDate: function getTodayDate() {
+      var today = new Date();
+      var year = today.getFullYear();
+      var month = String(today.getMonth() + 1).padStart(2, "0"); // Enero es 0
+      var day = String(today.getDate()).padStart(2, "0");
+      return "".concat(year, "-").concat(month, "-").concat(day);
+    },
+    resetForm: function resetForm() {
+      this.form = {
+        numero_interno: "",
+        fecha: "",
+        chofer_id: "",
+        importe: "",
+        saldo: "",
+        detalle: ""
+      };
+    },
+    updateChoferId: function updateChoferId(chofer_id) {
+      this.form.chofer_id = chofer_id;
+      $("#modal_chofer").modal("hide");
+    },
+    updateFlotaId: function updateFlotaId(flota_id) {
+      this.form.flota_id = flota_id;
+      $("#modal_flota").modal("hide");
+    },
+    updateProveedorId: function updateProveedorId(proveedor_id) {
+      this.form.proveedor_id = proveedor_id;
+      $("#modal_proveedor").modal("hide");
+    },
+    getErrorMessage: function getErrorMessage(error) {
+      return Array.isArray(error) ? error[0] : error;
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapGetters)({
+    choferes: "getChoferes",
+    proveedores: "getProveedores",
+    flotas: "getFlotas"
+  })), {}, {
+    errors: function errors() {
+      return this.$store.getters.getErrors;
+    }
+  })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Edit.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Edit.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Pages_Chofer_Create_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Pages/Chofer/Create.vue */ "./resources/js/Pages/Chofer/Create.vue");
+/* harmony import */ var _Pages_Chofer_Table_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Pages/Chofer/Table.vue */ "./resources/js/Pages/Chofer/Table.vue");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
+/* harmony import */ var _Pages_Proveedor_Create_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Pages/Proveedor/Create.vue */ "./resources/js/Pages/Proveedor/Create.vue");
+/* harmony import */ var _Pages_Proveedor_Table_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Pages/Proveedor/Table.vue */ "./resources/js/Pages/Proveedor/Table.vue");
+/* harmony import */ var _Pages_Flota_Create_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Pages/Flota/Create.vue */ "./resources/js/Pages/Flota/Create.vue");
+/* harmony import */ var _Pages_Flota_Table_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Pages/Flota/Table.vue */ "./resources/js/Pages/Flota/Table.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    ChoferCreate: _Pages_Chofer_Create_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    ChoferTable: _Pages_Chofer_Table_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ProveedorCreate: _Pages_Proveedor_Create_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ProveedorTable: _Pages_Proveedor_Table_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    FlotaCreate: _Pages_Flota_Create_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    FlotaTable: _Pages_Flota_Table_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  props: ["numero_interno", "chofer_id", "redirect", "gasto"],
+  created: function created() {
+    if (this.gasto) {
+      this.setFormValues(this.gasto);
+    }
+    if (this.chofer_id) {
+      this.form.chofer_id = this.chofer_id;
+    }
+  },
+  data: function data() {
+    return {
+      form: {
+        numero_interno: "",
+        fecha: "",
+        chofer_id: "",
+        proveedor_id: "",
+        flota_id: "",
+        importe: "",
+        saldo: "",
+        detalle: ""
+      }
+    };
+  },
+  watch: {
+    "form.chofer_id": function formChofer_id(newVal) {
+      this.$nextTick(function () {
+        $("#chofer_id").val(newVal).trigger("change");
+      });
+    },
+    "form.proveedor_id": function formProveedor_id(newVal) {
+      this.$nextTick(function () {
+        $("#proveedor_id").val(newVal).trigger("change");
+      });
+    },
+    "form.flota_id": function formFlota_id(newVal) {
+      this.$nextTick(function () {
+        $("#flota_id").val(newVal).trigger("change");
+      });
+    }
+  },
+  methods: {
+    actualizarGasto: function actualizarGasto() {
+      var _this = this;
+      this.form.saldo = this.form.importe;
+      this.$store.dispatch("actualizarGasto", this.form).then(function () {
+        if (_this.redirect) {
+          window.location = "/gastos";
+          return;
+        }
+        _this.resetForm();
+        _this.$toast.open({
+          message: "Gasto editado exitosamente!",
+          type: "success",
+          position: "top-right"
+        });
+      })["catch"](function () {
+        _this.$toast.open({
+          message: "Corrija los siguientes errores!",
+          type: "error",
+          position: "top-right"
+        });
+      });
+    },
+    resetForm: function resetForm() {
+      this.form = {
+        id: "",
+        numero_interno: "",
+        fecha: "",
+        chofer_id: "",
+        flota_id: "",
+        proveedor_id: "",
+        importe: "",
+        saldo: "",
+        detalle: ""
+      };
+    },
+    updateChoferId: function updateChoferId(chofer_id) {
+      this.form.chofer_id = chofer_id;
+      $("#modal_chofer").modal("hide");
+    },
+    updateFlotaId: function updateFlotaId(flota_id) {
+      this.form.flota_id = flota_id;
+      $("#modal_flota").modal("hide");
+    },
+    updateProveedorId: function updateProveedorId(proveedor_id) {
+      this.form.proveedor_id = proveedor_id;
+      $("#modal_proveedor").modal("hide");
+    },
+    getErrorMessage: function getErrorMessage(error) {
+      return Array.isArray(error) ? error[0] : error;
+    },
+    setFormValues: function setFormValues(gasto) {
+      this.form.id = gasto.id;
+      this.form.numero_interno = gasto.numero_interno;
+      this.form.fecha = gasto.fecha;
+      this.form.chofer_id = gasto.chofer_id;
+      this.form.flota_id = gasto.flota_id;
+      this.form.proveedor_id = gasto.proveedor_id;
+      this.form.importe = gasto.importe;
+      this.form.saldo = gasto.saldo;
+      this.form.detalle = gasto.detalle;
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapGetters)({
+    choferes: "getChoferes",
+    proveedores: "getProveedores",
+    flotas: "getFlotas"
+  })), {}, {
+    errors: function errors() {
+      return this.$store.getters.getErrors;
+    }
+  })
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Anticipo.vue?vue&type=script&lang=js":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Anticipo.vue?vue&type=script&lang=js ***!
@@ -3129,14 +3439,24 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   methods: {
     siguiente: function siguiente() {
       this.$emit("siguiente");
+    },
+    quitarAnticipo: function quitarAnticipo(index) {
+      this.$store.commit("REMOVE_ANTICIPO", index);
     }
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
     chofer: "getChofer",
+    anticipos: "getAnticipos",
     chofer_id: "getChoferId"
   })), {}, {
     errors: function errors() {
       return this.$store.getters.getErrors;
+    },
+    totalImporte: function totalImporte() {
+      var _this$anticipos;
+      return (_this$anticipos = this.anticipos) === null || _this$anticipos === void 0 ? void 0 : _this$anticipos.reduce(function (total, anticipo) {
+        return total + parseFloat(anticipo.importe);
+      }, 0);
     }
   })
 });
@@ -3170,6 +3490,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["numero_interno"],
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
@@ -3182,11 +3503,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     siguienteTab: function siguienteTab() {
       this.$refs.formWizard.nextTab();
-    }
-  },
-  computed: {
-    errors: function errors() {
-      return this.$store.getters.getErrors;
     }
   }
 });
@@ -3204,7 +3520,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    siguiente: function siguiente() {
+      this.$emit("siguiente");
+    },
+    quitarGasto: function quitarGasto(index) {
+      this.$store.commit("REMOVE_GASTO", index);
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+    gastos: "getGastos",
+    chofer: "getChofer",
+    chofer_id: "getChoferId"
+  })), {}, {
+    errors: function errors() {
+      return this.$store.getters.getErrors;
+    },
+    totalImporte: function totalImporte() {
+      var _this$gastos;
+      return (_this$gastos = this.gastos) === null || _this$gastos === void 0 ? void 0 : _this$gastos.reduce(function (total, anticipo) {
+        return total + parseFloat(anticipo.importe);
+      }, 0);
+    }
+  })
+});
 
 /***/ }),
 
@@ -3234,22 +3582,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["numero_interno"],
   components: {
     ChoferCreate: _Pages_Chofer_Create_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     ChoferTable: _Pages_Chofer_Table_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   mounted: function mounted() {
-    this.form.fecha = this.getTodayDate();
-  },
-  data: function data() {
-    return {
-      form: {
-        fecha: "",
-        chofer_id: "",
-        observaciones: ""
-      }
-    };
+    this.updateFecha();
   },
   watch: {
     "form.chofer_id": function formChofer_id(newVal) {
@@ -3258,11 +3598,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       });
     }
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapMutations)(["SET_FECHA", "SET_CHOFER_ID", "SET_OBSERVACIONES", "SET_NUMERO_INTERNO"])), {}, {
     validarHead: function validarHead() {
       var _this = this;
+      this.SET_NUMERO_INTERNO(this.numero_interno);
       this.$store.dispatch("validarHead", this.form).then(function () {
-        _this.$store.commit("SET_CHOFER_ID", _this.form.chofer_id);
         _this.$store.dispatch("getMovimientosChofer", _this.form.chofer_id);
         _this.$emit("siguiente");
         _this.$toast.open({
@@ -3280,6 +3620,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         });
       });
     },
+    updateFecha: function updateFecha() {
+      this.SET_FECHA(this.getTodayDate());
+    },
     getErrorMessage: function getErrorMessage(error) {
       return Array.isArray(error) ? error[0] : error;
     },
@@ -3294,10 +3637,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.form.chofer_id = chofer_id;
       $("#modal_chofer").modal("hide");
     }
-  },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)({
-    choferes: "getChoferes"
+  }),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)({
+    form: function form(state) {
+      return state.form;
+    }
   })), {}, {
+    choferes: function choferes() {
+      return this.$store.getters.getChoferes;
+    },
     errors: function errors() {
       return this.$store.getters.getErrors;
     }
@@ -3329,14 +3677,29 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   methods: {
     siguiente: function siguiente() {
       this.$emit("siguiente");
+    },
+    quitarMovimiento: function quitarMovimiento(index) {
+      this.$store.commit("REMOVE_MOVIMIENTO", index);
     }
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
     chofer: "getChofer",
-    chofer_id: "getChoferId"
+    movimientos: "getMovimientos"
   })), {}, {
-    errors: function errors() {
-      return this.$store.getters.getErrors;
+    totalPrecioChofer: function totalPrecioChofer() {
+      return this.movimientos.reduce(function (total, movimiento) {
+        return total + parseFloat(movimiento.precio_chofer);
+      }, 0);
+    },
+    totalComisionChofer: function totalComisionChofer() {
+      return this.movimientos.reduce(function (total, movimiento) {
+        return total + parseFloat(movimiento.comision_chofer);
+      }, 0);
+    },
+    totalSaldoComisionChofer: function totalSaldoComisionChofer() {
+      return this.movimientos.reduce(function (total, movimiento) {
+        return total + parseFloat(movimiento.saldo_comision_chofer);
+      }, 0);
     }
   })
 });
@@ -3354,7 +3717,92 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  methods: {
+    agregarLiquidacion: function agregarLiquidacion() {
+      var _this = this;
+      this.form.total_liquidacion = this.totalGastoLiquidacion;
+      this.form.anticipos = this.anticipos;
+      this.form.gastos = this.gastos;
+      this.form.movimientos = this.movimientos;
+      this.$store.dispatch("agregarLiquidacion", this.form).then(function () {
+        window.location = "/liquidaciones";
+        _this.$toast.open({
+          message: "Datos guardados exitosamente!",
+          type: "success",
+          position: "top-right",
+          duration: 2000
+        });
+      })["catch"](function () {
+        _this.$toast.open({
+          message: "Corrija los siguientes errores!",
+          type: "error",
+          position: "top-right",
+          duration: 2000
+        });
+      });
+    }
+  },
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
+    form: function form(state) {
+      return state.form;
+    },
+    chofer: function chofer(state) {
+      return state.chofer;
+    },
+    movimientos: function movimientos(state) {
+      return state.movimientos;
+    },
+    gastos: function gastos(state) {
+      return state.gastos;
+    },
+    anticipos: function anticipos(state) {
+      return state.anticipos;
+    }
+  })), {}, {
+    totalPrecioChofer: function totalPrecioChofer() {
+      var _this$movimientos;
+      return (_this$movimientos = this.movimientos) === null || _this$movimientos === void 0 ? void 0 : _this$movimientos.reduce(function (total, movimiento) {
+        return total + parseFloat(movimiento.precio_chofer);
+      }, 0);
+    },
+    totalComisionChofer: function totalComisionChofer() {
+      var _this$movimientos2;
+      return (_this$movimientos2 = this.movimientos) === null || _this$movimientos2 === void 0 ? void 0 : _this$movimientos2.reduce(function (total, movimiento) {
+        return total + parseFloat(movimiento.comision_chofer);
+      }, 0);
+    },
+    totalSaldoComisionChofer: function totalSaldoComisionChofer() {
+      var _this$movimientos3;
+      return (_this$movimientos3 = this.movimientos) === null || _this$movimientos3 === void 0 ? void 0 : _this$movimientos3.reduce(function (total, movimiento) {
+        return total + parseFloat(movimiento.saldo_comision_chofer);
+      }, 0);
+    },
+    totalImporteAnticipo: function totalImporteAnticipo() {
+      var _this$anticipos;
+      return (_this$anticipos = this.anticipos) === null || _this$anticipos === void 0 ? void 0 : _this$anticipos.reduce(function (total, anticipo) {
+        return total + parseFloat(anticipo.importe);
+      }, 0);
+    },
+    totalImporteGasto: function totalImporteGasto() {
+      var _this$gastos;
+      return (_this$gastos = this.gastos) === null || _this$gastos === void 0 ? void 0 : _this$gastos.reduce(function (total, anticipo) {
+        return total + parseFloat(anticipo.importe);
+      }, 0);
+    },
+    totalGastoLiquidacion: function totalGastoLiquidacion() {
+      return this.totalComisionChofer - this.totalImporteGasto + this.totalImporteAnticipo;
+    }
+  })
+});
 
 /***/ }),
 
@@ -4147,6 +4595,46 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Proveedor/Table.vue?vue&type=script&lang=js":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Proveedor/Table.vue?vue&type=script&lang=js ***!
+  \****************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mounted: function mounted() {
+    this.$store.dispatch("getProveedores");
+  },
+  data: function data() {
+    return {
+      search: ''
+    };
+  },
+  methods: {
+    seleccionarProveedor: function seleccionarProveedor(proveedor_id) {
+      this.$emit('proveedorSelected', proveedor_id);
+    }
+  },
+  computed: {
+    filteredProveedores: function filteredProveedores() {
+      var searchTerm = this.search.toLowerCase();
+      return this.proveedores.filter(function (cliente) {
+        return cliente.razon_social.toLowerCase().includes(searchTerm);
+      });
+    },
+    proveedores: function proveedores() {
+      return this.$store.state.proveedores;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/TipoViaje/Create.vue?vue&type=script&lang=js":
 /*!*****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/TipoViaje/Create.vue?vue&type=script&lang=js ***!
@@ -4421,7 +4909,7 @@ var render = function render() {
         return _vm.agregarAnticipo.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                    Agregar\n                ")])])]), _vm._v(" "), _c("modal-component", {
+  }, [_vm._v("\n                Agregar\n            ")])])]), _vm._v(" "), _c("modal-component", {
     attrs: {
       modal_id: "modal_chofer",
       titulo: "Choferes"
@@ -4607,7 +5095,7 @@ var render = function render() {
         return _vm.actualizarAnticipo.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                    Actualizar\n                ")])])]), _vm._v(" "), _c("modal-component", {
+  }, [_vm._v("\n                Actualizar\n            ")])])]), _vm._v(" "), _c("modal-component", {
     attrs: {
       modal_id: "modal_chofer",
       titulo: "Choferes"
@@ -7541,6 +8029,662 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=template&id=5738f1c0":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=template&id=5738f1c0 ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "numero_interno"
+    }
+  }, [_vm._v("Numero interno")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.numero_interno,
+      expression: "form.numero_interno"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      disabled: ""
+    },
+    domProps: {
+      value: _vm.form.numero_interno
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "numero_interno", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.numero_interno ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.numero_interno)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "fecha"
+    }
+  }, [_vm._v("Fecha")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.fecha,
+      expression: "form.fecha"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.form.fecha
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "fecha", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.fecha ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.fecha)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_vm._m(1), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.importe,
+      expression: "form.importe"
+    }],
+    staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors.importe
+    },
+    attrs: {
+      type: "text",
+      id: "importe"
+    },
+    domProps: {
+      value: _vm.form.importe
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "importe", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.importe ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.importe)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "chofer_id"
+    }
+  }, [_vm._v("Chofer")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex w-100"
+  }, [_c("div", {
+    staticClass: "flex-grow-1"
+  }, [_c("v-select", {
+    attrs: {
+      options: _vm.choferes,
+      reduce: function reduce(chofer) {
+        return chofer.id;
+      },
+      label: "nombre",
+      disabled: _vm.chofer_id != null
+    },
+    model: {
+      value: _vm.form.chofer_id,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "chofer_id", $$v);
+      },
+      expression: "form.chofer_id"
+    }
+  })], 1), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary ml-2",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_chofer",
+      disabled: _vm.chofer_id != null
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })])]), _vm._v(" "), _vm.errors.chofer_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.chofer_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "flota_id"
+    }
+  }, [_vm._v("Proveedor")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex w-100"
+  }, [_c("div", {
+    staticClass: "flex-grow-1"
+  }, [_c("v-select", {
+    attrs: {
+      options: _vm.proveedores,
+      reduce: function reduce(proveedor) {
+        return proveedor.id;
+      },
+      label: "razon_social"
+    },
+    model: {
+      value: _vm.form.proveedor_id,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "proveedor_id", $$v);
+      },
+      expression: "form.proveedor_id"
+    }
+  })], 1), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _vm.errors.proveedor_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.proveedor_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "flota_id"
+    }
+  }, [_vm._v("Flota")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex w-100"
+  }, [_c("div", {
+    staticClass: "flex-grow-1"
+  }, [_c("v-select", {
+    attrs: {
+      options: _vm.flotas,
+      reduce: function reduce(flota) {
+        return flota.id;
+      },
+      label: "nombre"
+    },
+    model: {
+      value: _vm.form.flota_id,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "flota_id", $$v);
+      },
+      expression: "form.flota_id"
+    }
+  })], 1), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _vm.errors.flota_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.flota_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_vm._m(4), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.detalle,
+      expression: "form.detalle"
+    }],
+    staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors.detalle
+    },
+    attrs: {
+      id: "detalle",
+      rows: "2"
+    },
+    domProps: {
+      value: _vm.form.detalle
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "detalle", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.detalle ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.detalle)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 d-flex justify-content-end mt-3"
+  }, [_c("button", {
+    staticClass: "btn btn-primary btn-sm",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.agregarGasto.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("\n                Agregar\n            ")])])]), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_chofer",
+      titulo: "Choferes"
+    }
+  }, [_c("chofer-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("chofer-table", {
+    on: {
+      choferSelected: _vm.updateChoferId
+    }
+  })], 1), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_flota",
+      titulo: "Flotas"
+    }
+  }, [_c("flota-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("flota-table", {
+    on: {
+      flotaSelected: _vm.updateFlotaId
+    }
+  })], 1), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_proveedor",
+      titulo: "Proveedores"
+    }
+  }, [_c("proveedor-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("proveedor-table", {
+    on: {
+      proveedorSelected: _vm.updateProveedorId
+    }
+  })], 1)], 1);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h6", [_c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")]), _vm._v("Obligatorio")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    attrs: {
+      "for": "importe"
+    }
+  }, [_vm._v("Importe"), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary ml-2",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_proveedor"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary ml-2",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_flota"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    attrs: {
+      "for": "detalle"
+    }
+  }, [_vm._v("Detalle"), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Edit.vue?vue&type=template&id=3019dfa4":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Edit.vue?vue&type=template&id=3019dfa4 ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "numero_interno"
+    }
+  }, [_vm._v("Numero interno")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.numero_interno,
+      expression: "form.numero_interno"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      disabled: ""
+    },
+    domProps: {
+      value: _vm.form.numero_interno
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "numero_interno", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.numero_interno ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.numero_interno)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "fecha"
+    }
+  }, [_vm._v("Fecha")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.fecha,
+      expression: "form.fecha"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.form.fecha
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "fecha", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.fecha ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.fecha)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_vm._m(1), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.importe,
+      expression: "form.importe"
+    }],
+    staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors.importe
+    },
+    attrs: {
+      type: "text",
+      id: "importe"
+    },
+    domProps: {
+      value: _vm.form.importe
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "importe", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.importe ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.importe)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "chofer_id"
+    }
+  }, [_vm._v("Chofer")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex w-100"
+  }, [_c("div", {
+    staticClass: "flex-grow-1"
+  }, [_c("v-select", {
+    attrs: {
+      options: _vm.choferes,
+      reduce: function reduce(chofer) {
+        return chofer.id;
+      },
+      label: "nombre",
+      disabled: _vm.chofer_id != null
+    },
+    model: {
+      value: _vm.form.chofer_id,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "chofer_id", $$v);
+      },
+      expression: "form.chofer_id"
+    }
+  })], 1), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary ml-2",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_chofer",
+      disabled: _vm.chofer_id != null
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })])]), _vm._v(" "), _vm.errors.chofer_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.chofer_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "flota_id"
+    }
+  }, [_vm._v("Proveedor")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex w-100"
+  }, [_c("div", {
+    staticClass: "flex-grow-1"
+  }, [_c("v-select", {
+    attrs: {
+      options: _vm.proveedores,
+      reduce: function reduce(proveedor) {
+        return proveedor.id;
+      },
+      label: "razon_social"
+    },
+    model: {
+      value: _vm.form.proveedor_id,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "proveedor_id", $$v);
+      },
+      expression: "form.proveedor_id"
+    }
+  })], 1), _vm._v(" "), _vm._m(2)]), _vm._v(" "), _vm.errors.proveedor_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.proveedor_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "flota_id"
+    }
+  }, [_vm._v("Flota")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex w-100"
+  }, [_c("div", {
+    staticClass: "flex-grow-1"
+  }, [_c("v-select", {
+    attrs: {
+      options: _vm.flotas,
+      reduce: function reduce(flota) {
+        return flota.id;
+      },
+      label: "nombre"
+    },
+    model: {
+      value: _vm.form.flota_id,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "flota_id", $$v);
+      },
+      expression: "form.flota_id"
+    }
+  })], 1), _vm._v(" "), _vm._m(3)]), _vm._v(" "), _vm.errors.flota_id ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.flota_id)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_vm._m(4), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.detalle,
+      expression: "form.detalle"
+    }],
+    staticClass: "form-control",
+    "class": {
+      "is-invalid": _vm.errors.detalle
+    },
+    attrs: {
+      id: "detalle",
+      rows: "2"
+    },
+    domProps: {
+      value: _vm.form.detalle
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form, "detalle", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors.detalle ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.detalle)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 d-flex justify-content-end mt-3"
+  }, [_c("button", {
+    staticClass: "btn btn-primary btn-sm",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.actualizarGasto.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("\n                Actualizar\n            ")])])]), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_chofer",
+      titulo: "Choferes"
+    }
+  }, [_c("chofer-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("chofer-table", {
+    on: {
+      choferSelected: _vm.updateChoferId
+    }
+  })], 1), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_flota",
+      titulo: "Flotas"
+    }
+  }, [_c("flota-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("flota-table", {
+    on: {
+      flotaSelected: _vm.updateFlotaId
+    }
+  })], 1), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_proveedor",
+      titulo: "Proveedores"
+    }
+  }, [_c("proveedor-create"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("proveedor-table", {
+    on: {
+      proveedorSelected: _vm.updateProveedorId
+    }
+  })], 1)], 1);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h6", [_c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")]), _vm._v("Obligatorio")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    attrs: {
+      "for": "importe"
+    }
+  }, [_vm._v("Importe"), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary ml-2",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_proveedor"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("button", {
+    staticClass: "btn btn-primary ml-2",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_flota"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-search"
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("label", {
+    attrs: {
+      "for": "detalle"
+    }
+  }, [_vm._v("Detalle"), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Anticipo.vue?vue&type=template&id=5758abd6":
 /*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Anticipo.vue?vue&type=template&id=5758abd6 ***!
@@ -7564,11 +8708,21 @@ var render = function render() {
     staticClass: "text-muted"
   }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.chofer.anticipos, function (movimiento, index) {
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.anticipos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
-    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.numero_interno))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.chofer.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.importe))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.saldo))])]);
-  }), 0)]), _vm._v(" "), _c("div", {
+    }, [_c("td", [_c("a", {
+      staticClass: "btn btn-sm btn-danger",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.quitarAnticipo(index);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-trash"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.numero_interno))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.importe)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -7589,7 +8743,15 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Numero interno")]), _vm._v(" "), _c("th", [_vm._v("fecha")]), _vm._v(" "), _c("th", [_vm._v("chofer_id")]), _vm._v(" "), _c("th", [_vm._v("importe")]), _vm._v(" "), _c("th", [_vm._v("saldo")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Numero interno")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", {
+    attrs: {
+      colspan: "2"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
 }];
 render._withStripped = true;
 
@@ -7618,6 +8780,7 @@ var render = function render() {
       title: "Formulario",
       subtitle: "organizando",
       color: "#0d6efd",
+      shape: "square",
       hideButtons: true
     }
   }, [_c("tab-content", {
@@ -7626,6 +8789,9 @@ var render = function render() {
       icon: "fa fa-user"
     }
   }, [_c("Head", {
+    attrs: {
+      numero_interno: _vm.numero_interno
+    },
     on: {
       siguiente: function siguiente($event) {
         return _vm.siguienteTab();
@@ -7633,7 +8799,7 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("tab-content", {
     attrs: {
-      title: "Movimientos del cliente",
+      title: "Movimientos del chofer",
       icon: "fa fa-bus"
     }
   }, [_c("Movimiento", {
@@ -7645,7 +8811,7 @@ var render = function render() {
   })], 1), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Anticipos del chofer",
-      icon: "fas fa-comments-dollar "
+      icon: "fas fa-comments-dollar"
     }
   }, [_c("Anticipo", {
     on: {
@@ -7664,12 +8830,12 @@ var render = function render() {
         return _vm.siguienteTab();
       }
     }
-  }), _vm._v("\n            Traer todos los gastos donde el saldo del chofer sea distinto de\n            0\n        ")], 1), _vm._v(" "), _c("tab-content", {
+  })], 1), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Resumen",
       icon: "fa fa-book"
     }
-  }, [_c("Resumen"), _vm._v("\n            Resumen de lo que hay que enviar\n        ")], 1)], 1)], 1);
+  }, [_c("Resumen")], 1)], 1)], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -7692,9 +8858,59 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div");
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-12 mb-2"
+  }, [_vm._m(0), _vm._v("\n        " + _vm._s(_vm.chofer.nombre) + "\n        "), _c("p", {
+    staticClass: "text-muted"
+  }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.gastos, function (gasto, index) {
+    return _c("tr", {
+      key: gasto.id
+    }, [_c("td", [_c("a", {
+      staticClass: "btn btn-sm btn-danger",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.quitarGasto(index);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-trash"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(gasto.importe)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 d-flex justify-content-end mt-3"
+  }, [_c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.siguiente();
+      }
+    }
+  }, [_vm._v("\n            Siguiente\n        ")])])]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("strong", [_c("i", {
+    staticClass: "fa fa-user mr-2"
+  }), _vm._v("Chofer:")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Proveedor")]), _vm._v(" "), _c("th", [_vm._v("Flota")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", {
+    attrs: {
+      colspan: "2"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
+}];
 render._withStripped = true;
 
 
@@ -7867,11 +9083,21 @@ var render = function render() {
     staticClass: "text-muted"
   }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.chofer.movimientos, function (movimiento, index) {
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.movimientos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
-    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.precio_real))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.total))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.flota.nombre))])]);
-  }), 0)]), _vm._v(" "), _c("div", {
+    }, [_c("td", [_c("a", {
+      staticClass: "btn btn-sm btn-danger",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.quitarMovimiento(index);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-trash"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)))]), _vm._v(" "), _c("td", [_vm._v("\n                    " + _vm._s(_vm._f("formatNumber")(movimiento.saldo_comision_chofer)) + "\n                ")])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioChofer)))]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldoComisionChofer)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -7892,7 +9118,15 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Cliente")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio real")]), _vm._v(" "), _c("th", [_vm._v("Total")]), _vm._v(" "), _c("th", [_vm._v("Flota")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Cliente")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio chofer")]), _vm._v(" "), _c("th", [_vm._v("%")]), _vm._v(" "), _c("th", [_vm._v("Comision chofer")]), _vm._v(" "), _c("th", [_vm._v("Saldo comision chofer")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", {
+    attrs: {
+      colspan: "2"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
 }];
 render._withStripped = true;
 
@@ -7914,9 +9148,141 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div");
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-6"
+  }, [_vm._m(0), _vm._v(" "), _c("p", {
+    staticClass: "text-muted"
+  }, [_vm._v("Nombre: " + _vm._s(_vm.chofer.nombre))]), _vm._v(" "), _c("p", {
+    staticClass: "text-muted"
+  }, [_vm._v("CUIL : " + _vm._s(_vm.chofer.cuil))]), _vm._v(" "), _c("p", {
+    staticClass: "text-muted"
+  }, [_vm._v("DNI : " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_vm._m(1), _vm._v(" "), _c("p", {
+    staticClass: "text-muted"
+  }, [_vm._v("Fecha: " + _vm._s(_vm.form.fecha))]), _vm._v(" "), _c("p", {
+    staticClass: "text-muted"
+  }, [_vm._v("Observaciones: " + _vm._s(_vm.form.observaciones))])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_vm._m(2), _vm._v(" "), _c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_vm._m(3), _vm._v(" "), _c("tbody", _vm._l(_vm.movimientos, function (movimiento, index) {
+    return _c("tr", {
+      key: movimiento.id
+    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)))]), _vm._v(" "), _c("td", [_vm._v("\n                        " + _vm._s(_vm._f("formatNumber")(movimiento.saldo_comision_chofer)) + "\n                    ")])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(4), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioChofer)))]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldoComisionChofer)))])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_vm._m(5), _vm._v(" "), _c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_vm._m(6), _vm._v(" "), _c("tbody", _vm._l(_vm.anticipos, function (movimiento, index) {
+    return _c("tr", {
+      key: movimiento.id
+    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.numero_interno))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.importe)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(7), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporteAnticipo)))])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_vm._m(8), _vm._v(" "), _c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_vm._m(9), _vm._v(" "), _c("tbody", _vm._l(_vm.gastos, function (gasto, index) {
+    return _c("tr", {
+      key: gasto.id
+    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.chofer.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(gasto.importe)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(10), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporteGasto)))])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12 text-right"
+  }, [_vm._m(11), _vm._v(" "), _c("strong", [_vm._v("Total movimientos: "), _c("span", {
+    staticClass: "text-primary"
+  }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Total total gastos: "), _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("(-)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteGasto)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Total total adelantos: "), _c("span", {
+    staticClass: "text-primary"
+  }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteGasto)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("strong", [_vm._v("Total a liquidar:\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalGastoLiquidacion)))])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("a", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.agregarLiquidacion();
+      }
+    }
+  }, [_vm._v("Guardar")])])]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("strong", [_c("i", {
+    staticClass: "fas fa-money-check mr-1"
+  }), _vm._v(" Chofer")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("strong", [_c("i", {
+    staticClass: "fas fa-money-check mr-1"
+  }), _vm._v("Datos del la\n            liquidacion")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("strong", [_c("i", {
+    staticClass: "fa fa-bus mr-1"
+  }), _vm._v("Movimientos")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Cliente")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio chofer")]), _vm._v(" "), _c("th", [_vm._v("%")]), _vm._v(" "), _c("th", [_vm._v("Comision chofer")]), _vm._v(" "), _c("th", [_vm._v("Saldo comision chofer")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", {
+    attrs: {
+      colspan: "2"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("strong", [_c("i", {
+    staticClass: "fas fa-comments-dollar mr-1"
+  }), _vm._v("Anticipos")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Numero interno")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("importe")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", {
+    attrs: {
+      colspan: "2"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("strong", [_c("i", {
+    staticClass: "fa fa-money-check mr-1"
+  }), _vm._v("Gastos")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Proveedor")]), _vm._v(" "), _c("th", [_vm._v("Flota")]), _vm._v(" "), _c("th", [_vm._v("Chofer")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", {
+    attrs: {
+      colspan: "2"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h5", {
+    staticClass: "text-center"
+  }, [_c("i", {
+    staticClass: "fa fa-book mr-3"
+  }), _vm._v("Resumen")]);
+}];
 render._withStripped = true;
 
 
@@ -8165,8 +9531,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "number",
-      step: "0.1",
+      type: "text",
       id: "precio_real"
     },
     domProps: {
@@ -10491,6 +11856,75 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Proveedor/Table.vue?vue&type=template&id=49741fb8":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Proveedor/Table.vue?vue&type=template&id=49741fb8 ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("div", {
+    staticClass: "d-flex justify-content-between align-items-center mb-3"
+  }, [_c("h5", [_vm._v("Listado de Proveedores")]), _vm._v(" "), _c("div", [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.search,
+      expression: "search"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "Buscar por razon social"
+    },
+    domProps: {
+      value: _vm.search
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.search = $event.target.value;
+      }
+    }
+  })])]), _vm._v(" "), _c("table", {
+    staticClass: "table"
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.filteredProveedores, function (proveedor) {
+    return _c("tr", {
+      key: proveedor.id
+    }, [_c("td", [_c("a", {
+      staticClass: "btn btn-primary btn-sm",
+      attrs: {
+        href: ""
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.seleccionarProveedor(proveedor.id);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-check"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(proveedor.cuit))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(proveedor.telefono))])]);
+  }), 0)])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Razon social")]), _vm._v(" "), _c("th", [_vm._v("CUIT")]), _vm._v(" "), _c("th", [_vm._v("Telefono")])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/TipoViaje/Create.vue?vue&type=template&id=a6e917c2":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/TipoViaje/Create.vue?vue&type=template&id=a6e917c2 ***!
@@ -10751,7 +12185,40 @@ Vue.component('chofer-create', (__webpack_require__(/*! ./Pages/Chofer/Create.vu
 Vue.component('chofer-edit', (__webpack_require__(/*! ./Pages/Chofer/Edit.vue */ "./resources/js/Pages/Chofer/Edit.vue")["default"]));
 Vue.component('anticipo-create', (__webpack_require__(/*! ./Pages/Anticipo/Create.vue */ "./resources/js/Pages/Anticipo/Create.vue")["default"]));
 Vue.component('anticipo-edit', (__webpack_require__(/*! ./Pages/Anticipo/Edit.vue */ "./resources/js/Pages/Anticipo/Edit.vue")["default"]));
+Vue.component('gasto-create', (__webpack_require__(/*! ./Pages/Gasto/Create.vue */ "./resources/js/Pages/Gasto/Create.vue")["default"]));
+Vue.component('gasto-edit', (__webpack_require__(/*! ./Pages/Gasto/Edit.vue */ "./resources/js/Pages/Gasto/Edit.vue")["default"]));
 Vue.component('liquidacion-create', (__webpack_require__(/*! ./Pages/Liquidacion/Create.vue */ "./resources/js/Pages/Liquidacion/Create.vue")["default"]));
+Vue.filter('formatNumber', function (value) {
+  if (!value) return '';
+  return new Intl.NumberFormat('es-AR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(value);
+});
+
+// Vue.directive('format-number', {
+//     bind(el, binding, vnode) {
+//         const $input = $(el);
+//         const numberFormatter = new Intl.NumberFormat('id-ID', {
+//             minimumFractionDigits: 0,
+//             maximumFractionDigits: 0,
+//         });
+//         function formatNumber(value) {
+//             return numberFormatter.format(value);
+//         }
+//         function parseNumber(value) {
+//             return value.replace(/\D/g, '');
+//         }
+//         $input.on('input', function () {
+//             let rawValue = parseNumber($input.val());
+//             $input.val(formatNumber(rawValue)); // Actualizar el input con el formato
+//             vnode.context.$set(vnode.context.form, 'precio_real', rawValue);
+//         });
+//         if (vnode.context.form.precio_real) {
+//             $input.val(formatNumber(vnode.context.form.precio_real));
+//         }
+//     }
+// });
 var app = new Vue({
   el: '#app',
   store: _store__WEBPACK_IMPORTED_MODULE_3__["default"]
@@ -10812,12 +12279,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   actualizarChofer: () => (/* binding */ actualizarChofer),
 /* harmony export */   actualizarCliente: () => (/* binding */ actualizarCliente),
 /* harmony export */   actualizarFlota: () => (/* binding */ actualizarFlota),
+/* harmony export */   actualizarGasto: () => (/* binding */ actualizarGasto),
+/* harmony export */   actualizarLiquidacion: () => (/* binding */ actualizarLiquidacion),
 /* harmony export */   actualizarMovimiento: () => (/* binding */ actualizarMovimiento),
 /* harmony export */   actualizarProveedor: () => (/* binding */ actualizarProveedor),
 /* harmony export */   agregarAnticipo: () => (/* binding */ agregarAnticipo),
 /* harmony export */   agregarChofer: () => (/* binding */ agregarChofer),
 /* harmony export */   agregarCliente: () => (/* binding */ agregarCliente),
 /* harmony export */   agregarFlota: () => (/* binding */ agregarFlota),
+/* harmony export */   agregarGasto: () => (/* binding */ agregarGasto),
+/* harmony export */   agregarLiquidacion: () => (/* binding */ agregarLiquidacion),
 /* harmony export */   agregarMovimiento: () => (/* binding */ agregarMovimiento),
 /* harmony export */   agregarProveedor: () => (/* binding */ agregarProveedor),
 /* harmony export */   agregarTipoViaje: () => (/* binding */ agregarTipoViaje),
@@ -10830,12 +12301,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getLocalidadesDepartamento: () => (/* binding */ getLocalidadesDepartamento),
 /* harmony export */   getMovimientosChofer: () => (/* binding */ getMovimientosChofer),
 /* harmony export */   getPlanCuentas: () => (/* binding */ getPlanCuentas),
+/* harmony export */   getProveedores: () => (/* binding */ getProveedores),
 /* harmony export */   getProvincias: () => (/* binding */ getProvincias),
 /* harmony export */   getRetencionGanancias: () => (/* binding */ getRetencionGanancias),
 /* harmony export */   getRetencionIngresoBrutos: () => (/* binding */ getRetencionIngresoBrutos),
 /* harmony export */   getTipoDocumentos: () => (/* binding */ getTipoDocumentos),
 /* harmony export */   getTipoViajes: () => (/* binding */ getTipoViajes),
+/* harmony export */   updateChoferId: () => (/* binding */ updateChoferId),
 /* harmony export */   updateErrors: () => (/* binding */ updateErrors),
+/* harmony export */   updateFecha: () => (/* binding */ updateFecha),
+/* harmony export */   updateObservaciones: () => (/* binding */ updateObservaciones),
 /* harmony export */   validarHead: () => (/* binding */ validarHead)
 /* harmony export */ });
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
@@ -10904,7 +12379,7 @@ var actualizarMovimiento = /*#__PURE__*/function () {
     return _ref4.apply(this, arguments);
   };
 }();
-var agregarChofer = /*#__PURE__*/function () {
+var agregarLiquidacion = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(_ref5, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -10913,30 +12388,29 @@ var agregarChofer = /*#__PURE__*/function () {
           commit = _ref5.commit, dispatch = _ref5.dispatch;
           _context3.prev = 1;
           _context3.next = 4;
-          return axios.post('/api/choferes', form);
+          return axios.post('/api/liquidaciones', form);
         case 4:
           dispatch('clearErrors');
-          dispatch('getChoferes');
-          _context3.next = 12;
+          _context3.next = 11;
           break;
-        case 8:
-          _context3.prev = 8;
+        case 7:
+          _context3.prev = 7;
           _context3.t0 = _context3["catch"](1);
           if (_context3.t0.response && _context3.t0.response.data && _context3.t0.response.data.errors) {
             commit('SET_ERRORS', _context3.t0.response.data.errors);
           }
           throw _context3.t0;
-        case 12:
+        case 11:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[1, 8]]);
+    }, _callee3, null, [[1, 7]]);
   }));
-  return function agregarChofer(_x5, _x6) {
+  return function agregarLiquidacion(_x5, _x6) {
     return _ref6.apply(this, arguments);
   };
 }();
-var actualizarChofer = /*#__PURE__*/function () {
+var actualizarLiquidacion = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(_ref7, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -10945,7 +12419,7 @@ var actualizarChofer = /*#__PURE__*/function () {
           commit = _ref7.commit, dispatch = _ref7.dispatch;
           _context4.prev = 1;
           _context4.next = 4;
-          return axios.put('/choferes/' + form.id, form);
+          return axios.put('/liquidaciones/' + form.id, form);
         case 4:
           dispatch('clearErrors');
           _context4.next = 11;
@@ -10963,40 +12437,43 @@ var actualizarChofer = /*#__PURE__*/function () {
       }
     }, _callee4, null, [[1, 7]]);
   }));
-  return function actualizarChofer(_x7, _x8) {
+  return function actualizarLiquidacion(_x7, _x8) {
     return _ref8.apply(this, arguments);
   };
 }();
-var getChoferes = /*#__PURE__*/function () {
-  var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(_ref9) {
-    var commit, response;
+var agregarChofer = /*#__PURE__*/function () {
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(_ref9, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
-          commit = _ref9.commit;
+          commit = _ref9.commit, dispatch = _ref9.dispatch;
           _context5.prev = 1;
           _context5.next = 4;
-          return axios.get('/api/choferes');
+          return axios.post('/api/choferes', form);
         case 4:
-          response = _context5.sent;
-          commit('SET_CHOFERES', response.data);
-          _context5.next = 11;
+          dispatch('clearErrors');
+          dispatch('getChoferes');
+          _context5.next = 12;
           break;
         case 8:
           _context5.prev = 8;
           _context5.t0 = _context5["catch"](1);
-          console.error("Error fetching choferes:", _context5.t0);
-        case 11:
+          if (_context5.t0.response && _context5.t0.response.data && _context5.t0.response.data.errors) {
+            commit('SET_ERRORS', _context5.t0.response.data.errors);
+          }
+          throw _context5.t0;
+        case 12:
         case "end":
           return _context5.stop();
       }
     }, _callee5, null, [[1, 8]]);
   }));
-  return function getChoferes(_x9) {
+  return function agregarChofer(_x9, _x10) {
     return _ref10.apply(this, arguments);
   };
 }();
-var agregarAnticipo = /*#__PURE__*/function () {
+var actualizarChofer = /*#__PURE__*/function () {
   var _ref12 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(_ref11, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
@@ -11005,7 +12482,7 @@ var agregarAnticipo = /*#__PURE__*/function () {
           commit = _ref11.commit, dispatch = _ref11.dispatch;
           _context6.prev = 1;
           _context6.next = 4;
-          return axios.post('/anticipos', form);
+          return axios.put('/choferes/' + form.id, form);
         case 4:
           dispatch('clearErrors');
           _context6.next = 11;
@@ -11023,42 +12500,40 @@ var agregarAnticipo = /*#__PURE__*/function () {
       }
     }, _callee6, null, [[1, 7]]);
   }));
-  return function agregarAnticipo(_x10, _x11) {
+  return function actualizarChofer(_x11, _x12) {
     return _ref12.apply(this, arguments);
   };
 }();
-var actualizarAnticipo = /*#__PURE__*/function () {
-  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(_ref13, form) {
-    var commit, dispatch;
+var getChoferes = /*#__PURE__*/function () {
+  var _ref14 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(_ref13) {
+    var commit, response;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
-          commit = _ref13.commit, dispatch = _ref13.dispatch;
+          commit = _ref13.commit;
           _context7.prev = 1;
           _context7.next = 4;
-          return axios.put('/anticipos/' + form.id, form);
+          return axios.get('/api/choferes');
         case 4:
-          dispatch('clearErrors');
+          response = _context7.sent;
+          commit('SET_CHOFERES', response.data);
           _context7.next = 11;
           break;
-        case 7:
-          _context7.prev = 7;
+        case 8:
+          _context7.prev = 8;
           _context7.t0 = _context7["catch"](1);
-          if (_context7.t0.response && _context7.t0.response.data && _context7.t0.response.data.errors) {
-            commit('SET_ERRORS', _context7.t0.response.data.errors);
-          }
-          throw _context7.t0;
+          console.error("Error fetching choferes:", _context7.t0);
         case 11:
         case "end":
           return _context7.stop();
       }
-    }, _callee7, null, [[1, 7]]);
+    }, _callee7, null, [[1, 8]]);
   }));
-  return function actualizarAnticipo(_x12, _x13) {
+  return function getChoferes(_x13) {
     return _ref14.apply(this, arguments);
   };
 }();
-var agregarFlota = /*#__PURE__*/function () {
+var agregarAnticipo = /*#__PURE__*/function () {
   var _ref16 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(_ref15, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
@@ -11067,30 +12542,29 @@ var agregarFlota = /*#__PURE__*/function () {
           commit = _ref15.commit, dispatch = _ref15.dispatch;
           _context8.prev = 1;
           _context8.next = 4;
-          return axios.post('/api/flotas', form);
+          return axios.post('/anticipos', form);
         case 4:
           dispatch('clearErrors');
-          dispatch('getFlotas');
-          _context8.next = 12;
+          _context8.next = 11;
           break;
-        case 8:
-          _context8.prev = 8;
+        case 7:
+          _context8.prev = 7;
           _context8.t0 = _context8["catch"](1);
           if (_context8.t0.response && _context8.t0.response.data && _context8.t0.response.data.errors) {
             commit('SET_ERRORS', _context8.t0.response.data.errors);
           }
           throw _context8.t0;
-        case 12:
+        case 11:
         case "end":
           return _context8.stop();
       }
-    }, _callee8, null, [[1, 8]]);
+    }, _callee8, null, [[1, 7]]);
   }));
-  return function agregarFlota(_x14, _x15) {
+  return function agregarAnticipo(_x14, _x15) {
     return _ref16.apply(this, arguments);
   };
 }();
-var actualizarFlota = /*#__PURE__*/function () {
+var actualizarAnticipo = /*#__PURE__*/function () {
   var _ref18 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(_ref17, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee9$(_context9) {
@@ -11099,7 +12573,7 @@ var actualizarFlota = /*#__PURE__*/function () {
           commit = _ref17.commit, dispatch = _ref17.dispatch;
           _context9.prev = 1;
           _context9.next = 4;
-          return axios.put('/flotas/' + form.id, form);
+          return axios.put('/anticipos/' + form.id, form);
         case 4:
           dispatch('clearErrors');
           _context9.next = 11;
@@ -11117,40 +12591,43 @@ var actualizarFlota = /*#__PURE__*/function () {
       }
     }, _callee9, null, [[1, 7]]);
   }));
-  return function actualizarFlota(_x16, _x17) {
+  return function actualizarAnticipo(_x16, _x17) {
     return _ref18.apply(this, arguments);
   };
 }();
-var getFlotas = /*#__PURE__*/function () {
-  var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(_ref19) {
-    var commit, response;
+var agregarFlota = /*#__PURE__*/function () {
+  var _ref20 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(_ref19, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee10$(_context10) {
       while (1) switch (_context10.prev = _context10.next) {
         case 0:
-          commit = _ref19.commit;
+          commit = _ref19.commit, dispatch = _ref19.dispatch;
           _context10.prev = 1;
           _context10.next = 4;
-          return axios.get('/api/flotas');
+          return axios.post('/api/flotas', form);
         case 4:
-          response = _context10.sent;
-          commit('SET_FLOTAS', response.data);
-          _context10.next = 11;
+          dispatch('clearErrors');
+          dispatch('getFlotas');
+          _context10.next = 12;
           break;
         case 8:
           _context10.prev = 8;
           _context10.t0 = _context10["catch"](1);
-          console.error("Error fetching flotas:", _context10.t0);
-        case 11:
+          if (_context10.t0.response && _context10.t0.response.data && _context10.t0.response.data.errors) {
+            commit('SET_ERRORS', _context10.t0.response.data.errors);
+          }
+          throw _context10.t0;
+        case 12:
         case "end":
           return _context10.stop();
       }
     }, _callee10, null, [[1, 8]]);
   }));
-  return function getFlotas(_x18) {
+  return function agregarFlota(_x18, _x19) {
     return _ref20.apply(this, arguments);
   };
 }();
-var agregarCliente = /*#__PURE__*/function () {
+var actualizarFlota = /*#__PURE__*/function () {
   var _ref22 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(_ref21, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee11$(_context11) {
@@ -11159,61 +12636,58 @@ var agregarCliente = /*#__PURE__*/function () {
           commit = _ref21.commit, dispatch = _ref21.dispatch;
           _context11.prev = 1;
           _context11.next = 4;
-          return axios.post('/api/clientes', form);
+          return axios.put('/flotas/' + form.id, form);
         case 4:
           dispatch('clearErrors');
-          dispatch('getClientes');
-          _context11.next = 12;
+          _context11.next = 11;
           break;
-        case 8:
-          _context11.prev = 8;
+        case 7:
+          _context11.prev = 7;
           _context11.t0 = _context11["catch"](1);
           if (_context11.t0.response && _context11.t0.response.data && _context11.t0.response.data.errors) {
             commit('SET_ERRORS', _context11.t0.response.data.errors);
           }
           throw _context11.t0;
-        case 12:
+        case 11:
         case "end":
           return _context11.stop();
       }
-    }, _callee11, null, [[1, 8]]);
+    }, _callee11, null, [[1, 7]]);
   }));
-  return function agregarCliente(_x19, _x20) {
+  return function actualizarFlota(_x20, _x21) {
     return _ref22.apply(this, arguments);
   };
 }();
-var agregarProveedor = /*#__PURE__*/function () {
-  var _ref24 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(_ref23, form) {
-    var commit, dispatch;
+var getFlotas = /*#__PURE__*/function () {
+  var _ref24 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(_ref23) {
+    var commit, response;
     return _regeneratorRuntime().wrap(function _callee12$(_context12) {
       while (1) switch (_context12.prev = _context12.next) {
         case 0:
-          commit = _ref23.commit, dispatch = _ref23.dispatch;
+          commit = _ref23.commit;
           _context12.prev = 1;
           _context12.next = 4;
-          return axios.post('/proveedores', form);
+          return axios.get('/api/flotas');
         case 4:
-          dispatch('clearErrors');
+          response = _context12.sent;
+          commit('SET_FLOTAS', response.data);
           _context12.next = 11;
           break;
-        case 7:
-          _context12.prev = 7;
+        case 8:
+          _context12.prev = 8;
           _context12.t0 = _context12["catch"](1);
-          if (_context12.t0.response && _context12.t0.response.data && _context12.t0.response.data.errors) {
-            commit('SET_ERRORS', _context12.t0.response.data.errors);
-          }
-          throw _context12.t0;
+          console.error("Error fetching flotas:", _context12.t0);
         case 11:
         case "end":
           return _context12.stop();
       }
-    }, _callee12, null, [[1, 7]]);
+    }, _callee12, null, [[1, 8]]);
   }));
-  return function agregarProveedor(_x21, _x22) {
+  return function getFlotas(_x22) {
     return _ref24.apply(this, arguments);
   };
 }();
-var actualizarProveedor = /*#__PURE__*/function () {
+var agregarCliente = /*#__PURE__*/function () {
   var _ref26 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(_ref25, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee13$(_context13) {
@@ -11222,29 +12696,30 @@ var actualizarProveedor = /*#__PURE__*/function () {
           commit = _ref25.commit, dispatch = _ref25.dispatch;
           _context13.prev = 1;
           _context13.next = 4;
-          return axios.put('/proveedores/' + form.id, form);
+          return axios.post('/api/clientes', form);
         case 4:
           dispatch('clearErrors');
-          _context13.next = 11;
+          dispatch('getClientes');
+          _context13.next = 12;
           break;
-        case 7:
-          _context13.prev = 7;
+        case 8:
+          _context13.prev = 8;
           _context13.t0 = _context13["catch"](1);
           if (_context13.t0.response && _context13.t0.response.data && _context13.t0.response.data.errors) {
             commit('SET_ERRORS', _context13.t0.response.data.errors);
           }
           throw _context13.t0;
-        case 11:
+        case 12:
         case "end":
           return _context13.stop();
       }
-    }, _callee13, null, [[1, 7]]);
+    }, _callee13, null, [[1, 8]]);
   }));
-  return function actualizarProveedor(_x23, _x24) {
+  return function agregarCliente(_x23, _x24) {
     return _ref26.apply(this, arguments);
   };
 }();
-var actualizarCliente = /*#__PURE__*/function () {
+var agregarProveedor = /*#__PURE__*/function () {
   var _ref28 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(_ref27, form) {
     var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee14$(_context14) {
@@ -11253,7 +12728,7 @@ var actualizarCliente = /*#__PURE__*/function () {
           commit = _ref27.commit, dispatch = _ref27.dispatch;
           _context14.prev = 1;
           _context14.next = 4;
-          return axios.put('/clientes/' + form.id, form);
+          return axios.post('/proveedores', form);
         case 4:
           dispatch('clearErrors');
           _context14.next = 11;
@@ -11271,101 +12746,102 @@ var actualizarCliente = /*#__PURE__*/function () {
       }
     }, _callee14, null, [[1, 7]]);
   }));
-  return function actualizarCliente(_x25, _x26) {
+  return function agregarProveedor(_x25, _x26) {
     return _ref28.apply(this, arguments);
   };
 }();
-var getClientes = /*#__PURE__*/function () {
-  var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(_ref29) {
-    var commit, response;
+var actualizarProveedor = /*#__PURE__*/function () {
+  var _ref30 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(_ref29, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee15$(_context15) {
       while (1) switch (_context15.prev = _context15.next) {
         case 0:
-          commit = _ref29.commit;
+          commit = _ref29.commit, dispatch = _ref29.dispatch;
           _context15.prev = 1;
           _context15.next = 4;
-          return axios.get('/api/clientes');
+          return axios.put('/proveedores/' + form.id, form);
         case 4:
-          response = _context15.sent;
-          commit('SET_CLIENTES', response.data);
+          dispatch('clearErrors');
           _context15.next = 11;
           break;
-        case 8:
-          _context15.prev = 8;
+        case 7:
+          _context15.prev = 7;
           _context15.t0 = _context15["catch"](1);
-          console.error("Error fetching clientes:", _context15.t0);
+          if (_context15.t0.response && _context15.t0.response.data && _context15.t0.response.data.errors) {
+            commit('SET_ERRORS', _context15.t0.response.data.errors);
+          }
+          throw _context15.t0;
         case 11:
         case "end":
           return _context15.stop();
       }
-    }, _callee15, null, [[1, 8]]);
+    }, _callee15, null, [[1, 7]]);
   }));
-  return function getClientes(_x27) {
+  return function actualizarProveedor(_x27, _x28) {
     return _ref30.apply(this, arguments);
   };
 }();
-var getPlanCuentas = /*#__PURE__*/function () {
-  var _ref32 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(_ref31) {
-    var commit, response;
+var actualizarCliente = /*#__PURE__*/function () {
+  var _ref32 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(_ref31, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee16$(_context16) {
       while (1) switch (_context16.prev = _context16.next) {
         case 0:
-          commit = _ref31.commit;
+          commit = _ref31.commit, dispatch = _ref31.dispatch;
           _context16.prev = 1;
           _context16.next = 4;
-          return axios.get('/api/plan-cuentas');
+          return axios.put('/clientes/' + form.id, form);
         case 4:
-          response = _context16.sent;
-          commit('SET_PLAN_CUENTAS', response.data);
+          dispatch('clearErrors');
           _context16.next = 11;
           break;
-        case 8:
-          _context16.prev = 8;
+        case 7:
+          _context16.prev = 7;
           _context16.t0 = _context16["catch"](1);
-          console.error("Error fetching plan de cuentas:", _context16.t0);
+          if (_context16.t0.response && _context16.t0.response.data && _context16.t0.response.data.errors) {
+            commit('SET_ERRORS', _context16.t0.response.data.errors);
+          }
+          throw _context16.t0;
         case 11:
         case "end":
           return _context16.stop();
       }
-    }, _callee16, null, [[1, 8]]);
+    }, _callee16, null, [[1, 7]]);
   }));
-  return function getPlanCuentas(_x28) {
+  return function actualizarCliente(_x29, _x30) {
     return _ref32.apply(this, arguments);
   };
 }();
-var agregarTipoViaje = /*#__PURE__*/function () {
-  var _ref34 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17(_ref33, form) {
-    var commit, dispatch;
+var getClientes = /*#__PURE__*/function () {
+  var _ref34 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17(_ref33) {
+    var commit, response;
     return _regeneratorRuntime().wrap(function _callee17$(_context17) {
       while (1) switch (_context17.prev = _context17.next) {
         case 0:
-          commit = _ref33.commit, dispatch = _ref33.dispatch;
+          commit = _ref33.commit;
           _context17.prev = 1;
           _context17.next = 4;
-          return axios.post('/api/tipo-viajes', form);
+          return axios.get('/api/clientes');
         case 4:
-          dispatch('clearErrors');
-          dispatch('getTipoViajes');
-          _context17.next = 12;
+          response = _context17.sent;
+          commit('SET_CLIENTES', response.data);
+          _context17.next = 11;
           break;
         case 8:
           _context17.prev = 8;
           _context17.t0 = _context17["catch"](1);
-          if (_context17.t0.response && _context17.t0.response.data && _context17.t0.response.data.errors) {
-            commit('SET_ERRORS', _context17.t0.response.data.errors);
-          }
-          throw _context17.t0;
-        case 12:
+          console.error("Error fetching clientes:", _context17.t0);
+        case 11:
         case "end":
           return _context17.stop();
       }
     }, _callee17, null, [[1, 8]]);
   }));
-  return function agregarTipoViaje(_x29, _x30) {
+  return function getClientes(_x31) {
     return _ref34.apply(this, arguments);
   };
 }();
-var getTipoViajes = /*#__PURE__*/function () {
+var getProveedores = /*#__PURE__*/function () {
   var _ref36 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18(_ref35) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee18$(_context18) {
@@ -11374,181 +12850,189 @@ var getTipoViajes = /*#__PURE__*/function () {
           commit = _ref35.commit;
           _context18.prev = 1;
           _context18.next = 4;
-          return axios.get('/api/tipo-viajes');
+          return axios.get('/api/proveedores');
         case 4:
           response = _context18.sent;
-          commit('SET_TIPO_VIAJES', response.data);
+          commit('SET_PROVEEDORES', response.data);
           _context18.next = 11;
           break;
         case 8:
           _context18.prev = 8;
           _context18.t0 = _context18["catch"](1);
-          console.error("Error fetching tipo viajes:", _context18.t0);
+          console.error("Error fetching proveedores:", _context18.t0);
         case 11:
         case "end":
           return _context18.stop();
       }
     }, _callee18, null, [[1, 8]]);
   }));
-  return function getTipoViajes(_x31) {
+  return function getProveedores(_x32) {
     return _ref36.apply(this, arguments);
   };
 }();
-var updateErrors = function updateErrors(_ref37, errors) {
-  var commit = _ref37.commit;
-  commit('SET_ERRORS', errors);
-};
-var clearErrors = function clearErrors(_ref38) {
-  var commit = _ref38.commit;
-  commit('CLEAR_ERRORS');
-};
-var getRetencionGanancias = /*#__PURE__*/function () {
-  var _ref40 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19(_ref39) {
+var getPlanCuentas = /*#__PURE__*/function () {
+  var _ref38 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee19(_ref37) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee19$(_context19) {
       while (1) switch (_context19.prev = _context19.next) {
         case 0:
-          commit = _ref39.commit;
+          commit = _ref37.commit;
           _context19.prev = 1;
           _context19.next = 4;
-          return axios.get('/api/retencion-ganancias');
+          return axios.get('/api/plan-cuentas');
         case 4:
           response = _context19.sent;
-          commit('SET_RETENCION_GANANCIAS', response.data);
+          commit('SET_PLAN_CUENTAS', response.data);
           _context19.next = 11;
           break;
         case 8:
           _context19.prev = 8;
           _context19.t0 = _context19["catch"](1);
-          console.error("Error al traer a las retenciones de ganancias:", _context19.t0);
+          console.error("Error fetching plan de cuentas:", _context19.t0);
         case 11:
         case "end":
           return _context19.stop();
       }
     }, _callee19, null, [[1, 8]]);
   }));
-  return function getRetencionGanancias(_x32) {
-    return _ref40.apply(this, arguments);
+  return function getPlanCuentas(_x33) {
+    return _ref38.apply(this, arguments);
   };
 }();
-var getRetencionIngresoBrutos = /*#__PURE__*/function () {
-  var _ref42 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20(_ref41) {
-    var commit, response;
+var agregarTipoViaje = /*#__PURE__*/function () {
+  var _ref40 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee20(_ref39, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee20$(_context20) {
       while (1) switch (_context20.prev = _context20.next) {
         case 0:
-          commit = _ref41.commit;
+          commit = _ref39.commit, dispatch = _ref39.dispatch;
           _context20.prev = 1;
           _context20.next = 4;
-          return axios.get('/api/retencion-ingreso-brutos');
+          return axios.post('/api/tipo-viajes', form);
         case 4:
-          response = _context20.sent;
-          commit('SET_RETENCION_INGRESO_BRUTOS', response.data);
-          _context20.next = 11;
+          dispatch('clearErrors');
+          dispatch('getTipoViajes');
+          _context20.next = 12;
           break;
         case 8:
           _context20.prev = 8;
           _context20.t0 = _context20["catch"](1);
-          console.error("Error al traer a las retenciones de ingresos gruto:", _context20.t0);
-        case 11:
+          if (_context20.t0.response && _context20.t0.response.data && _context20.t0.response.data.errors) {
+            commit('SET_ERRORS', _context20.t0.response.data.errors);
+          }
+          throw _context20.t0;
+        case 12:
         case "end":
           return _context20.stop();
       }
     }, _callee20, null, [[1, 8]]);
   }));
-  return function getRetencionIngresoBrutos(_x33) {
-    return _ref42.apply(this, arguments);
+  return function agregarTipoViaje(_x34, _x35) {
+    return _ref40.apply(this, arguments);
   };
 }();
-var getCondicionesIva = /*#__PURE__*/function () {
-  var _ref44 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21(_ref43) {
-    var commit, response;
+var agregarGasto = /*#__PURE__*/function () {
+  var _ref42 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee21(_ref41, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee21$(_context21) {
       while (1) switch (_context21.prev = _context21.next) {
         case 0:
-          commit = _ref43.commit;
+          commit = _ref41.commit, dispatch = _ref41.dispatch;
           _context21.prev = 1;
           _context21.next = 4;
-          return axios.get('/api/condiciones-iva');
+          return axios.post('/gastos', form);
         case 4:
-          response = _context21.sent;
-          commit('SET_CONDICIONES_IVA', response.data);
-          _context21.next = 11;
+          dispatch('clearErrors');
+          dispatch('getGasto');
+          _context21.next = 12;
           break;
         case 8:
           _context21.prev = 8;
           _context21.t0 = _context21["catch"](1);
-          console.error("Error al traer a las condiciones iva:", _context21.t0);
-        case 11:
+          if (_context21.t0.response && _context21.t0.response.data && _context21.t0.response.data.errors) {
+            commit('SET_ERRORS', _context21.t0.response.data.errors);
+          }
+          throw _context21.t0;
+        case 12:
         case "end":
           return _context21.stop();
       }
     }, _callee21, null, [[1, 8]]);
   }));
-  return function getCondicionesIva(_x34) {
-    return _ref44.apply(this, arguments);
+  return function agregarGasto(_x36, _x37) {
+    return _ref42.apply(this, arguments);
   };
 }();
-var getTipoDocumentos = /*#__PURE__*/function () {
-  var _ref46 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee22(_ref45) {
-    var commit, response;
+var actualizarGasto = /*#__PURE__*/function () {
+  var _ref44 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee22(_ref43, form) {
+    var commit, dispatch;
     return _regeneratorRuntime().wrap(function _callee22$(_context22) {
       while (1) switch (_context22.prev = _context22.next) {
         case 0:
-          commit = _ref45.commit;
+          commit = _ref43.commit, dispatch = _ref43.dispatch;
           _context22.prev = 1;
           _context22.next = 4;
-          return axios.get('/api/tipo-documentos');
+          return axios.put('/gastos/' + form.id, form);
         case 4:
-          response = _context22.sent;
-          commit('SET_TIPO_DOCUMENTOS', response.data);
+          dispatch('clearErrors');
           _context22.next = 11;
           break;
-        case 8:
-          _context22.prev = 8;
+        case 7:
+          _context22.prev = 7;
           _context22.t0 = _context22["catch"](1);
-          console.error("Error al traer a los tipos de documentos:", _context22.t0);
+          if (_context22.t0.response && _context22.t0.response.data && _context22.t0.response.data.errors) {
+            commit('SET_ERRORS', _context22.t0.response.data.errors);
+          }
+          throw _context22.t0;
         case 11:
         case "end":
           return _context22.stop();
       }
-    }, _callee22, null, [[1, 8]]);
+    }, _callee22, null, [[1, 7]]);
   }));
-  return function getTipoDocumentos(_x35) {
-    return _ref46.apply(this, arguments);
+  return function actualizarGasto(_x38, _x39) {
+    return _ref44.apply(this, arguments);
   };
 }();
-var getProvincias = /*#__PURE__*/function () {
-  var _ref48 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee23(_ref47) {
+var getTipoViajes = /*#__PURE__*/function () {
+  var _ref46 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee23(_ref45) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee23$(_context23) {
       while (1) switch (_context23.prev = _context23.next) {
         case 0:
-          commit = _ref47.commit;
+          commit = _ref45.commit;
           _context23.prev = 1;
           _context23.next = 4;
-          return axios.get('/api/provincias');
+          return axios.get('/api/tipo-viajes');
         case 4:
           response = _context23.sent;
-          commit('SET_PROVINCIAS', response.data);
+          commit('SET_TIPO_VIAJES', response.data);
           _context23.next = 11;
           break;
         case 8:
           _context23.prev = 8;
           _context23.t0 = _context23["catch"](1);
-          console.error("Error al traer a las provincias:", _context23.t0);
+          console.error("Error fetching tipo viajes:", _context23.t0);
         case 11:
         case "end":
           return _context23.stop();
       }
     }, _callee23, null, [[1, 8]]);
   }));
-  return function getProvincias(_x36) {
-    return _ref48.apply(this, arguments);
+  return function getTipoViajes(_x40) {
+    return _ref46.apply(this, arguments);
   };
 }();
-var getDepartamentosProvincia = /*#__PURE__*/function () {
-  var _ref50 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee24(_ref49, provincia_id) {
+var updateErrors = function updateErrors(_ref47, errors) {
+  var commit = _ref47.commit;
+  commit('SET_ERRORS', errors);
+};
+var clearErrors = function clearErrors(_ref48) {
+  var commit = _ref48.commit;
+  commit('CLEAR_ERRORS');
+};
+var getRetencionGanancias = /*#__PURE__*/function () {
+  var _ref50 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee24(_ref49) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee24$(_context24) {
       while (1) switch (_context24.prev = _context24.next) {
@@ -11556,28 +13040,28 @@ var getDepartamentosProvincia = /*#__PURE__*/function () {
           commit = _ref49.commit;
           _context24.prev = 1;
           _context24.next = 4;
-          return axios.get('/api/departamentos/' + provincia_id);
+          return axios.get('/api/retencion-ganancias');
         case 4:
           response = _context24.sent;
-          commit('SET_DEPARTAMENTOS', response.data);
+          commit('SET_RETENCION_GANANCIAS', response.data);
           _context24.next = 11;
           break;
         case 8:
           _context24.prev = 8;
           _context24.t0 = _context24["catch"](1);
-          console.error("Error al traer a los departamentos:", _context24.t0);
+          console.error("Error al traer a las retenciones de ganancias:", _context24.t0);
         case 11:
         case "end":
           return _context24.stop();
       }
     }, _callee24, null, [[1, 8]]);
   }));
-  return function getDepartamentosProvincia(_x37, _x38) {
+  return function getRetencionGanancias(_x41) {
     return _ref50.apply(this, arguments);
   };
 }();
-var getLocalidadesDepartamento = /*#__PURE__*/function () {
-  var _ref52 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee25(_ref51, departamento_id) {
+var getRetencionIngresoBrutos = /*#__PURE__*/function () {
+  var _ref52 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee25(_ref51) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee25$(_context25) {
       while (1) switch (_context25.prev = _context25.next) {
@@ -11585,59 +13069,57 @@ var getLocalidadesDepartamento = /*#__PURE__*/function () {
           commit = _ref51.commit;
           _context25.prev = 1;
           _context25.next = 4;
-          return axios.get('/api/localidades/' + departamento_id);
+          return axios.get('/api/retencion-ingreso-brutos');
         case 4:
           response = _context25.sent;
-          commit('SET_LOCALIDADES', response.data);
+          commit('SET_RETENCION_INGRESO_BRUTOS', response.data);
           _context25.next = 11;
           break;
         case 8:
           _context25.prev = 8;
           _context25.t0 = _context25["catch"](1);
-          console.error("Error al traer a las localidades:", _context25.t0);
+          console.error("Error al traer a las retenciones de ingresos gruto:", _context25.t0);
         case 11:
         case "end":
           return _context25.stop();
       }
     }, _callee25, null, [[1, 8]]);
   }));
-  return function getLocalidadesDepartamento(_x39, _x40) {
+  return function getRetencionIngresoBrutos(_x42) {
     return _ref52.apply(this, arguments);
   };
 }();
-var validarHead = /*#__PURE__*/function () {
-  var _ref54 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee26(_ref53, form) {
-    var commit, dispatch;
+var getCondicionesIva = /*#__PURE__*/function () {
+  var _ref54 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee26(_ref53) {
+    var commit, response;
     return _regeneratorRuntime().wrap(function _callee26$(_context26) {
       while (1) switch (_context26.prev = _context26.next) {
         case 0:
-          commit = _ref53.commit, dispatch = _ref53.dispatch;
+          commit = _ref53.commit;
           _context26.prev = 1;
           _context26.next = 4;
-          return axios.post('/api/liquidacion/head', form);
+          return axios.get('/api/condiciones-iva');
         case 4:
-          dispatch('clearErrors');
+          response = _context26.sent;
+          commit('SET_CONDICIONES_IVA', response.data);
           _context26.next = 11;
           break;
-        case 7:
-          _context26.prev = 7;
+        case 8:
+          _context26.prev = 8;
           _context26.t0 = _context26["catch"](1);
-          if (_context26.t0.response && _context26.t0.response.data && _context26.t0.response.data.errors) {
-            commit('SET_ERRORS', _context26.t0.response.data.errors);
-          }
-          throw _context26.t0;
+          console.error("Error al traer a las condiciones iva:", _context26.t0);
         case 11:
         case "end":
           return _context26.stop();
       }
-    }, _callee26, null, [[1, 7]]);
+    }, _callee26, null, [[1, 8]]);
   }));
-  return function validarHead(_x41, _x42) {
+  return function getCondicionesIva(_x43) {
     return _ref54.apply(this, arguments);
   };
 }();
-var getMovimientosChofer = /*#__PURE__*/function () {
-  var _ref56 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee27(_ref55, chofer_id) {
+var getTipoDocumentos = /*#__PURE__*/function () {
+  var _ref56 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee27(_ref55) {
     var commit, response;
     return _regeneratorRuntime().wrap(function _callee27$(_context27) {
       while (1) switch (_context27.prev = _context27.next) {
@@ -11645,26 +13127,192 @@ var getMovimientosChofer = /*#__PURE__*/function () {
           commit = _ref55.commit;
           _context27.prev = 1;
           _context27.next = 4;
-          return axios.get('/api/movimientos/' + chofer_id);
+          return axios.get('/api/tipo-documentos');
         case 4:
           response = _context27.sent;
-          commit('SET_CHOFER', response.data);
+          commit('SET_TIPO_DOCUMENTOS', response.data);
           _context27.next = 11;
           break;
         case 8:
           _context27.prev = 8;
           _context27.t0 = _context27["catch"](1);
-          console.error("Error al traer a los movimientos:", _context27.t0);
+          console.error("Error al traer a los tipos de documentos:", _context27.t0);
         case 11:
         case "end":
           return _context27.stop();
       }
     }, _callee27, null, [[1, 8]]);
   }));
-  return function getMovimientosChofer(_x43, _x44) {
+  return function getTipoDocumentos(_x44) {
     return _ref56.apply(this, arguments);
   };
 }();
+var getProvincias = /*#__PURE__*/function () {
+  var _ref58 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee28(_ref57) {
+    var commit, response;
+    return _regeneratorRuntime().wrap(function _callee28$(_context28) {
+      while (1) switch (_context28.prev = _context28.next) {
+        case 0:
+          commit = _ref57.commit;
+          _context28.prev = 1;
+          _context28.next = 4;
+          return axios.get('/api/provincias');
+        case 4:
+          response = _context28.sent;
+          commit('SET_PROVINCIAS', response.data);
+          _context28.next = 11;
+          break;
+        case 8:
+          _context28.prev = 8;
+          _context28.t0 = _context28["catch"](1);
+          console.error("Error al traer a las provincias:", _context28.t0);
+        case 11:
+        case "end":
+          return _context28.stop();
+      }
+    }, _callee28, null, [[1, 8]]);
+  }));
+  return function getProvincias(_x45) {
+    return _ref58.apply(this, arguments);
+  };
+}();
+var getDepartamentosProvincia = /*#__PURE__*/function () {
+  var _ref60 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee29(_ref59, provincia_id) {
+    var commit, response;
+    return _regeneratorRuntime().wrap(function _callee29$(_context29) {
+      while (1) switch (_context29.prev = _context29.next) {
+        case 0:
+          commit = _ref59.commit;
+          _context29.prev = 1;
+          _context29.next = 4;
+          return axios.get('/api/departamentos/' + provincia_id);
+        case 4:
+          response = _context29.sent;
+          commit('SET_DEPARTAMENTOS', response.data);
+          _context29.next = 11;
+          break;
+        case 8:
+          _context29.prev = 8;
+          _context29.t0 = _context29["catch"](1);
+          console.error("Error al traer a los departamentos:", _context29.t0);
+        case 11:
+        case "end":
+          return _context29.stop();
+      }
+    }, _callee29, null, [[1, 8]]);
+  }));
+  return function getDepartamentosProvincia(_x46, _x47) {
+    return _ref60.apply(this, arguments);
+  };
+}();
+var getLocalidadesDepartamento = /*#__PURE__*/function () {
+  var _ref62 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee30(_ref61, departamento_id) {
+    var commit, response;
+    return _regeneratorRuntime().wrap(function _callee30$(_context30) {
+      while (1) switch (_context30.prev = _context30.next) {
+        case 0:
+          commit = _ref61.commit;
+          _context30.prev = 1;
+          _context30.next = 4;
+          return axios.get('/api/localidades/' + departamento_id);
+        case 4:
+          response = _context30.sent;
+          commit('SET_LOCALIDADES', response.data);
+          _context30.next = 11;
+          break;
+        case 8:
+          _context30.prev = 8;
+          _context30.t0 = _context30["catch"](1);
+          console.error("Error al traer a las localidades:", _context30.t0);
+        case 11:
+        case "end":
+          return _context30.stop();
+      }
+    }, _callee30, null, [[1, 8]]);
+  }));
+  return function getLocalidadesDepartamento(_x48, _x49) {
+    return _ref62.apply(this, arguments);
+  };
+}();
+var getMovimientosChofer = /*#__PURE__*/function () {
+  var _ref64 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee31(_ref63, chofer_id) {
+    var commit, response, choferData, movimientos, anticipos, gastos;
+    return _regeneratorRuntime().wrap(function _callee31$(_context31) {
+      while (1) switch (_context31.prev = _context31.next) {
+        case 0:
+          commit = _ref63.commit;
+          _context31.prev = 1;
+          _context31.next = 4;
+          return axios.get('/api/movimientos/' + chofer_id);
+        case 4:
+          response = _context31.sent;
+          choferData = response.data.chofer;
+          movimientos = response.data.movimientos;
+          anticipos = response.data.anticipos;
+          gastos = response.data.gastos;
+          commit('SET_CHOFER', choferData);
+          commit('SET_MOVIMIENTOS', movimientos);
+          commit('SET_ANTICIPOS', anticipos);
+          commit('SET_GASTOS', gastos);
+          _context31.next = 18;
+          break;
+        case 15:
+          _context31.prev = 15;
+          _context31.t0 = _context31["catch"](1);
+          console.error("Error al traer los movimientos del chofer:", _context31.t0);
+        case 18:
+        case "end":
+          return _context31.stop();
+      }
+    }, _callee31, null, [[1, 15]]);
+  }));
+  return function getMovimientosChofer(_x50, _x51) {
+    return _ref64.apply(this, arguments);
+  };
+}();
+var validarHead = /*#__PURE__*/function () {
+  var _ref66 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee32(_ref65, form) {
+    var commit, dispatch;
+    return _regeneratorRuntime().wrap(function _callee32$(_context32) {
+      while (1) switch (_context32.prev = _context32.next) {
+        case 0:
+          commit = _ref65.commit, dispatch = _ref65.dispatch;
+          _context32.prev = 1;
+          _context32.next = 4;
+          return axios.post('/api/liquidacion/head', form);
+        case 4:
+          dispatch('clearErrors');
+          _context32.next = 11;
+          break;
+        case 7:
+          _context32.prev = 7;
+          _context32.t0 = _context32["catch"](1);
+          if (_context32.t0.response && _context32.t0.response.data && _context32.t0.response.data.errors) {
+            commit('SET_ERRORS', _context32.t0.response.data.errors);
+          }
+          throw _context32.t0;
+        case 11:
+        case "end":
+          return _context32.stop();
+      }
+    }, _callee32, null, [[1, 7]]);
+  }));
+  return function validarHead(_x52, _x53) {
+    return _ref66.apply(this, arguments);
+  };
+}();
+var updateFecha = function updateFecha(_ref67, fecha) {
+  var commit = _ref67.commit;
+  commit('SET_FECHA', fecha);
+};
+var updateChoferId = function updateChoferId(_ref68, chofer_id) {
+  var commit = _ref68.commit;
+  commit('SET_CHOFER_ID', chofer_id);
+};
+var updateObservaciones = function updateObservaciones(_ref69, observaciones) {
+  var commit = _ref69.commit;
+  commit('SET_OBSERVACIONES', observaciones);
+};
 
 /***/ }),
 
@@ -11677,17 +13325,23 @@ var getMovimientosChofer = /*#__PURE__*/function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   formChoferId: () => (/* binding */ formChoferId),
+/* harmony export */   formFecha: () => (/* binding */ formFecha),
+/* harmony export */   formNumeroInterno: () => (/* binding */ formNumeroInterno),
+/* harmony export */   formObservaciones: () => (/* binding */ formObservaciones),
+/* harmony export */   getAnticipos: () => (/* binding */ getAnticipos),
 /* harmony export */   getChofer: () => (/* binding */ getChofer),
-/* harmony export */   getChoferId: () => (/* binding */ getChoferId),
 /* harmony export */   getChoferes: () => (/* binding */ getChoferes),
 /* harmony export */   getClientes: () => (/* binding */ getClientes),
 /* harmony export */   getCondicionesIva: () => (/* binding */ getCondicionesIva),
 /* harmony export */   getDepartamentos: () => (/* binding */ getDepartamentos),
 /* harmony export */   getErrors: () => (/* binding */ getErrors),
 /* harmony export */   getFlotas: () => (/* binding */ getFlotas),
+/* harmony export */   getGastos: () => (/* binding */ getGastos),
 /* harmony export */   getLocalidades: () => (/* binding */ getLocalidades),
 /* harmony export */   getMovimientos: () => (/* binding */ getMovimientos),
 /* harmony export */   getPlanCuentas: () => (/* binding */ getPlanCuentas),
+/* harmony export */   getProveedores: () => (/* binding */ getProveedores),
 /* harmony export */   getProvincias: () => (/* binding */ getProvincias),
 /* harmony export */   getRetencionGanancias: () => (/* binding */ getRetencionGanancias),
 /* harmony export */   getRetencionIngresoBrutos: () => (/* binding */ getRetencionIngresoBrutos),
@@ -11736,11 +13390,29 @@ var getPlanCuentas = function getPlanCuentas(state) {
 var getMovimientos = function getMovimientos(state) {
   return state.movimientos;
 };
-var getChoferId = function getChoferId(state) {
-  return state.chofer_id;
+var getAnticipos = function getAnticipos(state) {
+  return state.anticipos;
+};
+var getGastos = function getGastos(state) {
+  return state.gastos;
 };
 var getChofer = function getChofer(state) {
   return state.chofer;
+};
+var getProveedores = function getProveedores(state) {
+  return state.proveedores;
+};
+var formFecha = function formFecha(state) {
+  return state.form.fecha;
+};
+var formChoferId = function formChoferId(state) {
+  return state.form.chofer_id;
+};
+var formObservaciones = function formObservaciones(state) {
+  return state.form.observaciones;
+};
+var formNumeroInterno = function formNumeroInterno(state) {
+  return state.form.numeroInterno;
 };
 
 /***/ }),
@@ -11788,6 +13460,10 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_0_
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CLEAR_ERRORS: () => (/* binding */ CLEAR_ERRORS),
+/* harmony export */   REMOVE_ANTICIPO: () => (/* binding */ REMOVE_ANTICIPO),
+/* harmony export */   REMOVE_GASTO: () => (/* binding */ REMOVE_GASTO),
+/* harmony export */   REMOVE_MOVIMIENTO: () => (/* binding */ REMOVE_MOVIMIENTO),
+/* harmony export */   SET_ANTICIPOS: () => (/* binding */ SET_ANTICIPOS),
 /* harmony export */   SET_CHOFER: () => (/* binding */ SET_CHOFER),
 /* harmony export */   SET_CHOFERES: () => (/* binding */ SET_CHOFERES),
 /* harmony export */   SET_CHOFER_ID: () => (/* binding */ SET_CHOFER_ID),
@@ -11795,10 +13471,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   SET_CONDICIONES_IVA: () => (/* binding */ SET_CONDICIONES_IVA),
 /* harmony export */   SET_DEPARTAMENTOS: () => (/* binding */ SET_DEPARTAMENTOS),
 /* harmony export */   SET_ERRORS: () => (/* binding */ SET_ERRORS),
+/* harmony export */   SET_FECHA: () => (/* binding */ SET_FECHA),
 /* harmony export */   SET_FLOTAS: () => (/* binding */ SET_FLOTAS),
+/* harmony export */   SET_GASTOS: () => (/* binding */ SET_GASTOS),
 /* harmony export */   SET_LOCALIDADES: () => (/* binding */ SET_LOCALIDADES),
 /* harmony export */   SET_MOVIMIENTOS: () => (/* binding */ SET_MOVIMIENTOS),
+/* harmony export */   SET_NUMERO_INTERNO: () => (/* binding */ SET_NUMERO_INTERNO),
+/* harmony export */   SET_OBSERVACIONES: () => (/* binding */ SET_OBSERVACIONES),
 /* harmony export */   SET_PLAN_CUENTAS: () => (/* binding */ SET_PLAN_CUENTAS),
+/* harmony export */   SET_PROVEEDORES: () => (/* binding */ SET_PROVEEDORES),
 /* harmony export */   SET_PROVINCIAS: () => (/* binding */ SET_PROVINCIAS),
 /* harmony export */   SET_RETENCION_GANANCIAS: () => (/* binding */ SET_RETENCION_GANANCIAS),
 /* harmony export */   SET_RETENCION_INGRESO_BRUTOS: () => (/* binding */ SET_RETENCION_INGRESO_BRUTOS),
@@ -11808,14 +13489,32 @@ __webpack_require__.r(__webpack_exports__);
 var SET_CHOFERES = function SET_CHOFERES(state, choferes) {
   state.choferes = choferes;
 };
+var SET_ANTICIPOS = function SET_ANTICIPOS(state, anticipos) {
+  state.anticipos = anticipos;
+};
+var SET_GASTOS = function SET_GASTOS(state, gastos) {
+  state.gastos = gastos;
+};
 var SET_CHOFER = function SET_CHOFER(state, chofer) {
   state.chofer = chofer;
+};
+var SET_PROVEEDORES = function SET_PROVEEDORES(state, proveedores) {
+  state.proveedores = proveedores;
 };
 var SET_MOVIMIENTOS = function SET_MOVIMIENTOS(state, movimientos) {
   state.movimientos = movimientos;
 };
+var SET_FECHA = function SET_FECHA(state, fecha) {
+  state.form.fecha = fecha;
+};
 var SET_CHOFER_ID = function SET_CHOFER_ID(state, chofer_id) {
-  state.chofer_id = chofer_id;
+  state.form.chofer_id = chofer_id;
+};
+var SET_OBSERVACIONES = function SET_OBSERVACIONES(state, observaciones) {
+  state.form.observaciones = observaciones;
+};
+var SET_NUMERO_INTERNO = function SET_NUMERO_INTERNO(state, numeroInterno) {
+  state.form.numeroInterno = numeroInterno;
 };
 var SET_PLAN_CUENTAS = function SET_PLAN_CUENTAS(state, planCuentas) {
   state.planCuentas = planCuentas;
@@ -11856,6 +13555,15 @@ var SET_ERRORS = function SET_ERRORS(state, errors) {
 var CLEAR_ERRORS = function CLEAR_ERRORS(state) {
   state.errors = {};
 };
+var REMOVE_MOVIMIENTO = function REMOVE_MOVIMIENTO(state, index) {
+  state.chofer.movimientos.splice(index, 1);
+};
+var REMOVE_ANTICIPO = function REMOVE_ANTICIPO(state, index) {
+  state.chofer.anticipos.splice(index, 1);
+};
+var REMOVE_GASTO = function REMOVE_GASTO(state, index) {
+  state.chofer.gastos.splice(index, 1);
+};
 
 /***/ }),
 
@@ -11871,8 +13579,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  chofer_id: '',
-  chofer: '',
+  chofer: {},
+  form: {
+    id: "",
+    fecha: "",
+    chofer_id: "",
+    numero_interno: "",
+    observaciones: "",
+    total_liquidacion: "",
+    movimientos: [],
+    gastos: [],
+    anticipos: []
+  },
   choferes: [],
   flotas: [],
   clientes: [],
@@ -11885,6 +13603,9 @@ __webpack_require__.r(__webpack_exports__);
   retencionIngresoBrutos: [],
   tipoDocumentos: [],
   movimientos: [],
+  anticipos: [],
+  gastos: [],
+  proveedores: [],
   planCuentas: [],
   errors: {}
 });
@@ -13054,6 +14775,84 @@ component.options.__file = "resources/js/Pages/Flota/Table.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Gasto/Create.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Gasto/Create.vue ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Create_vue_vue_type_template_id_5738f1c0__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Create.vue?vue&type=template&id=5738f1c0 */ "./resources/js/Pages/Gasto/Create.vue?vue&type=template&id=5738f1c0");
+/* harmony import */ var _Create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Create.vue?vue&type=script&lang=js */ "./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Create_vue_vue_type_template_id_5738f1c0__WEBPACK_IMPORTED_MODULE_0__.render,
+  _Create_vue_vue_type_template_id_5738f1c0__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Gasto/Create.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Gasto/Edit.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Gasto/Edit.vue ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Edit_vue_vue_type_template_id_3019dfa4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=3019dfa4 */ "./resources/js/Pages/Gasto/Edit.vue?vue&type=template&id=3019dfa4");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js */ "./resources/js/Pages/Gasto/Edit.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_3019dfa4__WEBPACK_IMPORTED_MODULE_0__.render,
+  _Edit_vue_vue_type_template_id_3019dfa4__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Gasto/Edit.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Liquidacion/Anticipo.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/Pages/Liquidacion/Anticipo.vue ***!
@@ -13444,6 +15243,45 @@ component.options.__file = "resources/js/Pages/Proveedor/Edit.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Proveedor/Table.vue":
+/*!************************************************!*\
+  !*** ./resources/js/Pages/Proveedor/Table.vue ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Table_vue_vue_type_template_id_49741fb8__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Table.vue?vue&type=template&id=49741fb8 */ "./resources/js/Pages/Proveedor/Table.vue?vue&type=template&id=49741fb8");
+/* harmony import */ var _Table_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Table.vue?vue&type=script&lang=js */ "./resources/js/Pages/Proveedor/Table.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Table_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Table_vue_vue_type_template_id_49741fb8__WEBPACK_IMPORTED_MODULE_0__.render,
+  _Table_vue_vue_type_template_id_49741fb8__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Proveedor/Table.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/TipoViaje/Create.vue":
 /*!*************************************************!*\
   !*** ./resources/js/Pages/TipoViaje/Create.vue ***!
@@ -13737,6 +15575,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Create.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Gasto/Edit.vue?vue&type=script&lang=js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/Pages/Gasto/Edit.vue?vue&type=script&lang=js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Edit.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Liquidacion/Anticipo.vue?vue&type=script&lang=js":
 /*!*****************************************************************************!*\
   !*** ./resources/js/Pages/Liquidacion/Anticipo.vue?vue&type=script&lang=js ***!
@@ -13894,6 +15764,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Proveedor/Edit.vue?vue&type=script&lang=js");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Proveedor/Table.vue?vue&type=script&lang=js":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/Proveedor/Table.vue?vue&type=script&lang=js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Table_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Table.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Proveedor/Table.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Table_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -14132,6 +16018,40 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Gasto/Create.vue?vue&type=template&id=5738f1c0":
+/*!***************************************************************************!*\
+  !*** ./resources/js/Pages/Gasto/Create.vue?vue&type=template&id=5738f1c0 ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_5738f1c0__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_5738f1c0__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_5738f1c0__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Create.vue?vue&type=template&id=5738f1c0 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=template&id=5738f1c0");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Gasto/Edit.vue?vue&type=template&id=3019dfa4":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Gasto/Edit.vue?vue&type=template&id=3019dfa4 ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_3019dfa4__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_3019dfa4__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_3019dfa4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=template&id=3019dfa4 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Edit.vue?vue&type=template&id=3019dfa4");
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Liquidacion/Anticipo.vue?vue&type=template&id=5758abd6":
 /*!***********************************************************************************!*\
   !*** ./resources/js/Pages/Liquidacion/Anticipo.vue?vue&type=template&id=5758abd6 ***!
@@ -14298,6 +16218,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_07396324__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_07396324__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=template&id=07396324 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Proveedor/Edit.vue?vue&type=template&id=07396324");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Proveedor/Table.vue?vue&type=template&id=49741fb8":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Proveedor/Table.vue?vue&type=template&id=49741fb8 ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Table_vue_vue_type_template_id_49741fb8__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Table_vue_vue_type_template_id_49741fb8__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Table_vue_vue_type_template_id_49741fb8__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Table.vue?vue&type=template&id=49741fb8 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Proveedor/Table.vue?vue&type=template&id=49741fb8");
 
 
 /***/ }),

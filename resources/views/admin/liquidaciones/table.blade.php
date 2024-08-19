@@ -5,8 +5,7 @@
             <th>Numero interno</th>
             <th>Fecha</th>
             <th>Chofer</th>
-            <th>Importe</th>
-            <th>Saldo</th>
+            <th>Total</th>
             <th></th>
         </tr>
     </thead>
@@ -17,8 +16,7 @@
                 <td>{{ $liquidacion->numero_interno }}</td>
                 <td>{{ $liquidacion->fecha }}</td>
                 <td>{{ $liquidacion->chofer->nombre }}</td>
-                <td>{{ $liquidacion->importe }}</td>
-                <td>{{ $liquidacion->saldo }}</td>
+                <td>{{ $liquidacion->total_liquidacion }}</td>
                 <td>
                     <a href="{{ route('admin.liquidaciones.show', $liquidacion) }}" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-eye"></i>

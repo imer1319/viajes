@@ -13,14 +13,17 @@ class LiquidacionController extends Controller
     public function index()
     {
         return view('admin.liquidaciones.index', [
-            'liquidaciones' => Liquidacion::paginate(8)
+            'liquidaciones' => Liquidacion::with('chofer')->paginate(8)
         ]);
     }
 
     public function create()
     {
+        $ultimaLiquidacion = Liquidacion::latest()->first();
+
         return view('admin.liquidaciones.create', [
             'liquidacion' => new Liquidacion(),
+            'numero_interno' => $ultimaLiquidacion ? $ultimaLiquidacion->id + 1 : 1,
         ]);
     }
 

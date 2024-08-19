@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Administracion\ProveedorController;
 use App\Http\Controllers\Api\ChoferController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\FlotaController;
 use App\Http\Controllers\Api\LiquidacionController;
 use App\Http\Controllers\Api\PlanCuentaController;
+use App\Http\Controllers\Api\ProveedorController;
 use App\Http\Controllers\Api\TipoViajeController;
 use App\Http\Controllers\Main\MovimientoController;
 use Illuminate\Http\Request;
@@ -23,6 +23,7 @@ Route::get('clientes', [ClienteController::class, 'index']);
 Route::post('clientes', [ClienteController::class, 'store']);
 Route::get('tipo-viajes', [TipoViajeController::class, 'index']);
 Route::post('tipo-viajes', [TipoViajeController::class, 'store']);
+Route::get('proveedores', [ProveedorController::class, 'index']);
 
 Route::get('provincias', [MovimientoController::class, 'provincias']);
 Route::get('departamentos/{provincia_id}', [MovimientoController::class, 'departamentosProvincia']);
@@ -37,3 +38,4 @@ Route::get('plan-cuentas', [PlanCuentaController::class, 'index']);
 //Liquidacion
 Route::post('/liquidacion/head', [LiquidacionController::class, 'head'])->name('liquidacion.head');
 Route::get('movimientos/{chofer}', [MovimientoController::class, 'movimientosChofer']);
+Route::post('liquidaciones', [LiquidacionController::class, 'store'])->name('liquidacion.store');

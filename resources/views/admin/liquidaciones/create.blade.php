@@ -9,8 +9,10 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('admin.liquidaciones.index') }}">Listado de liquidaciones</a>
+                        </li>
+                        <li class="breadcrumb-item active">Crear liquidacion</li>
                     </ol>
                 </div>
             </div>
@@ -23,8 +25,8 @@
             <div class="card-header">Crear liquidacion</div>
             <div class="card-body">
 
-                <liquidacion-create redirect="true" />
-                
+                <liquidacion-create redirect="true" :numero_interno="{{ $numero_interno }}"  />
+
             </div>
         </div>
 

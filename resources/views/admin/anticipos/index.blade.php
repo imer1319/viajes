@@ -9,8 +9,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active">Listado de anticipos</li>
                     </ol>
                 </div>
             </div>
@@ -20,11 +20,7 @@
     <section class="content mx-3">
         <div class="card card-primary card-outline">
             <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
-                @if (isset($chofer))
-                    <h5>Listado de anticipos del chofer: <b>{{ $chofer->nombre }}</b></h5>
-                @else
-                    <h5>Listado de anticipos</h5>
-                @endif
+                <h5>Listado de anticipos</h5>
                 <a href="{{ route('admin.anticipos.create') }}" class="btn btn-primary rounded-pill float-end">
                     <i class="fa fa-plus"></i>
                 </a>

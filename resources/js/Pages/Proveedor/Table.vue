@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5>Listado de Clientes</h5>
+            <h5>Listado de Proveedores</h5>
             <div>
                 <input type="text" placeholder="Buscar por razon social" class="form-control"
                     v-model="search">
@@ -17,15 +17,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="cliente in filteredClientes" :key="cliente.id">
+                <tr v-for="proveedor in filteredProveedores" :key="proveedor.id">
                     <td>
-                        <a href="" @click.prevent="seleccionarCliente(cliente.id)" class="btn btn-primary btn-sm">
+                        <a href="" @click.prevent="seleccionarProveedor(proveedor.id)" class="btn btn-primary btn-sm">
                             <i class="fa fa-check"></i>
                         </a>
                     </td>
-                    <td>{{ cliente.razon_social }}</td>
-                    <td>{{ cliente.cuit }}</td>
-                    <td>{{ cliente.telefono }}</td>
+                    <td>{{ proveedor.razon_social }}</td>
+                    <td>{{ proveedor.cuit }}</td>
+                    <td>{{ proveedor.telefono }}</td>
                 </tr>
             </tbody>
         </table>
@@ -34,7 +34,7 @@
 <script>
 export default {
     mounted() {
-        this.$store.dispatch("getClientes");
+        this.$store.dispatch("getProveedores");
     },
     data() {
         return {
@@ -42,19 +42,19 @@ export default {
         }
     },
     methods: {
-        seleccionarCliente(cliente_id) {
-            this.$emit('clienteSelected', cliente_id);
+        seleccionarProveedor(proveedor_id) {
+            this.$emit('proveedorSelected', proveedor_id);
         },
     },
     computed: {
-        filteredClientes() {
+        filteredProveedores() {
             const searchTerm = this.search.toLowerCase();
-            return this.clientes.filter(cliente =>
+            return this.proveedores.filter(cliente =>
                 cliente.razon_social.toLowerCase().includes(searchTerm)
             );
         },
-        clientes() {
-            return this.$store.state.clientes;
+        proveedores() {
+            return this.$store.state.proveedores;
         },
     },
 }

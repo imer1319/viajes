@@ -12,5 +12,12 @@ export const getTipoDocumentos = state => state.tipoDocumentos;
 export const getRetencionIngresoBrutos = state => state.retencionIngresoBrutos;
 export const getPlanCuentas = state => state.planCuentas;
 export const getMovimientos = state => state.movimientos;
-export const getChoferId = state => state.chofer_id;
+export const getAnticipos = state => state.anticipos;
+export const getGastos = state => state.gastos;
 export const getChofer = state => state.chofer;
+export const getProveedores = state => state.proveedores;
+
+export const formFecha = state => state.form.fecha
+export const formChoferId = state => state.form.chofer_id
+export const formObservaciones = state => state.form.observaciones
+export const formNumeroInterno = state => state.form.numeroInterno

@@ -1,0 +1,7 @@
+nombre,fecha_nacimiento,cuil,dni,domicilio,email,telefono,saldo
+Juan Pérez,1985-07-23,20-12345678-9,12345678,Calle Falsa 123,juan.perez@example.com,+54-9-11-23456789,0
+Maria López,1990-04-15,27-87654321-2,87654321,Avenida Siempre Viva 742,maria.lopez@example.com,+54-9-11-98765432,0
+Carlos Gómez,1978-11-30,23-65432109-3,65432109,Calle Real 456,carlos.gomez@example.com,+54-9-11-76543210,0
+Lucia Fernández,1982-02-14,25-98765432-4,98765432,Avenida Principal 321,lucia.fernandez@example.com,+54-9-11-12345678,0
+Raul Martínez,1975-09-22,21-12348765-0,12348765,Calle Secundaria 987,raul.martinez@example.com,+54-9-11-87654321,0
+Sofia Herrera,1988-05-10,24-09876543-1,09876543,Barrio Nuevo 202,sofia.herrera@example.com,+54-9-11-65432109,0

@@ -20,6 +20,28 @@ export const actualizarMovimiento = async ({ commit, dispatch }, form) => {
         throw error;
     }
 };
+export const agregarLiquidacion = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.post('/api/liquidaciones', form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
+export const actualizarLiquidacion = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.put('/liquidaciones/' + form.id, form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
 export const agregarChofer = async ({ commit, dispatch }, form) => {
     try {
         await axios.post('/api/choferes', form);
@@ -117,7 +139,6 @@ export const agregarCliente = async ({ commit, dispatch }, form) => {
         throw error;
     }
 };
-
 export const agregarProveedor = async ({ commit, dispatch }, form) => {
     try {
         await axios.post('/proveedores', form);
@@ -161,6 +182,14 @@ export const getClientes = async ({ commit }) => {
         console.error("Error fetching clientes:", error);
     }
 };
+export const getProveedores = async ({ commit }) => {
+    try {
+        const response = await axios.get('/api/proveedores');
+        commit('SET_PROVEEDORES', response.data);
+    } catch (error) {
+        console.error("Error fetching proveedores:", error);
+    }
+};
 export const getPlanCuentas = async ({ commit }) => {
     try {
         const response = await axios.get('/api/plan-cuentas');
@@ -183,6 +212,29 @@ export const agregarTipoViaje = async ({ commit, dispatch }, form) => {
     }
 };
 
+export const agregarGasto = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.post('/gastos', form);
+        dispatch('clearErrors');
+        dispatch('getGasto');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
+export const actualizarGasto = async ({ commit, dispatch }, form) => {
+    try {
+        await axios.put('/gastos/' + form.id, form);
+        dispatch('clearErrors');
+    } catch (error) {
+        if (error.response && error.response.data && error.response.data.errors) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+        throw error;
+    }
+};
 export const getTipoViajes = async ({ commit }) => {
     try {
         const response = await axios.get('/api/tipo-viajes');
@@ -256,6 +308,22 @@ export const getLocalidadesDepartamento = async ({ commit }, departamento_id) =>
         console.error("Error al traer a las localidades:", error);
     }
 };
+export const getMovimientosChofer = async ({ commit }, chofer_id) => {
+    try {
+        const response = await axios.get('/api/movimientos/' + chofer_id);
+        const choferData = response.data.chofer;
+        const movimientos = response.data.movimientos;
+        const anticipos = response.data.anticipos;
+        const gastos = response.data.gastos;
+
+        commit('SET_CHOFER', choferData);
+        commit('SET_MOVIMIENTOS', movimientos);
+        commit('SET_ANTICIPOS', anticipos);
+        commit('SET_GASTOS', gastos);
+    } catch (error) {
+        console.error("Error al traer los movimientos del chofer:", error);
+    }
+};
 export const validarHead = async ({ commit, dispatch }, form) => {
     try {
         await axios.post('/api/liquidacion/head', form);
@@ -267,11 +335,13 @@ export const validarHead = async ({ commit, dispatch }, form) => {
         throw error;
     }
 };
-export const getMovimientosChofer = async ({ commit }, chofer_id) => {
-    try {
-        const response = await axios.get('/api/movimientos/' + chofer_id);
-        commit('SET_CHOFER', response.data);
-    } catch (error) {
-        console.error("Error al traer a los movimientos:", error);
-    }
-};
+
+export const updateFecha = ({ commit }, fecha) => {
+    commit('SET_FECHA', fecha);
+}
+export const updateChoferId = ({ commit }, chofer_id) => {
+    commit('SET_CHOFER_ID', chofer_id);
+}
+export const updateObservaciones = ({ commit }, observaciones) => {
+    commit('SET_OBSERVACIONES', observaciones);
+}

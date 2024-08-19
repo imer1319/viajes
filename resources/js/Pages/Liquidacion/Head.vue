@@ -61,24 +61,17 @@
 import ChoferCreate from "../../Pages/Chofer/Create.vue";
 import ChoferTable from "../../Pages/Chofer/Table.vue";
 import ModalComponent from "../../components/Modal.vue";
-import { mapGetters } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
+
 export default {
+    props: ["numero_interno"],
     components: {
         ChoferCreate,
         ChoferTable,
         ModalComponent,
     },
     mounted() {
-        this.form.fecha = this.getTodayDate();
-    },
-    data() {
-        return {
-            form: {
-                fecha: "",
-                chofer_id: "",
-                observaciones: "",
-            },
-        };
+        this.updateFecha();
     },
     watch: {
         "form.chofer_id": function (newVal) {
@@ -88,12 +81,22 @@ export default {
         },
     },
     methods: {
+        ...mapMutations([
+            "SET_FECHA",
+            "SET_CHOFER_ID",
+            "SET_OBSERVACIONES",
+            "SET_NUMERO_INTERNO",
+        ]),
+
         validarHead() {
+            this.SET_NUMERO_INTERNO(this.numero_interno);
             this.$store
                 .dispatch("validarHead", this.form)
                 .then(() => {
-                    this.$store.commit("SET_CHOFER_ID", this.form.chofer_id);
-                    this.$store.dispatch("getMovimientosChofer", this.form.chofer_id);
+                    this.$store.dispatch(
+                        "getMovimientosChofer",
+                        this.form.chofer_id
+                    );
                     this.$emit("siguiente");
                     this.$toast.open({
                         message: "Datos validados exitosamente!",
@@ -111,6 +114,9 @@ export default {
                     });
                 });
         },
+        updateFecha() {
+            this.SET_FECHA(this.getTodayDate());
+        },
         getErrorMessage(error) {
             return Array.isArray(error) ? error[0] : error;
         },
@@ -127,9 +133,12 @@ export default {
         },
     },
     computed: {
-        ...mapGetters({
-            choferes: "getChoferes",
+        ...mapState({
+            form: (state) => state.form,
         }),
+        choferes() {
+            return this.$store.getters.getChoferes;
+        },
         errors() {
             return this.$store.getters.getErrors;
         },
