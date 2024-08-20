@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-
+import liquidaciones from './liquidaciones';
 Vue.use(Vuex);
 
 import state from "./state";
@@ -12,5 +12,8 @@ export default new Vuex.Store({
     state,
     getters,
     actions,
-    mutations
+    mutations,
+    modules:{
+        liquidaciones
+    }
 })

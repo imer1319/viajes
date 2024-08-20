@@ -24,7 +24,7 @@
             <div class="card-header">Editar usuario</div>
 
             <div class="card-body">
-                <form action="{{ route('admin.usuarios.update', $usuario) }}" method="POST">
+                <form action="{{ route('admin.users.update', $user) }}" method="POST">
                     @csrf
                     @method('PUT')
                     @include('admin.usuarios.form', ['button' => 'Actualizar'])

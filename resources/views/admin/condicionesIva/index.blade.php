@@ -29,7 +29,7 @@
             </div>
 
             <div class="card-body">
-                @include('admin.condicionesPago.table')
+                @include('admin.condicionesIva.table')
             </div>
         </div>
 
