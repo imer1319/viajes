@@ -56,5 +56,6 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     // gastos chofer
     Route::get('gastos/{chofer}/chofer', [GastoChoferController::class, 'index'])->name('gastos.chofer.index');
     Route::get('gastos/{chofer}/chofer/create', [GastoChoferController::class, 'create'])->name('gastos.chofer.create');
-    Route::get('gastos/{chofer}/chofer/{anticipo}/edit', [GastoChoferController::class, 'edit'])->name('gastos.chofer.edit');
+    Route::get('gastos/{chofer}/chofer/{gasto}/edit', [GastoChoferController::class, 'edit'])->name('gastos.chofer.edit');
+    Route::get('gastos/{chofer}/chofer/{gasto}/show', [GastoChoferController::class, 'show'])->name('gastos.chofer.show');
 });

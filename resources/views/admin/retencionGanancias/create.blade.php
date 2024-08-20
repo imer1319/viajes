@@ -9,8 +9,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.retencion-ganancias.index') }}">Listado de retencion de ganancias</a></li>
-                        <li class="breadcrumb-item active">Crear retencion de ganancias</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.retencion-ganancias.index') }}">Listado</a></li>
+                        <li class="breadcrumb-item active">Crear</li>
                     </ol>
                 </div>
             </div>

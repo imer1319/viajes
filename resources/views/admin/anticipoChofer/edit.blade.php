@@ -9,8 +9,9 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.anticipos.chofer.index', $anticipo->chofer->id) }}">Anticipos de {{ $anticipo->chofer->nombre }}</a></li>
-                        <li class="breadcrumb-item active">Editar anticipo</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.anticipos.index') }}">Listado de anticipos</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.anticipos.chofer.index', $chofer) }}">Anticipos de {{ $chofer->nombre }}</a></li>
+                        <li class="breadcrumb-item active">Editar</li>
                     </ol>
                 </div>
             </div>

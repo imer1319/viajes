@@ -21,17 +21,23 @@ class GastoChoferController extends Controller
         $ultimoGastoChofer = GastoChofer::latest()->first();
         return view('admin.gastoChofer.create', [
             'chofer' => $chofer,
-            'anticipos' => $chofer->anticipos()->with('chofer')->paginate(8),
             'numero_interno' => $ultimoGastoChofer ? $ultimoGastoChofer->id + 1 : 1,
         ]);
     }
 
-    public function edit(Chofer $chofer, GastoChofer $anticipo)
+    public function edit(Chofer $chofer, GastoChofer $gasto)
     {
         return view('admin.gastoChofer.edit', [
             'chofer' => $chofer,
-            'anticipo' => $anticipo,
-            'anticipos' => $chofer->anticipos()->with('chofer')->paginate(8),
+            'gasto' => $gasto,
+        ]);
+    }
+
+    public function show(Chofer $chofer, GastoChofer $gasto)
+    {
+        return view('admin.gastoChofer.show', [
+            'chofer' => $chofer,
+            'gasto' => $gasto,
         ]);
     }
 }

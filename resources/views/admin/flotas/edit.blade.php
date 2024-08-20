@@ -9,8 +9,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.flotas.index') }}">Listado de flotas</a></li>
-                        <li class="breadcrumb-item active">Editar flota</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.flotas.index') }}">Listado</a></li>
+                        <li class="breadcrumb-item active">Editar</li>
                     </ol>
                 </div>
             </div>

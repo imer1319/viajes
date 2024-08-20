@@ -9,8 +9,9 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.gastos.index') }}">Listado</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.gastos.chofer.index', $chofer->id) }}">Gastos de {{ $chofer->nombre }}</a></li>
+                        <li class="breadcrumb-item active">Editar</li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +25,7 @@
             <div class="card-header">Editar gasto</div>
 
             <div class="card-body">
-                <gasto-edit :gasto="{{ $gasto }}" redirect="true"></gasto-edit>
+                <gasto-edit :gasto="{{ $gasto }}" redirect="true" :chofer_id="{{ $chofer->id }}"></gasto-edit>
             </div>
         </div>
 
