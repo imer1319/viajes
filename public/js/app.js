@@ -3440,6 +3440,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     siguiente: function siguiente() {
       this.$emit("siguiente");
     },
+    anterior: function anterior() {
+      this.$emit("anterior");
+    },
     quitarAnticipo: function quitarAnticipo(index) {
       this.$store.commit("REMOVE_ANTICIPO", index);
     }
@@ -3503,6 +3506,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     siguienteTab: function siguienteTab() {
       this.$refs.formWizard.nextTab();
+    },
+    anteriorTab: function anteriorTab() {
+      this.$refs.formWizard.prevTab();
     }
   }
 });
@@ -3532,6 +3538,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   methods: {
     siguiente: function siguiente() {
       this.$emit("siguiente");
+    },
+    anterior: function anterior() {
+      this.$emit("anterior");
     },
     quitarGasto: function quitarGasto(index) {
       this.$store.commit("REMOVE_GASTO", index);
@@ -3678,6 +3687,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     siguiente: function siguiente() {
       this.$emit("siguiente");
     },
+    anterior: function anterior() {
+      this.$emit("anterior");
+    },
     quitarMovimiento: function quitarMovimiento(index) {
       this.$store.commit("REMOVE_MOVIMIENTO", index);
     }
@@ -3694,11 +3706,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     totalComisionChofer: function totalComisionChofer() {
       return this.movimientos.reduce(function (total, movimiento) {
         return total + parseFloat(movimiento.comision_chofer);
-      }, 0);
-    },
-    totalSaldoComisionChofer: function totalSaldoComisionChofer() {
-      return this.movimientos.reduce(function (total, movimiento) {
-        return total + parseFloat(movimiento.saldo_comision_chofer);
       }, 0);
     }
   })
@@ -3727,6 +3734,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   methods: {
+    anterior: function anterior() {
+      this.$emit("anterior");
+    },
     agregarLiquidacion: function agregarLiquidacion() {
       var _this = this;
       this.form.total_liquidacion = this.totalGastoLiquidacion;
@@ -3778,12 +3788,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this$movimientos2;
       return (_this$movimientos2 = this.movimientos) === null || _this$movimientos2 === void 0 ? void 0 : _this$movimientos2.reduce(function (total, movimiento) {
         return total + parseFloat(movimiento.comision_chofer);
-      }, 0);
-    },
-    totalSaldoComisionChofer: function totalSaldoComisionChofer() {
-      var _this$movimientos3;
-      return (_this$movimientos3 = this.movimientos) === null || _this$movimientos3 === void 0 ? void 0 : _this$movimientos3.reduce(function (total, movimiento) {
-        return total + parseFloat(movimiento.saldo_comision_chofer);
       }, 0);
     },
     totalImporteAnticipo: function totalImporteAnticipo() {
@@ -8723,8 +8727,16 @@ var render = function render() {
       staticClass: "fa fa-trash"
     })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.numero_interno))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.importe)))])]);
   }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-12 d-flex justify-content-end mt-3"
+    staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.anterior();
+      }
+    }
+  }, [_vm._v("\n            Anterior\n        ")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {
@@ -8778,7 +8790,7 @@ var render = function render() {
     attrs: {
       "next-button-text": "Siguiente",
       title: "Formulario",
-      subtitle: "organizando",
+      subtitle: "",
       color: "#0d6efd",
       shape: "square",
       hideButtons: true
@@ -8806,6 +8818,9 @@ var render = function render() {
     on: {
       siguiente: function siguiente($event) {
         return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
       }
     }
   })], 1), _vm._v(" "), _c("tab-content", {
@@ -8817,6 +8832,9 @@ var render = function render() {
     on: {
       siguiente: function siguiente($event) {
         return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
       }
     }
   })], 1), _vm._v(" "), _c("tab-content", {
@@ -8828,6 +8846,9 @@ var render = function render() {
     on: {
       siguiente: function siguiente($event) {
         return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
       }
     }
   })], 1), _vm._v(" "), _c("tab-content", {
@@ -8835,7 +8856,13 @@ var render = function render() {
       title: "Resumen",
       icon: "fa fa-book"
     }
-  }, [_c("Resumen")], 1)], 1)], 1);
+  }, [_c("Resumen", {
+    on: {
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
+      }
+    }
+  })], 1)], 1)], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -8881,8 +8908,16 @@ var render = function render() {
       staticClass: "fa fa-trash"
     })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(gasto.importe)))])]);
   }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-12 d-flex justify-content-end mt-3"
+    staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.anterior();
+      }
+    }
+  }, [_vm._v("\n            Anterior\n        ")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {
@@ -9096,10 +9131,18 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fa fa-trash"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)))]), _vm._v(" "), _c("td", [_vm._v("\n                    " + _vm._s(_vm._f("formatNumber")(movimiento.saldo_comision_chofer)) + "\n                ")])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioChofer)))]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldoComisionChofer)))])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-12 d-flex justify-content-end mt-3"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioChofer)))]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.anterior();
+      }
+    }
+  }, [_vm._v("\n            Anterior\n        ")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {
@@ -9118,7 +9161,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Cliente")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio chofer")]), _vm._v(" "), _c("th", [_vm._v("%")]), _vm._v(" "), _c("th", [_vm._v("Comision chofer")]), _vm._v(" "), _c("th", [_vm._v("Saldo comision chofer")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Cliente")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio chofer")]), _vm._v(" "), _c("th", [_vm._v("%")]), _vm._v(" "), _c("th", [_vm._v("Comision chofer")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -9171,8 +9214,8 @@ var render = function render() {
   }, [_vm._m(3), _vm._v(" "), _c("tbody", _vm._l(_vm.movimientos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
-    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)))]), _vm._v(" "), _c("td", [_vm._v("\n                        " + _vm._s(_vm._f("formatNumber")(movimiento.saldo_comision_chofer)) + "\n                    ")])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(4), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioChofer)))]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldoComisionChofer)))])])])])]), _vm._v(" "), _c("div", {
+    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(4), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioChofer)))]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
   }, [_vm._m(5), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
@@ -9196,9 +9239,17 @@ var render = function render() {
     staticClass: "text-danger"
   }, [_vm._v("(-)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteGasto)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Total total adelantos: "), _c("span", {
     staticClass: "text-primary"
-  }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteGasto)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("strong", [_vm._v("Total a liquidar:\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalGastoLiquidacion)))])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12"
-  }, [_c("a", {
+  }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteAnticipo)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("strong", [_vm._v("Total a liquidar:\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalGastoLiquidacion)))])]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 d-flex justify-content-between mt-3"
+  }, [_c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.anterior();
+      }
+    }
+  }, [_vm._v("\n            Anterior\n        ")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-primary",
     on: {
       click: function click($event) {
@@ -9229,7 +9280,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Cliente")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio chofer")]), _vm._v(" "), _c("th", [_vm._v("%")]), _vm._v(" "), _c("th", [_vm._v("Comision chofer")]), _vm._v(" "), _c("th", [_vm._v("Saldo comision chofer")])])]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Cliente")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio chofer")]), _vm._v(" "), _c("th", [_vm._v("%")]), _vm._v(" "), _c("th", [_vm._v("Comision chofer")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -13412,7 +13463,7 @@ var formObservaciones = function formObservaciones(state) {
   return state.form.observaciones;
 };
 var formNumeroInterno = function formNumeroInterno(state) {
-  return state.form.numeroInterno;
+  return state.form.numero_interno;
 };
 
 /***/ }),
@@ -13558,7 +13609,7 @@ var SET_OBSERVACIONES = function SET_OBSERVACIONES(state, observaciones) {
   state.form.observaciones = observaciones;
 };
 var SET_NUMERO_INTERNO = function SET_NUMERO_INTERNO(state, numeroInterno) {
-  state.form.numeroInterno = numeroInterno;
+  state.form.numero_interno = numeroInterno;
 };
 var SET_PLAN_CUENTAS = function SET_PLAN_CUENTAS(state, planCuentas) {
   state.planCuentas = planCuentas;
@@ -13600,13 +13651,13 @@ var CLEAR_ERRORS = function CLEAR_ERRORS(state) {
   state.errors = {};
 };
 var REMOVE_MOVIMIENTO = function REMOVE_MOVIMIENTO(state, index) {
-  state.chofer.movimientos.splice(index, 1);
+  state.movimientos.splice(index, 1);
 };
 var REMOVE_ANTICIPO = function REMOVE_ANTICIPO(state, index) {
-  state.chofer.anticipos.splice(index, 1);
+  state.anticipos.splice(index, 1);
 };
 var REMOVE_GASTO = function REMOVE_GASTO(state, index) {
-  state.chofer.gastos.splice(index, 1);
+  state.gastos.splice(index, 1);
 };
 
 /***/ }),

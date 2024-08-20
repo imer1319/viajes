@@ -26,7 +26,6 @@
                         <th>Precio chofer</th>
                         <th>%</th>
                         <th>Comision chofer</th>
-                        <th>Saldo comision chofer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,11 +40,6 @@
                         <td>{{ movimiento.precio_chofer | formatNumber }}</td>
                         <td>{{ movimiento.porcentaje_pago }}</td>
                         <td>{{ movimiento.comision_chofer | formatNumber }}</td>
-                        <td>
-                            {{
-                                movimiento.saldo_comision_chofer | formatNumber
-                            }}
-                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -56,7 +50,6 @@
                         <td>{{ totalPrecioChofer | formatNumber }}</td>
                         <td></td>
                         <td>{{ totalComisionChofer | formatNumber }}</td>
-                        <td>{{ totalSaldoComisionChofer | formatNumber }}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -142,7 +135,7 @@
             <br />
             <strong
                 >Total total adelantos: <span class="text-primary">(+)</span>
-                {{ totalImporteGasto | formatNumber }}</strong
+                {{ totalImporteAnticipo | formatNumber }}</strong
             >
             <br />
             <hr />
@@ -151,7 +144,10 @@
                 {{ totalGastoLiquidacion | formatNumber }}</strong
             >
         </div>
-        <div class="col-md-12">
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <button class="btn btn-primary" @click.prevent="anterior()">
+                Anterior
+            </button>
             <a @click.prevent="agregarLiquidacion()" class="btn btn-primary"
                 >Guardar</a
             >
@@ -163,6 +159,9 @@ import { mapState } from "vuex";
 
 export default {
     methods: {
+        anterior() {
+            this.$emit("anterior");
+        },
         agregarLiquidacion() {
             this.form.total_liquidacion = this.totalGastoLiquidacion;
             this.form.anticipos = this.anticipos;
@@ -205,11 +204,6 @@ export default {
         totalComisionChofer() {
             return this.movimientos?.reduce((total, movimiento) => {
                 return total + parseFloat(movimiento.comision_chofer);
-            }, 0);
-        },
-        totalSaldoComisionChofer() {
-            return this.movimientos?.reduce((total, movimiento) => {
-                return total + parseFloat(movimiento.saldo_comision_chofer);
             }, 0);
         },
         totalImporteAnticipo() {

@@ -16,7 +16,6 @@
                     <th>Precio chofer</th>
                     <th>%</th>
                     <th>Comision chofer</th>
-                    <th>Saldo comision chofer</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,9 +37,6 @@
                     <td>{{ movimiento.precio_chofer | formatNumber }}</td>
                     <td>{{ movimiento.porcentaje_pago }}</td>
                     <td>{{ movimiento.comision_chofer | formatNumber }}</td>
-                    <td>
-                        {{ movimiento.saldo_comision_chofer | formatNumber }}
-                    </td>
                 </tr>
             </tbody>
             <tfoot>
@@ -52,11 +48,13 @@
                     <td>{{ totalPrecioChofer | formatNumber }}</td>
                     <td></td>
                     <td>{{ totalComisionChofer | formatNumber }}</td>
-                    <td>{{ totalSaldoComisionChofer | formatNumber }}</td>
                 </tr>
             </tfoot>
         </table>
-        <div class="col-12 d-flex justify-content-end mt-3">
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <button class="btn btn-primary" @click.prevent="anterior()">
+                Anterior
+            </button>
             <button class="btn btn-primary" @click.prevent="siguiente()">
                 Siguiente
             </button>
@@ -69,6 +67,9 @@ export default {
     methods: {
         siguiente() {
             this.$emit("siguiente");
+        },
+        anterior() {
+            this.$emit("anterior");
         },
         quitarMovimiento(index) {
             this.$store.commit("REMOVE_MOVIMIENTO", index);
@@ -90,13 +91,6 @@ export default {
             return this.movimientos.reduce(
                 (total, movimiento) =>
                     total + parseFloat(movimiento.comision_chofer),
-                0
-            );
-        },
-        totalSaldoComisionChofer() {
-            return this.movimientos.reduce(
-                (total, movimiento) =>
-                    total + parseFloat(movimiento.saldo_comision_chofer),
                 0
             );
         },

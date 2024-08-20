@@ -26,7 +26,7 @@ export const SET_OBSERVACIONES = (state, observaciones) => {
     state.form.observaciones = observaciones;
 }
 export const SET_NUMERO_INTERNO = (state, numeroInterno) => {
-    state.form.numeroInterno = numeroInterno;
+    state.form.numero_interno = numeroInterno;
 }
 export const SET_PLAN_CUENTAS = (state, planCuentas) => {
     state.planCuentas = planCuentas
@@ -71,11 +71,11 @@ export const CLEAR_ERRORS = (state) => {
     state.errors = {};
 };
 export const REMOVE_MOVIMIENTO = (state, index) => {
-    state.chofer.movimientos.splice(index, 1);
+    state.movimientos.splice(index, 1);
 }
 export const REMOVE_ANTICIPO = (state, index) => {
-    state.chofer.anticipos.splice(index, 1);
+    state.anticipos.splice(index, 1);
 }
 export const REMOVE_GASTO = (state, index) => {
-    state.chofer.gastos.splice(index, 1);
+    state.gastos.splice(index, 1);
 }

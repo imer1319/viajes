@@ -42,7 +42,10 @@
                 </tr>
             </tfoot>
         </table>
-        <div class="col-12 d-flex justify-content-end mt-3">
+        <div class="col-12 d-flex justify-content-between mt-3">
+            <button class="btn btn-primary" @click.prevent="anterior()">
+                Anterior
+            </button>
             <button class="btn btn-primary" @click.prevent="siguiente()">
                 Siguiente
             </button>
@@ -55,6 +58,9 @@ export default {
     methods: {
         siguiente() {
             this.$emit("siguiente");
+        },
+        anterior() {
+            this.$emit("anterior");
         },
         quitarAnticipo(index) {
             this.$store.commit("REMOVE_ANTICIPO", index);

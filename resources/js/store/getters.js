@@ -20,4 +20,4 @@ export const getProveedores = state => state.proveedores;
 export const formFecha = state => state.form.fecha
 export const formChoferId = state => state.form.chofer_id
 export const formObservaciones = state => state.form.observaciones
-export const formNumeroInterno = state => state.form.numeroInterno
+export const formNumeroInterno = state => state.form.numero_interno

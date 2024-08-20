@@ -34,6 +34,9 @@ class GuardarAnticiposListener
                 'importe' => $anticipo['importe'],
                 'liquidacion_id' => $event->liquidacion_id,
             ]);
+            $anticipo->update([
+                'saldo' => 0
+            ]);
         }
     }
 }

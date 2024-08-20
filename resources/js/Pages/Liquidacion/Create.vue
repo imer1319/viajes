@@ -3,7 +3,7 @@
         <form-wizard
             next-button-text="Siguiente"
             title="Formulario"
-            subtitle="organizando"
+            subtitle=""
             color="#0d6efd"
             shape="square"
             :hideButtons="true"
@@ -16,19 +16,19 @@
                 />
             </tab-content>
             <tab-content title="Movimientos del chofer" icon="fa fa-bus">
-                <Movimiento @siguiente="siguienteTab()" />
+                <Movimiento @siguiente="siguienteTab()" @anterior="anteriorTab()" />
             </tab-content>
             <tab-content
                 title="Anticipos del chofer"
                 icon="fas fa-comments-dollar"
             >
-                <Anticipo @siguiente="siguienteTab()" />
+                <Anticipo @siguiente="siguienteTab()" @anterior="anteriorTab()" />
             </tab-content>
             <tab-content title="Gastos del chofer" icon="fa fa-money-check">
-                <Gasto @siguiente="siguienteTab()" />
+                <Gasto @siguiente="siguienteTab()" @anterior="anteriorTab()" />
             </tab-content>
             <tab-content title="Resumen" icon="fa fa-book">
-                <Resumen />
+                <Resumen @anterior="anteriorTab()"/>
             </tab-content>
         </form-wizard>
     </div>
@@ -55,6 +55,9 @@ export default {
     methods: {
         siguienteTab() {
             this.$refs.formWizard.nextTab();
+        },
+        anteriorTab() {
+            this.$refs.formWizard.prevTab();
         },
     },
 };

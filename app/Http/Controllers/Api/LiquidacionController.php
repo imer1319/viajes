@@ -6,7 +6,10 @@ use App\Events\LiquidacionCreada;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Liquidacion\HeadRequest;
 use App\Http\Requests\Liquidacion\StoreRequest;
+use App\Models\AnticipoChofer;
+use App\Models\GastoChofer;
 use App\Models\Liquidacion;
+use App\Models\Movimiento;
 use Illuminate\Support\Facades\DB;
 
 class LiquidacionController extends Controller
@@ -22,7 +25,11 @@ class LiquidacionController extends Controller
         try {
             DB::beginTransaction();
             $liquidacion = Liquidacion::create($request->validated());
-            event(new LiquidacionCreada($request->chofer_id, $liquidacion->id, $request->movimientos, $request->anticipos, $request->gastos));
+            $movimientos = Movimiento::whereIn('id', collect($request->movimientos)->pluck('id'))->get();
+            $anticipos = AnticipoChofer::whereIn('id', collect($request->anticipos)->pluck('id'))->get();
+            $gastos = GastoChofer::whereIn('id', collect($request->gastos)->pluck('id'))->get();
+
+            event(new LiquidacionCreada($request->chofer_id, $liquidacion->id, $movimientos, $anticipos, $gastos));
             DB::commit();
             return response()->json([
                 'message' => 'Liquidacion creado exitosamente.',

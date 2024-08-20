@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\LiquidacionCreada;
 use App\Models\LiquidacionMovimiento;
+use App\Models\Movimiento;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -30,10 +31,15 @@ class GuardarMovimientosListener
         foreach ($event->movimientos as $movimiento) {
             LiquidacionMovimiento::create([
                 'chofer_id' => $event->chofer_id,
-                'movimiento_id' => $movimiento['id'],
-                'fecha' => $movimiento['fecha'],
-                'importe' => $movimiento['saldo_total'],
+                'movimiento_id' => $movimiento->id,
+                'fecha' => $movimiento->fecha,
+                'importe' => $movimiento->saldo_total,
                 'liquidacion_id' => $event->liquidacion_id,
+            ]);
+
+            $movimiento->update([
+                'saldo_total' => 0,
+                'saldo_comision_chofer' => 0,
             ]);
         }
     }

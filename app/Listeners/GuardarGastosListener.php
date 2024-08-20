@@ -34,6 +34,9 @@ class GuardarGastosListener
                 'importe' => $gasto['importe'],
                 'liquidacion_id' => $event->liquidacion_id,
             ]);
+            $gasto->update([
+                'saldo' => 0
+            ]);
         }
     }
 }
