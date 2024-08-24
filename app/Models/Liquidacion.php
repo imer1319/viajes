@@ -14,6 +14,7 @@ class Liquidacion extends Model
         'fecha',
         'chofer_id',
         'total_liquidacion',
+        'observaciones',
     ];
 
     public function movimientos()

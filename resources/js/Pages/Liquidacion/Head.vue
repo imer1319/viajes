@@ -61,10 +61,10 @@
 import ChoferCreate from "../../Pages/Chofer/Create.vue";
 import ChoferTable from "../../Pages/Chofer/Table.vue";
 import ModalComponent from "../../components/Modal.vue";
-import { mapState, mapMutations, mapGetters } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
-    props: ["numero_interno"],
+    props: ["numero_interno", "edit"],
     components: {
         ChoferCreate,
         ChoferTable,
@@ -87,7 +87,6 @@ export default {
             "SET_OBSERVACIONES",
             "SET_NUMERO_INTERNO",
         ]),
-
         validarHead() {
             this.SET_NUMERO_INTERNO(this.numero_interno);
             this.$store

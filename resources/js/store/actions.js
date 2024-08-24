@@ -308,18 +308,30 @@ export const getLocalidadesDepartamento = async ({ commit }, departamento_id) =>
         console.error("Error al traer a las localidades:", error);
     }
 };
-export const getMovimientosChofer = async ({ commit }, chofer_id) => {
+export const getMovimientosChofer = async ({ commit, state }, chofer_id) => {
     try {
-        const response = await axios.get('/api/movimientos/' + chofer_id);
+        const response = await axios.get(`/api/movimientos/${chofer_id}?edit=${state.isEditing}&chofer_id_anterior=${state.chofer_id_anterior}&liquidacion=${state.form.id}`);
         const choferData = response.data.chofer;
         const movimientos = response.data.movimientos;
         const anticipos = response.data.anticipos;
         const gastos = response.data.gastos;
-
+        console.log(response.data);
         commit('SET_CHOFER', choferData);
-        commit('SET_MOVIMIENTOS', movimientos);
-        commit('SET_ANTICIPOS', anticipos);
-        commit('SET_GASTOS', gastos);
+
+        if (state.isEditing) {
+            commit('SET_FORM_MOVIMIENTOS', movimientos);
+            commit('SET_FORM_ANTICIPOS', anticipos);
+            commit('SET_FORM_GASTOS', gastos);
+            commit('SET_REMOVED_ITEMS', {
+                removedMovimientos: response.data.movimientosCero || [],
+                removedAnticipos: response.data.anticiposCero || [],
+                removedGastos: response.data.gastosCero || [],
+            });
+        } else {
+            commit('SET_FORM_MOVIMIENTOS', movimientos);
+            commit('SET_FORM_ANTICIPOS', anticipos);
+            commit('SET_FORM_GASTOS', gastos);
+        }
     } catch (error) {
         console.error("Error al traer los movimientos del chofer:", error);
     }
@@ -335,7 +347,6 @@ export const validarHead = async ({ commit, dispatch }, form) => {
         throw error;
     }
 };
-
 export const updateFecha = ({ commit }, fecha) => {
     commit('SET_FECHA', fecha);
 }
@@ -344,4 +355,7 @@ export const updateChoferId = ({ commit }, chofer_id) => {
 }
 export const updateObservaciones = ({ commit }, observaciones) => {
     commit('SET_OBSERVACIONES', observaciones);
+}
+export const setForm = ({ commit }, formData) => {
+    commit('SET_FORM', formData);
 }

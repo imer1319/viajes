@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Main;
 use App\Events\MovimientoActualizado;
 use App\Events\MovimientoCreado;
 use App\Events\MovimientoEliminado;
+use App\Exports\MovimientosExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Movimiento\StoreRequest;
 use App\Http\Requests\Movimiento\UpdateRequest;
 use App\Models\Chofer;
-use App\Models\Cliente;
 use App\Models\CondicionIva;
 use App\Models\Departamento;
 use App\Models\Flota;
+use App\Models\Liquidacion;
 use App\Models\Localidad;
 use App\Models\Movimiento;
 use App\Models\Provincia;
@@ -20,6 +21,9 @@ use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MovimientoController extends Controller
 {
@@ -140,31 +144,109 @@ class MovimientoController extends Controller
 
     public function movimientosChofer(Chofer $chofer)
     {
-        $choferData = Chofer::with([
+        $edit = request()->query('edit', false);
+        $chofer_id_anterior = request()->query('chofer_id_anterior', null);
+        $liquidacion = request()->query('liquidacion', null);
+
+        // Log the request parameters for debugging
+        Log::info(['edit' => $edit, 'chofer_id_anterior' => $chofer_id_anterior, 'liquidacion' => $liquidacion]);
+
+        // Cargar datos del chofer junto con sus relaciones
+        $choferData = $this->loadChoferData($chofer);
+
+        if ($edit && $chofer_id_anterior && $chofer_id_anterior == $chofer->id && $liquidacion) {
+            return $this->handleEditWithSameChofer($choferData, $liquidacion);
+        }
+
+        return $this->handleNewOrDifferentChofer($choferData);
+    }
+
+    private function loadChoferData(Chofer $chofer)
+    {
+        return Chofer::with([
             'movimientos' => function ($query) {
-                $query->where('saldo_total', '!=', 0)
-                    ->with('tipoViaje', 'flota', 'cliente');
+                $query->with('tipoViaje', 'flota', 'cliente');
             },
             'anticipos' => function ($query) {
-                $query->where('saldo', '!=', 0)
-                    ->with('chofer');
+                $query->with('chofer');
             },
             'gastos' => function ($query) {
-                $query->where('saldo', '!=', 0)
-                    ->with('flota', 'proveedor', 'chofer');
+                $query->with('flota', 'proveedor', 'chofer');
             }
         ])->find($chofer->id);
-    
+    }
+
+    private function handleEditWithSameChofer($choferData, $liquidacion)
+    {
+        $liquidacionData = $this->loadLiquidacionData($liquidacion);
+
+        $movimientosGuardados = $liquidacionData->movimientos->map->movimiento;
+        $anticiposGuardados = $liquidacionData->anticipos->map->anticipo;
+        $gastosGuardados = $liquidacionData->gastos->map->gasto;
+
+        $movimientosCero = $this->filterNonZeroSaldo($choferData->movimientos);
+        $anticiposCero = $this->filterNonZeroSaldo($choferData->anticipos);
+        $gastosCero = $this->filterNonZeroSaldo($choferData->gastos);
+
+        return $this->createResponse($choferData, $movimientosGuardados, $anticiposGuardados, $gastosGuardados, $movimientosCero, $anticiposCero, $gastosCero);
+    }
+
+    private function handleNewOrDifferentChofer($choferData)
+    {
+        $movimientosGuardados = $this->filterNonZeroSaldo($choferData->movimientos);
+        $anticiposGuardados = $this->filterNonZeroSaldo($choferData->anticipos);
+        $gastosGuardados = $this->filterNonZeroSaldo($choferData->gastos);
+
+        return $this->createResponse($choferData, $movimientosGuardados, $anticiposGuardados, $gastosGuardados);
+    }
+
+    private function loadLiquidacionData($liquidacion)
+    {
+        return Liquidacion::with([
+            'movimientos.movimiento' => function ($query) {
+                $query->with('tipoViaje', 'flota', 'cliente');
+            },
+            'gastos.gasto' => function ($query) {
+                $query->with('proveedor', 'chofer', 'flota');
+            },
+            'anticipos.anticipo'
+        ])->find($liquidacion);
+    }
+
+    private function filterNonZeroSaldo($collection)
+    {
+        return $collection->filter(function ($item) {
+            return $item->saldo_total != 0 || $item->saldo != 0;
+        });
+    }
+
+    private function createResponse($choferData, $movimientos, $anticipos, $gastos, $movimientosCero = null, $anticiposCero = null, $gastosCero = null)
+    {
         return response()->json([
             'chofer' => [
                 'id' => $choferData->id,
-                'nombre' => $choferData->nombre, 
+                'nombre' => $choferData->nombre,
                 'dni' => $choferData->dni,
                 'cuil' => $choferData->cuil,
             ],
-            'movimientos' => $choferData->movimientos,
-            'anticipos' => $choferData->anticipos,
-            'gastos' => $choferData->gastos,
+            'movimientos' => $movimientos->values(),
+            'anticipos' => $anticipos->values(),
+            'gastos' => $gastos->values(),
+            'movimientosCero' => $movimientosCero ? $movimientosCero->values() : collect()->values(),
+            'anticiposCero' => $anticiposCero ? $anticiposCero->values() : collect()->values(),
+            'gastosCero' => $gastosCero ? $gastosCero->values() : collect()->values(),
         ]);
+    }
+
+    public function downloadPdf(Movimiento $movimiento)
+    {
+        $movimiento->load('chofer', 'cliente', 'flota', 'tipoViaje');
+        $pdf = Pdf::loadView('reportes.movimiento', compact('movimiento'));
+        return $pdf->stream();
+    }
+
+    public function downloadExcel()
+    {
+        return Excel::download(new MovimientosExport, 'movimientos.xlsx');
     }
 }

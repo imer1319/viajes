@@ -30,7 +30,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        v-for="(movimiento, index) in movimientos"
+                        v-for="(movimiento, index) in form.movimientos"
                         :key="movimiento.id"
                     >
                         <td>{{ index + 1 }}</td>
@@ -69,7 +69,7 @@
                 </thead>
                 <tbody>
                     <tr
-                        v-for="(movimiento, index) in anticipos"
+                        v-for="(movimiento, index) in form.anticipos"
                         :key="movimiento.id"
                     >
                         <td>{{ index + 1 }}</td>
@@ -101,7 +101,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(gasto, index) in gastos" :key="gasto.id">
+                    <tr v-for="(gasto, index) in form.gastos" :key="gasto.id">
                         <td>{{ index + 1 }}</td>
                         <td>{{ gasto.fecha }}</td>
                         <td>{{ gasto.proveedor.razon_social }}</td>
@@ -164,9 +164,6 @@ export default {
         },
         agregarLiquidacion() {
             this.form.total_liquidacion = this.totalGastoLiquidacion;
-            this.form.anticipos = this.anticipos;
-            this.form.gastos = this.gastos;
-            this.form.movimientos = this.movimientos;
             this.$store
                 .dispatch("agregarLiquidacion", this.form)
                 .then(() => {
@@ -192,27 +189,24 @@ export default {
         ...mapState({
             form: (state) => state.form,
             chofer: (state) => state.chofer,
-            movimientos: (state) => state.movimientos,
-            gastos: (state) => state.gastos,
-            anticipos: (state) => state.anticipos,
         }),
         totalPrecioChofer() {
-            return this.movimientos?.reduce((total, movimiento) => {
+            return this.form.movimientos?.reduce((total, movimiento) => {
                 return total + parseFloat(movimiento.precio_chofer);
             }, 0);
         },
         totalComisionChofer() {
-            return this.movimientos?.reduce((total, movimiento) => {
+            return this.form.movimientos?.reduce((total, movimiento) => {
                 return total + parseFloat(movimiento.comision_chofer);
             }, 0);
         },
         totalImporteAnticipo() {
-            return this.anticipos?.reduce((total, anticipo) => {
+            return this.form.anticipos?.reduce((total, anticipo) => {
                 return total + parseFloat(anticipo.importe);
             }, 0);
         },
         totalImporteGasto() {
-            return this.gastos?.reduce((total, anticipo) => {
+            return this.form.gastos?.reduce((total, anticipo) => {
                 return total + parseFloat(anticipo.importe);
             }, 0);
         },

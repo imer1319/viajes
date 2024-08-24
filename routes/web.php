@@ -58,4 +58,11 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::get('gastos/{chofer}/chofer/create', [GastoChoferController::class, 'create'])->name('gastos.chofer.create');
     Route::get('gastos/{chofer}/chofer/{gasto}/edit', [GastoChoferController::class, 'edit'])->name('gastos.chofer.edit');
     Route::get('gastos/{chofer}/chofer/{gasto}/show', [GastoChoferController::class, 'show'])->name('gastos.chofer.show');
+
+    // PDF
+    Route::get('liquidacion/{liquidacion}/download', [LiquidacionController::class, 'downloadPdf'])->name('liquidacion.download.pdf');
+    Route::get('/movimientos/{movimiento}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('movimiento.download.pdf');
+    // EXPORT EXCEL
+    Route::get('/movimientos/excel/export', [MovimientoController::class, 'downloadExcel'])->name('movimiento.download.excel');
+
 });

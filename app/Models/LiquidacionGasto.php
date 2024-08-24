@@ -21,6 +21,11 @@ class LiquidacionGasto extends Model
         return $this->belongsTo(Liquidacion::class);
     }
 
+    public function gasto()
+    {
+        return $this->belongsTo(GastoChofer::class);
+    }
+
     public function chofer()
     {
         return $this->belongsTo(Chofer::class);

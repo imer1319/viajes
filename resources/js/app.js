@@ -24,6 +24,8 @@ Vue.component('anticipo-edit', require('./Pages/Anticipo/Edit.vue').default);
 Vue.component('gasto-create', require('./Pages/Gasto/Create.vue').default);
 Vue.component('gasto-edit', require('./Pages/Gasto/Edit.vue').default);
 Vue.component('liquidacion-create', require('./Pages/Liquidacion/Create.vue').default);
+Vue.component('liquidacion-edit', require('./Pages/Liquidacion/Edit.vue').default);
+
 Vue.filter('formatNumber', function (value) {
     if (!value) return '';
     return new Intl.NumberFormat('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Events\LiquidacionCreada;
+use App\Events\LiquidacionEliminada;
 use App\Events\MovimientoActualizado;
 use App\Events\MovimientoCreado;
 use App\Events\MovimientoEliminado;
@@ -10,7 +11,10 @@ use App\Listeners\ActualizarFacturaMovimiento;
 use App\Listeners\ActualizarSaldosMovimientoCreado;
 use App\Listeners\ActualizarSaldosMovimientoEliminado;
 use App\Listeners\CrearFacturaMovimiento;
+use App\Listeners\EliminarAnticiposListener;
 use App\Listeners\EliminarFacturaMovimiento;
+use App\Listeners\EliminarGastosListener;
+use App\Listeners\EliminarMovimientosListener;
 use App\Listeners\EnviarNotificacionMovimientoCreado;
 use App\Listeners\EnviarNotificacionMovimientoEliminado;
 use App\Listeners\GuardarAnticiposListener;
@@ -48,7 +52,11 @@ class EventServiceProvider extends ServiceProvider
             GuardarAnticiposListener::class,
             GuardarGastosListener::class,
         ],
-        
+        LiquidacionEliminada::class => [
+            EliminarMovimientosListener::class,
+            EliminarAnticiposListener::class,
+            EliminarGastosListener::class,
+        ],
     ];
 
     /**

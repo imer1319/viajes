@@ -22,6 +22,9 @@
                 <td>{{ $movimiento->total }}</td>
                 <td>{{ $movimiento->chofer->nombre }}</td>
                 <td>
+                    <a href="{{ route('admin.movimiento.download.pdf', $movimiento) }}" target="_blank" class="btn btn-primary rounded-pill float-end">
+                        <i class="fas fa-file-pdf"></i>
+                    </a>
                     <a href="{{ route('admin.movimientos.show', $movimiento) }}"
                         class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-eye"></i>

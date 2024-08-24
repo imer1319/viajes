@@ -3428,6 +3428,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -3435,7 +3436,11 @@ function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   methods: {
     siguiente: function siguiente() {
       this.$emit("siguiente");
@@ -3445,19 +3450,23 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     quitarAnticipo: function quitarAnticipo(index) {
       this.$store.commit("REMOVE_ANTICIPO", index);
+    },
+    agregarAnticipo: function agregarAnticipo(index) {
+      this.$store.commit("AGREGAR_ANTICIPO", index);
     }
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
     chofer: "getChofer",
-    anticipos: "getAnticipos",
-    chofer_id: "getChoferId"
+    form: "getForm",
+    chofer_id: "getChoferId",
+    removedAnticipos: "getRemovedAnticipos"
   })), {}, {
     errors: function errors() {
       return this.$store.getters.getErrors;
     },
     totalImporte: function totalImporte() {
-      var _this$anticipos;
-      return (_this$anticipos = this.anticipos) === null || _this$anticipos === void 0 ? void 0 : _this$anticipos.reduce(function (total, anticipo) {
+      var _this$form$anticipos;
+      return (_this$form$anticipos = this.form.anticipos) === null || _this$form$anticipos === void 0 ? void 0 : _this$form$anticipos.reduce(function (total, anticipo) {
         return total + parseFloat(anticipo.importe);
       }, 0);
     }
@@ -3515,6 +3524,86 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Edit.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Edit.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-form-wizard */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.js");
+/* harmony import */ var vue_form_wizard__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
+/* harmony import */ var _Head_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Head.vue */ "./resources/js/Pages/Liquidacion/Head.vue");
+/* harmony import */ var _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Movimiento.vue */ "./resources/js/Pages/Liquidacion/Movimiento.vue");
+/* harmony import */ var _Anticipo_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Anticipo.vue */ "./resources/js/Pages/Liquidacion/Anticipo.vue");
+/* harmony import */ var _Gasto_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Gasto.vue */ "./resources/js/Pages/Liquidacion/Gasto.vue");
+/* harmony import */ var _Resumen_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Resumen.vue */ "./resources/js/Pages/Liquidacion/Resumen.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["numero_interno", "liquidacion"],
+  mounted: function mounted() {
+    this.initializeForm();
+  },
+  components: {
+    FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
+    TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
+    Head: _Head_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Movimiento: _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    Anticipo: _Anticipo_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Gasto: _Gasto_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  },
+  computed: {
+    form: function form() {
+      return this.$store.state.form;
+    },
+    isEditing: function isEditing() {
+      return this.$store.state.isEditing;
+    }
+  },
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)(["setForm"])), {}, {
+    siguienteTab: function siguienteTab() {
+      this.$refs.formWizard.nextTab();
+    },
+    anteriorTab: function anteriorTab() {
+      this.$refs.formWizard.prevTab();
+    },
+    initializeForm: function initializeForm() {
+      this.$store.commit("SET_IS_EDITING", true);
+      this.$store.commit("SET_CHOFER_ID_ANTERIOR", this.liquidacion.chofer_id);
+      this.setForm({
+        id: this.liquidacion.id,
+        fecha: this.liquidacion.fecha,
+        chofer_id: this.liquidacion.chofer_id,
+        numero_interno: this.liquidacion.numero_interno,
+        observaciones: this.liquidacion.observaciones,
+        total_liquidacion: this.liquidacion.total_liquidacion
+      });
+    }
+  })
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Gasto.vue?vue&type=script&lang=js":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Gasto.vue?vue&type=script&lang=js ***!
@@ -3527,6 +3616,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -3534,7 +3624,11 @@ function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   methods: {
     siguiente: function siguiente() {
       this.$emit("siguiente");
@@ -3544,19 +3638,23 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     quitarGasto: function quitarGasto(index) {
       this.$store.commit("REMOVE_GASTO", index);
+    },
+    agregarGasto: function agregarGasto(index) {
+      this.$store.commit("AGREGAR_GASTO", index);
     }
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
-    gastos: "getGastos",
+    form: "getForm",
     chofer: "getChofer",
-    chofer_id: "getChoferId"
+    chofer_id: "getChoferId",
+    removedGastos: "getRemovedGastos"
   })), {}, {
     errors: function errors() {
       return this.$store.getters.getErrors;
     },
     totalImporte: function totalImporte() {
-      var _this$gastos;
-      return (_this$gastos = this.gastos) === null || _this$gastos === void 0 ? void 0 : _this$gastos.reduce(function (total, anticipo) {
+      var _this$form$gastos;
+      return (_this$form$gastos = this.form.gastos) === null || _this$form$gastos === void 0 ? void 0 : _this$form$gastos.reduce(function (total, anticipo) {
         return total + parseFloat(anticipo.importe);
       }, 0);
     }
@@ -3591,7 +3689,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["numero_interno"],
+  props: ["numero_interno", "edit"],
   components: {
     ChoferCreate: _Pages_Chofer_Create_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     ChoferTable: _Pages_Chofer_Table_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -3675,6 +3773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -3682,7 +3781,11 @@ function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   methods: {
     siguiente: function siguiente() {
       this.$emit("siguiente");
@@ -3692,19 +3795,25 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     quitarMovimiento: function quitarMovimiento(index) {
       this.$store.commit("REMOVE_MOVIMIENTO", index);
+    },
+    agregarMovimiento: function agregarMovimiento(index) {
+      this.$store.commit("AGREGAR_MOVIMIENTO", index);
     }
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
     chofer: "getChofer",
-    movimientos: "getMovimientos"
+    form: "getForm",
+    removedMovimientos: "getRemovedMovimientos"
   })), {}, {
     totalPrecioChofer: function totalPrecioChofer() {
-      return this.movimientos.reduce(function (total, movimiento) {
+      var _this$form$movimiento;
+      return (_this$form$movimiento = this.form.movimientos) === null || _this$form$movimiento === void 0 ? void 0 : _this$form$movimiento.reduce(function (total, movimiento) {
         return total + parseFloat(movimiento.precio_chofer);
       }, 0);
     },
     totalComisionChofer: function totalComisionChofer() {
-      return this.movimientos.reduce(function (total, movimiento) {
+      var _this$form$movimiento2;
+      return (_this$form$movimiento2 = this.form.movimientos) === null || _this$form$movimiento2 === void 0 ? void 0 : _this$form$movimiento2.reduce(function (total, movimiento) {
         return total + parseFloat(movimiento.comision_chofer);
       }, 0);
     }
@@ -3740,9 +3849,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     agregarLiquidacion: function agregarLiquidacion() {
       var _this = this;
       this.form.total_liquidacion = this.totalGastoLiquidacion;
-      this.form.anticipos = this.anticipos;
-      this.form.gastos = this.gastos;
-      this.form.movimientos = this.movimientos;
       this.$store.dispatch("agregarLiquidacion", this.form).then(function () {
         window.location = "/liquidaciones";
         _this.$toast.open({
@@ -3767,38 +3873,29 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     chofer: function chofer(state) {
       return state.chofer;
-    },
-    movimientos: function movimientos(state) {
-      return state.movimientos;
-    },
-    gastos: function gastos(state) {
-      return state.gastos;
-    },
-    anticipos: function anticipos(state) {
-      return state.anticipos;
     }
   })), {}, {
     totalPrecioChofer: function totalPrecioChofer() {
-      var _this$movimientos;
-      return (_this$movimientos = this.movimientos) === null || _this$movimientos === void 0 ? void 0 : _this$movimientos.reduce(function (total, movimiento) {
+      var _this$form$movimiento;
+      return (_this$form$movimiento = this.form.movimientos) === null || _this$form$movimiento === void 0 ? void 0 : _this$form$movimiento.reduce(function (total, movimiento) {
         return total + parseFloat(movimiento.precio_chofer);
       }, 0);
     },
     totalComisionChofer: function totalComisionChofer() {
-      var _this$movimientos2;
-      return (_this$movimientos2 = this.movimientos) === null || _this$movimientos2 === void 0 ? void 0 : _this$movimientos2.reduce(function (total, movimiento) {
+      var _this$form$movimiento2;
+      return (_this$form$movimiento2 = this.form.movimientos) === null || _this$form$movimiento2 === void 0 ? void 0 : _this$form$movimiento2.reduce(function (total, movimiento) {
         return total + parseFloat(movimiento.comision_chofer);
       }, 0);
     },
     totalImporteAnticipo: function totalImporteAnticipo() {
-      var _this$anticipos;
-      return (_this$anticipos = this.anticipos) === null || _this$anticipos === void 0 ? void 0 : _this$anticipos.reduce(function (total, anticipo) {
+      var _this$form$anticipos;
+      return (_this$form$anticipos = this.form.anticipos) === null || _this$form$anticipos === void 0 ? void 0 : _this$form$anticipos.reduce(function (total, anticipo) {
         return total + parseFloat(anticipo.importe);
       }, 0);
     },
     totalImporteGasto: function totalImporteGasto() {
-      var _this$gastos;
-      return (_this$gastos = this.gastos) === null || _this$gastos === void 0 ? void 0 : _this$gastos.reduce(function (total, anticipo) {
+      var _this$form$gastos;
+      return (_this$form$gastos = this.form.gastos) === null || _this$form$gastos === void 0 ? void 0 : _this$form$gastos.reduce(function (total, anticipo) {
         return total + parseFloat(anticipo.importe);
       }, 0);
     },
@@ -8707,12 +8804,12 @@ var render = function render() {
   return _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-12 mb-2"
-  }, [_vm._m(0), _vm._v("\n        " + _vm._s(_vm.chofer.nombre) + "\n        "), _c("p", {
+    staticClass: "col-md-12 d-flex justify-content-between align-items-center mb-2"
+  }, [_c("div", [_vm._m(0), _vm._v("\n            " + _vm._s(_vm.chofer.nombre) + "\n            "), _c("p", {
     staticClass: "text-muted"
-  }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _c("table", {
+  }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.anticipos, function (movimiento, index) {
+  }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.form.anticipos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_c("a", {
@@ -8726,7 +8823,7 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "fa fa-trash"
     })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.numero_interno))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.importe)))])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -8744,7 +8841,28 @@ var render = function render() {
         return _vm.siguiente();
       }
     }
-  }, [_vm._v("\n            Siguiente\n        ")])])]);
+  }, [_vm._v("\n            Siguiente\n        ")])]), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_anticipos",
+      titulo: "Anticipos"
+    }
+  }, [_c("div", [_c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Numero interno")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.removedAnticipos, function (movimiento, index) {
+    return _c("tr", {
+      key: movimiento.id
+    }, [_c("td", [_c("a", {
+      staticClass: "btn btn-sm btn-primary",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.agregarAnticipo(index);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-plus"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.numero_interno))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.importe)))])]);
+  }), 0)])])])], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -8752,6 +8870,22 @@ var staticRenderFns = [function () {
   return _c("strong", [_c("i", {
     staticClass: "fa fa-user mr-2"
   }), _vm._v("Chofer:")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("button", {
+    staticClass: "btn btn-primary",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_anticipos"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-plus"
+  })])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -8789,7 +8923,107 @@ var render = function render() {
     ref: "formWizard",
     attrs: {
       "next-button-text": "Siguiente",
-      title: "Formulario",
+      title: "Crear liquidacion",
+      subtitle: "",
+      color: "#0d6efd",
+      shape: "square",
+      hideButtons: true
+    }
+  }, [_c("tab-content", {
+    attrs: {
+      title: "Datos del cliente",
+      icon: "fa fa-user"
+    }
+  }, [_c("Head", {
+    attrs: {
+      numero_interno: _vm.numero_interno
+    },
+    on: {
+      siguiente: function siguiente($event) {
+        return _vm.siguienteTab();
+      }
+    }
+  })], 1), _vm._v(" "), _c("tab-content", {
+    attrs: {
+      title: "Movimientos del chofer",
+      icon: "fa fa-bus"
+    }
+  }, [_c("Movimiento", {
+    on: {
+      siguiente: function siguiente($event) {
+        return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
+      }
+    }
+  })], 1), _vm._v(" "), _c("tab-content", {
+    attrs: {
+      title: "Anticipos del chofer",
+      icon: "fas fa-comments-dollar"
+    }
+  }, [_c("Anticipo", {
+    on: {
+      siguiente: function siguiente($event) {
+        return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
+      }
+    }
+  })], 1), _vm._v(" "), _c("tab-content", {
+    attrs: {
+      title: "Gastos del chofer",
+      icon: "fa fa-money-check"
+    }
+  }, [_c("Gasto", {
+    on: {
+      siguiente: function siguiente($event) {
+        return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
+      }
+    }
+  })], 1), _vm._v(" "), _c("tab-content", {
+    attrs: {
+      title: "Resumen",
+      icon: "fa fa-book"
+    }
+  }, [_c("Resumen", {
+    on: {
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
+      }
+    }
+  })], 1)], 1)], 1);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Edit.vue?vue&type=template&id=9c0b2350":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Edit.vue?vue&type=template&id=9c0b2350 ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("form-wizard", {
+    ref: "formWizard",
+    attrs: {
+      "next-button-text": "Siguiente",
+      title: "Editar liquidacion",
       subtitle: "",
       color: "#0d6efd",
       shape: "square",
@@ -8888,12 +9122,12 @@ var render = function render() {
   return _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-12 mb-2"
-  }, [_vm._m(0), _vm._v("\n        " + _vm._s(_vm.chofer.nombre) + "\n        "), _c("p", {
+    staticClass: "col-md-12 d-flex justify-content-between align-items-center mb-2"
+  }, [_c("div", [_vm._m(0), _vm._v("\n            " + _vm._s(_vm.chofer.nombre) + "\n            "), _c("p", {
     staticClass: "text-muted"
-  }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _c("table", {
+  }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.gastos, function (gasto, index) {
+  }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.form.gastos, function (gasto, index) {
     return _c("tr", {
       key: gasto.id
     }, [_c("td", [_c("a", {
@@ -8907,7 +9141,7 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "fa fa-trash"
     })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(gasto.importe)))])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -8925,7 +9159,28 @@ var render = function render() {
         return _vm.siguiente();
       }
     }
-  }, [_vm._v("\n            Siguiente\n        ")])])]);
+  }, [_vm._v("\n            Siguiente\n        ")])]), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_gastos",
+      titulo: "Anticipos"
+    }
+  }, [_c("div", [_c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Proveedor")]), _vm._v(" "), _c("th", [_vm._v("Flota")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.removedGastos, function (gasto, index) {
+    return _c("tr", {
+      key: gasto.id
+    }, [_c("td", [_c("a", {
+      staticClass: "btn btn-sm btn-primary",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.agregarGasto(index);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-plus"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(gasto.importe)))])]);
+  }), 0)])])])], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -8933,6 +9188,22 @@ var staticRenderFns = [function () {
   return _c("strong", [_c("i", {
     staticClass: "fa fa-user mr-2"
   }), _vm._v("Chofer:")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("button", {
+    staticClass: "btn btn-primary",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_gastos"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-plus"
+  })])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -9113,12 +9384,12 @@ var render = function render() {
   return _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-md-12 mb-2"
-  }, [_vm._m(0), _vm._v("\n        " + _vm._s(_vm.chofer.nombre) + "\n        "), _c("p", {
+    staticClass: "col-md-12 d-flex justify-content-between align-items-center mb-2"
+  }, [_c("div", [_vm._m(0), _vm._v("\n            " + _vm._s(_vm.chofer.nombre) + "\n            "), _c("p", {
     staticClass: "text-muted"
-  }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _c("table", {
+  }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.movimientos, function (movimiento, index) {
+  }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.form.movimientos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_c("a", {
@@ -9132,7 +9403,7 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "fa fa-trash"
     })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)))])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioChofer)))]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))])])])]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioChofer)))]), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -9150,7 +9421,28 @@ var render = function render() {
         return _vm.siguiente();
       }
     }
-  }, [_vm._v("\n            Siguiente\n        ")])])]);
+  }, [_vm._v("\n            Siguiente\n        ")])]), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_movimientos",
+      titulo: "Movimientos"
+    }
+  }, [_c("div", [_c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Cliente")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio chofer")]), _vm._v(" "), _c("th", [_vm._v("%")]), _vm._v(" "), _c("th", [_vm._v("Comision chofer")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.removedMovimientos, function (movimiento, index) {
+    return _c("tr", {
+      key: movimiento.id
+    }, [_c("td", [_c("a", {
+      staticClass: "btn btn-sm btn-primary",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.agregarMovimiento(index);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-plus"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v("\n                            " + _vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)) + "\n                        ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v("\n                            " + _vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)) + "\n                        ")])]);
+  }), 0)])])])], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -9158,6 +9450,22 @@ var staticRenderFns = [function () {
   return _c("strong", [_c("i", {
     staticClass: "fa fa-user mr-2"
   }), _vm._v("Chofer:")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("button", {
+    staticClass: "btn btn-primary",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_movimientos"
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-plus"
+  })])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -9211,7 +9519,7 @@ var render = function render() {
     staticClass: "col-md-12"
   }, [_vm._m(2), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(3), _vm._v(" "), _c("tbody", _vm._l(_vm.movimientos, function (movimiento, index) {
+  }, [_vm._m(3), _vm._v(" "), _c("tbody", _vm._l(_vm.form.movimientos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.cliente.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_chofer)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.porcentaje_pago))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.comision_chofer)))])]);
@@ -9219,7 +9527,7 @@ var render = function render() {
     staticClass: "col-md-12"
   }, [_vm._m(5), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(6), _vm._v(" "), _c("tbody", _vm._l(_vm.anticipos, function (movimiento, index) {
+  }, [_vm._m(6), _vm._v(" "), _c("tbody", _vm._l(_vm.form.anticipos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.numero_interno))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.importe)))])]);
@@ -9227,7 +9535,7 @@ var render = function render() {
     staticClass: "col-md-12"
   }, [_vm._m(8), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(9), _vm._v(" "), _c("tbody", _vm._l(_vm.gastos, function (gasto, index) {
+  }, [_vm._m(9), _vm._v(" "), _c("tbody", _vm._l(_vm.form.gastos, function (gasto, index) {
     return _c("tr", {
       key: gasto.id
     }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.chofer.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(gasto.importe)))])]);
@@ -12239,6 +12547,7 @@ Vue.component('anticipo-edit', (__webpack_require__(/*! ./Pages/Anticipo/Edit.vu
 Vue.component('gasto-create', (__webpack_require__(/*! ./Pages/Gasto/Create.vue */ "./resources/js/Pages/Gasto/Create.vue")["default"]));
 Vue.component('gasto-edit', (__webpack_require__(/*! ./Pages/Gasto/Edit.vue */ "./resources/js/Pages/Gasto/Edit.vue")["default"]));
 Vue.component('liquidacion-create', (__webpack_require__(/*! ./Pages/Liquidacion/Create.vue */ "./resources/js/Pages/Liquidacion/Create.vue")["default"]));
+Vue.component('liquidacion-edit', (__webpack_require__(/*! ./Pages/Liquidacion/Edit.vue */ "./resources/js/Pages/Liquidacion/Edit.vue")["default"]));
 Vue.filter('formatNumber', function (value) {
   if (!value) return '';
   return new Intl.NumberFormat('es-AR', {
@@ -12358,6 +12667,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getRetencionIngresoBrutos: () => (/* binding */ getRetencionIngresoBrutos),
 /* harmony export */   getTipoDocumentos: () => (/* binding */ getTipoDocumentos),
 /* harmony export */   getTipoViajes: () => (/* binding */ getTipoViajes),
+/* harmony export */   setForm: () => (/* binding */ setForm),
 /* harmony export */   updateChoferId: () => (/* binding */ updateChoferId),
 /* harmony export */   updateErrors: () => (/* binding */ updateErrors),
 /* harmony export */   updateFecha: () => (/* binding */ updateFecha),
@@ -13287,35 +13597,47 @@ var getLocalidadesDepartamento = /*#__PURE__*/function () {
 }();
 var getMovimientosChofer = /*#__PURE__*/function () {
   var _ref64 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee31(_ref63, chofer_id) {
-    var commit, response, choferData, movimientos, anticipos, gastos;
+    var commit, state, response, choferData, movimientos, anticipos, gastos;
     return _regeneratorRuntime().wrap(function _callee31$(_context31) {
       while (1) switch (_context31.prev = _context31.next) {
         case 0:
-          commit = _ref63.commit;
+          commit = _ref63.commit, state = _ref63.state;
           _context31.prev = 1;
           _context31.next = 4;
-          return axios.get('/api/movimientos/' + chofer_id);
+          return axios.get("/api/movimientos/".concat(chofer_id, "?edit=").concat(state.isEditing, "&chofer_id_anterior=").concat(state.chofer_id_anterior, "&liquidacion=").concat(state.form.id));
         case 4:
           response = _context31.sent;
           choferData = response.data.chofer;
           movimientos = response.data.movimientos;
           anticipos = response.data.anticipos;
           gastos = response.data.gastos;
+          console.log(response.data);
           commit('SET_CHOFER', choferData);
-          commit('SET_MOVIMIENTOS', movimientos);
-          commit('SET_ANTICIPOS', anticipos);
-          commit('SET_GASTOS', gastos);
-          _context31.next = 18;
+          if (state.isEditing) {
+            commit('SET_FORM_MOVIMIENTOS', movimientos);
+            commit('SET_FORM_ANTICIPOS', anticipos);
+            commit('SET_FORM_GASTOS', gastos);
+            commit('SET_REMOVED_ITEMS', {
+              removedMovimientos: response.data.movimientosCero || [],
+              removedAnticipos: response.data.anticiposCero || [],
+              removedGastos: response.data.gastosCero || []
+            });
+          } else {
+            commit('SET_FORM_MOVIMIENTOS', movimientos);
+            commit('SET_FORM_ANTICIPOS', anticipos);
+            commit('SET_FORM_GASTOS', gastos);
+          }
+          _context31.next = 17;
           break;
-        case 15:
-          _context31.prev = 15;
+        case 14:
+          _context31.prev = 14;
           _context31.t0 = _context31["catch"](1);
           console.error("Error al traer los movimientos del chofer:", _context31.t0);
-        case 18:
+        case 17:
         case "end":
           return _context31.stop();
       }
-    }, _callee31, null, [[1, 15]]);
+    }, _callee31, null, [[1, 14]]);
   }));
   return function getMovimientosChofer(_x50, _x51) {
     return _ref64.apply(this, arguments);
@@ -13364,6 +13686,10 @@ var updateObservaciones = function updateObservaciones(_ref69, observaciones) {
   var commit = _ref69.commit;
   commit('SET_OBSERVACIONES', observaciones);
 };
+var setForm = function setForm(_ref70, formData) {
+  var commit = _ref70.commit;
+  commit('SET_FORM', formData);
+};
 
 /***/ }),
 
@@ -13388,12 +13714,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getDepartamentos: () => (/* binding */ getDepartamentos),
 /* harmony export */   getErrors: () => (/* binding */ getErrors),
 /* harmony export */   getFlotas: () => (/* binding */ getFlotas),
+/* harmony export */   getForm: () => (/* binding */ getForm),
 /* harmony export */   getGastos: () => (/* binding */ getGastos),
 /* harmony export */   getLocalidades: () => (/* binding */ getLocalidades),
 /* harmony export */   getMovimientos: () => (/* binding */ getMovimientos),
 /* harmony export */   getPlanCuentas: () => (/* binding */ getPlanCuentas),
 /* harmony export */   getProveedores: () => (/* binding */ getProveedores),
 /* harmony export */   getProvincias: () => (/* binding */ getProvincias),
+/* harmony export */   getRemovedAnticipos: () => (/* binding */ getRemovedAnticipos),
+/* harmony export */   getRemovedGastos: () => (/* binding */ getRemovedGastos),
+/* harmony export */   getRemovedMovimientos: () => (/* binding */ getRemovedMovimientos),
 /* harmony export */   getRetencionGanancias: () => (/* binding */ getRetencionGanancias),
 /* harmony export */   getRetencionIngresoBrutos: () => (/* binding */ getRetencionIngresoBrutos),
 /* harmony export */   getTipoDocumentos: () => (/* binding */ getTipoDocumentos),
@@ -13453,6 +13783,9 @@ var getChofer = function getChofer(state) {
 var getProveedores = function getProveedores(state) {
   return state.proveedores;
 };
+var getForm = function getForm(state) {
+  return state.form;
+};
 var formFecha = function formFecha(state) {
   return state.form.fecha;
 };
@@ -13464,6 +13797,15 @@ var formObservaciones = function formObservaciones(state) {
 };
 var formNumeroInterno = function formNumeroInterno(state) {
   return state.form.numero_interno;
+};
+var getRemovedMovimientos = function getRemovedMovimientos(state) {
+  return state.removedMovimientos;
+};
+var getRemovedAnticipos = function getRemovedAnticipos(state) {
+  return state.removedAnticipos;
+};
+var getRemovedGastos = function getRemovedGastos(state) {
+  return state.removedGastos;
 };
 
 /***/ }),
@@ -13554,6 +13896,9 @@ vue__WEBPACK_IMPORTED_MODULE_1__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_0_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AGREGAR_ANTICIPO: () => (/* binding */ AGREGAR_ANTICIPO),
+/* harmony export */   AGREGAR_GASTO: () => (/* binding */ AGREGAR_GASTO),
+/* harmony export */   AGREGAR_MOVIMIENTO: () => (/* binding */ AGREGAR_MOVIMIENTO),
 /* harmony export */   CLEAR_ERRORS: () => (/* binding */ CLEAR_ERRORS),
 /* harmony export */   REMOVE_ANTICIPO: () => (/* binding */ REMOVE_ANTICIPO),
 /* harmony export */   REMOVE_GASTO: () => (/* binding */ REMOVE_GASTO),
@@ -13562,13 +13907,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   SET_CHOFER: () => (/* binding */ SET_CHOFER),
 /* harmony export */   SET_CHOFERES: () => (/* binding */ SET_CHOFERES),
 /* harmony export */   SET_CHOFER_ID: () => (/* binding */ SET_CHOFER_ID),
+/* harmony export */   SET_CHOFER_ID_ANTERIOR: () => (/* binding */ SET_CHOFER_ID_ANTERIOR),
 /* harmony export */   SET_CLIENTES: () => (/* binding */ SET_CLIENTES),
 /* harmony export */   SET_CONDICIONES_IVA: () => (/* binding */ SET_CONDICIONES_IVA),
 /* harmony export */   SET_DEPARTAMENTOS: () => (/* binding */ SET_DEPARTAMENTOS),
 /* harmony export */   SET_ERRORS: () => (/* binding */ SET_ERRORS),
 /* harmony export */   SET_FECHA: () => (/* binding */ SET_FECHA),
 /* harmony export */   SET_FLOTAS: () => (/* binding */ SET_FLOTAS),
+/* harmony export */   SET_FORM: () => (/* binding */ SET_FORM),
+/* harmony export */   SET_FORM_ANTICIPOS: () => (/* binding */ SET_FORM_ANTICIPOS),
+/* harmony export */   SET_FORM_GASTOS: () => (/* binding */ SET_FORM_GASTOS),
+/* harmony export */   SET_FORM_MOVIMIENTOS: () => (/* binding */ SET_FORM_MOVIMIENTOS),
 /* harmony export */   SET_GASTOS: () => (/* binding */ SET_GASTOS),
+/* harmony export */   SET_IS_EDITING: () => (/* binding */ SET_IS_EDITING),
 /* harmony export */   SET_LOCALIDADES: () => (/* binding */ SET_LOCALIDADES),
 /* harmony export */   SET_MOVIMIENTOS: () => (/* binding */ SET_MOVIMIENTOS),
 /* harmony export */   SET_NUMERO_INTERNO: () => (/* binding */ SET_NUMERO_INTERNO),
@@ -13576,6 +13927,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   SET_PLAN_CUENTAS: () => (/* binding */ SET_PLAN_CUENTAS),
 /* harmony export */   SET_PROVEEDORES: () => (/* binding */ SET_PROVEEDORES),
 /* harmony export */   SET_PROVINCIAS: () => (/* binding */ SET_PROVINCIAS),
+/* harmony export */   SET_REMOVED_ANTICIPOS: () => (/* binding */ SET_REMOVED_ANTICIPOS),
+/* harmony export */   SET_REMOVED_GASTOS: () => (/* binding */ SET_REMOVED_GASTOS),
+/* harmony export */   SET_REMOVED_ITEMS: () => (/* binding */ SET_REMOVED_ITEMS),
+/* harmony export */   SET_REMOVED_MOVIMIENTOS: () => (/* binding */ SET_REMOVED_MOVIMIENTOS),
 /* harmony export */   SET_RETENCION_GANANCIAS: () => (/* binding */ SET_RETENCION_GANANCIAS),
 /* harmony export */   SET_RETENCION_INGRESO_BRUTOS: () => (/* binding */ SET_RETENCION_INGRESO_BRUTOS),
 /* harmony export */   SET_TIPO_DOCUMENTOS: () => (/* binding */ SET_TIPO_DOCUMENTOS),
@@ -13650,14 +14005,64 @@ var SET_ERRORS = function SET_ERRORS(state, errors) {
 var CLEAR_ERRORS = function CLEAR_ERRORS(state) {
   state.errors = {};
 };
+var SET_CHOFER_ID_ANTERIOR = function SET_CHOFER_ID_ANTERIOR(state, chofer_id) {
+  state.chofer_id_anterior = chofer_id;
+};
+var SET_REMOVED_ITEMS = function SET_REMOVED_ITEMS(state, _ref) {
+  var removedMovimientos = _ref.removedMovimientos,
+    removedAnticipos = _ref.removedAnticipos,
+    removedGastos = _ref.removedGastos;
+  state.removedMovimientos = removedMovimientos;
+  state.removedAnticipos = removedAnticipos;
+  state.removedGastos = removedGastos;
+};
 var REMOVE_MOVIMIENTO = function REMOVE_MOVIMIENTO(state, index) {
-  state.movimientos.splice(index, 1);
+  var removedItem = state.form.movimientos.splice(index, 1)[0];
+  state.removedMovimientos.push(removedItem);
 };
 var REMOVE_ANTICIPO = function REMOVE_ANTICIPO(state, index) {
-  state.anticipos.splice(index, 1);
+  var removedItem = state.form.anticipos.splice(index, 1)[0];
+  state.removedAnticipos.push(removedItem);
 };
 var REMOVE_GASTO = function REMOVE_GASTO(state, index) {
-  state.gastos.splice(index, 1);
+  var removedItem = state.form.gastos.splice(index, 1)[0];
+  state.removedGastos.push(removedItem);
+};
+var SET_REMOVED_MOVIMIENTOS = function SET_REMOVED_MOVIMIENTOS(state, movimientos) {
+  state.removedMovimientos = movimientos;
+};
+var SET_REMOVED_ANTICIPOS = function SET_REMOVED_ANTICIPOS(state, anticipos) {
+  state.removedAnticipos = anticipos;
+};
+var SET_REMOVED_GASTOS = function SET_REMOVED_GASTOS(state, gastos) {
+  state.removedGastos = gastos;
+};
+var AGREGAR_MOVIMIENTO = function AGREGAR_MOVIMIENTO(state, index) {
+  var restoredItem = state.removedMovimientos.splice(index, 1)[0];
+  state.form.movimientos.push(restoredItem);
+};
+var AGREGAR_ANTICIPO = function AGREGAR_ANTICIPO(state, index) {
+  var restoredItem = state.removedAnticipos.splice(index, 1)[0];
+  state.form.anticipos.push(restoredItem);
+};
+var AGREGAR_GASTO = function AGREGAR_GASTO(state, index) {
+  var restoredItem = state.removedGastos.splice(index, 1)[0];
+  state.form.gastos.push(restoredItem);
+};
+var SET_FORM = function SET_FORM(state, data) {
+  state.form = data;
+};
+var SET_FORM_MOVIMIENTOS = function SET_FORM_MOVIMIENTOS(state, movimientos) {
+  state.form.movimientos = movimientos;
+};
+var SET_FORM_ANTICIPOS = function SET_FORM_ANTICIPOS(state, anticipos) {
+  state.form.anticipos = anticipos;
+};
+var SET_FORM_GASTOS = function SET_FORM_GASTOS(state, gastos) {
+  state.form.gastos = gastos;
+};
+var SET_IS_EDITING = function SET_IS_EDITING(state, isEditing) {
+  state.isEditing = isEditing;
 };
 
 /***/ }),
@@ -13675,6 +14080,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   chofer: {},
+  isEditing: false,
+  chofer_id_anterior: null,
   form: {
     id: "",
     fecha: "",
@@ -13686,6 +14093,9 @@ __webpack_require__.r(__webpack_exports__);
     gastos: [],
     anticipos: []
   },
+  removedMovimientos: [],
+  removedAnticipos: [],
+  removedGastos: [],
   choferes: [],
   flotas: [],
   clientes: [],
@@ -15026,6 +15436,45 @@ component.options.__file = "resources/js/Pages/Liquidacion/Create.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Liquidacion/Edit.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/Pages/Liquidacion/Edit.vue ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Edit_vue_vue_type_template_id_9c0b2350__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=9c0b2350 */ "./resources/js/Pages/Liquidacion/Edit.vue?vue&type=template&id=9c0b2350");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js */ "./resources/js/Pages/Liquidacion/Edit.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_9c0b2350__WEBPACK_IMPORTED_MODULE_0__.render,
+  _Edit_vue_vue_type_template_id_9c0b2350__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Liquidacion/Edit.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Liquidacion/Gasto.vue":
 /*!**************************************************!*\
   !*** ./resources/js/Pages/Liquidacion/Gasto.vue ***!
@@ -15734,6 +16183,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Liquidacion/Edit.vue?vue&type=script&lang=js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/Pages/Liquidacion/Edit.vue?vue&type=script&lang=js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Edit.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Liquidacion/Gasto.vue?vue&type=script&lang=js":
 /*!**************************************************************************!*\
   !*** ./resources/js/Pages/Liquidacion/Gasto.vue?vue&type=script&lang=js ***!
@@ -16177,6 +16642,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_3a0c02ca__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_3a0c02ca__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Create.vue?vue&type=template&id=3a0c02ca */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Create.vue?vue&type=template&id=3a0c02ca");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Liquidacion/Edit.vue?vue&type=template&id=9c0b2350":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/Pages/Liquidacion/Edit.vue?vue&type=template&id=9c0b2350 ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_9c0b2350__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_9c0b2350__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_9c0b2350__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=template&id=9c0b2350 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Edit.vue?vue&type=template&id=9c0b2350");
 
 
 /***/ }),

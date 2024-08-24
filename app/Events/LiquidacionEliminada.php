@@ -13,16 +13,18 @@ use Illuminate\Queue\SerializesModels;
 class LiquidacionEliminada
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $chofer_id;
+    public $liquidacion_id;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+     public function __construct($chofer_id, $liquidacion_id)
+     {
+         $this->chofer_id = $chofer_id;
+         $this->liquidacion_id = $liquidacion_id;
+     }
 
     /**
      * Get the channels the event should broadcast on.

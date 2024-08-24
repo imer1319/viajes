@@ -17,7 +17,12 @@ export const getGastos = state => state.gastos;
 export const getChofer = state => state.chofer;
 export const getProveedores = state => state.proveedores;
 
+export const getForm = state => state.form
 export const formFecha = state => state.form.fecha
 export const formChoferId = state => state.form.chofer_id
 export const formObservaciones = state => state.form.observaciones
 export const formNumeroInterno = state => state.form.numero_interno
+
+export const getRemovedMovimientos = state => state.removedMovimientos
+export const getRemovedAnticipos = state => state.removedAnticipos
+export const getRemovedGastos = state => state.removedGastos

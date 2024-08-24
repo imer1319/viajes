@@ -6,10 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Liquidacion\StoreRequest;
 use App\Http\Requests\Liquidacion\UpdateRequest;
 use App\Models\Liquidacion;
-use Illuminate\Http\Request;
+use App\Traits\NumeroALetra;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LiquidacionController extends Controller
 {
+    use NumeroALetra;
+
     public function index()
     {
         return view('admin.liquidaciones.index', [
@@ -27,12 +30,6 @@ class LiquidacionController extends Controller
         ]);
     }
 
-    public function store(StoreRequest $request)
-    {
-        Liquidacion::create($request->validated());
-        return redirect()->route('admin.liquidaciones.index')->with('flash', 'Liquidacion creado corretamente');
-    }
-
     public function show(Liquidacion $liquidacion)
     {
         return view('admin.liquidaciones.show', [
@@ -40,14 +37,24 @@ class LiquidacionController extends Controller
         ]);
     }
 
-    public function edit(Liquidacion $liquidacion)
+    public function edit(Liquidacion $liquidacione)
     {
         return view('admin.liquidaciones.edit', [
-            'liquidacion' => $liquidacion
+            'liquidacion' => $liquidacione->load([
+                'movimientos.movimiento',
+                'movimientos.movimiento.cliente',
+                'movimientos.movimiento.tipoViaje',
+                'gastos.gasto',
+                'gastos.gasto.proveedor',
+                'gastos.gasto.chofer',
+                'gastos.gasto.flota',
+                'anticipos.anticipo',
+                'chofer'
+            ])
         ]);
     }
 
-    public function update(UpdateRequest $request,Liquidacion $liquidacion)
+    public function update(UpdateRequest $request, Liquidacion $liquidacion)
     {
         $res = $liquidacion->update($request->validated());
 
@@ -61,5 +68,18 @@ class LiquidacionController extends Controller
     {
         $liquidacion->delete();
         return redirect()->route('admin.liquidaciones.index')->with('flash', 'Liquidacion eliminado corretamente');
+    }
+
+    public function downloadPdf(Liquidacion $liquidacion)
+    {
+        $liquidacion->load([
+            'movimientos.movimiento',
+            'gastos.gasto',
+            'anticipos.anticipo',
+            'chofer'
+        ]);
+        $numero_letra = $this->convertirNumeroALetras($liquidacion->total_liquidacion);
+        $pdf = Pdf::loadView('reportes.liquidacion', compact('liquidacion', 'numero_letra'));
+        return $pdf->stream();
     }
 }

@@ -70,12 +70,61 @@ export const SET_ERRORS = (state, errors) => {
 export const CLEAR_ERRORS = (state) => {
     state.errors = {};
 };
+export const SET_CHOFER_ID_ANTERIOR = (state, chofer_id) => {
+    state.chofer_id_anterior = chofer_id;
+}
+export const SET_REMOVED_ITEMS = (state, { removedMovimientos, removedAnticipos, removedGastos }) => {
+    state.removedMovimientos = removedMovimientos;
+    state.removedAnticipos = removedAnticipos;
+    state.removedGastos = removedGastos;
+};
 export const REMOVE_MOVIMIENTO = (state, index) => {
-    state.movimientos.splice(index, 1);
+    const removedItem = state.form.movimientos.splice(index, 1)[0];
+    state.removedMovimientos.push(removedItem);
 }
 export const REMOVE_ANTICIPO = (state, index) => {
-    state.anticipos.splice(index, 1);
+    const removedItem = state.form.anticipos.splice(index, 1)[0];
+    state.removedAnticipos.push(removedItem);
 }
 export const REMOVE_GASTO = (state, index) => {
-    state.gastos.splice(index, 1);
+    const removedItem = state.form.gastos.splice(index, 1)[0];
+    state.removedGastos.push(removedItem);
+}
+export const SET_REMOVED_MOVIMIENTOS = (state, movimientos) => {
+    state.removedMovimientos = movimientos;
+}
+
+export const SET_REMOVED_ANTICIPOS = (state, anticipos) => {
+    state.removedAnticipos = anticipos;
+}
+
+export const SET_REMOVED_GASTOS = (state, gastos) => {
+    state.removedGastos = gastos;
+}
+export const AGREGAR_MOVIMIENTO = (state, index) => {
+    const restoredItem = state.removedMovimientos.splice(index, 1)[0];
+    state.form.movimientos.push(restoredItem);
+}
+export const AGREGAR_ANTICIPO = (state, index) => {
+    const restoredItem = state.removedAnticipos.splice(index, 1)[0];
+    state.form.anticipos.push(restoredItem);
+}
+export const AGREGAR_GASTO = (state, index) => {
+    const restoredItem = state.removedGastos.splice(index, 1)[0];
+    state.form.gastos.push(restoredItem);
+}
+export const SET_FORM = (state, data) => {
+    state.form = data;
+}
+export const SET_FORM_MOVIMIENTOS = (state, movimientos) => {
+    state.form.movimientos = movimientos;
+}
+export const SET_FORM_ANTICIPOS = (state, anticipos) => {
+    state.form.anticipos = anticipos;
+}
+export const SET_FORM_GASTOS = (state, gastos) => {
+    state.form.gastos = gastos;
+}
+export const SET_IS_EDITING = (state, isEditing) => {
+    state.isEditing = isEditing;
 }

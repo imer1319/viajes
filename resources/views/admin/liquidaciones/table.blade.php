@@ -18,6 +18,9 @@
                 <td>{{ $liquidacion->chofer->nombre }}</td>
                 <td>{{ $liquidacion->total_liquidacion }}</td>
                 <td>
+                    <a href="{{ route('admin.liquidacion.download.pdf', $liquidacion) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill">
+                        <i class="fa fa-file-pdf"></i>
+                    </a>
                     <a href="{{ route('admin.liquidaciones.show', $liquidacion) }}" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-eye"></i>
                     </a>
