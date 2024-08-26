@@ -20,13 +20,16 @@
                     Rol: {{ auth()->user()->getRoleDisplayNames() }}
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">Cerrar sesion</a>
+                <a class="dropdown-item dropdown-footer" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                   Cerrar sesion
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
         </li>
     </ul>
 </nav>
