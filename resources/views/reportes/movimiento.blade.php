@@ -186,69 +186,168 @@
             </td>
         </tr>
     </table>
-    <div style="width: 100%">
-        <div style="width: 50%">
-            <div class="relative overflow-x-auto shadow-md">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead class="text-xs text-white uppercase bg-blue-400">
-                        <tr>
-                            <td colspan="6" align="center">
-                                <p style="margin:0.5rem;">MOVIMIENTOS</p>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400" width="50%">Ord</td>
-                            <td width="50%">{{ $movimiento->id }}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Fecha</td>
-                            <td>{{ $movimiento->fecha }}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Tipo de viaje</td>
-                            <td>{{ $movimiento->tipoViaje->descripcion }}</td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400"># Factura</td>
-                            <td>{{ $movimiento->numero_factura_1 }}-{{ $movimiento->numero_factura_2 }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div style="width: 50%">
-
-        </div>
-    </div>
-    
-    <p class="text-muted">Precio real: {{ $movimiento->precio_real }}</p>
-    <p class="text-muted">IVA: {{ $movimiento->iva }}</p>
-    <p class="text-muted">Total: {{ $movimiento->total }}</p>
-    <p class="text-muted">Precio del chofer: {{ $movimiento->precio_chofer }}</p>
-    <p class="text-muted">Porcentaje de pago: {{ $movimiento->porcentaje_pago }}</p>
-    <p class="text-muted">Comision del chofeer: {{ $movimiento->comision_chofer }}</p>
-    <p class="text-muted">Saldo de la comision del chofeer: {{ $movimiento->saldo_comision_chofer }}</p>
-    <strong><i class="fas fa-user mr-1"></i> Chofer</strong>
-    <p class="text-muted">Nombre: {{ $movimiento->chofer->nombre }}</p>
-    <p class="text-muted">Nombre: {{ $movimiento->chofer->nombre }}</p>
-    <p class="text-muted">DNI: {{ $movimiento->chofer->dni }}</p>
-    <p class="text-muted">CUIL: {{ $movimiento->chofer->cuil }}</p>
-    <p class="text-muted">Saldo: {{ $movimiento->chofer->saldo }}</p>
-    <hr>
-    <strong><i class="fas fa-user mr-1"></i> Cliente</strong>
-    <p class="text-muted">Razon social: {{ $movimiento->cliente->razon_social }}</p>
-    <p class="text-muted">CUIT: {{ $movimiento->cliente->cuit }}</p>
-    <p class="text-muted">Telefono: {{ $movimiento->cliente->telefono }}</p>
-    <p class="text-muted">Celular: {{ $movimiento->cliente->celular }}</p>
-    <p class="text-muted">Saldo: {{ $movimiento->cliente->saldo }}</p>
-    <hr>
-    <strong><i class="fas fa-bus mr-1"></i> Flota</strong>
-    <p class="text-muted">Nombre: {{ $movimiento->flota->nombre }}</p>
-    <p class="text-muted">Placa: {{ $movimiento->flota->placa }}</p>
-    <p class="text-muted">Marca: {{ $movimiento->flota->marca }}</p>
-
+    <table style="width: 100%">
+        <tr>
+            <td width="50%" style="vertical-align: top;">
+                <div class="relative overflow-x-auto shadow-md">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-white uppercase bg-blue-400">
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <p style="margin:0.5rem;">MOVIMIENTOS</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400" width="40%">Ord</td>
+                                <td align="left" width="60%">{{ $movimiento->id }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Fecha</td>
+                                <td align="left">{{ $movimiento->fecha }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Tipo de viaje</td>
+                                <td align="left">{{ $movimiento->tipoViaje->descripcion }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400"># Factura</td>
+                                <td align="left">{{ $movimiento->numero_factura_1 }}-{{ $movimiento->numero_factura_2 }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Precio real</td>
+                                <td align="left">{{ $movimiento->precio_real }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">IVA</td>
+                                <td align="left">{{ $movimiento->iva }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Total</td>
+                                <td align="left">{{ $movimiento->total }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Precio del chofer</td>
+                                <td align="left">{{ $movimiento->precio_chofer }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Porcentaje de pago</td>
+                                <td align="left">{{ $movimiento->porcentaje_pago }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Comisión del chofer</td>
+                                <td align="left">{{ $movimiento->comision_chofer }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Saldo de la comisión del
+                                    chofer</td>
+                                <td align="left">{{ $movimiento->saldo_comision_chofer }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            <td width="50%" style="vertical-align: top;">
+                <div class="relative overflow-x-auto shadow-md">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                        <thead class="text-xs text-white uppercase bg-blue-400">
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <p style="margin:0.5rem;">CHOFER</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400" width="40%">Nombre
+                                </td>
+                                <td align="left" width="60%">{{ $movimiento->chofer->nombre }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Nombre</td>
+                                <td align="left">{{ $movimiento->chofer->nombre }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">DNI</td>
+                                <td align="left">{{ $movimiento->chofer->dni }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">CUIL</td>
+                                <td align="left">{{ $movimiento->chofer->cuil }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Saldo</td>
+                                <td align="left">{{ $movimiento->chofer->saldo }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="relative overflow-x-auto shadow-md mt-4">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                        <thead class="text-xs text-white uppercase bg-blue-400">
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <p style="margin:0.5rem;">CLIENTE</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400" width="40%">Razón
+                                    Social</td>
+                                <td align="left" width="60%">{{ $movimiento->cliente->razon_social }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">CUIT</td>
+                                <td align="left">{{ $movimiento->cliente->cuit }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Teléfono</td>
+                                <td align="left">{{ $movimiento->cliente->telefono }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Celular</td>
+                                <td align="left">{{ $movimiento->cliente->celular }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Saldo</td>
+                                <td align="left">{{ $movimiento->cliente->saldo }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div class="relative overflow-x-auto shadow-md mt-4">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                        <thead class="text-xs text-white uppercase bg-blue-400">
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <p style="margin:0.5rem;">FLOTA</p>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400" width="40%">Nombre
+                                </td>
+                                <td align="left">{{ $movimiento->flota->nombre }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Placa</td>
+                                <td align="left">{{ $movimiento->flota->placa }}</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Marca</td>
+                                <td align="left">{{ $movimiento->flota->marca }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>
