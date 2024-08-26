@@ -80,4 +80,9 @@ class User extends Authenticatable
         
         return $query;
     }
+
+    public function getRoleDisplayNames()
+    {
+        return $this->roles->pluck('description')->implode(', ');
+    }
 }

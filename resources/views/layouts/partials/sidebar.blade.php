@@ -1,18 +1,18 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar elevation-4 sidebar-light-primary">
     <a href="../../index3.html" class="brand-link">
-        <img src="{{ asset('admin/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+        <img src="{{ asset('img/icono.jpg') }}" alt="Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
     </a>
 
-    <div class="sidebar">
+    <div class="sidebar os-theme-dark">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
 
@@ -29,8 +29,8 @@
         </div>
 
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-flat nav-child-indent nav-collapse-hide-child  sidebar-mini-xs"
+                data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{ route('home') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
@@ -118,8 +118,7 @@
                     </ul>
                 </li>
                 <li class="nav-item {{ menuOpen(['admin.users.*', 'admin.proveedores.*']) }}">
-                    <a href="#"
-                        class="nav-link {{ setActiveRoute(['admin.users.*', 'admin.proveedores.*']) }}">
+                    <a href="#" class="nav-link {{ setActiveRoute(['admin.users.*', 'admin.proveedores.*']) }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Administracion
@@ -180,8 +179,8 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.flotas.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.flotas.*') }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Flota</p>
+                                <i class="fa fa-bus nav-icon"></i>
+                                <p>Flotas</p>
                             </a>
                         </li>
                         <li
