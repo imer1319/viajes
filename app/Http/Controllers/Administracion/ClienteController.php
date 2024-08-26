@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Exports\ClienteExport;
 use App\Models\Cliente;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cliente\StoreRequest;
 use App\Http\Requests\Cliente\UpdateRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClienteController extends Controller
 {
@@ -43,7 +45,7 @@ class ClienteController extends Controller
         ]);
     }
 
-    public function update(UpdateRequest $request,Cliente $cliente)
+    public function update(UpdateRequest $request, Cliente $cliente)
     {
         $res = $cliente->update($request->validated());
 
@@ -57,5 +59,10 @@ class ClienteController extends Controller
     {
         $cliente->delete();
         return redirect()->route('admin.clientes.index')->with('flash', 'Cliente eliminado corretamente');
+    }
+
+    public function downloadExcel()
+    {
+        return Excel::download(new ClienteExport, 'clientes.xlsx');
     }
 }

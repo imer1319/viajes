@@ -23,6 +23,10 @@ class Cliente extends Model
     {
         return $this->belongsTo(CondicionIva::class);
     }
+    public function tipoDocumento(): BelongsTo
+    {
+        return $this->belongsTo(TipoDocumento::class);
+    }
 
     public function provincia(): BelongsTo
     {
