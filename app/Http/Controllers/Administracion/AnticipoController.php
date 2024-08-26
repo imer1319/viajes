@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Exports\AnticiposExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Anticipo\StoreRequest;
 use App\Http\Requests\Anticipo\UpdateRequest;
 use App\Models\AnticipoChofer;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AnticipoController extends Controller
 {
@@ -63,5 +65,10 @@ class AnticipoController extends Controller
     {
         $anticipo->delete();
         return redirect()->route('admin.anticipos.index')->with('flash', 'Anticipo eliminado corretamente');
+    }
+    
+    public function downloadExcel()
+    {
+        return Excel::download(new AnticiposExport, 'anticipos.xlsx');
     }
 }

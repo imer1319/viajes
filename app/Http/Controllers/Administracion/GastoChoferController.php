@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Exports\GastoChoferExport;
 use App\Http\Controllers\Controller;
 use App\Models\Chofer;
 use App\Models\GastoChofer;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GastoChoferController extends Controller
 {
@@ -39,5 +41,10 @@ class GastoChoferController extends Controller
             'chofer' => $chofer,
             'gasto' => $gasto,
         ]);
+    }
+    
+    public function downloadExcel(Chofer $chofer)
+    {
+        return Excel::download(new GastoChoferExport($chofer), 'gasto_chofer.xlsx');
     }
 }

@@ -66,5 +66,8 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::get('/movimientos/excel/export', [MovimientoController::class, 'downloadExcel'])->name('movimiento.download.excel');
     Route::get('/liquidaciones/excel/export', [LiquidacionController::class, 'downloadExcel'])->name('liquidacion.download.excel');
     Route::get('/gastos/excel/export', [GastoController::class, 'downloadExcel'])->name('gastos.download.excel');
-
+    Route::get('/gastos/{chofer}/excel/export', [GastoChoferController::class, 'downloadExcel'])->name('gastos.chofer.download.excel');
+    Route::get('/anticipos/excel/export', [AnticipoController::class, 'downloadExcel'])->name('anticipos.download.excel');
+    Route::get('/anticipos/{chofer}/excel/export', [AnticipoChoferController::class, 'downloadExcel'])->name('anticipos.chofer.download.excel');
+    Route::get('/choferes/excel/export', [ChoferController::class, 'downloadExcel'])->name('choferes.download.excel');
 });

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Exports\AnticipoChoferExport;
 use App\Http\Controllers\Controller;
 use App\Models\AnticipoChofer;
 use App\Models\Chofer;
-use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AnticipoChoferController extends Controller
 {
@@ -34,5 +35,10 @@ class AnticipoChoferController extends Controller
             'anticipo' => $anticipo,
             'anticipos' => $chofer->anticipos()->with('chofer')->paginate(8),
         ]);
+    }
+    
+    public function downloadExcel(Chofer $chofer)
+    {
+        return Excel::download(new AnticipoChoferExport($chofer), 'anticipo_chofer.xlsx');
     }
 }

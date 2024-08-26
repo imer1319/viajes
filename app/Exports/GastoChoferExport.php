@@ -2,7 +2,8 @@
 
 namespace App\Exports;
 
-use App\Models\AnticipoChofer;
+use App\Models\Chofer;
+use App\Models\GastoChofer;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -16,8 +17,7 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder;
 use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 
-class AnticiposExport
-
+class GastoChoferExport
 extends DefaultValueBinder
 implements
     WithColumnFormatting,
@@ -30,6 +30,13 @@ implements
     WithEvents,
     WithCustomValueBinder
 {
+    protected $chofer;
+
+    public function __construct(Chofer $chofer)
+    {
+        $this->chofer = $chofer;
+    }
+
     public function styles(Worksheet $sheet)
     {
         return [
@@ -37,21 +44,22 @@ implements
             3    => ['font' => ['bold' => true]],
         ];
     }
-    
     public function collection()
     {
-        return AnticipoChofer::with('chofer')->get();
+        return GastoChofer::where('chofer_id', $this->chofer->id)->with('proveedor', 'flota', 'chofer')->get();
     }
-
-    public function map($anticipo): array
+    
+    public function map($gasto): array
     {
         return [
-            $anticipo->id,
-            $anticipo->numero_interno,
-            $anticipo->fecha,
-            $anticipo->chofer->nombre,
-            $anticipo->importe,
-            $anticipo->saldo,
+            $gasto->id,
+            $gasto->numero_interno,
+            $gasto->fecha,
+            $gasto->proveedor->razon_social,
+            $gasto->importe,
+            $gasto->saldo,
+            $gasto->flota->nombre,
+            $gasto->detalle,
         ];
     }
 
@@ -62,20 +70,21 @@ implements
             'G' => '#,##0.00',
         ];
     }
-
     public function headings(): array
     {
         return [
             [
-                'Listado de anticipos del chofer'
+                "Listado de gastos del chofer: " . $this->chofer->nombre
             ],
             [
                 '#',
                 '# interno',
                 'Fecha',
-                'Chofer',
+                'Proveedor',
                 'Importe',
                 'Saldo',
+                'Flota',
+                'Detalle',
             ]
         ];
     }
@@ -89,7 +98,7 @@ implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getDelegate()->mergeCells('B2:G2');
+                $event->sheet->getDelegate()->mergeCells('B2:I2');
                 $event->sheet->getDelegate()->getStyle('B2')->applyFromArray([
                     'font' => [
                         'bold' => true,

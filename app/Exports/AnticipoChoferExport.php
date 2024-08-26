@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\AnticipoChofer;
+use App\Models\Chofer;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -16,8 +17,7 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder;
 use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 
-class AnticiposExport
-
+class AnticipoChoferExport
 extends DefaultValueBinder
 implements
     WithColumnFormatting,
@@ -30,6 +30,13 @@ implements
     WithEvents,
     WithCustomValueBinder
 {
+    protected $chofer;
+
+    public function __construct(Chofer $chofer)
+    {
+        $this->chofer = $chofer;
+    }
+
     public function styles(Worksheet $sheet)
     {
         return [
@@ -37,19 +44,16 @@ implements
             3    => ['font' => ['bold' => true]],
         ];
     }
-    
     public function collection()
     {
-        return AnticipoChofer::with('chofer')->get();
+        return AnticipoChofer::where('chofer_id', $this->chofer->id)->with('chofer')->get();
     }
-
     public function map($anticipo): array
     {
         return [
             $anticipo->id,
             $anticipo->numero_interno,
             $anticipo->fecha,
-            $anticipo->chofer->nombre,
             $anticipo->importe,
             $anticipo->saldo,
         ];
@@ -58,8 +62,8 @@ implements
     public function columnFormats(): array
     {
         return [
+            'E' => '#,##0.00',
             'F' => '#,##0.00',
-            'G' => '#,##0.00',
         ];
     }
 
@@ -67,13 +71,12 @@ implements
     {
         return [
             [
-                'Listado de anticipos del chofer'
+                'Listado de anticipos del chofer: '. $this->chofer->nombre
             ],
             [
                 '#',
                 '# interno',
                 'Fecha',
-                'Chofer',
                 'Importe',
                 'Saldo',
             ]
@@ -89,7 +92,7 @@ implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getDelegate()->mergeCells('B2:G2');
+                $event->sheet->getDelegate()->mergeCells('B2:F2');
                 $event->sheet->getDelegate()->getStyle('B2')->applyFromArray([
                     'font' => [
                         'bold' => true,

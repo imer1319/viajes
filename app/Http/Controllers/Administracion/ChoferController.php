@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Exports\ChoferExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Chofer\StoreRequest;
 use App\Http\Requests\Chofer\UpdateRequest;
 use App\Models\Chofer;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ChoferController extends Controller
 {
@@ -51,5 +53,10 @@ class ChoferController extends Controller
     {
         $chofere->delete();
         return redirect()->route('admin.choferes.index')->with('flash', 'Chofer eliminado corretamente');
+    }
+    
+    public function downloadExcel(Chofer $chofer)
+    {
+        return Excel::download(new ChoferExport($chofer), 'choferes.xlsx');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\AnticipoChofer;
+use App\Models\Chofer;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -16,8 +16,8 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder;
 use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 
-class AnticiposExport
 
+class ChoferExport
 extends DefaultValueBinder
 implements
     WithColumnFormatting,
@@ -37,44 +37,48 @@ implements
             3    => ['font' => ['bold' => true]],
         ];
     }
-    
     public function collection()
     {
-        return AnticipoChofer::with('chofer')->get();
+        return Chofer::all();
     }
 
-    public function map($anticipo): array
+    public function map($chofer): array
     {
         return [
-            $anticipo->id,
-            $anticipo->numero_interno,
-            $anticipo->fecha,
-            $anticipo->chofer->nombre,
-            $anticipo->importe,
-            $anticipo->saldo,
+            $chofer->id,
+            $chofer->nombre,
+            $chofer->fecha_nacimiento,
+            $chofer->cuil,
+            $chofer->dni,
+            $chofer->domicilio,
+            $chofer->email,
+            $chofer->telefono,
+            $chofer->saldo,
         ];
     }
 
     public function columnFormats(): array
     {
         return [
-            'F' => '#,##0.00',
-            'G' => '#,##0.00',
+            'J' => '#,##0.00',
         ];
     }
-
     public function headings(): array
     {
         return [
             [
-                'Listado de anticipos del chofer'
+                "Listado de choferes"
             ],
             [
                 '#',
-                '# interno',
-                'Fecha',
-                'Chofer',
-                'Importe',
+
+                'Nombre',
+                'Fecha de nacimiento',
+                'CUIL',
+                'DNI',
+                'Domicilio',
+                'Email',
+                'Telefono',
                 'Saldo',
             ]
         ];
@@ -89,7 +93,7 @@ implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getDelegate()->mergeCells('B2:G2');
+                $event->sheet->getDelegate()->mergeCells('B2:J2');
                 $event->sheet->getDelegate()->getStyle('B2')->applyFromArray([
                     'font' => [
                         'bold' => true,

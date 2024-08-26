@@ -18,8 +18,8 @@ class CreateAnticipoChofersTable extends Migration
             $table->integer('numero_interno');
             $table->date('fecha');
             $table->foreignId('chofer_id')->constrained('chofers');
-            $table->bigInteger('importe');
-            $table->bigInteger('saldo');
+            $table->decimal('importe', 15, 2);
+            $table->decimal('saldo', 15, 2);
             $table->timestamps();
         });
     }
