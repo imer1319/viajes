@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Exports\LiquidacionesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Liquidacion\StoreRequest;
 use App\Http\Requests\Liquidacion\UpdateRequest;
 use App\Models\Liquidacion;
 use App\Traits\NumeroALetra;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LiquidacionController extends Controller
 {
@@ -81,5 +83,10 @@ class LiquidacionController extends Controller
         $numero_letra = $this->convertirNumeroALetras($liquidacion->total_liquidacion);
         $pdf = Pdf::loadView('reportes.liquidacion', compact('liquidacion', 'numero_letra'));
         return $pdf->stream();
+    }
+
+    public function downloadExcel()
+    {
+        return Excel::download(new LiquidacionesExport, 'liquidaciones.xlsx');
     }
 }
