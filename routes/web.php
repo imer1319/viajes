@@ -65,5 +65,6 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     // EXPORT EXCEL
     Route::get('/movimientos/excel/export', [MovimientoController::class, 'downloadExcel'])->name('movimiento.download.excel');
     Route::get('/liquidaciones/excel/export', [LiquidacionController::class, 'downloadExcel'])->name('liquidacion.download.excel');
+    Route::get('/gastos/excel/export', [GastoController::class, 'downloadExcel'])->name('gastos.download.excel');
 
 });

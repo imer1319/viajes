@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Exports\GastosExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gasto\StoreRequest;
 use App\Http\Requests\Gasto\UpdateRequest;
 use App\Models\GastoChofer;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GastoController extends Controller
 {
@@ -63,5 +65,10 @@ class GastoController extends Controller
     {
         $gasto->delete();
         return redirect()->route('admin.gastos.index')->with('flash', 'Gasto eliminado corretamente');
+    }
+    
+    public function downloadExcel()
+    {
+        return Excel::download(new GastosExport, 'gastos.xlsx');
     }
 }

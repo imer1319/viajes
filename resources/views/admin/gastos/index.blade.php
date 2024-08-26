@@ -25,9 +25,14 @@
                 @else
                     <h5>Listado de gastos</h5>
                 @endif
-                <a href="{{ route('admin.gastos.create') }}" class="btn btn-primary rounded-pill float-end">
-                    <i class="fa fa-plus"></i>
-                </a>
+                <div>
+                    <a href="{{ route('admin.gastos.download.excel') }}" class="btn btn-primary rounded-pill float-end">
+                        <i class="fas fa-file-excel"></i>
+                    </a>
+                    <a href="{{ route('admin.gastos.create') }}" class="btn btn-primary rounded-pill float-end">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 @include('admin.gastos.table')
