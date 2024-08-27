@@ -67,7 +67,7 @@ class LiquidacionController extends Controller
             $liquidacione->delete();
             $chofer = Chofer::find($liquidacione->chofer_id);
             $chofer->update([
-                'saldo' => $chofer->saldo - $liquidacione->total_liquidacion
+                'saldo' => $chofer->saldo + $liquidacione->total_liquidacion
             ]);
             DB::commit();
             return redirect()->route('admin.liquidaciones.index')->with('flash', 'Liquidacion eliminada corretamente');
