@@ -9,6 +9,7 @@ use App\Http\Requests\Liquidacion\HeadRequest;
 use App\Http\Requests\Liquidacion\StoreRequest;
 use App\Http\Requests\Liquidacion\UpdateRequest;
 use App\Models\AnticipoChofer;
+use App\Models\Chofer;
 use App\Models\GastoChofer;
 use App\Models\Liquidacion;
 use App\Models\Movimiento;
@@ -33,6 +34,10 @@ class LiquidacionController extends Controller
             $gastos = GastoChofer::whereIn('id', collect($request->gastos)->pluck('id'))->get();
 
             event(new LiquidacionCreada($request->chofer_id, $liquidacion->id, $movimientos, $anticipos, $gastos));
+            $chofer = Chofer::find($request->chofer_id);
+            $chofer->update([
+                'saldo' => $chofer->saldo - $request->total_liquidacion
+            ]);
             DB::commit();
             return response()->json([
                 'message' => 'Liquidacion creado exitosamente.',
@@ -60,7 +65,10 @@ class LiquidacionController extends Controller
             $gastos = GastoChofer::whereIn('id', collect($request->gastos)->pluck('id'))->get();
 
             event(new LiquidacionCreada($request->chofer_id, $liquidacion->id, $movimientos, $anticipos, $gastos));
-
+            $chofer = Chofer::find($request->chofer_id);
+            $chofer->update([
+                'saldo' => $chofer->saldo - $request->total_liquidacion
+            ]);
             DB::commit();
             return response()->json([
                 'message' => 'Liquidación actualizada exitosamente.',

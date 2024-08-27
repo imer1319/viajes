@@ -7,6 +7,7 @@ use App\Exports\LiquidacionesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Liquidacion\StoreRequest;
 use App\Http\Requests\Liquidacion\UpdateRequest;
+use App\Models\Chofer;
 use App\Models\Liquidacion;
 use App\Traits\NumeroALetra;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -64,6 +65,10 @@ class LiquidacionController extends Controller
             DB::beginTransaction();
             event(new LiquidacionEliminada($liquidacione->chofer_id, $liquidacione->id));
             $liquidacione->delete();
+            $chofer = Chofer::find($liquidacione->chofer_id);
+            $chofer->update([
+                'saldo' => $chofer->saldo - $liquidacione->total_liquidacion
+            ]);
             DB::commit();
             return redirect()->route('admin.liquidaciones.index')->with('flash', 'Liquidacion eliminada corretamente');
         } catch (\Exception $e) {
