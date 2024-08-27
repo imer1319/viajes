@@ -18,7 +18,7 @@
                 <td>{{ $chofer->dni }}</td>
                 <td>{{ $chofer->cuil }}</td>
                 <td>{{ $chofer->telefono }}</td>
-                <td>{{ $chofer->saldo }}</td>
+                <td>{{ number_format($chofer->saldo, 2, ',', '.') }}</td>
                 <td>
                     <span class="tts:left tts-slideIn tts-custom" aria-label="Agregar anticipo">
                         <a href="{{ route('admin.anticipos.chofer.index', $chofer) }}"
@@ -50,9 +50,9 @@
                 </td>
             </tr>
         @empty
-        <tr>
-            <td>No hay datos</td>
-        </tr>
+            <tr>
+                <td>No hay datos</td>
+            </tr>
         @endforelse
     </tbody>
 </table>

@@ -236,7 +236,7 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-money-bill-wave-alt nav-icon"></i>
-                                        <p>Pagos al cliente</p>
+                                        <p>Cobros cliente</p>
                                     </a>
                                 </li>
                             </ul>
@@ -245,7 +245,7 @@
                             <a href="{{ route('admin.liquidaciones.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.liquidaciones.*') }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Liquidacion</p>
+                                <p>Liquidaciones</p>
                             </a>
                         </li>
                     </ul>
