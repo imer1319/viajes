@@ -3,10 +3,10 @@
         <tr>
             <th>#</th>
             <th>Nombre</th>
-            <th>Fecha nacimiento</th>
             <th>DNI</th>
             <th>CUIL</th>
             <th>Telefono</th>
+            <th>Saldo</th>
             <th></th>
         </tr>
     </thead>
@@ -15,10 +15,10 @@
             <tr>
                 <td>{{ $chofer->id }}</td>
                 <td>{{ $chofer->nombre }}</td>
-                <td>{{ $chofer->fecha_nacimiento }}</td>
                 <td>{{ $chofer->dni }}</td>
                 <td>{{ $chofer->cuil }}</td>
                 <td>{{ $chofer->telefono }}</td>
+                <td>{{ $chofer->saldo }}</td>
                 <td>
                     <span class="tts:left tts-slideIn tts-custom" aria-label="Agregar anticipo">
                         <a href="{{ route('admin.anticipos.chofer.index', $chofer) }}"

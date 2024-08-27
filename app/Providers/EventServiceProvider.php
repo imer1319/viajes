@@ -2,12 +2,20 @@
 
 namespace App\Providers;
 
+use App\Events\AnticipoCreado;
+use App\Events\AnticipoEliminado;
+use App\Events\GastoCreado;
+use App\Events\GastoEliminado;
 use App\Events\LiquidacionCreada;
 use App\Events\LiquidacionEliminada;
 use App\Events\MovimientoActualizado;
 use App\Events\MovimientoCreado;
 use App\Events\MovimientoEliminado;
 use App\Listeners\ActualizarFacturaMovimiento;
+use App\Listeners\ActualizarSaldoChoferPorAnticipoCreado;
+use App\Listeners\ActualizarSaldoChoferPorAnticipoEliminado;
+use App\Listeners\ActualizarSaldoChoferPorGastoCreado;
+use App\Listeners\ActualizarSaldoChoferPorGastoEliminado;
 use App\Listeners\ActualizarSaldosMovimientoCreado;
 use App\Listeners\ActualizarSaldosMovimientoEliminado;
 use App\Listeners\CrearFacturaMovimiento;
@@ -47,6 +55,7 @@ class EventServiceProvider extends ServiceProvider
             ActualizarSaldosMovimientoEliminado::class,
             EliminarFacturaMovimiento::class,
         ],
+        //liquidacion
         LiquidacionCreada::class => [
             GuardarMovimientosListener::class,
             GuardarAnticiposListener::class,
@@ -56,6 +65,20 @@ class EventServiceProvider extends ServiceProvider
             EliminarMovimientosListener::class,
             EliminarAnticiposListener::class,
             EliminarGastosListener::class,
+        ],
+        // gasto
+        GastoCreado::class => [
+            ActualizarSaldoChoferPorGastoCreado::class,
+        ],
+        GastoEliminado::class => [
+            ActualizarSaldoChoferPorGastoEliminado::class,
+        ],
+        // anticipo
+        AnticipoCreado::class => [
+            ActualizarSaldoChoferPorAnticipoCreado::class,
+        ],
+        AnticipoEliminado::class => [
+            ActualizarSaldoChoferPorAnticipoEliminado::class,
         ],
     ];
 

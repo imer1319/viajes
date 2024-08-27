@@ -2310,7 +2310,7 @@ __webpack_require__.r(__webpack_exports__);
         domicilio: "",
         email: "",
         telefono: "",
-        saldo: ""
+        saldo: 0
       }
     };
   },
@@ -2345,7 +2345,7 @@ __webpack_require__.r(__webpack_exports__);
         domicilio: "",
         email: "",
         telefono: "",
-        saldo: ""
+        saldo: 0
       };
     },
     getErrorMessage: function getErrorMessage(error) {
@@ -5447,34 +5447,6 @@ var render = function render() {
   }), _vm._v(" "), _vm.errors.telefono ? _c("span", {
     staticClass: "text-danger"
   }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.telefono)))]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_vm._m(7), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.saldo,
-      expression: "form.saldo"
-    }],
-    staticClass: "form-control",
-    "class": {
-      "is-invalid": _vm.errors.saldo
-    },
-    attrs: {
-      type: "number",
-      id: "saldo"
-    },
-    domProps: {
-      value: _vm.form.saldo
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form, "saldo", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors.saldo ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.saldo)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
@@ -5550,16 +5522,6 @@ var staticRenderFns = [function () {
       "for": "telefono"
     }
   }, [_vm._v("Telefono"), _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    attrs: {
-      "for": "saldo"
-    }
-  }, [_vm._v("Saldo"), _c("span", {
     staticClass: "text-danger"
   }, [_vm._v("*")])]);
 }];
@@ -5786,34 +5748,6 @@ var render = function render() {
   }), _vm._v(" "), _vm.errors.telefono ? _c("span", {
     staticClass: "text-danger"
   }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.telefono)))]) : _vm._e()]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-4"
-  }, [_vm._m(7), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.saldo,
-      expression: "form.saldo"
-    }],
-    staticClass: "form-control",
-    "class": {
-      "is-invalid": _vm.errors.saldo
-    },
-    attrs: {
-      type: "number",
-      id: "saldo"
-    },
-    domProps: {
-      value: _vm.form.saldo
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form, "saldo", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors.saldo ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.saldo)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
@@ -5889,16 +5823,6 @@ var staticRenderFns = [function () {
       "for": "telefono"
     }
   }, [_vm._v("Telefono"), _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("*")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("label", {
-    attrs: {
-      "for": "saldo"
-    }
-  }, [_vm._v("Saldo"), _c("span", {
     staticClass: "text-danger"
   }, [_vm._v("*")])]);
 }];

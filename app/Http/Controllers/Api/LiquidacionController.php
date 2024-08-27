@@ -74,23 +74,4 @@ class LiquidacionController extends Controller
             ], 500);
         }
     }
-
-    public function destroy(Liquidacion $liquidacion)
-    {
-        try {
-            DB::beginTransaction();
-            event(new LiquidacionEliminada($liquidacion->chofer_id, $liquidacion->id));
-            $liquidacion->delete();
-            DB::commit();
-            return response()->json([
-                'message' => 'Liquidación eliminada exitosamente.',
-            ], 200);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json([
-                'message' => 'Hubo un error al eliminar la liquidación.',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
-    }
 }

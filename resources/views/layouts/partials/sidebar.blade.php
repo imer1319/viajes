@@ -236,7 +236,7 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-money-bill-wave-alt nav-icon"></i>
-                                        <p>Pagar al cliente</p>
+                                        <p>Pagos al cliente</p>
                                     </a>
                                 </li>
                             </ul>

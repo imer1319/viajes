@@ -103,21 +103,6 @@
                     getErrorMessage(errors.telefono)
                 }}</span>
             </div>
-            <div class="col-md-4">
-                <label for="saldo"
-                    >Saldo<span class="text-danger">*</span></label
-                >
-                <input
-                    type="number"
-                    v-model="form.saldo"
-                    :class="{ 'is-invalid': errors.saldo }"
-                    class="form-control"
-                    id="saldo"
-                />
-                <span v-if="errors.saldo" class="text-danger">{{
-                    getErrorMessage(errors.saldo)
-                }}</span>
-            </div>
             <div class="col-12 d-flex justify-content-end mt-3">
                 <button
                     class="btn btn-primary btn-sm"

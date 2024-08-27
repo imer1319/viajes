@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Events\LiquidacionEliminada;
 use App\Exports\LiquidacionesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Liquidacion\StoreRequest;
@@ -9,6 +10,7 @@ use App\Http\Requests\Liquidacion\UpdateRequest;
 use App\Models\Liquidacion;
 use App\Traits\NumeroALetra;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LiquidacionController extends Controller
@@ -32,10 +34,10 @@ class LiquidacionController extends Controller
         ]);
     }
 
-    public function show(Liquidacion $liquidacion)
+    public function show(Liquidacion $liquidacione)
     {
         return view('admin.liquidaciones.show', [
-            'liquidacion' => $liquidacion
+            'liquidacion' => $liquidacione
         ]);
     }
 
@@ -56,20 +58,21 @@ class LiquidacionController extends Controller
         ]);
     }
 
-    public function update(UpdateRequest $request, Liquidacion $liquidacion)
+    public function destroy(Liquidacion $liquidacione)
     {
-        $res = $liquidacion->update($request->validated());
-
-        if ($res) {
-            return response()->json(['message' => 'Liquidacion actualizado correctamente'], 201);
+        try {
+            DB::beginTransaction();
+            event(new LiquidacionEliminada($liquidacione->chofer_id, $liquidacione->id));
+            $liquidacione->delete();
+            DB::commit();
+            return redirect()->route('admin.liquidaciones.index')->with('flash', 'Liquidacion eliminada corretamente');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Hubo un error al eliminar la liquidación.',
+                'error' => $e->getMessage(),
+            ], 500);
         }
-        return response()->json(['message' => 'Error al actualizar la liquidacion'], 500);
-    }
-
-    public function destroy(Liquidacion $liquidacion)
-    {
-        $liquidacion->delete();
-        return redirect()->route('admin.liquidaciones.index')->with('flash', 'Liquidacion eliminado corretamente');
     }
 
     public function downloadPdf(Liquidacion $liquidacion)

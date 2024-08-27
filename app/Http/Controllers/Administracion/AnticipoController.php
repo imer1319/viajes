@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Events\AnticipoCreado;
+use App\Events\AnticipoEliminado;
 use App\Exports\AnticiposExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Anticipo\StoreRequest;
 use App\Http\Requests\Anticipo\UpdateRequest;
 use App\Models\AnticipoChofer;
+use App\Models\Chofer;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AnticipoController extends Controller
@@ -27,11 +30,15 @@ class AnticipoController extends Controller
         ]);
     }
 
-
     public function store(StoreRequest $request)
     {
-        $res = AnticipoChofer::create($request->validated());
-        if ($res) {
+        $anticipo = AnticipoChofer::create($request->validated());
+        $chofer = Chofer::find($request->chofer_id);
+        $chofer->update([
+            'saldo' => $chofer->saldo - $anticipo->importe
+        ]);
+
+        if ($anticipo) {
             return response()->json(['message' => 'Anticipo creado correctamente'], 201);
         }
         return response()->json(['message' => 'Error al crear el nuevo anticipo'], 500);
@@ -53,20 +60,33 @@ class AnticipoController extends Controller
 
     public function update(UpdateRequest $request, AnticipoChofer $anticipo)
     {
-        $res = $anticipo->update($request->validated());
+        $valorAnterior = $anticipo->importe;
+        $respuesta = $anticipo->update($request->validated());
 
-        if ($res) {
+        if ($respuesta) {
+            $diferencia = $request->importe - $valorAnterior;
+            $chofer = $anticipo->chofer;
+            $chofer->update([
+                'saldo' => $chofer->saldo - $diferencia
+            ]);
             return response()->json(['message' => 'Anticipo actualizado correctamente'], 201);
         }
-        return response()->json(['message' => 'Error al actualizar el nuevo anticipo'], 500);
+        return response()->json(['message' => 'Error al actualizar el anticipo'], 500);
     }
 
     public function destroy(AnticipoChofer $anticipo)
     {
+        $chofer = $anticipo->chofer;
+        
+        $chofer->update([
+            'saldo' => $chofer->saldo + $anticipo->importe
+        ]);
+        
         $anticipo->delete();
+
         return redirect()->route('admin.anticipos.index')->with('flash', 'Anticipo eliminado corretamente');
     }
-    
+
     public function downloadExcel()
     {
         return Excel::download(new AnticiposExport, 'anticipos.xlsx');

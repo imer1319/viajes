@@ -6,6 +6,7 @@ use App\Exports\GastosExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gasto\StoreRequest;
 use App\Http\Requests\Gasto\UpdateRequest;
+use App\Models\Chofer;
 use App\Models\GastoChofer;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -30,8 +31,12 @@ class GastoController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $res = GastoChofer::create($request->validated());
-        if ($res) {
+        $gasto = GastoChofer::create($request->validated());
+        $chofer = Chofer::find($request->chofer_id);
+        $chofer->update([
+            'saldo' => $chofer->saldo + $gasto->importe
+        ]);
+        if ($gasto) {
             return response()->json(['message' => 'Gasto creado correctamente'], 201);
         }
         return response()->json(['message' => 'Error al crear el nuevo gasto'], 500);
@@ -53,9 +58,16 @@ class GastoController extends Controller
 
     public function update(UpdateRequest $request, GastoChofer $gasto)
     {
-        $res = $gasto->update($request->validated());
+        $valorAnterior = $gasto->importe;
 
-        if ($res) {
+        $respuesta = $gasto->update($request->validated());
+
+        if ($respuesta) {
+            $diferencia = $request->importe - $valorAnterior;
+            $chofer = $gasto->chofer;
+            $chofer->update([
+                'saldo' => $chofer->saldo - $diferencia
+            ]);
             return response()->json(['message' => 'Gasto actualizado correctamente'], 201);
         }
         return response()->json(['message' => 'Error al actualizar el nuevo gasto'], 500);
@@ -63,10 +75,16 @@ class GastoController extends Controller
 
     public function destroy(GastoChofer $gasto)
     {
+        $chofer = Chofer::find($gasto->chofer_id);
+        
+        $chofer->update([
+            'saldo' => $chofer->saldo - $gasto->importe
+        ]);
+
         $gasto->delete();
         return redirect()->route('admin.gastos.index')->with('flash', 'Gasto eliminado corretamente');
     }
-    
+
     public function downloadExcel()
     {
         return Excel::download(new GastosExport, 'gastos.xlsx');

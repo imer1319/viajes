@@ -34,7 +34,7 @@
                         <p class="text-muted">Domicilio: {{ $chofer->domicilio }}</p>
                         <p class="text-muted">Email: {{ $chofer->email }}</p>
                         <p class="text-muted">Telefono: {{ $chofer->telefono }}</p>
-                        <p class="text-muted">Saldo: {{ $chofer->saldo }}</p>
+                        <p class="text-muted">Saldo: {{ number_format($chofer->saldo, 2, ',', '.')  }}</p>
                     </div>
                 </div>
             </div>
