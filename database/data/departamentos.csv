@@ -14,4 +14,515 @@ id,provincia_id,nombre
 13,1,"Comuna 13"
 14,1,"Comuna 14"
 15,1,"Comuna 15"
-16,1,"Comuna 16"
+16,2,"Adolfo Alsina"
+17,2,"Adolfo Gonzales Chaves"
+18,2,Alberti
+19,2,"Almirante Brown"
+20,2,Avellaneda
+21,2,Ayacucho
+22,2,Azul
+23,2,"Bahía Blanca"
+24,2,Balcarce
+25,2,Baradero
+26,2,Arrecifes
+27,2,"Benito Juárez"
+28,2,Berazategui
+29,2,Berisso
+30,2,Bolívar
+31,2,Bragado
+32,2,Brandsen
+33,2,Campana
+34,2,Cañuelas
+35,2,"Capitán Sarmiento"
+36,2,"Carlos Casares"
+37,2,"Carlos Tejedor"
+38,2,"Carmen de Areco"
+39,2,Castelli
+40,2,Colón
+41,2,"Coronel de Marina Leonardo Rosales"
+42,2,"Coronel Dorrego"
+43,2,"Coronel Pringles"
+44,2,"Coronel Suárez"
+45,2,Chacabuco
+46,2,Chascomús
+47,2,Chivilcoy
+48,2,Daireaux
+49,2,Dolores
+50,2,Ensenada
+51,2,Escobar
+52,2,"Esteban Echeverría"
+53,2,"Exaltación de la Cruz"
+54,2,Ezeiza
+55,2,"Florencio Varela"
+56,2,"Florentino Ameghino"
+57,2,"General Alvarado"
+58,2,"General Alvear"
+59,2,"General Arenales"
+60,2,"General Belgrano"
+61,2,"General Guido"
+62,2,"General Juan Madariaga"
+63,2,"General La Madrid"
+64,2,"General Las Heras"
+65,2,"General Lavalle"
+66,2,"General Paz"
+67,2,"General Pinto"
+68,2,"General Pueyrredón"
+69,2,"General Rodríguez"
+70,2,"General San Martín"
+71,2,"General Viamonte"
+72,2,"General Villegas"
+73,2,Guaminí
+74,2,"Hipólito Yrigoyen"
+75,2,Hurlingham
+76,2,Ituzaingó
+77,2,"José C. Paz"
+78,2,Junín
+79,2,"La Costa"
+80,2,"La Matanza"
+81,2,Lanús
+82,2,"La Plata"
+83,2,Laprida
+84,2,"Las Flores"
+85,2,"Leandro N. Alem"
+86,2,Lincoln
+87,2,Lobería
+88,2,Lobos
+89,2,"Lomas de Zamora"
+90,2,Luján
+91,2,Magdalena
+92,2,Maipú
+93,2,"Malvinas Argentinas"
+94,2,"Mar Chiquita"
+95,2,"Marcos Paz"
+96,2,Mercedes
+97,2,Merlo
+98,2,Monte
+99,2,"Monte Hermoso"
+100,2,Moreno
+101,2,Morón
+102,2,Navarro
+103,2,Necochea
+104,2,"9 de Julio"
+105,2,Olavarría
+106,2,Patagones
+107,2,Pehuajó
+108,2,Pellegrini
+109,2,Pergamino
+110,2,Pila
+111,2,Pilar
+112,2,Pinamar
+113,2,"Presidente Perón"
+114,2,Puán
+115,2,"Punta Indio"
+116,2,Quilmes
+117,2,Ramallo
+118,2,Rauch
+119,2,Rivadavia
+120,2,Rojas
+121,2,"Roque Pérez"
+122,2,Saavedra
+123,2,Saladillo
+124,2,Salto
+125,2,Salliqueló
+126,2,"San Andrés de Giles"
+127,2,"San Antonio de Areco"
+128,2,"San Cayetano"
+129,2,"San Fernando"
+130,2,"San Isidro"
+131,2,"San Miguel"
+132,2,"San Nicolás"
+133,2,"San Pedro"
+134,2,"San Vicente"
+135,2,Suipacha
+136,2,Tandil
+137,2,Tapalqué
+138,2,Tigre
+139,2,Tordillo
+140,2,Tornquist
+141,2,"Trenque Lauquen"
+142,2,"Tres Arroyos"
+143,2,"Tres de Febrero"
+144,2,"Tres Lomas"
+145,2,"25 de Mayo"
+146,2,"Vicente López"
+147,2,"Villa Gesell"
+148,2,Villarino
+149,2,Zárate
+150,3,Ambato
+151,3,Ancasti
+152,3,Andalgalá
+153,3,"Antofagasta de la Sierra"
+154,3,Belén
+155,3,Capayán
+156,3,Capital
+157,3,"El Alto"
+158,3,"Fray Mamerto Esquiú"
+159,3,"La Paz"
+160,3,Paclín
+161,3,Pomán
+162,3,"Santa María"
+163,3,"Santa Rosa"
+164,3,Tinogasta
+165,3,"Valle Viejo"
+166,4,Calamuchita
+167,4,Capital
+168,4,Colón
+169,4,"Cruz del Eje"
+170,4,"General Roca"
+171,4,"General San Martín"
+172,4,Ischilín
+173,4,"Juárez Celman"
+174,4,"Marcos Juárez"
+175,4,Minas
+176,4,Pocho
+177,4,"Presidente Roque Sáenz Peña"
+178,4,Punilla
+179,4,"Río Cuarto"
+180,4,"Río Primero"
+181,4,"Río Seco"
+182,4,"Río Segundo"
+183,4,"San Alberto"
+184,4,"San Javier"
+185,4,"San Justo"
+186,4,"Santa María"
+187,4,Sobremonte
+188,4,"Tercero Arriba"
+189,4,Totoral
+190,4,Tulumba
+191,4,Unión
+192,5,"Bella Vista"
+193,5,"Berón de Astrada"
+194,5,Capital
+195,5,Concepción
+196,5,"Curuzú Cuatiá"
+197,5,Empedrado
+198,5,Esquina
+199,5,"General Alvear"
+200,5,"General Paz"
+201,5,Goya
+202,5,Itatí
+203,5,Ituzaingó
+204,5,Lavalle
+205,5,Mburucuyá
+206,5,Mercedes
+207,5,"Monte Caseros"
+208,5,"Paso de los Libres"
+209,5,Saladas
+210,5,"San Cosme"
+211,5,"San Luis del Palmar"
+212,5,"San Martín"
+213,5,"San Miguel"
+214,5,"San Roque"
+215,5,"Santo Tomé"
+216,5,Sauce
+217,6,"Almirante Brown"
+218,6,Bermejo
+219,6,"Comandante Fernández"
+220,6,Chacabuco
+221,6,"12 de Octubre"
+222,6,"2 de Abril"
+223,6,"Fray Justo Santa María de Oro"
+224,6,"General Belgrano"
+225,6,"General Donovan"
+226,6,"General Güemes"
+227,6,Independencia
+228,6,Libertad
+229,6,"Libertador General San Martín"
+230,6,Maipú
+231,6,"Mayor Luis J. Fontana"
+232,6,"9 de Julio"
+233,6,O'Higgins
+234,6,"Presidencia de la Plaza"
+235,6,"1º de Mayo"
+236,6,Quitilipi
+237,6,"San Fernando"
+238,6,"San Lorenzo"
+239,6,"Sargento Cabral"
+240,6,Tapenagá
+241,6,"25 de Mayo"
+242,7,Biedma
+243,7,Cushamen
+244,7,Escalante
+245,7,"Florentino Ameghino"
+246,7,Futaleufú
+247,7,Gaiman
+248,7,Gastre
+249,7,Languiñeo
+250,7,Mártires
+251,7,"Paso de Indios"
+252,7,Rawson
+253,7,"Río Senguer"
+254,7,Sarmiento
+255,7,Tehuelches
+256,7,Telsen
+257,8,Colón
+258,8,Concordia
+259,8,Diamante
+260,8,Federación
+261,8,Federal
+262,8,Feliciano
+263,8,Gualeguay
+264,8,Gualeguaychú
+265,8,"Islas del Ibicuy"
+266,8,"La Paz"
+267,8,Nogoyá
+268,8,Paraná
+269,8,"San Salvador"
+270,8,Tala
+271,8,Uruguay
+272,8,Victoria
+273,8,Villaguay
+274,9,Bermejo
+275,9,Formosa
+276,9,Laishi
+277,9,Matacos
+278,9,Patiño
+279,9,Pilagás
+280,9,Pilcomayo
+281,9,Pirané
+282,9,"Ramón Lista"
+283,10,Cochinoca
+284,10,"El Carmen"
+285,10,"Dr. Manuel Belgrano"
+286,10,Humahuaca
+287,10,Ledesma
+288,10,Palpalá
+289,10,Rinconada
+290,10,"San Antonio"
+291,10,"San Pedro"
+292,10,"Santa Bárbara"
+293,10,"Santa Catalina"
+294,10,Susques
+295,10,Tilcara
+296,10,Tumbaya
+297,10,"Valle Grande"
+298,10,Yavi
+299,11,Atreucó
+300,11,"Caleu Caleu"
+301,11,Capital
+302,11,Catriló
+303,11,Conhelo
+304,11,Curacó
+305,11,Chalileo
+306,11,Chapaleufú
+307,11,"Chical Co"
+308,11,Guatraché
+309,11,Hucal
+310,11,"Lihuel Calel"
+311,11,"Limay Mahuida"
+312,11,Loventué
+313,11,Maracó
+314,11,Puelén
+315,11,"Quemú Quemú"
+316,11,Rancul
+317,11,Realicó
+318,11,Toay
+319,11,Trenel
+320,11,Utracán
+321,12,Arauco
+322,12,Capital
+323,12,"Castro Barros"
+324,12,"Coronel Felipe Varela"
+325,12,Chamical
+326,12,Chilecito
+327,12,Famatina
+328,12,"General Ángel V. Peñaloza"
+329,12,"General Belgrano"
+330,12,"General Juan Facundo Quiroga"
+331,12,"General Lamadrid"
+332,12,"General Ocampo"
+333,12,"General San Martín"
+334,12,Vinchina
+335,12,Independencia
+336,12,"Rosario Vera Peñaloza"
+337,12,"San Blas de los Sauces"
+338,12,Sanagasta
+339,13,Capital
+340,13,"General Alvear"
+341,13,"Godoy Cruz"
+342,13,Guaymallén
+343,13,Junín
+344,13,"La Paz"
+345,13,"Las Heras"
+346,13,Lavalle
+347,13,"Luján de Cuyo"
+348,13,Maipú
+349,13,Malargüe
+350,13,Rivadavia
+351,13,"San Carlos"
+352,13,"San Martín"
+353,13,"San Rafael"
+354,13,"Santa Rosa"
+355,13,Tunuyán
+356,13,Tupungato
+357,14,Apóstoles
+358,14,Cainguás
+359,14,Candelaria
+360,14,Capital
+361,14,Concepción
+362,14,Eldorado
+363,14,"General Manuel Belgrano"
+364,14,Guaraní
+365,14,Iguazú
+366,14,"Leandro N. Alem"
+367,14,"Libertador General San Martín"
+368,14,Montecarlo
+369,14,Oberá
+370,14,"San Ignacio"
+371,14,"San Javier"
+372,14,"San Pedro"
+373,14,"25 de Mayo"
+374,15,Aluminé
+375,15,Añelo
+376,15,"Catán Lil"
+377,15,"Collón Curá"
+378,15,Confluencia
+379,15,"Chos Malal"
+380,15,Huiliches
+381,15,Lácar
+382,15,Loncopué
+383,15,"Los Lagos"
+384,15,Minas
+385,15,Ñorquín
+386,15,Pehuenches
+387,15,"Picún Leufú"
+388,15,Picunches
+389,15,Zapala
+390,16,"Adolfo Alsina"
+391,16,Avellaneda
+392,16,Bariloche
+393,16,Conesa
+394,16,"El Cuy"
+395,16,"General Roca"
+396,16,"9 de Julio"
+397,16,Ñorquincó
+398,16,"Pichi Mahuida"
+399,16,Pilcaniyeu
+400,16,"San Antonio"
+401,16,Valcheta
+402,16,"25 de Mayo"
+403,17,Anta
+404,17,Cachi
+405,17,Cafayate
+406,17,Capital
+407,17,Cerrillos
+408,17,Chicoana
+409,17,"General Güemes"
+410,17,"General José de San Martín"
+411,17,Guachipas
+412,17,Iruya
+413,17,"La Caldera"
+414,17,"La Candelaria"
+415,17,"La Poma"
+416,17,"La Viña"
+417,17,"Los Andes"
+418,17,Metán
+419,17,Molinos
+420,17,Orán
+421,17,Rivadavia
+422,17,"Rosario de la Frontera"
+423,17,"Rosario de Lerma"
+424,17,"San Carlos"
+425,17,"Santa Victoria"
+426,18,Albardón
+427,18,Angaco
+428,18,Calingasta
+429,18,Capital
+430,18,Caucete
+431,18,Chimbas
+432,18,Iglesia
+433,18,Jáchal
+434,18,"9 de Julio"
+435,18,Pocito
+436,18,Rawson
+437,18,Rivadavia
+438,18,"San Martín"
+439,18,"Santa Lucía"
+440,18,Sarmiento
+441,18,Ullum
+442,18,"Valle Fértil"
+443,18,"25 de Mayo"
+444,18,Zonda
+445,19,Ayacucho
+446,19,Belgrano
+447,19,"Coronel Pringles"
+448,19,Chacabuco
+449,19,"General Pedernera"
+450,19,"Gobernador Dupuy"
+451,19,Junín
+452,19,"La Capital"
+453,19,"Libertador General San Martín"
+454,20,"Corpen Aike"
+455,20,Deseado
+456,20,"Güer Aike"
+457,20,"Lago Argentino"
+458,20,"Lago Buenos Aires"
+459,20,Magallanes
+460,20,"Río Chico"
+461,21,Belgrano
+462,21,Caseros
+463,21,Castellanos
+464,21,Constitución
+465,21,Garay
+466,21,"General López"
+467,21,"General Obligado"
+468,21,Iriondo
+469,21,"La Capital"
+470,21,"Las Colonias"
+471,21,"9 de Julio"
+472,21,Rosario
+473,21,"San Cristóbal"
+474,21,"San Javier"
+475,21,"San Jerónimo"
+476,21,"San Justo"
+477,21,"San Lorenzo"
+478,21,"San Martín"
+479,21,Vera
+480,22,Aguirre
+481,22,Alberdi
+482,22,Atamisqui
+483,22,Avellaneda
+484,22,Banda
+485,22,Belgrano
+486,22,Capital
+487,22,Copo
+488,22,Choya
+489,22,Figueroa
+490,22,"General Taboada"
+491,22,Guasayán
+492,22,Jiménez
+493,22,"Juan F. Ibarra"
+494,22,Loreto
+495,22,Mitre
+496,22,Moreno
+497,22,"Ojo de Agua"
+498,22,Pellegrini
+499,22,Quebrachos
+500,22,"Río Hondo"
+501,22,Rivadavia
+502,22,Robles
+503,22,Salavina
+504,22,"San Martín"
+505,22,Sarmiento
+506,22,Silípica
+507,23,Burruyacú
+508,23,"Cruz Alta"
+509,23,Chicligasta
+510,23,Famaillá
+511,23,Graneros
+512,23,"Juan B. Alberdi"
+513,23,"La Cocha"
+514,23,Leales
+515,23,Lules
+516,23,Monteros
+517,23,"Río Chico"
+518,23,Capital
+519,23,Simoca
+520,23,"Tafí del Valle"
+521,23,"Tafí Viejo"
+522,23,Trancas
+523,23,"Yerba Buena"
+524,24,"Río Grande"
+525,24,Ushuaia
+526,24,"Islas del Atlántico Sur"
+527,24,"Antártida Argentina"

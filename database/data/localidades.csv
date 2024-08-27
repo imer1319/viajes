@@ -1,5 +1,3478 @@
 departamento_id,nombre
+1,"Ciudad de Buenos Aires"
+2,"Ciudad de Buenos Aires"
+3,"Ciudad de Buenos Aires"
+4,"Ciudad de Buenos Aires"
+5,"Ciudad de Buenos Aires"
+6,"Ciudad de Buenos Aires"
+7,"Ciudad de Buenos Aires"
+8,"Ciudad de Buenos Aires"
+9,"Ciudad de Buenos Aires"
+10,"Ciudad de Buenos Aires"
+11,"Ciudad de Buenos Aires"
+12,"Ciudad de Buenos Aires"
+13,"Ciudad de Buenos Aires"
+14,"Ciudad de Buenos Aires"
+15,"Ciudad de Buenos Aires"
 16,Carhué
 16,"Colonia San Miguel Arcángel"
 16,"Delfín Huergo"
 16,Espartillar
+16,"Esteban Agustín Gascón"
+16,"La Pala"
+16,Maza
+16,Rivera
+16,Thames
+16,"Villa Margarita"
+16,Yutuyaco
+17,"Adolfo Gonzales Chaves (Est. Chaves)"
+17,"De La Garma"
+17,"Juan E. Barra"
+17,Vásquez
+18,"Alberti (Est. Andrés Vaccarezza)"
+18,"Coronel Seguí"
+18,Mechita
+18,Pla
+18,"Villa Grisolía (Est. Achupallas)"
+18,"Villa María"
+18,"Villa Ortiz (Est. Coronel Mom)"
+19,"Almirante Brown"
+20,Avellaneda
+21,Ayacucho
+21,"La Constancia"
+21,Solanet
+21,Udaquiola
+22,"16 de Julio"
+22,Ariel
+22,Azul
+22,Cacharí
+22,Chillar
+23,"Bahía Blanca"
+23,Cabildo
+23,"General Daniel Cerri (Est. General Cerri)"
+24,Balcarce
+24,"Los Pinos"
+24,Napaleofú
+24,"Ramos Otero"
+24,"San Agustín"
+24,"Villa Laguna La Brava"
+25,Baradero
+25,"Irineo Portela"
+25,"Santa Coloma"
+25,"Villa Alsina (Est. Alsina)"
+26,Arrecifes
+26,Todd
+26,Viña
+27,Barker
+27,"Benito Juárez (Est. Juárez)"
+27,López
+27,"Tedín Uriburu"
+27,"Villa Cacique (Est. Alfredo Fortabat)"
+28,Berazategui
+29,Berisso
+30,Hale
+30,"Juan F. Ibarra"
+30,"Mariano Unzué"
+30,Paula
+30,Pirovano
+30,"San Carlos de Bolívar (Est. Bolívar)"
+30,Urdampilleta
+30,"Villa Lynch Pueyrredón"
+31,Bragado
+31,"Comodoro Py"
+31,"General O'Brien"
+31,Irala
+31,"La Limpia"
+31,"Máximo Fernández (Est. Juan F. Salaberry)"
+31,"Mechita (Est. Mecha)"
+31,Olascoaga
+31,Warnes
+32,Altamirano
+32,"Barrio Las Golondrinas"
+32,"Barrio Los Bosquecitos"
+32,"Barrio Parque Las Acacias"
+32,"Coronel Brandsen"
+32,Gómez
+32,Jeppener
+32,Oliden
+32,Samborombón
+33,"Alto Los Cardales"
+33,"Barrio Los Pioneros"
+33,Campana
+33,"Lomas del Río Luján (Est. Río Luján)"
+34,"Alejandro Petión"
+34,"Barrio El Taladro"
+34,Cañuelas
+34,"Gobernador Udaondo"
+34,"Máximo Paz"
+34,"Santa Rosa"
+34,Uribelarrea
+34,"Vicente Casares"
+35,"Capitán Sarmiento"
+35,"La Luisa"
+36,Bellocq
+36,Cadret
+36,"Carlos Casares"
+36,"Colonia Mauricio"
+36,Hortensia
+36,"La Sofía"
+36,"Mauricio Hirsch"
+36,Moctezuma
+36,Ordoqui
+36,Smith
+37,"Carlos Tejedor"
+37,"Colonia Seré"
+37,Curarú
+37,Timote
+37,"Tres Algarrobos (Est. Cuenca)"
+38,"Carmen de Areco"
+38,"Pueblo Gouin"
+38,"Tres Sargentos"
+39,Castelli
+39,"Centro Guerrero"
+40,Colón
+40,"El Arbolito"
+40,Pearson
+40,Sarasa
+41,"Bajo Hondo"
+41,"Balneario Pehuen Co"
+41,"Punta Alta (Est. Almirante Solier)"
+41,"Villa del Mar"
+41,"Villa General Arias (Est. Kilómetro 638)"
+42,Aparicio
+42,"Balneario Marisol"
+42,"Coronel Dorrego"
+42,"El Perdido (Est. José A. Guisasola)"
+42,Faro
+42,Irene
+42,Oriente
+42,"San Román"
+43,"Coronel Pringles (Est. Pringles)"
+43,"El Divisorio"
+43,"El Pensamiento"
+43,"Indio Rico"
+43,Lartigau
+44,Cascadas
+44,"Coronel Suárez"
+44,"Cura Malal"
+44,D'Orbigny
+44,Huanguelén
+44,Pasman
+44,"San José"
+44,"Santa María"
+44,"Santa Trinidad"
+44,"Villa La Arcadia"
+45,Castilla
+45,Chacabuco
+45,"Los Angeles"
+45,O'Higgins
+45,Rawson
+46,Chascomús
+46,"Manuel J. Cobo (Est. Lezama)"
+46,"Villa Parque Girado"
+47,Chivilcoy
+47,"Emilio Ayarza"
+47,Gorostiaga
+47,"La Rica"
+47,Moquehuá
+47,"Ramón Biaus"
+47,"San Sebastián"
+48,Andant
+48,Arboledas
+48,Daireaux
+48,"La Larga"
+48,"La Manuela"
+48,Salazar
+49,Dolores
+49,Sevigne
+50,Ensenada
+51,Escobar
+51,"Puerto Paraná"
+52,"Esteban Echeverría"
+53,"Arroyo de la Cruz"
+53,"Capilla del Señor (Est. Capilla)"
+53,"Diego Gaynor"
+53,"Los Cardales"
+53,"Parada Orlando"
+53,"Parada Robles - Pavón"
+54,Ezeiza
+55,"Florencio Varela"
+55,"La Capilla"
+56,Blaquier
+56,"Florentino Ameghino"
+56,Porvenir
+57,"Comandante Nicanor Otamendi"
+57,"Mar del Sur"
+57,Mechongué
+57,Miramar
+58,"General Alvear"
+59,Arribeños
+59,Ascensión
+59,"Estación Arenales"
+59,Ferré
+59,"General Arenales"
+59,"La Angelita"
+59,"La Trinidad"
+60,"General Belgrano"
+60,Gorchs
+61,"General Guido"
+61,Labardén
+62,"General Juan Madariaga"
+63,"General La Madrid"
+63,"La Colina"
+63,"Las Martinetas"
+63,Líbano
+63,Pontaut
+64,"General Hornos"
+64,"General Las Heras (Est. Las Heras)"
+64,"La Choza"
+64,Lozano
+64,Plomer
+64,Villars
+65,"Chacras de San Clemente"
+65,"General Lavalle"
+65,Pavón
+66,"Barrio Río Salado"
+66,"Loma Verde"
+66,Ranchos
+66,"Villanueva  (Ap. Río Salado)"
+67,"Colonia San Ricardo (Est. Iriarte)"
+67,"General Pinto"
+67,"Germania (Est. Mayor José Orellano)"
+67,"Villa Francia (Est. Coronel Granada)"
+67,"Villa Roth (Est. Ingeniero Balbín)"
+68,"Barrio Colinas Verdes"
+68,"Barrio El Boquerón"
+68,"Barrio El Casal"
+68,"Barrio El Coyunco"
+68,"Barrio La Gloria"
+68,"Barrio Santa Paula"
+68,Batán
+68,Chapadmalal
+68,"El Marquesado"
+68,"Estación Chapadmalal"
+68,"Mar del Plata"
+68,"Sierra de los Padres"
+69,"Barrio Ruta 24 Kilómetro 10"
+69,"Country Club Bosque Real - Barrio Morabo"
+69,"General Rodríguez"
+70,"General San Martín"
+71,Baigorrita
+71,"La Delfina"
+71,"Los Toldos"
+71,"San Emilio"
+71,Zavalía
+72,Banderalo
+72,"Cañada Seca"
+72,"Coronel Charlone"
+72,"Emilio V. Bunge"
+72,"General Villegas (Est. Villegas)"
+72,"Massey (Est. Elordi)"
+72,Pichincha
+72,Piedritas
+72,"Santa Eleodora"
+72,"Santa Regina"
+72,"Villa Saboya"
+72,"Villa Sauze"
+73,"Arroyo Venado"
+73,Casbas
+73,Garré
+73,Guaminí
+73,"Laguna Alsina (Est. Bonifacio)"
+74,Henderson
+74,"Herrera Vegas"
+75,Hurlingham
+76,Ituzaingó
+77,"José C. Paz"
+78,"Agustín Roca"
+78,Agustina
+78,"Balneario Laguna de Gómez"
+78,"Fortín Tiburcio"
+78,Junín
+78,Laplacette
+78,Morse
+78,Saforcada
+79,"Las Toninas"
+79,"Mar de Ajó - San Bernardo"
+79,"San Clemente del Tuyú"
+79,"Santa Teresita - Mar del Tuyú"
+80,"La Matanza"
+81,Lanús
+82,"Country Club El Rodeo"
+82,"Ignacio Correas"
+82,"La Plata"
+82,"Lomas de Copello"
+82,"Ruta Sol"
+83,Laprida
+83,"Pueblo Nuevo"
+83,"Pueblo San Jorge"
+84,"Coronel Boerr"
+84,"El Trigo"
+84,"Las Flores"
+84,Pardo
+85,"Alberdi Viejo"
+85,"El Dorado"
+85,"Fortín Acha"
+85,"Juan Bautista Alberdi (Est. Alberdi)"
+85,"Leandro N. Alem"
+85,Vedia
+86,Arenaza
+86,Bayauca
+86,Bermúdez
+86,"Carlos Salas"
+86,"Coronel Martínez de Hoz (Ap. Kilómetro 322)"
+86,"El Triunfo"
+86,"Las Toscas"
+86,Lincoln
+86,Pasteur
+86,Roberts
+87,"Arenas Verdes"
+87,"Licenciado Matienzo"
+87,Lobería
+87,Pieres
+87,"San Manuel"
+87,Tamangueyú
+88,"Antonio Carboni"
+88,Elvira
+88,"Laguna de Lobos"
+88,Lobos
+88,"Salvador María"
+89,"Lomas de Zamora"
+90,"Barrio Las Casuarinas"
+90,"Carlos Keen"
+90,Cortines
+90,"José María Jauregui (Est. Jáuregui)"
+90,"Lezica y Torrezuri"
+90,Luján
+90,Olivera
+90,"Open Door (Est. Dr. Domingo Cabred)"
+90,Torres
+91,Atalaya
+91,"General Mansilla (Est. Bartolomé Bavio)"
+91,"Los Naranjos"
+91,Magdalena
+91,"Roberto J. Payró"
+91,Vieytes
+92,"Las Armas"
+92,Maipú
+92,"Santo Domingo"
+93,"Malvinas Argentinas"
+94,"Coronel Vidal"
+94,"General Pirán"
+94,"La Armonía"
+94,"Mar Chiquita"
+94,"Mar de Cobo"
+94,"Santa Clara del Mar"
+94,Vivoratá
+95,"Barrio Santa Rosa"
+95,"Marcos Paz"
+96,Gowland
+96,Mercedes
+96,"Tomás Jofré"
+97,Merlo
+98,Abbott
+98,"San Miguel del Monte (Est. Monte)"
+98,"Zenón Videla Dorna"
+99,"Balneario Sauce Grande"
+99,"Monte Hermoso"
+100,Moreno
+101,Morón
+102,"José Juan Almeyra"
+102,"Las Marianas"
+102,Navarro
+102,"Villa Moll (Est. Moll)"
+103,Claraz
+103,"Costa Bonita"
+103,"Juan N. Fernández"
+103,"Necochea - Quequén"
+103,"Nicanor Olivera (Est. La Dulce)"
+103,"Ramón Santamarina"
+104,"12 de Octubre"
+104,"9 de Julio"
+104,"Alfredo Demarchi (Est. Facundo Quiroga)"
+104,"Carlos María Naón"
+104,Dudignac
+104,"La Aurora (Est. La Niña)"
+104,"Manuel B. Gonnet (Est. French)"
+104,"Marcelino Ugarte (Est. Dennehy)"
+104,Morea
+104,Norumbega
+104,Patricios
+104,"Villa General Fournier (Est. 9 de Julio Sud)"
+105,Blancagrande
+105,"Colonia Hinojo"
+105,"Colonia Nievas"
+105,"Colonia San Miguel"
+105,Espigas
+105,Hinojo
+105,Olavarría
+105,Recalde
+105,"Santa Luisa"
+105,"Sierra Chica"
+105,"Sierras Bayas"
+105,"Villa Alfredo Fortabat"
+105,"Villa La Serranía"
+106,"Bahía San Blas"
+106,"Cardenal Cagliero"
+106,"Carmen de Patagones"
+106,"José B. Casas"
+106,"Juan A. Pradere"
+106,Stroeder
+106,Villalonga
+107,"Capitán Castro"
+107,Chiclana
+107,"Francisco Madero"
+107,"Juan José Paso"
+107,Magdala
+107,"Mones Cazón"
+107,"Nueva Plata"
+107,Pehuajó
+107,"San Bernardo (Est. Guanaco)"
+108,Bocayuva
+108,"De Bary"
+108,Pellegrini
+109,Acevedo
+109,Fontezuela
+109,Guerrico
+109,"Juan A. de la Peña"
+109,"Juan Anchorena (Est. Urquiza)"
+109,"La Violeta"
+109,"Manuel Ocampo"
+109,"Mariano Benítez"
+109,"Mariano H. Alfonzo (Est. San Patricio)"
+109,Pergamino
+109,Pinzón
+109,Rancagua
+109,"Villa Angélica (Est. El Socorro)"
+109,"Villa San José"
+110,Casalins
+110,Pila
+111,"Barrio Parque Almirante Irizar (Ap. Kilómetro 61)"
+111,"Club de Campo Larena - Los Quinchos"
+111,"Country Club El Jagüel"
+111,Pilar
+112,Pinamar
+113,"Presidente Perón"
+114,"17 de Agosto"
+114,Azopardo
+114,Bordenave
+114,Darregueira
+114,Estela
+114,"Felipe Solá"
+114,"López Lecube"
+114,Puán
+114,"San Germán"
+114,"Villa Castelar (Est. Erize)"
+114,"Villa Iris"
+115,"Alvarez Jonte"
+115,"Las Tahonas"
+115,Pipinas
+115,"Punta Indio"
+115,Verónica
+116,Quilmes
+117,"El Paraíso"
+117,"Las Bahamas"
+117,"Pérez Millán"
+117,Ramallo
+117,"Villa General Savio (Est. Sánchez)"
+117,"Villa Ramallo"
+118,Rauch
+119,América
+119,"Fortín Olavarría"
+119,"Gonzalez Moreno"
+119,"Mira Pampa"
+119,Roosevelt
+119,"San Mauricio"
+119,Sansinena
+119,Sundblad
+120,"La Beba"
+120,"Las Carabelas"
+120,"Los Indios"
+120,"Rafael Obligado"
+120,"Roberto Cano"
+120,Rojas
+120,"Sol de Mayo"
+120,"Villa Manuel Pomar"
+120,"Villa Parque Cecir"
+121,"Carlos Beguerie"
+121,"Roque Pérez"
+122,"Arroyo Corto"
+122,"Colonia San Martín"
+122,Dufaur
+122,Espartillar
+122,Goyena
+122,Pigüé
+122,Saavedra
+123,"Álvarez de Toledo"
+123,Blaquier
+123,Cazón
+123,"Del Carril"
+123,Polvaredas
+123,Saladillo
+124,"Arroyo Dulce"
+124,Berdier
+124,Gahan
+124,"Inés Indart"
+124,"La Invencible"
+124,Salto
+125,Quenumá
+125,Salliqueló
+126,Azcuénaga
+126,Cucullú
+126,Franklin
+126,"San Andrés de Giles"
+126,Solís
+126,"Villa Espil"
+126,"Villa Ruiz"
+127,Duggan
+127,"San Antonio de Areco"
+127,"Villa Lía"
+128,"Balneario San Cayetano"
+128,Ochandío
+128,"San Cayetano"
+129,"San Fernando"
+130,"San Isidro"
+131,"San Miguel"
+132,Conesa
+132,Erezcano
+132,"General Rojo"
+132,"La Emilia"
+132,"San Nicolás de los Arroyos"
+132,"Villa Esperanza"
+133,"Gobernador Castro"
+133,Obligado
+133,"Pueblo Doyle"
+133,"Río Tala"
+133,"San Pedro"
+133,"Santa Lucía"
+134,Domselaar
+134,"San Vicente"
+135,"General Rivas"
+135,Suipacha
+136,"De la Canal"
+136,"Desvío Aguirre"
+136,Gardey
+136,"María Ignacia (Est. Vela)"
+136,Tandil
+137,Crotto
+137,Tapalqué
+137,Velloso
+138,Tigre
+139,"General Conesa"
+139,"Villa Roch"
+140,Chasicó
+140,Saldungaray
+140,"Sierra de la Ventana"
+140,Tornquist
+140,"Tres Picos"
+140,"Villa Las Encadenadas"
+140,"Villa Serrana La Gruta"
+140,"Villa Ventana"
+141,"30 de Agosto"
+141,Berutti
+141,Girodias
+141,"La Carreta"
+141,"Trenque Lauquen"
+141,Trongé
+142,"Balneario Orense"
+142,Claromecó
+142,Copetonas
+142,"Lin Calel"
+142,"Micaela Cascallares (Est. Cascallares)"
+142,Orense
+142,Reta
+142,"San Francisco de Bellocq"
+142,"San Mayol"
+142,"Tres Arroyos"
+142,"Villa Rodríguez (Est. Barrow)"
+143,"Tres de Febrero"
+144,"Ingeniero Thompson"
+144,"Tres Lomas"
+145,"25 de Mayo"
+145,"Agustín Mosconi"
+145,"Del Valle"
+145,Ernestina
+145,"Gobernador Ugarte"
+145,"Lucas Monteverde"
+145,"Norberto de la Riestra"
+145,Pedernales
+145,"San Enrique"
+145,Valdés
+146,"Vicente López"
+147,"Mar Azul"
+147,"Villa Gesell"
+148,Argerich
+148,"Colonia San Adolfo"
+148,"Hilario Ascasubi"
+148,"Juan Cousté (Est. Algarrobo)"
+148,"Mayor Buratovich"
+148,Médanos
+148,"Pedro Luro"
+148,"Teniente Origone"
+149,"Barrio Saavedra"
+149,"Country Club El Casco"
+149,Escalada
+149,Lima
+149,Zárate
+150,Chuchucaruana
+150,Colpes
+150,"El Bolsón"
+150,"El Rodeo"
+150,Huaycama
+150,"La Puerta"
+150,"Las Chacritas"
+150,"Las Juntas"
+150,"Los Castillos"
+150,"Los Talas"
+150,"Los Varela"
+150,Singuil
+151,Ancasti
+151,Anquincila
+151,"La Candelaria"
+151,"La Majada"
+152,Amanao
+152,Andalgalá
+152,Chaquiago
+152,Choya
+152,"El Alamito"
+152,"El Lindero"
+152,"El Potrero"
+152,"La Aguada"
+153,"Antofagasta de la Sierra"
+153,Antofalla
+153,"El Peñón"
+153,"Los Nacimientos"
+154,"Barranca Larga"
+154,Belén
+154,"Cóndor Huasi"
+154,"Corral Quemado"
+154,"El Durazno"
+154,"Farallón Negro"
+154,Hualfín
+154,Jacipunco
+154,"La Puntilla"
+154,"Las Juntas"
+154,Londres
+154,"Los Nacimientos"
+154,"Puerta de Corral Quemado"
+154,"Puerta de San José"
+154,"Villa Vil"
+155,"Adolfo E. Carranza"
+155,"Balde de la Punta"
+155,Capayán
+155,Chumbicha
+155,"Colonia del Valle"
+155,"Colonia Nueva Coneta"
+155,Concepción
+155,Coneta
+155,"El Bañado"
+155,Huillapima
+155,"Los Angeles"
+155,Miraflores
+155,"San Martín"
+155,"San Pablo"
+155,"San Pedro"
+156,"Barrio Bancario"
+156,"El Pantanillo"
+156,"San Fernando del Valle de Catamarca"
+157,"El Alto"
+157,Guayamba
+157,Infanzón
+157,"Los Corrales"
+157,Tapso
+157,Vilismán
+158,Collagasta
+158,"Pomancillo Este"
+158,"Pomancillo Oeste"
+158,"San José"
+158,"Villa Las Pirquitas"
+159,"Casa de Piedra"
+159,"El Aybal"
+159,"El Bañado"
+159,"El Divisadero"
+159,"El Quimilo"
+159,Esquiú
+159,Icaño
+159,"La Dorada"
+159,"La Guardia"
+159,"Las Esquinas"
+159,"Las Palmitas"
+159,Quirós
+159,Ramblones
+159,Recreo
+159,"San Antonio"
+160,Amadores
+160,"El Rosario"
+160,"La Bajada"
+160,"La Higuera"
+160,"La Merced"
+160,"La Viña"
+160,"Las Lajas"
+160,"Monte Potrero"
+160,"Palo Labrado"
+160,"San Antonio"
+160,"Villa de Balcozna"
+161,Apoyaco
+161,Colana
+161,Colpes
+161,"El Pajonal (Est. Pomán)"
+161,Joyango
+161,Mutquin
+161,Pomán
+161,Rincón
+161,"San Miguel"
+161,Saujil
+161,Siján
+162,Andalhualá
+162,Caspichango
+162,"Chañar Punco"
+162,"El Cajón"
+162,"El Desmonte"
+162,"El Puesto"
+162,Famatanca
+162,"Fuerte Quemado"
+162,"La Hoyada"
+162,"La Loma"
+162,"Las Mojarras"
+162,"Loro Huasi"
+162,"Punta de Balasto"
+162,"San José"
+162,"Santa María"
+162,Yapes
+163,Alijilán
+163,"Bañado de Ovanta"
+163,"Las Cañas"
+163,Lavalle
+163,"Los Altos"
+163,Manantiales
+163,"San Pedro"
+164,Anillaco
+164,Antinaco
+164,"Banda de Lucero"
+164,"Cerro Negro"
+164,Copacabana
+164,Cordobita
+164,"Costa de Reyes"
+164,"El Pueblito"
+164,"El Puesto"
+164,"El Salado"
+164,Fiambalá
+164,"Los Balverdis"
+164,Medanitos
+164,"Palo Blanco"
+164,"Punta del Agua"
+164,Saujil
+164,Tatón
+164,Tinogasta
+165,"El Portezuelo"
+165,Huaycama
+165,"Las Tejas"
+165,"San Isidro"
+165,"Santa Cruz"
+166,Amboy
+166,"Arroyo San Antonio"
+166,"Cañada del Sauce"
+166,"Capilla Vieja"
+166,"El Corcovado - El Torreón"
+166,Embalse
+166,"La Cruz"
+166,"La Cumbrecita"
+166,"Las Bajadas"
+166,"Las Caleras"
+166,"Los Cóndores"
+166,"Los Molinos"
+166,"Los Reartes"
+166,Lutti
+166,"Monte Ralo"
+166,"Parque Calmayo"
+166,"Río de los Sauces"
+166,"San Agustín"
+166,"San Ignacio (Loteo San Javier)"
+166,"San Ignacio (Loteo Vélez Crespo)"
+166,"Santa Rosa de Calamuchita"
+166,"Segunda Usina"
+166,"Solar de los Molinos"
+166,"Villa Alpina"
+166,"Villa Amancay"
+166,"Villa Berna"
+166,"Villa Ciudad Parque Los Reartes (1a. Sección)"
+166,"Villa Ciudad Parque Los Reartes (3a. Sección)"
+166,"Villa del Dique"
+166,"Villa El Tala"
+166,"Villa General Belgrano"
+166,"Villa La Rivera"
+166,"Villa Quillinzo"
+166,"Villa Rumipal"
+166,"Villa San Miguel"
+166,"Villa Yacanto"
+167,Córdoba
+167,"Jardín Arenales"
+168,"Agua de Oro"
+168,Ascochinga
+168,"Canteras El Sauce"
+168,"Casa Bamba"
+168,"Colonia Caroya"
+168,"Colonia Tirolesa"
+168,"Colonia Vicente Agüero"
+168,"Corral Quemado"
+168,"Country Chacras de la Villa  - Country San Isidro"
+168,"El Diquecito"
+168,"El Manzano"
+168,"Estación Colonia Tirolesa"
+168,"General Paz"
+168,"Jesús María"
+168,"La Calera"
+168,"La Granja"
+168,"La Puerta"
+168,"Los Molles"
+168,"Malvinas Argentinas"
+168,Mendiolaza
+168,"Mi Granja"
+168,"Pajas Blancas"
+168,"Río Ceballos"
+168,Saldán
+168,Salsipuedes
+168,"Santa Elena"
+168,Tinoco
+168,Unquillo
+168,"Villa Allende"
+168,"Villa Cerro Azul"
+168,"Villa El Fachinal - Parque Norte - Guiñazú Norte"
+168,"Villa Los Llanos"
+169,"Alto de los Quebrachos"
+169,"Bañado de Soto"
+169,"Canteras Quilpo"
+169,"Cruz de Caña"
+169,"Cruz del Eje"
+169,"El Brete"
+169,"El Rincón"
+169,"Guanaco Muerto"
+169,"La Banda"
+169,"La Batea"
+169,"La Higuera"
+169,"Las Cañadas"
+169,"Las Playas"
+169,"Los Chañaritos"
+169,"Media Naranja"
+169,"Paso Viejo"
+169,"San Marcos Sierra"
+169,Serrezuela
+169,Tuclame
+169,"Villa de Soto"
+170,"Del Campillo"
+170,"Estación Lecueder"
+170,"Hipólito Bouchard"
+170,"Huinca Renancó"
+170,Italó
+170,Mattaldi
+170,"Nicolás Bruzzone"
+170,Onagoity
+170,Pincén
+170,Ranqueles
+170,"Santa Magdalena (Est. Jovita)"
+170,"Villa Huidobro (Est. Cañada Verde)"
+170,"Villa Sarmiento"
+170,"Villa Valeria"
+171,"Arroyo Algodón"
+171,"Arroyo Cabral"
+171,Ausonia
+171,Chazón
+171,Etruria
+171,"La Laguna"
+171,"La Palestina"
+171,"La Playosa"
+171,"Las Mojarras"
+171,Luca
+171,Pasco
+171,Sanabria
+171,"Silvio Pellico"
+171,Ticino
+171,"Tío Pujio"
+171,"Villa Albertina"
+171,"Villa María"
+171,"Villa Nueva"
+171,"Villa Oeste"
+172,Avellaneda
+172,"Cañada de Río Pinto"
+172,Chuña
+172,Copacabana
+172,"Deán Funes"
+172,"Esquina del Alambre"
+172,"Los Chañaritos"
+172,"Los Pozos"
+172,"Olivares de San Nicolás"
+172,Quilino
+172,"San Pedro de Toyos"
+172,"Villa Gutiérrez"
+172,"Villa Quilino"
+173,"Alejandro Roca (Est. Alejandro)"
+173,Assunta
+173,Bengolea
+173,Carnerillo
+173,Charras
+173,"El Rastreador"
+173,"General Cabrera"
+173,"General Deheza"
+173,Huanchillas
+173,"La Carlota"
+173,"Los Cisnes"
+173,Olaeta
+173,"Pacheco de Melo"
+173,"Paso del Durazno"
+173,"Santa Eufemia"
+173,Ucacha
+173,"Villa Reducción"
+174,"Alejo Ledesma"
+174,Arias
+174,"Camilo Aldao"
+174,"Capitán General Bernardo O'Higgins"
+174,Cavanagh
+174,"Colonia Barge"
+174,"Colonia Italiana"
+174,"Colonia Veinticinco"
+174,"Corral de Bustos"
+174,"Cruz Alta"
+174,"General Baldissera"
+174,"General Roca"
+174,Guatimozín
+174,Inriville
+174,"Isla Verde"
+174,Leones
+174,"Los Surgentes"
+174,"Marcos Juárez"
+174,"Monte Buey"
+174,Noetinger
+174,Saira
+174,Saladillo
+174,"Villa Elisa"
+175,"Ciénaga del Coro"
+175,"El Chacho"
+175,"Estancia de Guadalupe"
+175,Guasapampa
+175,"La Playa"
+175,"San Carlos Minas"
+175,Talaini
+175,Tosno
+176,Chancani
+176,"Las Palmas"
+176,"Los Talares"
+176,Salsacate
+176,"San Gerónimo"
+176,"Tala Cañada"
+176,Taninga
+176,"Villa de Pocho"
+177,"General Levalle"
+177,"La Cesira"
+177,Laboulaye
+177,Leguizamón
+177,Melo
+177,"Río Bamba"
+177,Rosales
+177,"San Joaquín"
+177,Serrano
+177,"Villa Rossi"
+178,"Barrio Santa Isabel"
+178,"Bialet Massé"
+178,Cabalango
+178,"Capilla del Monte"
+178,"Casa Grande"
+178,Charbonier
+178,Cosquín
+178,"Cuesta Blanca"
+178,"Estancia Vieja"
+178,"Huerta Grande"
+178,"La Cumbre"
+178,"La Falda"
+178,"Las Jarillas"
+178,"Los Cocos"
+178,Mallín
+178,"Mayu Sumaj"
+178,"Quebrada de Luna"
+178,"San Antonio de Arredondo"
+178,"San Esteban"
+178,"San Roque"
+178,"Santa María de Punilla"
+178,"Tala Huasi"
+178,Tanti
+178,"Valle Hermoso"
+178,"Villa Carlos Paz"
+178,"Villa Flor Serrana"
+178,"Villa Giardino"
+178,"Villa Lago Azul"
+178,"Villa Parque Siquimán"
+178,"Villa Río Icho Cruz"
+178,"Villa San José"
+178,"Villa Santa Cruz del Lago"
+179,Achiras
+179,"Adelia María"
+179,"Alcira (Est. Gigena)"
+179,"Alpa Corral"
+179,Berrotarán
+179,Bulnes
+179,Chaján
+179,Chucul
+179,"Coronel Baigorria"
+179,"Coronel Moldes"
+179,Elena
+179,"La Carolina"
+179,"La Cautiva"
+179,"La Gilda"
+179,"Las Acequias"
+179,"Las Albahacas"
+179,"Las Higueras"
+179,"Las Peñas"
+179,"Las Vertientes"
+179,Malena
+179,"Monte de los Gauchos"
+179,"Paso del Durazno"
+179,"Río Cuarto"
+179,Sampacho
+179,"San Basilio"
+179,"Santa Catalina (Est. Holmberg)"
+179,Suco
+179,Tosquitas
+179,"Vicuña Mackenna"
+179,"Villa El Chacay"
+179,"Villa Santa Eugenia"
+179,Washington
+180,Atahona
+180,"Cañada de Machado"
+180,"Capilla de los Remedios"
+180,Chalacea
+180,"Colonia Las Cuatro Esquinas"
+180,"Diego de Rojas"
+180,"El Alcalde (Est. Tala Norte)"
+180,"El Crispín"
+180,Esquina
+180,"Kilómetro 658"
+180,"La Para"
+180,"La Posta"
+180,"La Puerta"
+180,"La Quinta"
+180,"Las Gramillas"
+180,"Las Saladas"
+180,"Maquinista Gallini"
+180,"Monte del Rosario"
+180,Montecristo
+180,"Obispo Trejo"
+180,Piquillín
+180,"Plaza de Mercedes"
+180,"Pueblo Comechingones"
+180,"Río Primero"
+180,"Sagrada Familia"
+180,"Santa Rosa de Río Primero (Est. Villa Santa Rosa)"
+180,"Villa Fontana"
+181,"Cerro Colorado"
+181,"Chañar Viejo"
+181,"Eufrasio Loza"
+181,Gütemberg
+181,"La Rinconada"
+181,"Los Hoyos"
+181,"Puesto de Castro"
+181,"Rayo Cortado"
+181,"San Pedro de Gütemberg"
+181,"Santa Elena"
+181,"Sebastián Elcano"
+181,"Villa Candelaria Norte"
+181,"Villa de María"
+182,Calchín
+182,"Calchín Oeste"
+182,"Capilla del Carmen"
+182,Carrilobo
+182,Colazo
+182,"Colonia Videla"
+182,Costasacate
+182,Impira
+182,"Laguna Larga"
+182,"Las Junturas"
+182,"Los Chañaritos"
+182,Luque
+182,Manfredi
+182,Matorrales
+182,Oncativo
+182,Pilar
+182,"Pozo del Molle"
+182,Rincón
+182,"Río Segundo"
+182,"Santiago Temple"
+182,"Villa del Rosario"
+183,Ambul
+183,"Arroyo Los Patos"
+183,"El Huayco"
+183,"La Cortadera"
+183,"Las Calles"
+183,"Las Oscuras"
+183,"Las Rabonas"
+183,"Los Callejones"
+183,"Mina Clavero"
+183,Mussi
+183,Nono
+183,Panaholma
+183,"San Huberto"
+183,"San Lorenzo"
+183,"San Martín"
+183,"San Pedro"
+183,"San Vicente"
+183,"Sauce Arriba"
+183,Tasna
+183,"Villa Cura Brochero"
+183,"Villa Sarmiento"
+184,Conlara
+184,Corralito
+184,"Cruz Caña"
+184,"Dos Arroyos"
+184,"El Pantanillo"
+184,"La Paz"
+184,"La Población"
+184,"La Ramada"
+184,"La Travesía"
+184,"Las Tapias"
+184,"Los Cerrillos"
+184,"Los Hornillos"
+184,"Los Molles"
+184,"Los Romeros"
+184,Luyaba
+184,"Quebrada de los Pozos"
+184,"San Javier y Yacanto"
+184,"San José"
+184,"Villa de las Rosas"
+184,"Villa Dolores"
+184,"Villa La Viña"
+185,Alicia
+185,"Altos de Chipión"
+185,Arroyito
+185,Balnearia
+185,Brinkmann
+185,"Colonia 10 de Julio"
+185,"Colonia Anita"
+185,"Colonia Las Pichanas"
+185,"Colonia Marina"
+185,"Colonia Prosperidad"
+185,"Colonia San Bartolomé"
+185,"Colonia San Pedro"
+185,"Colonia Santa María"
+185,"Colonia Valtelina"
+185,"Colonia Vignaud"
+185,Devoto
+185,"El Arañado"
+185,"El Fortín"
+185,"El Fuertecito"
+185,"El Tío"
+185,"Estación Luxardo"
+185,Freyre
+185,"La Francia"
+185,"La Paquita"
+185,"La Tordilla"
+185,"Las Varas"
+185,"Las Varillas"
+185,Marull
+185,Miramar
+185,Morteros
+185,"Plaza Luxardo"
+185,"Plaza San Francisco"
+185,Porteña
+185,"Quebracho Herrado"
+185,Sacanta
+185,"San Francisco"
+185,"Saturnino María Laspiur"
+185,Seeber
+185,"Toro Pujio"
+185,Tránsito
+185,Trinchera
+185,"Villa Concepción del Tío"
+185,"Villa del Tránsito"
+185,"Villa San Esteban"
+186,"Alta Gracia"
+186,Anisacate
+186,"Barrio Gilbert"
+186,"Barrio Villa del Parque"
+186,Bouwer
+186,"Caseros Centro"
+186,"Costa Azul"
+186,"Despeñaderos (Est. Dr. Lucas A. de Olmos)"
+186,"Dique Chico"
+186,"Falda del Cañete"
+186,"Falda del Carmen"
+186,"La Boca del Río"
+186,"La Carbonada"
+186,"La Cumbrecita"
+186,"La Paisanita"
+186,"La Perla"
+186,"La Rancherita"
+186,"La Serranita"
+186,"Los Cedros"
+186,Lozada
+186,Malagueño
+186,"Monte Ralo"
+186,"Potrero de Garay"
+186,"Rafael García"
+186,"San Clemente"
+186,"San Nicolás"
+186,Socavones
+186,Toledo
+186,"Valle Alegre"
+186,"Valle de Anisacate"
+186,"Villa  La Bolsa"
+186,"Villa  Los Aromos"
+186,"Villa Ciudad de América (Loteo Diego de Rojas)"
+186,"Villa del Prado"
+186,"Villa Parque Santa Ana"
+186,"Villa San Isidro"
+186,"Villa Sierras De Oro"
+186,Yocsina
+187,Caminiaga
+187,"Cerro Colorado"
+187,"Chuña Huasi"
+187,"Pozo Nuevo"
+187,"San Francisco del Chañar"
+188,Almafuerte
+188,"Colonia Almada"
+188,Corralito
+188,"Dalmacio Vélez"
+188,"General Fotheringham"
+188,Hernando
+188,"James Craik"
+188,"Las Isletillas"
+188,"Las Perdices"
+188,"Los Zorros"
+188,Oliva
+188,"Pampayasta Norte"
+188,"Pampayasta Sur"
+188,"Punta del Agua"
+188,"Río Tercero"
+188,Tancacha
+188,"Villa Ascasubi"
+189,"Cañada de Luque"
+189,"Candelaria Sur"
+189,"Capilla de Sitón"
+189,"La Pampa"
+189,"La Paz"
+189,"Las Peñas"
+189,"Los Mistoles"
+189,"Santa Catalina"
+189,Sarmiento
+189,Simbolar
+189,Sinsacate
+189,"Villa del Totoral"
+190,"Cerro Colorado"
+190,"Churqui Cañada"
+190,"El Rodeo"
+190,"El Tuscal"
+190,"Las Arrias"
+190,"Lucio V. Mansilla"
+190,"Rosario del Saladillo"
+190,"San José de la Dormida"
+190,"San José de las Salinas"
+190,"San Pedro Norte"
+190,"Villa Tulumba"
+191,"Aldea Santa María"
+191,"Alto Alegre"
+191,"Ana Zumarán"
+191,Ballesteros
+191,"Ballesteros Sur"
+191,"Bell Ville"
+191,"Benjamín Gould"
+191,Canals
+191,Chilibroste
+191,Cintra
+191,"Colonia Bismarck"
+191,"Colonia Bremen"
+191,Idiazabal
+191,"Justiniano Posse"
+191,Laborde
+191,"Monte Leña"
+191,"Monte Maíz"
+191,Morrison
+191,Noetinger
+191,Ordoñez
+191,Pascanas
+191,"Pueblo Italiano"
+191,"Ramón J. Cárcano"
+191,"San Antonio de Litín"
+191,"San Marcos"
+191,"San Severo"
+191,Viamonte
+191,"Villa Los Patos"
+191,"Wenceslao Escalante"
+192,"Bella Vista"
+193,"Berón de Astrada"
+193,Yahapé
+194,"Barrio Esperanza"
+194,Corrientes
+194,"Laguna Brava"
+194,Riachuelo
+194,"San Cayetano"
+195,Concepción
+195,"Santa Rosa"
+195,Tabay
+196,"Cazadores Correntinos"
+196,"Curuzú Cuatiá"
+196,Perugorría
+197,"El Sombrero"
+197,Empedrado
+198,Esquina
+199,Alvear
+199,"Estación Torrent"
+200,"Itá Ibaté"
+200,"Lomas de Vallejos"
+200,"Nuestra Señora del Rosario de Caá Catí"
+200,"Palmar Grande"
+201,"Colonia Carolina"
+201,Goya
+202,Itatí
+202,"Ramada Paso"
+203,"Colonia Liebig's"
+203,Ituzaingó
+203,"San Antonio"
+203,"San Carlos"
+203,"Villa Olivari"
+204,"Cruz de los Milagros"
+204,"Gobernador Juan E. Martínez"
+204,Lavalle
+204,"Santa Lucía"
+204,"Villa Córdoba"
+205,Mburucuyá
+206,"Felipe Yofré"
+206,"Mariano I. Loza (Est. Justino Solari)"
+206,Mercedes
+207,"Colonia Libertad"
+207,"Estación Libertad"
+207,"Juan Pujol"
+207,Mocoretá
+207,"Monte Caseros"
+207,"Parada Acuña"
+208,Bonpland
+208,"Parada Pucheta"
+208,"Paso de los Libres"
+208,Tapebicuá
+209,Saladas
+209,"San Lorenzo"
+210,"Ingenio Primer Correntino"
+210,"Paso de la Patria"
+210,"San Cosme"
+210,"Santa Ana"
+211,"San Luis del Palmar"
+212,"Colonia Carlos Pellegrini"
+212,Guaviraví
+212,"La Cruz"
+212,Yapeyú
+213,Loreto
+213,"San Miguel"
+214,"9 de Julio (Est. Pueblo 9 de Julio)"
+214,Chavarría
+214,"Colonia Pando"
+214,"Pedro R. Fernández (Est. Manuel F. Mantilla)"
+214,"San Roque"
+215,Garruchos
+215,"Gobernador Igr. Valentín Virasoro"
+215,"José Rafael Gómez (Garabí)"
+215,"Santo Tomé"
+216,Sauce
+217,"Concepción del Bermejo"
+217,"Los Frentones"
+217,"Pampa del Infierno"
+217,"Río Muerto"
+217,"Taco Pozo"
+218,"General Vedia"
+218,"Isla del Cerrito"
+218,"La Leonesa"
+218,"Las Palmas"
+218,"Puerto Bermejo Nuevo"
+218,"Puerto Bermejo Viejo"
+218,"Puerto Eva Perón"
+219,"Presidencia Roque Sáenz Peña"
+220,Charata
+221,Gancedo
+221,"General Capdevila"
+221,"General Pinedo"
+221,"Mesón de Fierro"
+221,"Pampa Landriel"
+222,"Hermoso Campo"
+222,Itín
+223,Chorotis
+223,"Santa Sylvina"
+223,"Venados Grandes"
+224,Corzuela
+225,"La Escondida"
+225,"La Verde"
+225,Lapachito
+225,Makallé
+226,"El Espinillo"
+226,"El Sauzal"
+226,"El Sauzalito"
+226,"Fortín Lavalle"
+226,"Fuerte Esperanza"
+226,"Juan José Castelli"
+226,Miraflores
+226,"Nueva Pompeya"
+226,"Puerto Lavalle"
+226,"Villa Río Bermejito"
+226,Wichi
+226,Zaparinqui
+227,"Avia Terai"
+227,"Campo Largo"
+227,"Fortín Las Chuñas"
+227,Napenay
+228,"Colonia Popular"
+228,"Estación General Obligado"
+228,"Laguna Blanca"
+228,"Puerto Tirol"
+229,"Ciervo Petiso"
+229,"General José de San Martín"
+229,"La Eduvigis"
+229,"Laguna Limpia"
+229,"Pampa Almirón"
+229,"Pampa del Indio"
+229,"Presidencia Roca"
+229,"Selvas del Río de Oro"
+230,"Tres Isletas"
+231,"Coronel Du Graty"
+231,"Enrique Urien"
+231,"Villa Angela"
+232,"Las Breñas"
+233,"La Clotilde"
+233,"La Tigra"
+233,"San Bernardo"
+234,"Presidencia de la Plaza"
+235,"Barrio de los Pescadores"
+235,"Colonia Benítez"
+235,"Margarita Belén"
+236,Quitilipi
+236,"Villa El Palmar"
+237,Barranqueras
+237,Basail
+237,"Colonia Baranda"
+237,Fontana
+237,"Puerto Vilelas"
+237,Resistencia
+238,Samuhú
+238,"Villa Berthet"
+239,"Capitán Solari"
+239,"Colonia Elisa"
+239,"Colonias Unidas"
+239,"Ingeniero Barbet"
+239,"Las Garcitas"
+240,Charadai
+240,"Cote Lai"
+240,Haumonia
+240,Horquilla
+240,"La Sabana"
+241,"Colonia Aborigen"
+241,Machagai
+241,Napalpí
+242,"Arroyo Verde"
+242,"Puerto Madryn"
+242,"Puerto Pirámide"
+242,"Quinta El Mirador"
+243,"Buenos Aires Chico"
+243,Cholila
+243,"Cushamen Centro"
+243,"El Hoyo"
+243,"El Maitén"
+243,Epuyén
+243,Gualjaina
+243,"Lago Epuyén"
+243,"Lago Puelo"
+243,Leleque
+244,Astra
+244,"Bahía Bustamante"
+244,"Comodoro Rivadavia"
+244,"Diadema Argentina"
+244,"Rada Tilly"
+245,Camarones
+245,Garayalde
+246,"Aldea Escolar"
+246,Corcovado
+246,Esquel
+246,"Lago Rosario"
+246,"Los Cipreses"
+246,Trevelín
+246,"Villa Futalaufquen"
+247,"28 de Julio"
+247,"Dique Florentino Ameghino"
+247,Dolavon
+247,Gaiman
+248,Blancuntre
+248,"El Escorial"
+248,Gastre
+248,"Lagunita Salada"
+248,"Yala Laubat"
+249,"Aldea Epulef"
+249,Carrenleufú
+249,"Colan Conhué"
+249,"Paso del Sapo"
+249,Tecka
+250,"El Mirasol"
+250,"Las Plumas"
+251,"Cerro Cóndor"
+251,"Los Altares"
+251,"Paso de Indios"
+252,"Playa Magagna"
+252,"Playa Unión"
+252,Rawson
+252,Trelew
+253,"Aldea Apeleg"
+253,"Aldea Beleiro"
+253,"Alto Río Senguer"
+253,"Doctor Ricardo Rojas"
+253,Facundo
+253,"Lago Blanco"
+253,"Río Mayo"
+254,"Buen Pasto"
+254,Sarmiento
+255,"Frontera de Río Pico"
+255,"Gobernador Costa"
+255,"José de San Martín"
+255,"Río Pico"
+256,"Gan Gan"
+256,Telsen
+257,"Arroyo Barú"
+257,Colón
+257,"Colonia Hugues"
+257,Hambis
+257,Hocker
+257,"La Clarita"
+257,"Pueblo Cazes"
+257,"Pueblo Liebig's"
+257,"San José"
+257,Ubajay
+257,"Villa  Elisa"
+258,Calabacilla
+258,"Clodomiro Ledesma"
+258,"Colonia Ayuí"
+258,"Colonia General Roca"
+258,"Colonia Yeruá"
+258,Concordia
+258,"El Redomón"
+258,"Estación Yeruá"
+258,"La Criolla"
+258,"Los Charrúas"
+258,"Nueva Escocia"
+258,"Osvaldo Magnasco"
+258,Pedernal
+258,"Puerto Yeruá"
+259,"Aldea Brasilera"
+259,"Aldea Protestante"
+259,"Aldea Salto"
+259,"Aldea San Francisco"
+259,"Aldea Spatzenkutter"
+259,"Aldea Valle María"
+259,"Colonia Ensayo"
+259,Diamante
+259,"Estación Camps"
+259,"General Alvear"
+259,"General Racedo"
+259,"General Ramírez"
+259,"Paraje La Virgen"
+259,"Puerto Las Cuevas"
+259,"Villa Libertador San Martín"
+260,Chajarí
+260,"Colonia Alemana"
+260,"Colonia Ensanche Sauce"
+260,"Colonia La Argentina"
+260,"Colonia Peña"
+260,"Colonia Santa María"
+260,Federación
+260,"Los Conquistadores"
+260,"San Jaime de la Frontera"
+260,"San Pedro"
+260,"Santa Ana"
+260,"Villa del Rosario"
+261,"Conscripto Bernardi"
+261,"El Cimarrón"
+261,Federal
+261,"Nueva Vizcaya"
+261,"Sauce de Luna"
+262,"San José de Feliciano"
+262,"San Víctor"
+263,"Aldea Asunción"
+263,"Estación Lazo"
+263,"General Galarza"
+263,Gualeguay
+263,"Puerto Ruiz"
+264,"Aldea San Antonio"
+264,"Aldea San Juan"
+264,"Enrique Carbó"
+264,"Faustino M. Parera"
+264,"General Almada"
+264,Gilbert
+264,Gualeguaychú
+264,Irazusta
+264,Larroque
+264,"Pueblo General Belgrano"
+264,Urdinarrain
+265,"Arroyo Martínez"
+265,Ceibas
+265,Ibicuy
+265,Médanos
+265,Ñancay
+265,"Villa Paranacito"
+266,Bovril
+266,"Colonia Avigdor"
+266,"El Solar"
+266,"La Paz"
+266,"Piedras Blancas"
+266,"Pueblo Arrúa"
+266,"San Gustavo"
+266,"Santa Elena"
+266,"Sir Leonard"
+267,Aranguren
+267,Betbeder
+267,"Don Cristóbal"
+267,Febré
+267,Hernández
+267,"Lucas González"
+267,Nogoyá
+267,"XX de Setiembre"
+268,"Aldea María Luisa"
+268,"Aldea San Rafael"
+268,"Aldea Santa María"
+268,"Aldea Santa Rosa"
+268,Cerrito
+268,"Colonia Avellaneda"
+268,Crespo
+268,"El Palenque"
+268,"El Pingo"
+268,Hasenkamp
+268,Hernandarias
+268,"La Picada"
+268,"Las Tunas"
+268,"María Grande"
+268,"Oro Verde"
+268,Paraná
+268,"Pueblo Bellocq (Est. Las Garzas)"
+268,"Pueblo Brugo"
+268,"Pueblo General San Martín"
+268,"San Benito"
+268,"Sauce Montrull"
+268,"Sauce Pinto"
+268,Seguí
+268,Sosa
+268,Tabossi
+268,"Tezanos Pinto"
+268,Viale
+268,"Villa Fontana"
+268,"Villa Gdor. Luis F. Etchevehere"
+268,"Villa Urquiza"
+269,"General Campos"
+269,"San Salvador"
+270,"Altamirano Sur"
+270,Durazno
+270,"Estación Arroyo Clé"
+270,"Gobernador Echagüe"
+270,"Gobernador Mansilla"
+270,"Gobernador Solá"
+270,Guardamonte
+270,"Las Guachas"
+270,Maciá
+270,"Rosario del Tala"
+271,"1º de Mayo"
+271,Basavilbaso
+271,Caseros
+271,"Colonia Elía"
+271,"Concepción del Uruguay"
+271,"Estancia San Pedro"
+271,Herrera
+271,"Las Moscas"
+271,Líbaros
+271,Pronunciamiento
+271,Rocamora
+271,"Santa Anita"
+271,"Villa Mantero"
+271,"Villa San Justo"
+271,"Villa San Marcial (Est. Gobernador Urquiza)"
+272,Antelo
+272,Charigüé
+272,"Laguna del Pescado"
+272,"Molino Doll"
+272,"Rincón de Nogoyá"
+272,Victoria
+273,"Estación Raíces"
+273,"Ingeniero Miguel Sajaroff"
+273,Jubileo
+273,"Mojones Norte"
+273,"Paso de la Laguna"
+273,"Villa Clara"
+273,"Villa Domínguez"
+273,Villaguay
+274,"Laguna Yema"
+274,"Los Chiriguanos"
+274,"Pozo de Maza"
+274,"Pozo del Mortero"
+275,"Colonia Pastoril"
+275,Formosa
+275,"Gran Guardia"
+275,"Mariano Boedo"
+275,"Mojón de Fierro"
+275,"San Hilario"
+275,"Villa del Carmen"
+275,"Villa Trinidad"
+276,"Banco Payaguá"
+276,"General Lucio V. Mansilla"
+276,Herradura
+276,"San Francisco de Laishi"
+276,Tatané
+276,"Villa Escolar"
+277,"Ingeniero Guillermo N. Juárez"
+278,"Bartolomé de las Casas"
+278,"Colonia Sarmiento"
+278,"Comandante Fontana"
+278,"El Recreo"
+278,"Estanislao del Campo"
+278,"Fortín Cabo 1º Lugones"
+278,"Fortín Sargento 1º Leyes"
+278,Ibarreta
+278,"Juan G. Bazán"
+278,"Las Lomitas"
+278,"Posta Cambio Zalazar"
+278,"Pozo del Tigre"
+278,"San Martín I"
+278,"San Martín II"
+278,"Subteniente Perín"
+278,"Villa General Güemes"
+278,"Villa General Manuel Belgrano"
+279,"Buena Vista"
+279,"El Espinillo"
+279,"Laguna Gallo"
+279,"Misión Tacaaglé"
+279,"Portón Negro"
+279,"Tres Lagunas"
+280,Clorinda
+280,"Laguna Blanca"
+280,"Laguna Naick-Neck"
+280,"Palma Sola"
+280,"Puerto Pilcomayo"
+280,"Riacho He-He"
+280,"Riacho Negro"
+280,"Siete Palmas"
+281,"Colonia Campo Villafañe"
+281,"El Colorado"
+281,"Palo Santo"
+281,Pirané
+281,"Villa Kilómetro 213"
+282,"El Potrillo"
+282,"General Mosconi"
+283,"Abdón Castro Tolay"
+283,"Abra Pampa"
+283,Abralaite
+283,Casabindo
+283,Cochinoca
+283,"Puesto del Marquéz"
+283,Rinconadillas
+283,"San Francisco de Alfarcito"
+283,"Santuario de Tres Pozos"
+283,Tusaquillas
+284,"Aguas Calientes"
+284,"Barrio El Milagro"
+284,"Barrio La Unión"
+284,"El Carmen"
+284,"Los Lapachos (Est. Maquinista Verón)"
+284,Manantiales
+284,Monterrico
+284,"Pampa Blanca"
+284,Perico
+284,"Puesto Viejo"
+284,"San Isidro"
+284,"San Juancito"
+285,Guerrero
+285,"La Almona"
+285,León
+285,Lozano
+285,Ocloyas
+285,"San Salvador de Jujuy (Est. Jujuy)"
+285,Yala
+286,Coctaca
+286,"El Aguilar"
+286,"Hipólito Yrigoyen (Est. Iturbe)"
+286,Humahuaca
+286,"Tres Cruces"
+286,"Uquía (Est. Senador Pérez)"
+287,Bananal
+287,Bermejito
+287,Caimancito
+287,Calilegua
+287,Chalicán
+287,"Fraile Pintado"
+287,Libertad
+287,"Libertador Grl. San Martín (Est. Ledesma)"
+287,"Maíz Negro"
+287,Paulina
+287,Yuto
+288,Carahunco
+288,"Centro Forestal"
+288,"Mina 9 de Octubre"
+288,"Palpalá (Est. Grl. Manuel N. Savio)"
+289,"Lagunillas de Farallón"
+289,Liviara
+289,"Nuevo Pirquitas"
+289,Rinconada
+290,"El Ceibal"
+290,"Loteo Navea"
+290,"San Antonio"
+291,Arrayanal
+291,"Arroyo Colorado"
+291,"Don Emilio"
+291,"El Acheral"
+291,"El Puesto"
+291,"El Quemado"
+291,"La Esperanza"
+291,"La Manga"
+291,"La Mendieta"
+291,Miraflores
+291,"Palos Blancos"
+291,Parapetí
+291,Piedritas
+291,Rodeito
+291,"Rosario de Río Grande"
+291,"San Antonio"
+291,"San Lucas"
+291,"San Pedro (Est. San Pedro de Jujuy)"
+291,Sauzal
+292,"El Fuerte"
+292,"El Piquete"
+292,"El Talar"
+292,"Palma Sola"
+292,"Puente Lavayén"
+292,"Santa Clara"
+292,Vinalito
+293,Casira
+293,Ciénega
+293,Cieneguillas
+293,"Cusi Cusi"
+293,"La Ciénega"
+293,Misarrumi
+293,Oratorio
+293,Paicone
+293,"San Juan de Oros"
+293,"Santa Catalina"
+293,Yoscaba
+294,Catua
+294,Coranzuli
+294,"El Toro"
+294,Huáncar
+294,"Mina Providencia"
+294,"Olaroz Chico"
+294,"Pastos Chicos"
+294,"Puesto Sey"
+294,"San Juan de Quillaqués"
+294,Susques
+295,"Colonia San José"
+295,Huacalera
+295,Juella
+295,Maimará
+295,Tilcara
+296,Bárcena
+296,"El Moreno"
+296,Purmamarca
+296,Tumbaya
+296,Volcán
+297,Caspalá
+297,Pampichuela
+297,"San Francisco"
+297,"Santa Ana"
+297,"Valle Colorado"
+297,"Valle Grande"
+298,Barrios
+298,Cangrejillos
+298,"El Cóndor"
+298,"La Intermedia"
+298,"La Quiaca"
+298,Llulluchayoc
+298,Pumahuasi
+298,Yavi
+298,"Yavi Chico"
+299,Doblas
+299,Macachín
+299,"Miguel Riglos"
+299,Rolón
+299,"Tomás M. Anchorena"
+300,Anzoátegui
+300,"La Adela"
+301,Anguil
+301,"Santa Rosa"
+302,Catriló
+302,"La Gloria"
+302,Lonquimay
+302,Uriburu
+303,Conhelo
+303,"Eduardo Castex"
+303,"Mauricio Mayer"
+303,"Monte Nievas"
+303,Rucanelo
+303,Winifreda
+304,"Gobernador Duval"
+304,Puelches
+305,"Santa Isabel"
+306,"Bernardo Larroude"
+306,Ceballos
+306,"Coronel Hilario Lagos  (Est. Aguas Buenas)"
+306,"Intendente Alvear"
+306,Sarah
+306,Vértiz
+307,"Algarrobo del Águila"
+307,"La Humada"
+308,Alpachiri
+308,"General Manuel J. Campos"
+308,Guatraché
+308,Perú
+308,"Santa Teresa"
+309,Abramo
+309,Bernasconi
+309,"General San Martín (Est. Villa Alba)"
+309,Hucal
+309,"Jacinto Aráuz"
+310,"Cuchillo Co"
+311,"La Reforma"
+311,"Limay Mahuida"
+312,"Carro Quemado"
+312,Loventué
+312,"Luan Toro"
+312,Telén
+312,Victorica
+313,Agustoni
+313,Dorila
+313,"General Pico"
+313,Speluzzi
+313,Trebolares
+314,"25 de Mayo"
+314,Puelén
+315,"Colonia Barón"
+315,"Colonia San José"
+315,"Miguel Cané"
+315,"Quemú Quemú"
+315,Relmo
+315,"Villa Mirasol"
+316,Caleufú
+316,"Ingeniero Foster"
+316,"La Maruja"
+316,Parera
+316,"Pichi Huinca"
+316,Quetrequén
+316,Rancul
+317,"Adolfo Van Praet"
+317,"Alta Italia"
+317,"Damián Maisonave (Est. Simson)"
+317,"Embajador Martini"
+317,Falucho
+317,"Ingeniero Luiggi"
+317,Ojeda
+317,Realicó
+318,Naicó
+318,Toay
+319,Arata
+319,Metileo
+319,Trenel
+320,"Ataliva Roca"
+320,Chacharramendi
+320,"Colonia Santa María"
+320,"General Acha"
+320,Quehué
+320,Unanué
+321,Aimogasta
+321,Arauco
+321,"Bañado de los Pantanos"
+321,"Estación Mazán"
+321,"Villa Mazán"
+322,"La Rioja"
+323,Aminga
+323,Anillaco
+323,Anjullón
+323,Chuquis
+323,"Los Molinos"
+323,Pinchas
+323,"San Pedro"
+323,"Santa Vera Cruz"
+324,Aicuñá
+324,Guandacol
+324,"Los Palacios"
+324,Pagancillo
+324,"Villa Unión"
+325,Chamical
+325,Polco
+326,Chilecito
+326,"Colonia Anguinán"
+326,"Colonia Catinzaco"
+326,"Colonia Malligasta"
+326,"Colonia Vichigasta"
+326,Guanchín
+326,Malligasta
+326,Miranda
+326,Nonogasta
+326,"San Nicolás"
+326,Sañogasta
+326,"Santa Florentina"
+326,Tilimuqui
+326,Vichigasta
+327,"Alto Carrizal"
+327,Angulos
+327,Antinaco
+327,"Bajo Carrizal"
+327,Campanas
+327,Chañarmuyo
+327,Famatina
+327,"La Cuadra"
+327,Pituil
+327,"Plaza Vieja"
+327,"Santa Cruz"
+327,"Santo Domingo"
+328,"Punta de los Llanos"
+328,Tama
+329,"Castro Barros"
+329,Chañar
+329,"Loma Blanca"
+329,Olta
+330,Malanzán
+330,Nácate
+330,Portezuelo
+330,"San Antonio"
+331,"Villa Castelli"
+332,Ambil
+332,"Colonia Ortiz de Ocampo"
+332,Milagro
+332,Olpas
+332,"Santa Rita de Catuna"
+333,Ulapes
+334,Jagüé
+334,"Villa San José de Vinchina"
+335,Amaná
+335,Patquía
+336,Chepes
+336,"Desiderio Tello"
+337,"Salicas - San Blas"
+338,"Villa Sanagasta"
+339,Mendoza
+340,Bowen
+340,Carmensa
+340,"General Alvear (Est.Colonia Alvear Norte)"
+340,"Los Compartos"
+341,"Godoy Cruz"
+342,"Colonia Segovia (Est. Amigorena)"
+342,Guaymallén
+342,"La Primavera"
+342,"Los Corralitos"
+342,"Puente de Hierro"
+343,"Ingeniero Giagnoni"
+343,Junín
+343,"La Colonia"
+343,"Los Barriales"
+343,Medrano
+343,Phillips
+343,"Rodríguez Peña"
+344,Desaguadero
+344,"La Paz"
+344,"Villa Antigua"
+345,"Blanco Encalada"
+345,Capdeville
+345,Jocolí
+345,"Las Cuevas"
+345,"Las Heras"
+345,"Los Penitentes"
+345,Papagayos
+345,Polvaredas
+345,"Puente del Inca"
+345,"Punta de Vacas"
+345,Uspallata
+346,"3 de Mayo"
+346,"Barrio Alto del Olvido"
+346,"Barrio Jocolí II"
+346,"Barrio La Palmera"
+346,"Barrio La Pega"
+346,"Barrio Lagunas de Bartoluzzi"
+346,"Barrio Los Jarilleros"
+346,"Barrio Los Olivos"
+346,"Costa de Araujo"
+346,"El Paramillo"
+346,"El Vergel"
+346,"Ingeniero Gustavo André"
+346,Jocolí
+346,"Jocolí Viejo"
+346,"Las Violetas"
+346,"Villa Tulumaya"
+347,Agrelo
+347,"Barrio Perdriel IV"
+347,Cacheuta
+347,"Costa Flores"
+347,"El Carrizal"
+347,"El Salto"
+347,"Las Compuertas"
+347,"Las Vegas"
+347,"Luján de Cuyo"
+347,Perdriel
+347,Potrerillos
+347,Ugarteche
+348,Barrancas
+348,"Barrio Jesús de Nazaret"
+348,"Cruz de Piedra"
+348,"El Pedregal"
+348,"Fray Luis Beltrán"
+348,Maipú
+348,"Rodeo del Medio"
+348,Russell
+348,"San Roque"
+348,"Villa Teresa"
+349,"Agua Escondida"
+349,"Bardas Blancas"
+349,"Las Leñas"
+349,Malargüe
+350,Andrade
+350,"Barrio Cooperativa Los Campamentos"
+350,"Barrio Rivadavia"
+350,"El Mirador"
+350,"La Central"
+350,"La Esperanza"
+350,"La Florida"
+350,"La Libertad"
+350,"Los Árboles"
+350,"Los Campamentos"
+350,Medrano
+350,"Mundo Nuevo"
+350,"Reducción de Abajo"
+350,Rivadavia
+350,"Santa María de Oro"
+351,"Barrio El Cepillo"
+351,Chilecito
+351,"Eugenio Bustos"
+351,"La Consulta"
+351,Pareditas
+351,"San Carlos"
+352,"Alto Salvador"
+352,"Alto Verde"
+352,"Barrio Chivilcoy"
+352,"Barrio Emanuel"
+352,"Barrio Los Charabones"
+352,Chapanay
+352,Chivilcoy
+352,Montecaseros
+352,"Nueva California (Est. Moluches)"
+352,"San Martín"
+352,"Tres Porteñas"
+353,"25 de Mayo"
+353,"Barrio Campos El Toledano"
+353,"Barrio El Nevado"
+353,"Barrio Empleados de Comercio"
+353,"Barrio Intendencia"
+353,"Capitán Montoya"
+353,"Cuadro Benegas"
+353,"El Nihuil"
+353,"El Sosneado"
+353,"El Tropezón"
+353,Goudge
+353,"Jaime Prats"
+353,"La Llave Nueva"
+353,"Las Malvinas"
+353,"Los Reyunos"
+353,"Monte Comán"
+353,"Pobre Diablo"
+353,"Punta del Agua"
+353,"Rama Caída"
+353,"Real del Padre"
+353,"Salto de las Rosas"
+353,"San Rafael"
+353,"Villa Atuel"
+353,"Villa Atuel Norte"
+354,"Barrio 12 de Octubre"
+354,"Barrio María Auxiliadora"
+354,"Barrio Molina Cabrera"
+354,"La Dormida"
+354,"Las Catitas (Est. J. N. Lencinas)"
+354,"Santa Rosa"
+355,"Barrio San Cayetano"
+355,"Campo Los Andes"
+355,"Colonia Las Rosas"
+355,"El Manzano"
+355,"Los Sauces"
+355,Tunuyán
+355,"Vista Flores"
+356,"Barrio Belgrano Norte"
+356,"Cordón del Plata"
+356,"El Peral"
+356,"La Arboleda"
+356,"San José"
+356,Tupungato
+357,Apóstoles
+357,Azara
+357,"Estación Apóstoles"
+357,Pindapoy
+357,"Rincón de Azara"
+357,"San José"
+357,"Tres Capones"
+358,"1º de Mayo"
+358,"Aristóbulo del Valle"
+358,"Campo Grande"
+358,"Dos de Mayo Núcleo I"
+358,"Dos de Mayo Núcleo II"
+358,"Dos de Mayo Nucleo III"
+358,"Pueblo Illia"
+358,"Salto Encantado"
+359,Bonpland
+359,Candelaria
+359,"Cerro Corá"
+359,Loreto
+359,Mártires
+359,Profundidad
+359,"Puerto Santa Ana"
+359,"Santa Ana"
+360,Garupá
+360,"Nemesio Parma"
+360,"Posadas (Municipio de Garupá )"
+360,"Posadas (Municipio de Posadas)"
+361,"Barra Concepción"
+361,"Concepción de la Sierra"
+361,"La Corita"
+361,"Santa María"
+362,"9 de Julio"
+362,"9 de Julio Kilómetro 20"
+362,"Colonia Victoria"
+362,Eldorado
+362,"María Magdalena"
+362,"Puerto Mado"
+362,"Puerto Pinares"
+362,"Santiago de Liniers"
+362,"Valle Hermoso"
+362,"Villa Roulet"
+363,"Almirante Brown"
+363,"Bernardo de Irigoyen"
+363,"Dos Hermanas"
+363,Integración
+363,"San Antonio"
+364,"El Soberbio"
+364,Fracrán
+364,"San Vicente"
+365,Esperanza
+365,Libertad
+365,"Puerto Iguazú"
+365,Wanda
+366,Almafuerte
+366,"Arroyo del Medio"
+366,"Caá - Yarí"
+366,"Cerro Azul"
+366,"Dos Arroyos"
+366,"Gobernador López"
+366,"Leandro N. Alem"
+366,"Olegario V. Andrade"
+366,"Villa Libertad  (Municipio Leandro N. Alem)"
+366,"Villa Libertad (Municipio Caá - Yarí)"
+367,Capioví
+367,"El Alcázar"
+367,Garuhapé
+367,Mbopicuá
+367,"Puerto Leoni"
+367,"Puerto Rico"
+367,"Ruiz de Montoya"
+367,"San Alberto"
+367,"San Gotardo"
+367,"San Miguel"
+367,"Villa Akerman"
+368,Caraguatay
+368,Laharrague
+368,Montecarlo
+368,"Piray Kilómetro 18"
+368,"Puerto Piray"
+368,Tarumá
+368,"Villa Parodi"
+369,Alberdi
+369,"Campo Ramón"
+369,"Campo Viera"
+369,"El Salto"
+369,"General Alvear"
+369,Guaraní
+369,"Los Helechos"
+369,Oberá
+369,Panambí
+369,"Panambí Kilómetro 8"
+369,"San Martín"
+369,"Villa Bonita"
+370,"Colonia Polana"
+370,Corpus
+370,"Domingo Savio"
+370,"General Urquiza"
+370,"Gobernador Roca"
+370,Helvecia
+370,"Hipólito Yrigoyen"
+370,"Jardín América"
+370,Oasis
+370,"Roca Chica"
+370,"San Ignacio"
+370,"Santo Pipó"
+371,"Florentino Ameghino"
+371,Itacaruaré
+371,"Mojón Grande"
+371,"San Javier"
+372,"Cruce Caballero"
+372,Paraíso
+372,"Piñalito Sur"
+372,"San Pedro"
+372,Tobuna
+373,"25 de Mayo"
+373,"Alba Posse"
+373,"Colonia Alicia"
+373,"Colonia Aurora"
+373,"San Francisco de Asís"
+373,"Santa Rita"
+374,Aluminé
+374,"Villa Pehuenia"
+375,Añelo
+375,"San Patricio del Chañar"
+376,"Las Coloradas"
+377,"Piedra del Águila"
+377,"Santo Tomás"
+378,"11 de Octubre"
+378,Arroyito
+378,"Barrio Ruca Luhé"
+378,Centenario
+378,"Cutral Có"
+378,"El Chocón"
+378,"Mari Menuco"
+378,Neuquén
+378,"Plaza Huincul"
+378,Plottier
+378,Senillosa
+378,"Villa El Chocón"
+378,"Vista Alegre Norte"
+378,"Vista Alegre Sur"
+379,"Chos Malal"
+379,"Tricao Malal"
+379,"Villa del Curi Leuvú"
+380,"Junín de los Andes"
+381,"San Martín de los Andes"
+382,Chorriaca
+382,Loncopué
+383,"Villa La Angostura"
+383,"Villa Traful"
+384,Andacollo
+384,Huinganco
+384,"Las Ovejas"
+384,"Los Miches"
+384,"Manzano Amargo"
+384,Varvarco
+385,Caviahue
+385,Copahue
+385,"El Cholar"
+385,"El Huecú"
+385,Taquimilán
+386,Barrancas
+386,"Buta Ranquil"
+386,"Octavio Pico"
+386,"Rincón de los Sauces"
+387,"Paso Aguerre"
+387,"Picún Leufú"
+388,"Bajada del Agrio"
+388,"La Buitrera"
+388,"Las Lajas"
+388,"Quili Malal"
+389,"Los Catutos"
+389,"Mariano Moreno"
+389,"Ramón M. Castro"
+389,Zapala
+390,"Bahía Creek"
+390,"El Cóndor"
+390,"El Juncal"
+390,"Guardia Mitre"
+390,"La Lobería"
+390,"Loteo Costa de Río"
+390,"Pozo Salado"
+390,"San Javier"
+390,Viedma
+391,"Barrio Unión"
+391,Chelforó
+391,Chimpay
+391,"Choele Choel"
+391,"Coronel Belisle"
+391,Darwin
+391,Lamarque
+391,"Luis Beltrán"
+391,Pomona
+392,"Barrio El Pilar"
+392,"Colonia Suiza"
+392,"El Bolsón"
+392,"El Foyel"
+392,"Río Villegas"
+392,"San Carlos de Bariloche"
+392,"Villa Campanario"
+392,"Villa Catedral"
+392,"Villa Llao Llao"
+392,"Villa Los Coihues"
+393,"Barrio Colonia Conesa"
+393,"General Conesa"
+394,"Aguada Guzmán"
+394,"Cerro Policía"
+394,"El Cuy"
+394,"Las Perlas"
+394,Mencué
+394,"Naupa Huen"
+394,"Paso Córdova"
+394,"Valle Azul"
+395,Allen
+395,"Bajo San Cayetano"
+395,"Barda del Medio"
+395,"Barrio Blanco"
+395,"Barrio Calle Ciega Nº 10"
+395,"Barrio Calle Ciega Nº 6"
+395,"Barrio Canale"
+395,"Barrio Chacra Monte"
+395,"Barrio Costa Este"
+395,"Barrio Costa Linda"
+395,"Barrio Costa Oeste"
+395,"Barrio El Labrador"
+395,"Barrio El Maruchito"
+395,"Barrio El Petróleo"
+395,"Barrio Frontera"
+395,"Barrio Guerrico"
+395,"Barrio Isla 10"
+395,"Barrio La Barda"
+395,"Barrio La Costa (Municipio Grl. Roca)"
+395,"Barrio La Costa (Municipio Igr. Huergo)"
+395,"Barrio La Defensa"
+395,"Barrio La Lor"
+395,"Barrio La Ribera - Barrio APYCAR"
+395,"Barrio Las Angustias"
+395,"Barrio Mar del Plata"
+395,"Barrio María Elvira"
+395,"Barrio Mosconi"
+395,"Barrio Norte (Municipio Dde Cipolletti)"
+395,"Barrio Norte (Municipio de Cinco Saltos)"
+395,"Barrio Pino Azul"
+395,"Barrio Porvenir"
+395,"Barrio Presidente Perón"
+395,"Barrio Puente 83"
+395,"Barrio Santa Rita"
+395,"Barrio Unión"
+395,"Barrio Virgen de Luján"
+395,Catriel
+395,Cervantes
+395,Chichinales
+395,"Cinco Saltos"
+395,Cipolletti
+395,"Contralmirante Cordero"
+395,Ferri
+395,"General Enrique Godoy"
+395,"General Fernández Oro"
+395,"General Roca"
+395,"Ingeniero Luis A. Huergo"
+395,"Ingeniero Otto Krause"
+395,Mainqué
+395,"Paso Córdova"
+395,"Peñas Blancas"
+395,"Península Ruca Co"
+395,"Sargento Vidal"
+395,"Villa Alberdi"
+395,"Villa del Parque"
+395,"Villa Manzano"
+395,"Villa Regina"
+395,"Villa San Isidro"
+396,Comicó
+396,"Cona Niyeu"
+396,"Ministro Ramos Mexía"
+396,Prahuaniyeu
+396,"Sierra Colorada"
+396,Treneta
+396,Yaminué
+397,"Las Bayas"
+397,"Mamuel Choique"
+397,Ñorquincó
+397,"Ojos de Agua"
+397,"Río Chico (Est. Cerro Mesa)"
+398,"Colonia Juliá y Echarren"
+398,"Río Colorado"
+399,Comallo
+399,"Dina Huapi"
+399,"Laguna Blanca"
+399,Ñirihuau
+399,"Paso Flores"
+399,Pilcaniyeu
+399,"Pilquiniyeu del Limay"
+399,"Villa Llanquín"
+400,"Las Grutas"
+400,"Playas Doradas"
+400,"Puerto San Antonio Este"
+400,"Punta Colorada"
+400,"San Antonio Oeste"
+400,"Sierra Grande"
+401,"Aguada Cecilio"
+401,"Arroyo Los Berros"
+401,"Arroyo Ventana"
+401,"Nahuel Niyeu"
+401,"Sierra Pailemán"
+401,Valcheta
+402,"Aguada de Guerra"
+402,"Clemente Onelli"
+402,"Colan Conhue"
+402,"El Caín"
+402,"Ingeniero Jacobacci"
+402,"Los Menucos"
+402,Maquinchao
+402,"Mina Santa Teresita"
+402,Pilquiniyeu
+403,"Apolinario Saravia"
+403,Ceibalito
+403,"Centro 25 de Junio"
+403,"Coronel Mollinedo"
+403,"Coronel Olleros"
+403,"El Quebrachal"
+403,Gaona
+403,"General Pizarro"
+403,"Joaquín V. González"
+403,"Las Lajitas"
+403,"Luis Burela"
+403,Macapillo
+403,"Nuestra Señora de Talavera"
+403,"Piquete Cabado"
+403,"Río del Valle"
+403,Tolloche
+404,Cachi
+404,Payogasta
+405,Cafayate
+405,Tolombón
+406,Atocha
+406,"El Tipal y La Almudena"
+406,"La Ciénaga y Barrio San Rafael"
+406,"Las Costas"
+406,Salta
+406,"Villa San Lorenzo"
+407,Cerrillos
+407,"La Merced"
+407,"San Agustín"
+407,"Villa Los Álamos"
+408,Chicoana
+408,"El Carril"
+409,"Campo Santo"
+409,Cobos
+409,"El Bordo"
+409,"General Güemes (Est. Güemes)"
+410,Aguaray
+410,"Campamento Vespucio"
+410,Campichuelo
+410,"Campo Durán"
+410,Capiazuti
+410,Carboncito
+410,"Coronel Cornejo"
+410,Dragones
+410,Embarcación
+410,"General Ballivián"
+410,"General Mosconi (Est. Vespucio)"
+410,Hickman
+410,"Misión Chaqueña"
+410,"Misión El Cruce - El Milagro - El Jardín de San Martín"
+410,"Misión Kilómetro 6"
+410,"Misión Tierras Fiscales"
+410,Pacará
+410,"Padre Lozano"
+410,Piquirenda
+410,"Profesor Salvador Mazza (Est. Pocitos)"
+410,Recaredo
+410,Tartagal
+410,Tobantirenda
+410,Tranquitas
+410,Yacuy
+411,Guachipas
+412,Iruya
+412,"Isla de Cañas"
+412,"Pueblo Viejo"
+413,"La Caldera"
+413,Vaqueros
+414,"El Jardín"
+414,"El Tala (Est. Ruiz de los Llanos)"
+414,"La Candelaria"
+415,Cobres
+415,"La Poma"
+416,Ampascachi
+416,"Cabra Corral"
+416,"Coronel Moldes"
+416,"La Viña"
+416,Talapampa
+417,Olacapato
+417,"San Antonio de los Cobres"
+417,"Santa Rosa de los Pastos Grandes"
+417,"Tolar Grande"
+418,"El Galpón (Est. Foguista J. F. Juárez)"
+418,"El Tunal"
+418,Lumbreras
+418,"Metán Viejo"
+418,"Presa El Tunal"
+418,"Río Piedras"
+418,"San José de Metán (Est. Metán)"
+418,"San José de Orquera"
+419,"La Puerta"
+419,Molinos
+419,Seclantás
+420,"Aguas Blancas"
+420,"Colonia Santa Rosa"
+420,"El Tabacal"
+420,"Hipólito Yrigoyen (Est. Tabacal)"
+420,"La Misión"
+420,Pichanal
+420,"San Ramón de la Nueva Orán (Est. Orán)"
+420,Urundel
+421,"Alto de la Sierra"
+421,"Capitán Juan Pagé"
+421,"Coronel Juan Solá (Est. Morillo)"
+421,"La Unión"
+421,"Los Blancos"
+421,"Pluma de Pato"
+421,Rivadavia
+421,"Santa María"
+421,"Santa Rosa"
+421,"Santa Victoria Este"
+422,Antillá
+422,"Copo Quile"
+422,"El Naranjo"
+422,"El Potrero (Apeadero Cochabamba)"
+422,"Rosario de la Frontera"
+422,"San Felipe"
+423,"Campo Quijano"
+423,"La Silleta"
+423,"Rosario de Lerma"
+424,Angastaco
+424,Animaná
+424,"El Barrial"
+424,"San Carlos"
+425,Acoyte
+425,"Campo La Cruz"
+425,"Los Toldos"
+425,Nazareno
+425,Poscaya
+425,"San Marcos"
+425,"Santa Victoria"
+426,"El Rincón"
+426,"Villa General San Martín - Campo Afuera"
+427,"Las Tapias"
+427,"Villa El Salvador - Villa Sefair"
+428,"Barreal  - Villa Pituil"
+428,Calingasta
+428,Tamberías
+429,"San Juan"
+430,Bermejo
+430,Caucete
+430,"El Rincón"
+430,"Las Talas - Los Médanos"
+430,Marayes
+430,"Pie de Palo"
+430,Vallecito
+430,"Villa Independencia"
+431,Chimbas
+432,Angualasto
+432,"Bella Vista"
+432,Iglesia
+432,"Las Flores"
+432,Pismanta
+432,Rodeo
+432,Tudcum
+433,"El Médano"
+433,"Gran China"
+433,Huaco
+433,Mogna
+433,Niquivil
+433,"Pampa Vieja"
+433,"San Isidro"
+433,"San José de Jáchal"
+433,Tamberías
+433,"Villa Malvinas Argentinas"
+433,"Villa Mercedes"
+434,"9 de Julio"
+434,"Alto de Sierra"
+434,"Colonia Fiorito"
+434,"Las Chacritas"
+435,"Barrio Ruta 40"
+435,Carpintería
+435,"Quinto Cuartel"
+435,"Villa Aberastain - La Rinconada"
+435,"Villa Barboza - Villa Nacusi"
+435,"Villa Centenario"
+436,Rawson
+436,"Villa Bolaños"
+437,Rivadavia
+438,"Barrio Sadop"
+438,"Dos Acequias (Est. Los Angacos)"
+438,"San Isidro (Est. Los Angacos)"
+438,"Villa Dominguito (Est. Puntilla Blanca)"
+438,"Villa Don Bosco (Est. Angaco Sud)"
+438,"Villa El Salvador"
+438,"Villa San Martín"
+439,"Colonia Gutiérrez"
+439,"Santa Lucía"
+440,"Cañada Honda"
+440,Cienaguita
+440,"Colonia Fiscal"
+440,Divisadero
+440,Guanacache
+440,"Las Lagunas"
+440,"Los Berros"
+440,Pedernal
+440,"Punta del Médano"
+440,"Villa Media Agua"
+441,"Villa Ibáñez"
+442,Astica
+442,"Balde del Rosario"
+442,Chucuma
+442,"Los Baldecitos"
+442,Usno
+442,"Villa San Agustín"
+443,"El Encón"
+443,Tupelí
+443,"Villa Borjas - La Chimbera"
+443,"Villa El Tango"
+443,"Villa Santa Rosa"
+444,"Villa Basilio Nievas"
+445,Candelaria
+445,"La Majada"
+445,"Leandro N. Alem"
+445,Luján
+445,Quines
+445,"Río Juan Gómez"
+445,"San Francisco del Monte de Oro"
+446,"La Calera"
+446,Nogolí
+446,"Villa de la Quebrada"
+446,"Villa General Roca"
+447,Carolina
+447,"El Trapiche"
+447,Fraga
+447,"La Bajada"
+447,"La Florida"
+447,"La Toma"
+447,"Río Grande"
+447,Riocito
+447,Saladillo
+448,Concarán
+448,Cortaderas
+448,Naschel
+448,Papagayos
+448,Renca
+448,"San Pablo"
+448,Tilisarao
+448,"Villa del Carmen"
+448,"Villa Larca"
+449,"Juan Jorba"
+449,"Juan Llerena"
+449,"Justo Daract"
+449,"La Punilla"
+449,Lavaisse
+449,"San José del Morro"
+449,"Villa Mercedes"
+449,"Villa Reynolds"
+449,"Villa Salles"
+450,Anchorena
+450,Arizona
+450,Bagual
+450,Batavia
+450,"Buena Esperanza"
+450,"Fortín El Patria"
+450,Fortuna
+450,"La Maroma"
+450,"Los Overos"
+450,"Martín de Loyola"
+450,"Nahuel Mapá"
+450,Navia
+450,"Nueva Galia"
+450,Unión
+451,Carpintería
+451,"Cerro de Oro"
+451,Lafinur
+451,"Los Cajones"
+451,"Los Molles"
+451,Merlo
+451,"Santa Rosa del Conlara"
+451,Talita
+452,"Alto Pelado"
+452,"Alto Pencoso"
+452,Balde
+452,Beazley
+452,Cazador
+452,Chosmes
+452,Desaguadero
+452,"El Volcán"
+452,Jarilla
+452,"Juana Koslay"
+452,"La Punta"
+452,Mosmota
+452,"Potrero de los Funes"
+452,"Salinas del Bebedero"
+452,"San Jerónimo"
+452,"San Luis"
+452,Zanjitas
+453,"La Vertiente"
+453,"Las Aguadas"
+453,"Las Chacras"
+453,"Las Lagunas"
+453,"Paso Grande"
+453,Potrerillo
+453,"San Martín"
+453,"Villa de Praga"
+454,"Comandante Luis Piedrabuena"
+454,"Puerto Santa Cruz"
+455,"Caleta Olivia"
+455,"Cañadón Seco"
+455,"Fitz Roy"
+455,Jaramillo
+455,"Koluel Kaike"
+455,"Las Heras"
+455,"Pico Truncado"
+455,"Puerto Deseado"
+455,Tellier
+456,"28 de Noviembre"
+456,"El Turbio (Est. Gobernador Mayer)"
+456,"Julia Dufour"
+456,"Mina 3"
+456,"Río Gallegos"
+456,Rospentek
+456,"Yacimientos Río Turbio"
+457,"El Calafate"
+457,"El Chaltén"
+457,"Tres Lagos"
+458,"Los Antiguos"
+458,"Perito Moreno"
+459,"Puerto San Julián"
+460,"Bajo Caracoles"
+460,"Gobernador Gregores"
+460,"Hipólito Yrigoyen"
+461,Armstrong
+461,Bouquet
+461,"Las Parejas"
+461,"Las Rosas"
+461,"Montes de Oca"
+461,Tortugas
+462,Arequito
+462,Arteaga
+462,Beravebú
+462,Bigand
+462,Casilda
+462,Chabas
+462,"Chañar Ladeado"
+462,Gödeken
+462,"Los Molinos"
+462,"Los Nogales"
+462,"Los Quirquinchos"
+462,"San José de la Esquina"
+462,Sanford
+462,Villada
+463,"Aldao (Est. Casablanca)"
+463,Angélica
+463,Ataliva
+463,Aurelia
+463,"Barrios Acapulco y Veracruz"
+463,"Bauer y Sigel"
+463,"Bella Italia"
+463,Castellanos
+463,"Colonia Bicha"
+463,"Colonia Cello"
+463,"Colonia Margarita"
+463,"Colonia Raquel"
+463,"Coronel Fraga"
+463,Egusquiza
+463,Esmeralda
+463,"Estación Clucellas"
+463,"Estación Saguier"
+463,"Eusebia y Carolina"
+463,Eustolia
+463,Frontera
+463,Garibaldi
+463,"Humberto Primo"
+463,Josefina
+463,Lehmann
+463,"María Juana"
+463,"Nueva Lehmann"
+463,"Plaza Clucellas"
+463,"Plaza Saguier"
+463,"Presidente Roca"
+463,"Pueblo Marini"
+463,Rafaela
+463,Ramona
+463,"San Antonio"
+463,"San Vicente"
+463,"Santa Clara de Saguier"
+463,Sunchales
+463,Susana
+463,Tacural
+463,Vila
+463,"Villa Josefina"
+463,"Villa San José"
+463,Virginia
+463,"Zenón Pereyra"
+464,Alcorta
+464,"Barrio Arroyo del Medio"
+464,"Barrio Mitre"
+464,Bombal
+464,"Cañada Rica"
+464,Cepeda
+464,"Empalme Villa Constitución"
+464,Firmat
+464,"General Gelly"
+464,Godoy
+464,"Juan B. Molina"
+464,Juncal
+464,"La Vanguardia"
+464,"Máximo Paz (Est. Paz)"
+464,Pavón
+464,"Pavón Arriba"
+464,Peyrano
+464,Rueda
+464,"Santa Teresa"
+464,"Sargento Cabral"
+464,Stephenson
+464,Theobald
+464,"Villa Constitución"
+465,Cayastá
+465,Helvecia
+465,"Los Zapallos"
+465,"Saladero Mariano Cabal"
+465,"Santa Rosa de Calchines"
+466,"Aarón Castellanos (Est. Castellanos)"
+466,Amenábar
+466,Cafferata
+466,"Cañada del Ucle"
+466,Carmen
+466,Carreras
+466,Chapuy
+466,Chovet
+466,Christophersen
+466,"Diego de Alvear"
+466,Elortondo
+466,Firmat
+466,Hughes
+466,"La Chispa"
+466,Labordeboy
+466,Lazzarino
+466,Maggiolo
+466,"María Teresa"
+466,"Melincué  (Est. San Urbano)"
+466,"Miguel Torres"
+466,Murphy
+466,Rufino
+466,"San Eduardo"
+466,"San Francisco de Santa Fe"
+466,"San Gregorio"
+466,"Sancti Spiritu"
+466,"Santa Isabel"
+466,Teodelina
+466,"Venado Tuerto"
+466,"Villa Cañás"
+466,Wheelwright
+467,"Arroyo Ceibal"
+467,"Avellaneda (Est. Ewald)"
+467,Berna
+467,"El Araza"
+467,"El Rabón"
+467,Florencia
+467,"Guadalupe Norte"
+467,"Ingeniero Chanourdie"
+467,"La Isleta"
+467,"La Sarita"
+467,Lanteri
+467,"Las Garzas"
+467,"Las Toscas"
+467,"Los Laureles"
+467,Malabrigo
+467,"Paraje San Manuel"
+467,"Puerto Reconquista"
+467,Reconquista
+467,"San Antonio de Obligado"
+467,"Tacuarendí (Emb. Kilómetro 421)"
+467,"Villa Ana"
+467,"Villa Guillermina"
+467,"Villa Ocampo"
+468,"Barrio Cicarelli"
+468,Bustinza
+468,"Cañada de Gómez"
+468,"Carrizales (Est. Clarke)"
+468,Classon
+468,"Colonia Médici"
+468,Correa
+468,Larguía
+468,"Lucio V. López"
+468,Oliveros
+468,"Pueblo Andino"
+468,"Salto Grande"
+468,Serodino
+468,Totoras
+468,"Villa Eloísa"
+468,"Villa La Rivera (Comuna Oliveros)"
+468,"Villa La Rivera (Comuna Pueblo Andino)"
+469,"Angel Gallardo"
+469,"Arroyo Aguiar"
+469,"Arroyo Leyes"
+469,Cabal
+469,"Campo Andino"
+469,Candioti
+469,Emilia
+469,"Laguna Paiva"
+469,"Llambi Campbell"
+469,"Monte Vera"
+469,Nelson
+469,"Paraje Chaco Chico"
+469,"Paraje La Costa"
+469,Recreo
+469,"Rincón Potrero"
+469,"San José del Rincón"
+469,"Santa Fe"
+469,"Santo Tomé"
+469,"Sauce Viejo"
+469,"Villa Laura (Est. Constituyentes)"
+470,Cavour
+470,Cululú
+470,Elisa
+470,"Empalme San Carlos"
+470,Esperanza
+470,Felicia
+470,Franck
+470,Grutly
+470,Hipatía
+470,Humboldt
+470,"Jacinto L. Aráuz"
+470,"La Pelada"
+470,"Las Tunas"
+470,"María Luisa"
+470,Matilde
+470,"Nuevo Torino"
+470,Pilar
+470,"Plaza Matilde"
+470,Progreso
+470,Providencia
+470,"Sa Pereyra"
+470,"San Agustín"
+470,"San Carlos Centro"
+470,"San Carlos Norte"
+470,"San Carlos Sud"
+470,"San Jerónimo del Sauce"
+470,"San Jerónimo Norte"
+470,"San Mariano"
+470,"Santa Clara de Buena Vista"
+470,"Santo Domingo"
+470,Sarmiento
+471,"Esteban Rams"
+471,"Gato Colorado"
+471,"Gregoria Pérez de Denis  (Est. El Nochero)"
+471,Logroño
+471,Montefiore
+471,"Pozo Borrado"
+471,"Santa Margarita"
+471,Tostado
+471,"Villa Minetti"
+472,Acébal
+472,Albarellos
+472,Álvarez
+472,Alvear
+472,Arbilla
+472,Arminda
+472,"Arroyo Seco"
+472,"Carmen del Sauce"
+472,"Coronel Bogado"
+472,"Coronel Rodolfo S. Domínguez"
+472,"Cuatro Esquinas"
+472,"El Caramelo"
+472,Fighiera
+472,Funes
+472,"General Lagos"
+472,"Granadero Baigorria"
+472,Ibarlucea
+472,"Kilómetro 101"
+472,"Los Muchachos - La Alborada"
+472,"Monte Flores"
+472,Pérez
+472,"Piñero (Est. Erasto)"
+472,"Pueblo Esther"
+472,"Pueblo Muñoz (Est. Bernard)"
+472,"Pueblo Uranga"
+472,"Puerto Arroyo Seco"
+472,Rosario
+472,Soldini
+472,"Villa Amelia"
+472,"Villa del Plata"
+472,"Villa Gobernador Gálvez"
+472,Zavalla
+473,"Aguará Grande"
+473,Ambrosetti
+473,Arrufo
+473,"Balneario La Verde"
+473,Capivara
+473,Ceres
+473,"Colonia Ana"
+473,"Colonia Bossi"
+473,"Colonia Rosa"
+473,Constanza
+473,Curupaytí
+473,Hersilia
+473,Huanqueros
+473,"La Cabral"
+473,"La Rubia"
+473,"Las Avispas"
+473,"Las Palmeras"
+473,"Moisés Ville"
+473,Monigotes
+473,Ñanducita
+473,Palacios
+473,"San Cristóbal"
+473,"San Guillermo"
+473,Santurce
+473,Soledad
+473,Suardi
+473,"Villa Saralegui"
+473,"Villa Trinidad"
+474,Alejandra
+474,"Cacique Ariacaiquín"
+474,"Colonia Durán"
+474,"La Brava"
+474,Romang
+474,"San Javier"
+475,Arocena
+475,"Balneario Monje"
+475,Barrancas
+475,"Barrio Caima"
+475,"Barrio El Pacaá - Barrio Comipini"
+475,"Bernardo de Irigoyen (Est. Irigoyen)"
+475,Casalegno
+475,Centeno
+475,Coronda
+475,"Desvío Arijón"
+475,Díaz
+475,Gaboto
+475,Gálvez
+475,Gessler
+475,Irigoyen
+475,Larrechea
+475,"Loma Alta"
+475,"López (Est. San Martín de Tours)"
+475,Maciel
+475,Monje
+475,"Puerto Aragón"
+475,"San Eugenio"
+475,"San Fabián"
+475,"San Genaro"
+475,"San Genaro Norte"
+476,Angeloni
+476,Cayastacito
+476,"Colonia Dolores"
+476,Esther
+476,"Gobernador Crespo"
+476,"La Criolla (Est. Cañadita)"
+476,"La Penca y Caraguatá"
+476,"Marcelino Escalada"
+476,Naré
+476,"Pedro Gómez Cello"
+476,Ramayón
+476,"San Bernardo"
+476,"San Justo"
+476,"San Martín Norte"
+476,"Silva (Est. Abipones)"
+476,"Vera y Pintado (Est. Guaraníes)"
+476,Videla
+477,Aldao
+477,"Capitán Bermúdez"
+477,Carcarañá
+477,"Coronel Arnold"
+477,"Fray Luis Beltrán"
+477,Fuentes
+477,"Luis Palacios (Est. La Salada)"
+477,"Puerto General San Martín"
+477,Pujato
+477,Ricardone
+477,Roldán
+477,"San Jerónimo Sud"
+477,"San Lorenzo"
+477,Timbúes
+477,"Villa Elvira"
+477,"Villa Mugueta"
+478,"Cañada Rosquín"
+478,"Carlos Pellegrini"
+478,Casas
+478,Castelar
+478,"Colonia Belgrano"
+478,Crispi
+478,"El Trébol"
+478,Landeta
+478,"Las Bandurrias"
+478,"Las Petacas"
+478,"Los Cardos"
+478,"María Susana"
+478,Piamonte
+478,"San Jorge"
+478,"San Martín de las Escobas"
+478,Sastre
+478,Traill
+478,"Wildermuth (Est. Granadero B. Bustos)"
+479,Calchaquí
+479,"Cañada Ombú"
+479,Colmena
+479,"Fortín Olmos"
+479,Garabato
+479,Golondrina
+479,Intiyaco
+479,"Kilómetro 115"
+479,"La Gallareta"
+479,"Los Amores"
+479,Margarita
+479,"Paraje 29"
+479,"Pozo de los Indios"
+479,"Pueblo Santa Lucía"
+479,"Tartagal (Est. El Tajamar)"
+479,Toba
+479,"Vera (Est. Gobernador Vera)"
+480,Argentina
+480,Casares
+480,Malbrán
+480,"Villa General Mitre (Est. Pinto)"
+481,"Campo Gallo"
+481,"Coronel Manuel L. Rico"
+481,Donadeu
+481,Sachayoj
+481,"Santos Lugares"
+482,"Estación Atamisqui"
+482,Medellín
+482,"Villa Atamisqui"
+483,"Colonia Dora"
+483,Herrera
+483,Icaño
+483,Lugones
+483,"Real Sayana"
+483,"Villa Mailín"
+484,"Abra Grande"
+484,Antajé
+484,Ardiles
+484,"Cañada Escobar"
+484,"Chaupi Pozo"
+484,Clodomira
+484,Huyamampa
+484,"La Aurora"
+484,"La Banda"
+484,"La Dársena"
+484,"Los Quiroga"
+484,"Los Soria"
+484,Simbolar
+484,"Tramo 16"
+484,"Tramo 20"
+485,Bandera
+485,"Cuatro Bocas"
+485,"Fortín Inca"
+485,"Guardia Escolta"
+486,"El Deán"
+486,"El Mojón"
+486,"El Zanjón"
+486,"Los Cardozos"
+486,Maco
+486,Maquito
+486,Morales
+486,"Puesto de San Antonio"
+486,"San Pedro"
+486,"Santa María"
+486,"Santiago del Estero"
+486,"Vuelta de la Barranca"
+486,Yanda
+487,"El Caburé"
+487,"La Firmeza"
+487,"Los Pirpintos"
+487,"Los Tigres"
+487,"Monte Quemado"
+487,"Nueva Esperanza"
+487,"Pampa de los Guanacos"
+487,"San José del Boquerón"
+487,Urutaú
+488,Ancaján
+488,Choya
+488,"Estación La Punta"
+488,Frías
+488,Laprida
+488,"Las Palmitas"
+488,"San Pedro"
+488,Tapso
+488,"Villa La Punta"
+489,"Bandera Bajada"
+489,"Caspi Corral"
+489,"Colonia San Juan"
+489,"El Crucero"
+489,"Kilómetro 30"
+489,"La Cañada"
+489,"La Invernada"
+489,Minerva
+489,"Vaca Huañuna"
+489,"Villa Figueroa"
+490,Añatuya
+490,Averías
+490,"Estación Tacañitas"
+490,"La Nena"
+490,"Los Juríes"
+490,"Tomás Young"
+491,Lavalle
+491,"San Pedro"
+492,"El Bobadal"
+492,"El Charco"
+492,"El Rincón"
+492,Gramilla
+492,"Isca Yacu"
+492,"Isca Yacu Semaul"
+492,"Pozo Hondo"
+492,"San Pedro"
+493,"El Colorado"
+493,"El Cuadrado"
+493,Matará
+493,"Suncho Corral"
+493,Vilelas
+493,Yuchán
+494,"Villa San Martín (Est. Loreto)"
+495,"Villa Unión"
+496,Aerolito
+496,Alhuampa
+496,Hasse
+496,"Hernán Mejía Miraval"
+496,"Las Tinajas"
+496,Libertad
+496,"Lilo Viejo"
+496,Patay
+496,"Pueblo Pablo Torelo (Est. Otumpa)"
+496,Quimili
+496,Roversi
+496,Tintina
+496,Weisburd
+497,"El 49"
+497,"Sol de Julio"
+497,"Villa Ojo de Agua"
+498,"El Mojón"
+498,"Las Delicias"
+498,"Nueva Esperanza"
+498,"Pozo Betbeder"
+498,Rapelli
+498,"Santo Domingo"
+499,"Ramírez de Velazco"
+499,Sumampa
+499,"Sumampa Viejo"
+500,"Chañar Pozo de Abajo"
+500,Chauchillas
+500,"Colonia Tinco"
+500,"El Charco"
+500,Gramilla
+500,"La Nueva Donosa"
+500,"Los Miranda"
+500,"Los Núñez"
+500,Mansupa
+500,Pozuelos
+500,"Rodeo de Valdez"
+500,Sauzal
+500,"Termas de Río Hondo"
+500,"Villa Giménez"
+500,"Villa Río Hondo"
+500,"Villa Turística del Embalse"
+500,Vinará
+501,"Colonia Alpina"
+501,"Palo Negro"
+501,Selva
+502,Beltrán
+502,"Colonia El Simbolar"
+502,Fernández
+502,"Ingeniero Forres (Est. Chaguar Punco)"
+502,Vilmer
+503,"Chilca Juliana"
+503,"Los Telares"
+503,"Villa Salavina"
+504,"Brea Pozo"
+504,"Estación Robles"
+504,"Estación Taboada"
+504,"Villa Nueva"
+505,Garza
+506,Árraga
+506,"Nueva Francia"
+506,Simbol
+506,Sumamao
+506,"Villa Silípica"
+507,"7 de Abril"
+507,"Barrio San Jorge"
+507,"El Chañar"
+507,"El Naranjo"
+507,Garmendia
+507,"La Ramada"
+507,Macomitas
+507,Piedrabuena
+507,"Villa  Padre Monti"
+507,"Villa Benjamín Aráoz"
+507,"Villa Burruyacú"
+508,Alderetes
+508,"Banda del Río Salí"
+508,"Barrio Aeropuerto"
+508,Colombres
+508,"Colonia Mayo - Barrio La Milagrosa"
+508,"Delfín Gallo"
+508,"El Bracho"
+508,"La Florida"
+508,"Las Cejas"
+508,"Los Ralos"
+508,Pacará
+508,Ranchillos
+508,"San Andrés"
+509,Alpachiri
+509,"Alto Verde"
+509,Arcadia
+509,"Barrio San Roque"
+509,Concepción
+509,Iltico
+509,"La Trinidad"
+509,Medina
+510,"Barrio Casa Rosada"
+510,"Campo de Herrera"
+510,Famaillá
+510,"Ingenio Fronterita"
+511,Graneros
+511,Lamadrid
+511,"Taco Ralo"
+512,"Juan Bautista Alberdi"
+512,"Villa Belgrano"
+513,"La Cocha"
+513,"San José de La Cocha"
+514,"Bella Vista"
+514,"Estación Aráoz"
+514,"Los Puestos"
+514,"Manuel García Fernández"
+514,"Pala Pala"
+514,"Río Colorado"
+514,"Santa Rosa de Leales"
+514,"Villa Fiad - Ingenio Leales"
+514,"Villa Leales"
+515,"Barrio San Felipe"
+515,"El Manantial"
+515,"Ingenio San Pablo"
+515,"La Reducción"
+515,Lules
+516,Acheral
+516,"Capitán Cáceres"
+516,Monteros
+516,"Pueblo Independencia"
+516,"Río Seco"
+516,"Santa Lucía"
+516,"Sargento Moya"
+516,"Soldado Maldonado"
+516,"Teniente Berdina"
+516,"Villa Quinteros"
+517,Aguilares
+517,"Los Sarmientos"
+517,"Río Chico"
+517,"Santa Ana"
+517,"Villa Clodomiro Hileret"
+518,"San Miguel de Tucumán (Est. Tucumán)"
+519,Atahona
+519,Monteagudo
+519,"Nueva Trinidad"
+519,"Santa Cruz"
+519,Simoca
+519,"Villa Chicligasta"
+520,"Amaicha del Valle"
+520,"Colalao del Valle"
+520,"El Mollar"
+520,"Tafí del Valle"
+521,"Barrio El Cruce"
+521,"Barrio Lomas de Tafí"
+521,"Barrio Mutual San Martín"
+521,"Barrio Parada 14"
+521,"Barrio U.T.A. II"
+521,"Diagonal Norte - Luz y Fuerza - Los Pocitos - Villa Nueva Italia"
+521,"El Cadillal"
+521,"Tafí Viejo"
+521,"Villa Las Flores"
+521,"Villa Mariano Moreno - El Colmenar"
+522,Choromoro
+522,"San Pedro de Colalao"
+522,"Villa de Trancas"
+523,"Barrio San José III"
+523,"Villa Carmela"
+523,"Yerba Buena - Marcos Paz"
+524,"Río Grande"
+524,Tolhuin
+525,"Laguna Escondida"
+525,Ushuaia
+526,"Islas del Atlántico Sur"
+527,"Antártida Argentina"
