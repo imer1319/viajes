@@ -129,13 +129,13 @@
             >
             <br />
             <strong
-                >Total total gastos: <span class="text-danger">(-)</span>
-                {{ totalImporteGasto | formatNumber }}</strong
+                >Total total adelantos: <span class="text-danger">(-)</span>
+                {{ totalImporteAnticipo | formatNumber }}</strong
             >
             <br />
             <strong
-                >Total total adelantos: <span class="text-primary">(+)</span>
-                {{ totalImporteAnticipo | formatNumber }}</strong
+                >Total total gastos: <span class="text-primary">(+)</span>
+                {{ totalImporteGasto | formatNumber }}</strong
             >
             <br />
             <hr />
@@ -213,8 +213,8 @@ export default {
         totalGastoLiquidacion() {
             return (
                 this.totalComisionChofer -
-                this.totalImporteGasto +
-                this.totalImporteAnticipo
+                this.totalImporteAnticipo +
+                this.totalImporteGasto
             );
         },
     },

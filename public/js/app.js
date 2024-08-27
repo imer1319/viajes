@@ -3900,7 +3900,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       }, 0);
     },
     totalGastoLiquidacion: function totalGastoLiquidacion() {
-      return this.totalComisionChofer - this.totalImporteGasto + this.totalImporteAnticipo;
+      return this.totalComisionChofer - this.totalImporteAnticipo + this.totalImporteGasto;
     }
   })
 });
@@ -9543,11 +9543,11 @@ var render = function render() {
     staticClass: "col-md-12 text-right"
   }, [_vm._m(11), _vm._v(" "), _c("strong", [_vm._v("Total movimientos: "), _c("span", {
     staticClass: "text-primary"
-  }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Total total gastos: "), _c("span", {
+  }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Total total adelantos: "), _c("span", {
     staticClass: "text-danger"
-  }, [_vm._v("(-)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteGasto)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Total total adelantos: "), _c("span", {
+  }, [_vm._v("(-)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteAnticipo)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Total total gastos: "), _c("span", {
     staticClass: "text-primary"
-  }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteAnticipo)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("strong", [_vm._v("Total a liquidar:\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalGastoLiquidacion)))])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalImporteGasto)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("hr"), _vm._v(" "), _c("strong", [_vm._v("Total a liquidar:\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalGastoLiquidacion)))])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
