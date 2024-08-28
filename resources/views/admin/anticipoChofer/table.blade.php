@@ -15,15 +15,14 @@
                 <td>{{ $anticipo->id }}</td>
                 <td>{{ $anticipo->numero_interno }}</td>
                 <td>{{ $anticipo->fecha }}</td>
-                <td>{{ $anticipo->importe }}</td>
-                <td>{{ $anticipo->saldo }}</td>
+                <td>{{ number_format($anticipo->importe, 2, ',', '.') }}</td>
+                <td>{{ number_format($anticipo->saldo, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.anticipos.chofer.edit', [$chofer, $anticipo]) }}"
                         class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <form action="{{ route('admin.anticipos.destroy', $anticipo) }}"
-                        style="display:inline" method="post">
+                    <form action="{{ route('admin.anticipos.destroy', $anticipo) }}" style="display:inline" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"

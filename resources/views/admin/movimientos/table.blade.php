@@ -18,8 +18,8 @@
                 <td>{{ $movimiento->fecha }}</td>
                 <td>{{ $movimiento->cliente->razon_social }}</td>
                 <td>{{ $movimiento->tipoViaje->descripcion }}</td>
-                <td>{{ $movimiento->precio_real }}</td>
-                <td>{{ $movimiento->total }}</td>
+                <td>{{ number_format($movimiento->precio_real, 2, ',', '.') }}</td>
+                <td>{{ number_format($movimiento->total, 2, ',', '.') }}</td>
                 <td>{{ $movimiento->chofer->nombre }}</td>
                 <td>
                     <a href="{{ route('admin.movimiento.download.pdf', $movimiento) }}" target="_blank" class="btn btn-primary rounded-pill float-end">

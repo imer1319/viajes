@@ -22,10 +22,9 @@
 
         <div class="card card-primary card-outline ñpt-4">
             <div class="card-header">Ver chofer</div>
-
             <div class="card-body">
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-6">
                         <strong><i class="fas fa-user mr-1"></i> Chofer</strong>
                         <p class="text-muted">Nombre: {{ $chofer->nombre }}</p>
                         <p class="text-muted">Fecha de nacimiento: {{ $chofer->fecha_nacimiento }}</p>
@@ -34,7 +33,64 @@
                         <p class="text-muted">Domicilio: {{ $chofer->domicilio }}</p>
                         <p class="text-muted">Email: {{ $chofer->email }}</p>
                         <p class="text-muted">Telefono: {{ $chofer->telefono }}</p>
-                        <p class="text-muted">Saldo: {{ number_format($chofer->saldo, 2, ',', '.')  }}</p>
+                        <p class="text-muted">Saldo: {{ number_format($chofer->saldo, 2, ',', '.') }}</p>
+                    </div>
+                    <div class="col-6">
+                        <h5>Anticipos con saldo</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th># interno</th>
+                                    <th>Fecha</th>
+                                    <th>Importe</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($chofer->anticipos as $anticipo)
+                                    <tr>
+                                        <td>{{ $anticipo->id }}</td>
+                                        <td>{{ $anticipo->numero_interno }}</td>
+                                        <td>{{ $anticipo->fecha }}</td>
+                                        <td>{{ $anticipo->importe }}</td>
+                                        <td>{{ $anticipo->saldo }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" align="center">No hay datos de anticipos</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h5>Gastos con saldo</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th># interno</th>
+                                    <th>Fecha</th>
+                                    <th>Importe</th>
+                                    <th>Saldo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($chofer->gastos as $gasto)
+                                    <tr>
+                                        <td>{{ $gasto->id }}</td>
+                                        <td>{{ $gasto->numero_interno }}</td>
+                                        <td>{{ $gasto->fecha }}</td>
+                                        <td>{{ $gasto->importe }}</td>
+                                        <td>{{ $gasto->saldo }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" align="center">No hay datos de gastos</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

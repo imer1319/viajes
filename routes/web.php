@@ -8,6 +8,7 @@ use App\Http\Controllers\Administracion\GastoChoferController;
 use App\Http\Controllers\Administracion\GastoController;
 use App\Http\Controllers\Administracion\LiquidacionController;
 use App\Http\Controllers\Administracion\ProveedorController;
+use App\Http\Controllers\Administracion\ReciboController;
 use App\Http\Controllers\Administracion\UserController;
 use App\Http\Controllers\Configuracion\CondicionIvaController;
 use App\Http\Controllers\Configuracion\CondicionPagoController;
@@ -49,6 +50,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('flotas', FlotaController::class);
     Route::resource('liquidaciones', LiquidacionController::class);
     Route::resource('gastos', GastoController::class);
+    Route::resource('recibos', ReciboController::class);
     // anticipos chofer
     Route::get('anticipos/{chofer}/chofer', [AnticipoChoferController::class, 'index'])->name('anticipos.chofer.index');
     Route::get('anticipos/{chofer}/chofer/create', [AnticipoChoferController::class, 'create'])->name('anticipos.chofer.create');
@@ -62,9 +64,11 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     // PDF
     Route::get('liquidacion/{liquidacion}/download', [LiquidacionController::class, 'downloadPdf'])->name('liquidacion.download.pdf');
     Route::get('/movimientos/{movimiento}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('movimiento.download.pdf');
+    Route::get('/recibos/{recibo}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('recibo.download.pdf');
     // EXPORT EXCEL
     Route::get('/movimientos/excel/export', [MovimientoController::class, 'downloadExcel'])->name('movimiento.download.excel');
     Route::get('/liquidaciones/excel/export', [LiquidacionController::class, 'downloadExcel'])->name('liquidacion.download.excel');
+    Route::get('/recibos/excel/export', [LiquidacionController::class, 'downloadExcel'])->name('recibo.download.excel');
     Route::get('/gastos/excel/export', [GastoController::class, 'downloadExcel'])->name('gastos.download.excel');
     Route::get('/gastos/{chofer}/excel/export', [GastoChoferController::class, 'downloadExcel'])->name('gastos.chofer.download.excel');
     Route::get('/anticipos/excel/export', [AnticipoController::class, 'downloadExcel'])->name('anticipos.download.excel');

@@ -19,8 +19,8 @@
                 <td>
                     <a href="{{ route('admin.gastos.chofer.index', $gasto->chofer->id) }}">{{ $gasto->chofer->nombre }}</a>
                 </td>
-                <td>{{ $gasto->importe }}</td>
-                <td>{{ $gasto->saldo }}</td>
+                <td>{{ number_format($gasto->importe, 2, ',', '.') }}</td>
+                <td>{{ number_format($gasto->saldo, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.gastos.show', $gasto) }}" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-eye"></i>

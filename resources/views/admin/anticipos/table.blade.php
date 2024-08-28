@@ -20,8 +20,8 @@
                     <a
                         href="{{ route('admin.anticipos.chofer.index', $anticipo->chofer->id) }}">{{ $anticipo->chofer->nombre }}</a>
                 </td>
-                <td>{{ $anticipo->importe }}</td>
-                <td>{{ $anticipo->saldo }}</td>
+                <td>{{ number_format($anticipo->importe, 2, ',', '.') }}</td>
+                <td>{{ number_format($anticipo->saldo, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.anticipos.edit', $anticipo) }}" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-edit"></i>

@@ -336,6 +336,35 @@ export const getMovimientosChofer = async ({ commit, state }, chofer_id) => {
         console.error("Error al traer los movimientos del chofer:", error);
     }
 };
+
+export const getMovimientosCliente = async ({ commit, state }, cliente_id) => {
+    try {
+        const response = await axios.get(`/api/movimientos/${cliente_id}?edit=${state.isEditing}&cliente_id_anterior=${state.cliente_id_anterior}&recibo=${state.form.id}`);
+        const clienteData = response.data.chofer;
+        const movimientos = response.data.movimientos;
+        const anticipos = response.data.anticipos;
+        const gastos = response.data.gastos;
+        console.log(response.data);
+        commit('SET_CHOFER', clienteData);
+
+        if (state.isEditing) {
+            commit('SET_FORM_MOVIMIENTOS', movimientos);
+            commit('SET_FORM_ANTICIPOS', anticipos);
+            commit('SET_FORM_GASTOS', gastos);
+            commit('SET_REMOVED_ITEMS', {
+                removedMovimientos: response.data.movimientosCero || [],
+                removedAnticipos: response.data.anticiposCero || [],
+                removedGastos: response.data.gastosCero || [],
+            });
+        } else {
+            commit('SET_FORM_MOVIMIENTOS', movimientos);
+            commit('SET_FORM_ANTICIPOS', anticipos);
+            commit('SET_FORM_GASTOS', gastos);
+        }
+    } catch (error) {
+        console.error("Error al traer los movimientos del chofer:", error);
+    }
+};
 export const validarHead = async ({ commit, dispatch }, form) => {
     try {
         await axios.post('/api/liquidacion/head', form);

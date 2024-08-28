@@ -28,7 +28,14 @@ class ChoferController extends Controller
     public function show(Chofer $chofere)
     {
         return view('admin.choferes.show', [
-            'chofer' => $chofere
+            'chofer' => $chofere->load([
+                'anticipos' => function ($query) {
+                    $query->where('saldo', '!=', 0);
+                },
+                'gastos' => function ($query) {
+                    $query->where('saldo', '!=', 0);
+                }
+            ])
         ]);
     }
 
@@ -54,7 +61,7 @@ class ChoferController extends Controller
         $chofere->delete();
         return redirect()->route('admin.choferes.index')->with('flash', 'Chofer eliminado corretamente');
     }
-    
+
     public function downloadExcel(Chofer $chofer)
     {
         return Excel::download(new ChoferExport($chofer), 'choferes.xlsx');

@@ -1,7 +1,7 @@
 <aside class="main-sidebar elevation-4 sidebar-light-primary">
     <a href="../../index3.html" class="brand-link">
-        <img src="{{ asset('img/icono.jpg') }}" alt="Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('img/icono.jpg') }}" alt="Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
         <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
     </a>
 
@@ -151,6 +151,7 @@
                         'admin.gastos.*',
                         'admin.clientes.*',
                         'admin.liquidaciones.*',
+                        'admin.recibos.*',
                     ]) }}">
                     <a href="#"
                         class="nav-link {{ setActiveRoute([
@@ -161,6 +162,7 @@
                             'admin.gastos.*',
                             'admin.clientes.*',
                             'admin.liquidaciones.*',
+                            'admin.recibos.*',
                         ]) }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
@@ -172,7 +174,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.movimientos.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.movimientos.*') }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-truck nav-icon"></i>
                                 <p>Movimientos</p>
                             </a>
                         </li>
@@ -236,7 +238,7 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-money-bill-wave-alt nav-icon"></i>
-                                        <p>Cobros al cliente</p>
+                                        <p>Cobro a clientes</p>
                                     </a>
                                 </li>
                             </ul>
@@ -244,8 +246,15 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.liquidaciones.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.liquidaciones.*') }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fas fa-file-invoice-dollar nav-icon"></i>
                                 <p>Liquidaciones</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.recibos.index') }}"
+                                class="nav-link {{ setActiveRoute('admin.recibos.*') }}">
+                                <i class="fas fa-file-alt nav-icon"></i>
+                                <p>Recibos</p>
                             </a>
                         </li>
                     </ul>

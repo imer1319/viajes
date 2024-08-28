@@ -15,8 +15,8 @@
                 <td>{{ $gasto->id }}</td>
                 <td>{{ $gasto->numero_interno }}</td>
                 <td>{{ $gasto->fecha }}</td>
-                <td>{{ $gasto->importe }}</td>
-                <td>{{ $gasto->saldo }}</td>
+                <td>{{ number_format($gasto->importe, 2, ',', '.')  }}</td>
+                <td>{{ number_format($gasto->saldo, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.gastos.chofer.show', [$chofer, $gasto]) }}"
                         class="btn btn-primary btn-sm rounded-pill">
