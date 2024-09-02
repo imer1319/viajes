@@ -3292,7 +3292,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this = this;
       this.form.saldo_total = this.totalSaldo;
       this.form.total = this.totalSaldo;
-      this.form.neto = this.totalSaldo;
+      this.form.neto = this.totalPrecioReal;
       this.form.iva = this.totalIva;
       this.$store.dispatch("facturas/agregarFactura", this.form).then(function () {
         window.location = "/facturaciones";

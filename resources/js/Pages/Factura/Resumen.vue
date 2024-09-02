@@ -68,7 +68,7 @@ export default {
         agregarFactura() {
             this.form.saldo_total = this.totalSaldo;
             this.form.total = this.totalSaldo;
-            this.form.neto = this.totalSaldo;
+            this.form.neto = this.totalPrecioReal;
             this.form.iva = this.totalIva;
             this.$store
                 .dispatch("facturas/agregarFactura", this.form)
