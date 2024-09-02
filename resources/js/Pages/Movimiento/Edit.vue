@@ -89,7 +89,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <label for="numero_factura">Numero de factura</label>
+                <label for="numero_factura">Numero de remito</label>
                 <div class="row">
                     <div class="col-md-4">
                         <input
