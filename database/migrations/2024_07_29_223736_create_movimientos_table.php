@@ -32,6 +32,7 @@ class CreateMovimientosTable extends Migration
             $table->integer('porcentaje_pago');
             $table->decimal('comision_chofer', 10, 2);
             $table->decimal('saldo_comision_chofer', 15, 2);
+            $table->boolean('facturado')->default(0);
             $table->timestamps();
         });
     }

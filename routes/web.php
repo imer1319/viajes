@@ -10,6 +10,7 @@ use App\Http\Controllers\Administracion\LiquidacionController;
 use App\Http\Controllers\Administracion\ProveedorController;
 use App\Http\Controllers\Administracion\ReciboController;
 use App\Http\Controllers\Administracion\UserController;
+use App\Http\Controllers\Configuracion\BancoController;
 use App\Http\Controllers\Configuracion\CondicionIvaController;
 use App\Http\Controllers\Configuracion\CondicionPagoController;
 use App\Http\Controllers\Configuracion\FormaPagoController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Configuracion\MedidaController;
 use App\Http\Controllers\Configuracion\RetencionGananciasController;
 use App\Http\Controllers\Configuracion\RetencionIngresosBrutoController;
 use App\Http\Controllers\Configuracion\TipoComprobanteController;
+use App\Http\Controllers\Main\FacturacionController;
 use App\Http\Controllers\Main\FlotaController;
 use App\Http\Controllers\Main\MovimientoController;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +41,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('condicion-pagos', CondicionPagoController::class);
     Route::resource('condiciones-iva', CondicionIvaController::class);
     Route::resource('medidas', MedidaController::class);
+    Route::resource('bancos', BancoController::class);
     // Administracion
     Route::resource('users', UserController::class);
     Route::resource('clientes', ClienteController::class);
@@ -51,6 +54,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('liquidaciones', LiquidacionController::class);
     Route::resource('gastos', GastoController::class);
     Route::resource('recibos', ReciboController::class);
+    Route::resource('facturaciones', FacturacionController::class);
     // anticipos chofer
     Route::get('anticipos/{chofer}/chofer', [AnticipoChoferController::class, 'index'])->name('anticipos.chofer.index');
     Route::get('anticipos/{chofer}/chofer/create', [AnticipoChoferController::class, 'create'])->name('anticipos.chofer.create');
@@ -64,6 +68,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     // PDF
     Route::get('liquidacion/{liquidacion}/download', [LiquidacionController::class, 'downloadPdf'])->name('liquidacion.download.pdf');
     Route::get('/movimientos/{movimiento}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('movimiento.download.pdf');
+    Route::get('/facturas/{factura}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('factura.download.pdf');
     Route::get('/recibos/{recibo}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('recibo.download.pdf');
     // EXPORT EXCEL
     Route::get('/movimientos/excel/export', [MovimientoController::class, 'downloadExcel'])->name('movimiento.download.excel');

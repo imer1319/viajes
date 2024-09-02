@@ -21,7 +21,12 @@
         <div class="card card-primary card-outline ñpt-4">
             <div class="card-header">Crear movimiento</div>
             <div class="card-body">
-                <movimiento-create :numero_interno="{{ $numero_interno }}" />
+                <movimiento-create :numero_interno="{{ $numero_interno }}" :choferes_data="{{ $choferes }}"
+                    :flotas_data="{{ $flotas }}" :tipo_viajes_data="{{ $tipoViajes }}"
+                    :retencion_ganancias="{{ $retencionGanancias }}" :provincias="{{ $provincias }}"
+                    :retencion_ingresos_bruto="{{ $retencionIngresosBruto }}" :tipo_documentos="{{ $tipoDocumentos }}"
+                    :condiciones_iva="{{ $condicionesIva }}" 
+                    :clientes_data="{{ $clientes }}" />
             </div>
         </div>
     </section>

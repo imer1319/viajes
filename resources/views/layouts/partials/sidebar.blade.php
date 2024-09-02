@@ -48,6 +48,7 @@
                         'admin.condicion-pagos.*',
                         'admin.condiciones-iva.*',
                         'admin.medidas.*',
+                        'admin.bancos.*',
                     ]) }}">
                     <a href="#"
                         class="nav-link {{ setActiveRoute([
@@ -58,6 +59,7 @@
                             'admin.condicion-pagos.*',
                             'admin.condiciones-iva.*',
                             'admin.medidas.*',
+                            'admin.bancos.*',
                         ]) }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
@@ -115,6 +117,13 @@
                                 <p>Medidas</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.bancos.index') }}"
+                                class="nav-link {{ setActiveRoute('admin.bancos.*') }}">
+                                <i class="fas fa-university nav-icon"></i>
+                                <p>Bancos</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item {{ menuOpen(['admin.users.*', 'admin.proveedores.*']) }}">
@@ -152,6 +161,7 @@
                         'admin.clientes.*',
                         'admin.liquidaciones.*',
                         'admin.recibos.*',
+                        'admin.facturaciones.*',
                     ]) }}">
                     <a href="#"
                         class="nav-link {{ setActiveRoute([
@@ -163,6 +173,7 @@
                             'admin.clientes.*',
                             'admin.liquidaciones.*',
                             'admin.recibos.*',
+                            'admin.facturaciones.*',
                         ]) }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
@@ -175,7 +186,7 @@
                             <a href="{{ route('admin.movimientos.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.movimientos.*') }}">
                                 <i class="fas fa-truck nav-icon"></i>
-                                <p>Movimientos</p>
+                                <p>Movimientos - Viajes</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -219,8 +230,9 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item {{ menuOpen(['admin.clientes.*']) }}">
-                            <a href="#" class="nav-link  {{ setActiveRoute(['admin.clientes.*']) }}">
+                        <li class="nav-item {{ menuOpen(['admin.clientes.*', 'admin.recibos.*']) }}">
+                            <a href="#"
+                                class="nav-link  {{ setActiveRoute(['admin.clientes.*', 'admin.recibos.*']) }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Clientes
@@ -236,9 +248,10 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('admin.recibos.index') }}"
+                                        class="nav-link {{ setActiveRoute('admin.recibos.*') }}">
                                         <i class="fas fa-money-bill-wave-alt nav-icon"></i>
-                                        <p>Cobro a clientes</p>
+                                        <p>Cobro a clientes / Recibos</p>
                                     </a>
                                 </li>
                             </ul>
@@ -251,10 +264,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.recibos.index') }}"
-                                class="nav-link {{ setActiveRoute('admin.recibos.*') }}">
-                                <i class="fas fa-file-alt nav-icon"></i>
-                                <p>Recibos</p>
+                            <a href="{{ route('admin.facturaciones.index') }}"
+                                class="nav-link {{ setActiveRoute('admin.facturaciones.*') }}">
+                                <i class="fas fa-file-invoice-dollar nav-icon"></i>
+                                <p>Facturacion</p>
                             </a>
                         </li>
                     </ul>

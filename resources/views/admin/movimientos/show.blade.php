@@ -27,6 +27,7 @@
                 <div class="row">
                     <div class="col-5">
                         <strong><i class="fas fa-money-check mr-1"></i> Movimiento</strong>
+                        <p class="text-muted"><strong>Facturado:</strong> {{ $movimiento->facturado }}</p>
                         <p class="text-muted"><strong>Numero interno:</strong> {{ $movimiento->numero_interno }}</p>
                         <p class="text-muted">Fecha: {{ $movimiento->fecha }}</p>
                         <p class="text-muted">Tipo de viaje: {{ $movimiento->tipoViaje->descripcion }}</p>
@@ -35,6 +36,7 @@
                         <p class="text-muted">Precio real: {{ number_format($movimiento->precio_real, 2, ',', '.') }}</p>
                         <p class="text-muted">IVA: {{ number_format($movimiento->iva, 2, ',', '.') }}</p>
                         <p class="text-muted">Total: {{ number_format($movimiento->total, 2, ',', '.') }}</p>
+                        <p class="text-muted">Saldo total: {{ number_format($movimiento->saldo_total, 2, ',', '.') }}</p>
                         <p class="text-muted">Precio del chofer:
                             {{ number_format($movimiento->precio_chofer, 2, ',', '.') }}</p>
                         <p class="text-muted">Porcentaje de pago:
@@ -47,7 +49,6 @@
                     </div>
                     <div class="col-7">
                         <strong><i class="fas fa-user mr-1"></i> Chofer</strong>
-                        <p class="text-muted">Nombre: {{ $movimiento->chofer->nombre }}</p>
                         <p class="text-muted">Nombre: {{ $movimiento->chofer->nombre }}</p>
                         <p class="text-muted">DNI: {{ $movimiento->chofer->dni }}</p>
                         <p class="text-muted">CUIL: {{ $movimiento->chofer->cuil }}</p>

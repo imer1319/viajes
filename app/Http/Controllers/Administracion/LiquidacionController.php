@@ -30,6 +30,7 @@ class LiquidacionController extends Controller
         $ultimaLiquidacion = Liquidacion::latest()->first();
 
         return view('admin.liquidaciones.create', [
+            'choferes' => Chofer::all(),
             'liquidacion' => new Liquidacion(),
             'numero_interno' => $ultimaLiquidacion ? $ultimaLiquidacion->id + 1 : 1,
         ]);
@@ -38,24 +39,16 @@ class LiquidacionController extends Controller
     public function show(Liquidacion $liquidacione)
     {
         return view('admin.liquidaciones.show', [
-            'liquidacion' => $liquidacione
+            'liquidacion' => $liquidacione,
+            'numero_letra' => $this->convertirNumeroALetras($liquidacione->total_liquidacion)
         ]);
     }
 
     public function edit(Liquidacion $liquidacione)
     {
         return view('admin.liquidaciones.edit', [
-            'liquidacion' => $liquidacione->load([
-                'movimientos.movimiento',
-                'movimientos.movimiento.cliente',
-                'movimientos.movimiento.tipoViaje',
-                'gastos.gasto',
-                'gastos.gasto.proveedor',
-                'gastos.gasto.chofer',
-                'gastos.gasto.flota',
-                'anticipos.anticipo',
-                'chofer'
-            ])
+            'liquidacion' => $liquidacione,
+            'choferes' => Chofer::all(),
         ]);
     }
 

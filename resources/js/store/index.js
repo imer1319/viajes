@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import liquidaciones from './liquidaciones';
+import liquidaciones from './modules/liquidaciones';
+import recibos from './modules/recibos';
+import facturas from './modules/facturas';
+import movimientos from './modules/movimientos';
 Vue.use(Vuex);
 
 import state from "./state";
@@ -13,7 +16,10 @@ export default new Vuex.Store({
     getters,
     actions,
     mutations,
-    modules:{
-        liquidaciones
+    modules: {
+        liquidaciones,
+        recibos,
+        facturas,
+        movimientos,
     }
 })

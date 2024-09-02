@@ -45,9 +45,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="2"><b>Totales</b></td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ totalPrecioChofer | formatNumber }}</td>
+                        <td colspan="3"></td>
                         <td></td>
                         <td>{{ totalComisionChofer | formatNumber }}</td>
                     </tr>
@@ -165,7 +163,7 @@ export default {
         agregarLiquidacion() {
             this.form.total_liquidacion = this.totalGastoLiquidacion;
             this.$store
-                .dispatch("agregarLiquidacion", this.form)
+                .dispatch("liquidaciones/agregarLiquidacion", this.form)
                 .then(() => {
                     window.location = "/liquidaciones";
                     this.$toast.open({
@@ -186,19 +184,23 @@ export default {
         },
     },
     computed: {
-        ...mapState({
+        ...mapState("liquidaciones", {
             form: (state) => state.form,
             chofer: (state) => state.chofer,
         }),
         totalPrecioChofer() {
-            return this.form.movimientos?.reduce((total, movimiento) => {
-                return total + parseFloat(movimiento.precio_chofer);
-            }, 0);
+            return this.form.movimientos?.reduce(
+                (total, movimiento) =>
+                    total + parseFloat(movimiento.precio_chofer),
+                0
+            );
         },
         totalComisionChofer() {
-            return this.form.movimientos?.reduce((total, movimiento) => {
-                return total + parseFloat(movimiento.comision_chofer);
-            }, 0);
+            return this.form.movimientos?.reduce(
+                (total, movimiento) =>
+                    total + parseFloat(movimiento.comision_chofer),
+                0
+            );
         },
         totalImporteAnticipo() {
             return this.form.anticipos?.reduce((total, anticipo) => {

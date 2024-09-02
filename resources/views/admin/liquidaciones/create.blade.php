@@ -23,7 +23,8 @@
             <div class="card-header">Crear liquidacion</div>
             <div class="card-body">
 
-                <liquidacion-create redirect="true" :numero_interno="{{ $numero_interno }}" />
+                <liquidacion-create :choferes="{{ $choferes }}" redirect="true"
+                    :numero_interno="{{ $numero_interno }}" />
 
             </div>
         </div>

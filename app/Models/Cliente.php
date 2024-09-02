@@ -13,10 +13,25 @@ class Cliente extends Model
     use HasFactory;
 
     protected $fillable = [
-        'razon_social', 'domicilio', 'cuit', 'numero_ingreso_bruto', 'condicion_iva_id',
-        'telefono', 'celular', 'provincia_id', 'departamento_id', 'localidad_id', 'codigo_postal',
-        'email', 'contacto', 'retencion_ganancia_id', 'retencion_ingreso_bruto_id', 'tipo_documento_id',
-        'numero_documento', 'estado', 'saldo'
+        'razon_social',
+        'domicilio',
+        'cuit',
+        'numero_ingreso_bruto',
+        'condicion_iva_id',
+        'telefono',
+        'celular',
+        'provincia_id',
+        'departamento_id',
+        'localidad_id',
+        'codigo_postal',
+        'email',
+        'contacto',
+        'retencion_ganancia_id',
+        'retencion_ingreso_bruto_id',
+        'tipo_documento_id',
+        'numero_documento',
+        'estado',
+        'saldo'
     ];
 
     public function condicionIva(): BelongsTo
@@ -56,5 +71,10 @@ class Cliente extends Model
     public function retencionGanancia(): BelongsTo
     {
         return $this->belongsTo(RetencionGanancia::class);
+    }
+
+    public function movimientos()
+    {
+        return $this->hasMany(Movimiento::class);
     }
 }

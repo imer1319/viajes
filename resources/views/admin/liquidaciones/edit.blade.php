@@ -24,7 +24,8 @@
             <div class="card-header">Editar liquidacion</div>
 
             <div class="card-body">
-                <liquidacion-edit :liquidacion="{{ $liquidacion }}" :numero_interno="{{ $liquidacion->numero_interno }}" redirect="true"></liquidacion-edit>
+                <liquidacion-edit :liquidacion="{{ $liquidacion }}" :choferes="{{ $choferes }}"
+                    :numero_interno="{{ $liquidacion->numero_interno }}" redirect="true" />
             </div>
         </div>
 

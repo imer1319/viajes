@@ -236,10 +236,10 @@
         </table>
     </div>
     <div class="relative overflow-x-auto shadow-md">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <table class="text-sm text-left rtl:text-right text-gray-500" width="100%">
             <thead class="text-xs text-white uppercase bg-blue-400">
                 <tr>
-                    <td colspan="6" align="center">
+                    <td colspan="5" align="center">
                         <p style="margin:0.5rem;">ANTICIPOS DEL CHOFER</p>
                     </td>
                 </tr>
@@ -248,7 +248,6 @@
                     <td class="px-6 py-2">Nro</td>
                     <td class="px-6 py-2">Fecha</td>
                     <td class="px-6 py-2">Imp Anticipo</td>
-                    <td class="px-6 py-2">Saldo Anticipo</td>
                     <td class="px-6 py-2">Pago</td>
                 </tr>
             </thead>
@@ -268,7 +267,6 @@
                         <td class="px-2 py-4">
                             {{ number_format($anticipo->anticipo->importe, 2, ',', '.') }}
                         </td>
-                        <td class="px-2 py-4">{{ $anticipo->anticipo->saldo }}</td>
                         <td class="px-2 py-4">
                             {{ number_format($anticipo->importe, 2, ',', '.') }}
                         </td>
@@ -278,7 +276,6 @@
             <tfoot>
                 <tr>
                     <td colspan="3">Total</td>
-                    <td></td>
                     <td></td>
                     <td class="px-2 py-2">
                         {{ number_format($totalLiquidacionAnticipo, 2, ',', '.') }}

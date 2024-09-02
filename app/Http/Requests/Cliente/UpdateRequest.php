@@ -53,7 +53,7 @@ class UpdateRequest extends FormRequest
             'tipo_documento_id' => 'required|exists:tipo_documentos,id',
             'numero_documento' => 'required|string|max:20',
             'saldo' => 'required|numeric',
-            'estado' => 'required|in:ACTIVO,INACTIVO',
+            'estado' => 'required',
         ];
     }
 

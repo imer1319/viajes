@@ -19,30 +19,170 @@
 
     <!-- Main content -->
     <section class="content mx-3">
-
-        <div class="card card-primary card-outline ñpt-4">
+        <div class="card card-primary card-outline">
             <div class="card-header">Ver liquidacio</div>
-
             <div class="card-body">
                 <div class="row">
-                    <div class="col-5">
-                        <strong><i class="fas fa-money-check mr-1"></i> Movimiento</strong>
-                        <p class="text-muted">Estado: {{ $liquidacion->estado = 1 ? 'ACTIVO' : 'INACTIVO' }}</p>
-                    </div>
-                    <div class="col-7">
-                        <strong><i class="fas fa-comments-dollar mr-1"></i> Condicion IVA</strong>
-                        <hr>
-                        <strong><i class="fas fa-map-marker mr-1"></i> Ubicacion</strong>
-                        <p class="text-muted">Domicilio: {{ $liquidacion->domicilio }}</p>
-                        <p class="text-muted">Codigo postal: {{ $liquidacion->codigo_postal }}</p>
-                        <hr>
-                        <strong><i class="fas fa-chart-area mr-1"></i> Retencion de ganancia</strong>
-                        <hr>
-                        <strong><i class="fas fa-keyboard mr-1"></i> Retencion de ingreso bruto</strong>
-                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="6" class="text-center">
+                                    <p>MOVIMIENTOS DEL CHOFER</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Ord</th>
+                                <th>Nro</th>
+                                <th>Fecha</th>
+                                <th>Precio Chofer</th>
+                                <th>%</th>
+                                <th>Comisión Chofer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $totalLiquidacionMovimiento = 0;
+                            @endphp
+
+                            @foreach ($liquidacion->movimientos as $movimiento)
+                                @php
+                                    $totalLiquidacionMovimiento += $movimiento->movimiento->comision_chofer;
+                                @endphp
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $movimiento->id }}</td>
+                                    <td>{{ $movimiento->fecha }}</td>
+                                    <td>
+                                        {{ number_format($movimiento->movimiento->precio_chofer, 2, ',', '.') }}
+                                    </td>
+                                    <td>{{ $movimiento->movimiento->porcentaje_pago }}</td>
+                                    <td>
+                                        {{ number_format($movimiento->movimiento->comision_chofer, 2, ',', '.') }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">Total</th>
+                                <th>
+                                    <b>{{ number_format($totalLiquidacionMovimiento, 2, ',', '.') }}</b>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="5" class="text-center">
+                                    <p>ANTICIPOS DEL CHOFER</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Ord</th>
+                                <th>Nro</th>
+                                <th>Fecha</th>
+                                <th>Imp Anticipo</th>
+                                <th>Pago</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $totalLiquidacionAnticipo = 0;
+                            @endphp
+
+                            @foreach ($liquidacion->anticipos as $anticipo)
+                                @php
+                                    $totalLiquidacionAnticipo += $anticipo->importe;
+                                @endphp
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $anticipo->anticipo->id }}</td>
+                                    <td>{{ $anticipo->anticipo->fecha }}</td>
+                                    <td>
+                                        {{ number_format($anticipo->anticipo->importe, 2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ number_format($anticipo->importe, 2, ',', '.') }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4">Total</th>
+                                <th>
+                                    <b>{{ number_format($totalLiquidacionAnticipo, 2, ',', '.') }}</b>
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="6" class="text-center">
+                                    <p>GASTOS VARIOS</p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Ord</th>
+                                <th>Nro</th>
+                                <th>Fecha</th>
+                                <th>Camion</th>
+                                <th>Imp Gasto</th>
+                                <th>Pago</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $totalLiquidacionGasto = 0;
+                            @endphp
+
+                            @foreach ($liquidacion->gastos as $gasto)
+                                @php
+                                    $totalLiquidacionGasto += $gasto->importe;
+                                @endphp
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $gasto->id }}</td>
+                                    <td>{{ $gasto->gasto->fecha }}</td>
+                                    <td>{{ $gasto->gasto->flota->nombre }}</td>
+                                    <td>
+                                        {{ number_format($gasto->gasto->importe, 2, ',', '.') }}
+                                    </td>
+                                    <td>
+                                        {{ number_format($gasto->importe, 2, ',', '.') }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">Total</th>
+                                <th>
+                                    {{ number_format($totalLiquidacionGasto, 2, ',', '.') }}
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <table>
+                        <tr>
+                            <td align="right">
+                                <span>CANCELACION:
+                                    {{ number_format($liquidacion->total_liquidacion, 2, ',', '.') }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{ $numero_letra }}</th>
+                        </tr>
+                        <tr>
+                            <td>Observaciones:</td>
+                            <td>{{ $liquidacion->observaciones }}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
-
     </section>
 @endsection

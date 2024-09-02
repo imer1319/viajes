@@ -90,7 +90,7 @@ implements
                 'Cliente',
                 'Tipo de viaje',
                 'Detalle',
-                'Numero de factura',
+                'Numero de remito',
                 'Precio real',
                 'IVA',
                 'Total',

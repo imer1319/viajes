@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Movimiento\StoreRequest;
 use App\Http\Requests\Movimiento\UpdateRequest;
 use App\Models\Chofer;
+use App\Models\Cliente;
 use App\Models\CondicionIva;
 use App\Models\Departamento;
 use App\Models\Flota;
@@ -20,6 +21,7 @@ use App\Models\Provincia;
 use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
+use App\Models\TipoViaje;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -40,7 +42,16 @@ class MovimientoController extends Controller
         $numeroInterno = $ultimoMovimiento ? $ultimoMovimiento->id + 1 : 1;
         return view('admin.movimientos.create', [
             'movimiento' => new Movimiento(),
-            'numero_interno' => $numeroInterno
+            'numero_interno' => $numeroInterno,
+            'choferes' => Chofer::all(),
+            'tipoViajes' => TipoViaje::all(),
+            'flotas' => Flota::all(),
+            'retencionGanancias' => RetencionGanancia::all(),
+            'retencionIngresosBruto' => RetencionIngresosBruto::all(),
+            'tipoDocumentos' => TipoDocumento::all(),
+            'condicionesIva' => CondicionIva::all(),
+            'provincias' => Provincia::all(),
+            'clientes' => Cliente::all()
         ]);
     }
 
@@ -148,10 +159,6 @@ class MovimientoController extends Controller
         $chofer_id_anterior = request()->query('chofer_id_anterior', null);
         $liquidacion = request()->query('liquidacion', null);
 
-        // Log the request parameters for debugging
-        Log::info(['edit' => $edit, 'chofer_id_anterior' => $chofer_id_anterior, 'liquidacion' => $liquidacion]);
-
-        // Cargar datos del chofer junto con sus relaciones
         $choferData = $this->loadChoferData($chofer);
 
         if ($edit && $chofer_id_anterior && $chofer_id_anterior == $chofer->id && $liquidacion) {

@@ -25,8 +25,8 @@ Vue.component('gasto-create', require('./Pages/Gasto/Create.vue').default);
 Vue.component('gasto-edit', require('./Pages/Gasto/Edit.vue').default);
 Vue.component('liquidacion-create', require('./Pages/Liquidacion/Create.vue').default);
 Vue.component('liquidacion-edit', require('./Pages/Liquidacion/Edit.vue').default);
-Vue.component('recibo-create', require('./Pages/Recibo/Create.vue').default);
-Vue.component('recibo-edit', require('./Pages/Recibo/Edit.vue').default);
+Vue.component('factura-create', require('./Pages/Factura/Create.vue').default);
+Vue.component('factura-edit', require('./Pages/Factura/Edit.vue').default);
 
 Vue.filter('formatNumber', function (value) {
     if (!value) return '';

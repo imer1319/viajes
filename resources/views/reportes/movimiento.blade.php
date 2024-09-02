@@ -217,32 +217,32 @@
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Precio real</td>
-                                <td align="left">{{ $movimiento->precio_real }}</td>
+                                <td align="left">{{ number_format($movimiento->precio_real, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">IVA</td>
-                                <td align="left">{{ $movimiento->iva }}</td>
+                                <td align="left">{{ number_format($movimiento->iva, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Total</td>
-                                <td align="left">{{ $movimiento->total }}</td>
+                                <td align="left">{{ number_format($movimiento->total, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Precio del chofer</td>
-                                <td align="left">{{ $movimiento->precio_chofer }}</td>
+                                <td align="left">{{ number_format($movimiento->precio_chofer, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Porcentaje de pago</td>
-                                <td align="left">{{ $movimiento->porcentaje_pago }}</td>
+                                <td align="left">{{ $movimiento->porcentaje_pago }} %</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Comisión del chofer</td>
-                                <td align="left">{{ $movimiento->comision_chofer }}</td>
+                                <td align="left">{{ number_format($movimiento->comision_chofer, 2, ',', '.') }}</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Saldo de la comisión del
                                     chofer</td>
-                                <td align="left">{{ $movimiento->saldo_comision_chofer }}</td>
+                                <td align="left">{{ number_format($movimiento->saldo_comision_chofer, 2, ',', '.') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -265,10 +265,6 @@
                                 <td align="left" width="60%">{{ $movimiento->chofer->nombre }}</td>
                             </tr>
                             <tr>
-                                <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Nombre</td>
-                                <td align="left">{{ $movimiento->chofer->nombre }}</td>
-                            </tr>
-                            <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">DNI</td>
                                 <td align="left">{{ $movimiento->chofer->dni }}</td>
                             </tr>
@@ -278,7 +274,7 @@
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Saldo</td>
-                                <td align="left">{{ $movimiento->chofer->saldo }}</td>
+                                <td align="left">{{ number_format($movimiento->chofer->saldo, 2, ',', '.') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -313,7 +309,7 @@
                             </tr>
                             <tr>
                                 <td class="px-6 py-2 text-xs text-white uppercase bg-blue-400">Saldo</td>
-                                <td align="left">{{ $movimiento->cliente->saldo }}</td>
+                                <td align="left">{{ number_format($movimiento->cliente->saldo, 2, ',', '.') }}</td>
                             </tr>
                         </tbody>
                     </table>

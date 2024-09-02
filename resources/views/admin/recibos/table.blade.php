@@ -2,9 +2,8 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Numero interno</th>
             <th>Fecha</th>
-            <th>Chofer</th>
+            <th>Cliente</th>
             <th>Total</th>
             <th></th>
         </tr>
@@ -13,7 +12,6 @@
         @foreach ($recibos as $recibo)
             <tr>
                 <td>{{ $recibo->id }}</td>
-                <td>{{ $recibo->numero_interno }}</td>
                 <td>{{ $recibo->fecha }}</td>
                 <td>{{ $recibo->chofer->nombre }}</td>
                 <td>{{ $recibo->total_recibo }}</td>

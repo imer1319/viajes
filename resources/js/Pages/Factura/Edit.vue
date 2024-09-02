@@ -9,7 +9,7 @@
             :hideButtons="true"
             ref="formWizard"
         >
-            <tab-content title="Datos del cliente" icon="fa fa-user">
+            <tab-content title="Datos del chofer" icon="fa fa-user">
                 <Head
                     @siguiente="siguienteTab()"
                     :numero_interno="numero_interno"
@@ -20,18 +20,6 @@
                     @siguiente="siguienteTab()"
                     @anterior="anteriorTab()"
                 />
-            </tab-content>
-            <tab-content
-                title="Anticipos del chofer"
-                icon="fas fa-comments-dollar"
-            >
-                <Anticipo
-                    @siguiente="siguienteTab()"
-                    @anterior="anteriorTab()"
-                />
-            </tab-content>
-            <tab-content title="Gastos del chofer" icon="fa fa-money-check">
-                <Gasto @siguiente="siguienteTab()" @anterior="anteriorTab()" />
             </tab-content>
             <tab-content title="Resumen" icon="fa fa-book">
                 <Resumen @anterior="anteriorTab()" />
@@ -44,33 +32,33 @@ import { FormWizard, TabContent } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import Head from "./Head.vue";
 import Movimiento from "./Movimiento.vue";
-import FormaCobro from "./FormaCobro.vue";
 import Resumen from "./Resumen.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
-    props: ["numero_interno", "liquidacion"],
-    mounted() {
-        this.initializeForm();
-    },
+    props: ["numero_interno", "liquidacion", "choferes"],
     components: {
         FormWizard,
         TabContent,
         Head,
         Movimiento,
-        FormaCobro,
         Resumen,
     },
+    mounted() {
+        this.setChoferes(this.choferes);
+        this.initializeForm();
+    },
     computed: {
-        form() {
-            return this.$store.state.form;
-        },
-        isEditing() {
-            return this.$store.state.isEditing;
-        },
+        ...mapState("liquidaciones", {
+            isEditing: (state) => state.isEditing,
+        }),
     },
     methods: {
-        ...mapActions(["setForm"]),
+        ...mapActions("liquidaciones", ["setForm", "setChoferes"]),
+        ...mapMutations("liquidaciones", [
+            "SET_IS_EDITING",
+            "SET_CHOFER_ID_ANTERIOR",
+        ]),
         siguienteTab() {
             this.$refs.formWizard.nextTab();
         },
@@ -78,8 +66,8 @@ export default {
             this.$refs.formWizard.prevTab();
         },
         initializeForm() {
-            this.$store.commit("SET_IS_EDITING", true);
-            this.$store.commit("SET_CHOFER_ID_ANTERIOR", this.liquidacion.chofer_id);
+            this.SET_IS_EDITING(true);
+            this.SET_CHOFER_ID_ANTERIOR(this.liquidacion.chofer_id);
             this.setForm({
                 id: this.liquidacion.id,
                 fecha: this.liquidacion.fecha,
@@ -87,7 +75,9 @@ export default {
                 numero_interno: this.liquidacion.numero_interno,
                 observaciones: this.liquidacion.observaciones,
                 total_liquidacion: this.liquidacion.total_liquidacion,
-               
+                movimientos: this.liquidacion.movimientos,
+                anticipos: this.liquidacion.anticipos,
+                gastos: this.liquidacion.gastos,
             });
         },
     },

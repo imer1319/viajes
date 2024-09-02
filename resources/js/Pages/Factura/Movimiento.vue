@@ -4,9 +4,9 @@
             class="col-md-12 d-flex justify-content-between align-items-center mb-2"
         >
             <div>
-                <strong><i class="fa fa-user mr-2"></i>Chofer:</strong>
-                {{ chofer.nombre }}
-                <p class="text-muted">DNI: {{ chofer.dni }}</p>
+                <strong><i class="fa fa-user mr-2"></i>Cliente:</strong>
+                {{ cliente.razon_social }}
+                <p class="text-muted">CUIT: {{ cliente.cuit }}</p>
             </div>
             <div>
                 <button
@@ -20,17 +20,19 @@
                 </button>
             </div>
         </div>
+        <span v-if="errors.movimientos" class="text-danger">{{
+            getErrorMessage(errors.movimientos)
+        }}</span>
         <table class="table table-bordered col-md-12">
             <thead>
                 <tr>
                     <th></th>
                     <th>#</th>
                     <th>Fecha</th>
-                    <th>Cliente</th>
                     <th>Tipo de viaje</th>
-                    <th>Precio chofer</th>
-                    <th>%</th>
-                    <th>Comision chofer</th>
+                    <th>Precio real</th>
+                    <th>IVA</th>
+                    <th>Saldo total</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,22 +49,19 @@
                     </td>
                     <td>{{ index + 1 }}</td>
                     <td>{{ movimiento.fecha }}</td>
-                    <td>{{ movimiento.cliente.razon_social }}</td>
                     <td>{{ movimiento.tipo_viaje.descripcion }}</td>
-                    <td>{{ movimiento.precio_chofer | formatNumber }}</td>
-                    <td>{{ movimiento.porcentaje_pago }}</td>
-                    <td>{{ movimiento.comision_chofer | formatNumber }}</td>
+                    <td>{{ movimiento.precio_real | formatNumber }}</td>
+                    <td>{{ movimiento.iva | formatNumber }}</td>
+                    <td>{{ movimiento.total | formatNumber }}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="2"><b>Totales</b></td>
+                    <td colspan="3"><b>Totales</b></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>{{ totalPrecioChofer | formatNumber }}</td>
-                    <td></td>
-                    <td>{{ totalComisionChofer | formatNumber }}</td>
+                    <td>{{ totalPrecioReal | formatNumber }}</td>
+                    <td>{{ totalIva | formatNumber }}</td>
+                    <td>{{ totalSaldo | formatNumber }}</td>
                 </tr>
             </tfoot>
         </table>
@@ -82,11 +81,10 @@
                             <th></th>
                             <th>#</th>
                             <th>Fecha</th>
-                            <th>Cliente</th>
                             <th>Tipo de viaje</th>
-                            <th>Precio chofer</th>
-                            <th>%</th>
-                            <th>Comision chofer</th>
+                            <th>Precio real</th>
+                            <th>IVA</th>
+                            <th>Saldo total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -103,15 +101,10 @@
                             </td>
                             <td>{{ index + 1 }}</td>
                             <td>{{ movimiento.fecha }}</td>
-                            <td>{{ movimiento.cliente.razon_social }}</td>
                             <td>{{ movimiento.tipo_viaje.descripcion }}</td>
-                            <td>
-                                {{ movimiento.precio_chofer | formatNumber }}
-                            </td>
-                            <td>{{ movimiento.porcentaje_pago }}</td>
-                            <td>
-                                {{ movimiento.comision_chofer | formatNumber }}
-                            </td>
+                            <td>{{ movimiento.precio_real | formatNumber }}</td>
+                            <td>{{ movimiento.iva | formatNumber }}</td>
+                            <td>{{ movimiento.total | formatNumber }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -120,43 +113,75 @@
     </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 import ModalComponent from "../../components/Modal.vue";
+import { mapMutations } from "vuex";
 export default {
     components: {
         ModalComponent,
     },
     methods: {
+        ...mapMutations("facturas", [
+            "REMOVE_MOVIMIENTO",
+            "AGREGAR_MOVIMIENTO",
+        ]),
+        getErrorMessage(error) {
+            return Array.isArray(error) ? error[0] : error;
+        },
         siguiente() {
-            this.$emit("siguiente");
+            this.$store
+                .dispatch("facturas/validarMovimientos", this.form.movimientos)
+                .then(() => {
+                    this.$emit("siguiente");
+                    this.$toast.open({
+                        message: "Datos validados exitosamente!",
+                        type: "success",
+                        position: "top-right",
+                        duration: 2000,
+                    });
+                })
+                .catch(() => {
+                    this.$toast.open({
+                        message: "Corrija los siguientes errores!",
+                        type: "error",
+                        position: "top-right",
+                        duration: 2000,
+                    });
+                });
         },
         anterior() {
             this.$emit("anterior");
         },
         quitarMovimiento(index) {
-            this.$store.commit("REMOVE_MOVIMIENTO", index);
+            this.REMOVE_MOVIMIENTO(index);
         },
-        agregarMovimiento(index){
-            this.$store.commit("AGREGAR_MOVIMIENTO", index);
-        }
+        agregarMovimiento(index) {
+            this.AGREGAR_MOVIMIENTO(index);
+        },
     },
     computed: {
-        ...mapGetters({
-            chofer: "getChofer",
-            form: "getForm",
-            removedMovimientos: "getRemovedMovimientos"
+        ...mapState("facturas", {
+            form: (state) => state.form,
+            cliente: (state) => state.cliente,
+            errors: (state) => state.errors,
+            removedMovimientos: (state) => state.removedMovimientos,
         }),
-        totalPrecioChofer() {
+        totalPrecioReal() {
             return this.form.movimientos?.reduce(
                 (total, movimiento) =>
-                    total + parseFloat(movimiento.precio_chofer),
+                    total + parseFloat(movimiento.precio_real),
                 0
             );
         },
-        totalComisionChofer() {
+        totalIva() {
             return this.form.movimientos?.reduce(
-                (total, movimiento) =>
-                    total + parseFloat(movimiento.comision_chofer),
+                (total, movimiento) => total + parseFloat(movimiento.iva),
+                0
+            );
+        },
+        totalSaldo() {
+            return this.form.movimientos?.reduce(
+                (total, movimiento) => total + parseFloat(movimiento.total),
                 0
             );
         },

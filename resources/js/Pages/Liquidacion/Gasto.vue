@@ -20,6 +20,9 @@
                 </button>
             </div>
         </div>
+        <span v-if="errors.gastos" class="text-danger">{{
+            getErrorMessage(errors.gastos)
+        }}</span>
         <table class="table table-bordered col-md-12">
             <thead>
                 <tr>
@@ -103,36 +106,61 @@
     </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import ModalComponent from "../../components/Modal.vue";
 export default {
     components: {
         ModalComponent,
     },
     methods: {
+        ...mapMutations("liquidaciones", [
+            "REMOVE_GASTO",
+            "AGREGAR_GASTO",
+        ]),
+        getErrorMessage(error) {
+            return Array.isArray(error) ? error[0] : error;
+        },
         siguiente() {
-            this.$emit("siguiente");
+            this.$store
+                .dispatch(
+                    "liquidaciones/validarGastos",
+                    this.form.gastos
+                )
+                .then(() => {
+                    this.$emit("siguiente");
+                    this.$toast.open({
+                        message: "Datos validados exitosamente!",
+                        type: "success",
+                        position: "top-right",
+                        duration: 2000,
+                    });
+                })
+                .catch(() => {
+                    this.$toast.open({
+                        message: "Corrija los siguientes errores!",
+                        type: "error",
+                        position: "top-right",
+                        duration: 2000,
+                    });
+                });
         },
         anterior() {
             this.$emit("anterior");
         },
         quitarGasto(index) {
-            this.$store.commit("REMOVE_GASTO", index);
+            this.REMOVE_GASTO(index);
         },
         agregarGasto(index) {
-            this.$store.commit("AGREGAR_GASTO", index);
+            this.AGREGAR_GASTO(index);
         },
     },
     computed: {
-        ...mapGetters({
-            form: "getForm",
-            chofer: "getChofer",
-            chofer_id: "getChoferId",
-            removedGastos: "getRemovedGastos",
+        ...mapState("liquidaciones", {
+            form: (state) => state.form,
+            chofer: (state) => state.chofer,
+            removedGastos: (state) => state.removedGastos,
+            errors: (state) => state.errors,
         }),
-        errors() {
-            return this.$store.getters.getErrors;
-        },
         totalImporte() {
             return this.form.gastos?.reduce((total, anticipo) => {
                 return total + parseFloat(anticipo.importe);

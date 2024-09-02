@@ -53,7 +53,10 @@
         <modal-component modal_id="modal_chofer" titulo="Choferes">
             <chofer-create></chofer-create>
             <hr />
-            <chofer-table @choferSelected="updateChoferId"></chofer-table>
+            <chofer-table
+                @choferSelected="updateChoferId"
+                :choferes="choferes"
+            ></chofer-table>
         </modal-component>
     </div>
 </template>
@@ -64,7 +67,7 @@ import ModalComponent from "../../components/Modal.vue";
 import { mapState, mapMutations } from "vuex";
 
 export default {
-    props: ["numero_interno", "edit"],
+    props: ["numero_interno"],
     components: {
         ChoferCreate,
         ChoferTable,
@@ -81,19 +84,19 @@ export default {
         },
     },
     methods: {
-        ...mapMutations([
-            "SET_FECHA",
-            "SET_CHOFER_ID",
-            "SET_OBSERVACIONES",
-            "SET_NUMERO_INTERNO",
+        getErrorMessage(error) {
+            return Array.isArray(error) ? error[0] : error;
+        },
+        ...mapMutations("liquidaciones", [
+            "SET_FORM_FECHA",
+            "SET_FORM_CHOFER_ID",
         ]),
         validarHead() {
-            this.SET_NUMERO_INTERNO(this.numero_interno);
             this.$store
-                .dispatch("validarHead", this.form)
+                .dispatch("liquidaciones/validarHead", this.form)
                 .then(() => {
                     this.$store.dispatch(
-                        "getMovimientosChofer",
+                        "liquidaciones/getMovimientosChofer",
                         this.form.chofer_id
                     );
                     this.$emit("siguiente");
@@ -114,33 +117,27 @@ export default {
                 });
         },
         updateFecha() {
-            this.SET_FECHA(this.getTodayDate());
-        },
-        getErrorMessage(error) {
-            return Array.isArray(error) ? error[0] : error;
+            const today = this.getTodayDate();
+            this.SET_FORM_FECHA(today);
         },
         getTodayDate() {
             const today = new Date();
             const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, "0"); // Enero es 0
+            const month = String(today.getMonth() + 1).padStart(2, "0");
             const day = String(today.getDate()).padStart(2, "0");
             return `${year}-${month}-${day}`;
         },
         updateChoferId(chofer_id) {
-            this.form.chofer_id = chofer_id;
+            this.SET_FORM_CHOFER_ID(chofer_id);
             $("#modal_chofer").modal("hide");
         },
     },
     computed: {
-        ...mapState({
+        ...mapState("liquidaciones", {
             form: (state) => state.form,
+            errors: (state) => state.errors,
+            choferes: (state) => state.choferes,
         }),
-        choferes() {
-            return this.$store.getters.getChoferes;
-        },
-        errors() {
-            return this.$store.getters.getErrors;
-        },
     },
 };
 </script>

@@ -20,17 +20,6 @@ export const actualizarMovimiento = async ({ commit, dispatch }, form) => {
         throw error;
     }
 };
-export const agregarLiquidacion = async ({ commit, dispatch }, form) => {
-    try {
-        await axios.post('/api/liquidaciones', form);
-        dispatch('clearErrors');
-    } catch (error) {
-        if (error.response && error.response.data && error.response.data.errors) {
-            commit('SET_ERRORS', error.response.data.errors);
-        }
-        throw error;
-    }
-};
 export const actualizarLiquidacion = async ({ commit, dispatch }, form) => {
     try {
         await axios.put('/liquidaciones/' + form.id, form);
@@ -339,12 +328,11 @@ export const getMovimientosChofer = async ({ commit, state }, chofer_id) => {
 
 export const getMovimientosCliente = async ({ commit, state }, cliente_id) => {
     try {
-        const response = await axios.get(`/api/movimientos/${cliente_id}?edit=${state.isEditing}&cliente_id_anterior=${state.cliente_id_anterior}&recibo=${state.form.id}`);
+        const response = await axios.get(`/api/movimientos/${cliente_id}?edit=${state.isEditing}&cliente_id_anterior=${state.cliente_id_anterior}&recibo=${state.formCliente.id}`);
         const clienteData = response.data.chofer;
         const movimientos = response.data.movimientos;
         const anticipos = response.data.anticipos;
         const gastos = response.data.gastos;
-        console.log(response.data);
         commit('SET_CHOFER', clienteData);
 
         if (state.isEditing) {

@@ -20,6 +20,9 @@
                 </button>
             </div>
         </div>
+        <span v-if="errors.anticipos" class="text-danger">{{
+            getErrorMessage(errors.anticipos)
+        }}</span>
         <table class="table table-bordered col-md-12">
             <thead>
                 <tr>
@@ -101,36 +104,61 @@
     </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapMutations, mapState } from "vuex";
 import ModalComponent from "../../components/Modal.vue";
 export default {
-    components:{
-        ModalComponent
+    components: {
+        ModalComponent,
     },
     methods: {
+        ...mapMutations("liquidaciones", [
+            "REMOVE_ANTICIPO",
+            "AGREGAR_ANTICIPO",
+        ]),
+        getErrorMessage(error) {
+            return Array.isArray(error) ? error[0] : error;
+        },
         siguiente() {
-            this.$emit("siguiente");
+            this.$store
+                .dispatch(
+                    "liquidaciones/validarAnticipos",
+                    this.form.anticipos
+                )
+                .then(() => {
+                    this.$emit("siguiente");
+                    this.$toast.open({
+                        message: "Datos validados exitosamente!",
+                        type: "success",
+                        position: "top-right",
+                        duration: 2000,
+                    });
+                })
+                .catch(() => {
+                    this.$toast.open({
+                        message: "Corrija los siguientes errores!",
+                        type: "error",
+                        position: "top-right",
+                        duration: 2000,
+                    });
+                });
         },
         anterior() {
             this.$emit("anterior");
         },
         quitarAnticipo(index) {
-            this.$store.commit("REMOVE_ANTICIPO", index);
+            this.REMOVE_ANTICIPO(index);
         },
         agregarAnticipo(index) {
-            this.$store.commit("AGREGAR_ANTICIPO", index);
+            this.AGREGAR_ANTICIPO(index);
         },
     },
     computed: {
-        ...mapGetters({
-            chofer: "getChofer",
-            form: "getForm",
-            chofer_id: "getChoferId",
-            removedAnticipos: "getRemovedAnticipos"
+        ...mapState("liquidaciones", {
+            form: (state) => state.form,
+            chofer: (state) => state.chofer,
+            removedAnticipos: (state) => state.removedAnticipos,
+            errors: (state) => state.errors,
         }),
-        errors() {
-            return this.$store.getters.getErrors;
-        },
         totalImporte() {
             return this.form.anticipos?.reduce((total, anticipo) => {
                 return total + parseFloat(anticipo.importe);

@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\Api\ChoferController;
 use App\Http\Controllers\Api\ClienteController;
+use App\Http\Controllers\Api\FacturacionController;
 use App\Http\Controllers\Api\FlotaController;
 use App\Http\Controllers\Api\LiquidacionController;
 use App\Http\Controllers\Api\PlanCuentaController;
 use App\Http\Controllers\Api\ProveedorController;
 use App\Http\Controllers\Api\TipoViajeController;
 use App\Http\Controllers\Main\MovimientoController;
+use App\Http\Controllers\Api\ReciboController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,5 +39,16 @@ Route::get('plan-cuentas', [PlanCuentaController::class, 'index']);
 
 //Liquidacion
 Route::post('/liquidacion/head', [LiquidacionController::class, 'head'])->name('liquidacion.head');
-Route::get('movimientos/{chofer}', [MovimientoController::class, 'movimientosChofer']);
+Route::post('/liquidacion/movimientos', [LiquidacionController::class, 'movimientos'])->name('liquidacion.movimientos');
+Route::post('/liquidacion/anticipos', [LiquidacionController::class, 'anticipos'])->name('liquidacion.anticipos');
+Route::post('/liquidacion/gastos', [LiquidacionController::class, 'gastos'])->name('liquidacion.gastos');
+// facturacion
+Route::post('/facturacion/head', [FacturacionController::class, 'head'])->name('facturacion.head');
+Route::post('/facturacion/movimientos', [FacturacionController::class, 'movimientos'])->name('facturacion.movimientos');
+
+Route::post('/recibo/head', [ReciboController::class, 'head'])->name('recibo.head');
+Route::get('liquidacion/{chofer}', [MovimientoController::class, 'movimientosChofer']);
+Route::get('facturacion/{cliente}', [FacturacionController::class, 'movimientosCliente']);
+Route::get('movimientos/{cliente}', [ReciboController::class, 'movimientosCliente']);
 Route::post('liquidaciones', [LiquidacionController::class, 'store'])->name('liquidacion.store');
+Route::post('facturaciones', [FacturacionController::class, 'store'])->name('facturacion.store');

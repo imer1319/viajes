@@ -426,7 +426,7 @@ export default {
                 saldo: 0,
                 tipo_documento_id: "",
                 numero_documento: "",
-                estado: "ACTIVO",
+                estado: "",
             };
         },
         getErrorMessage(error) {

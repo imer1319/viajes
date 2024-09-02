@@ -20,6 +20,9 @@
                 </button>
             </div>
         </div>
+        <span v-if="errors.movimientos" class="text-danger">{{
+            getErrorMessage(errors.movimientos)
+        }}</span>
         <table class="table table-bordered col-md-12">
             <thead>
                 <tr>
@@ -120,31 +123,61 @@
     </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 import ModalComponent from "../../components/Modal.vue";
+import { mapMutations } from "vuex";
 export default {
     components: {
         ModalComponent,
     },
     methods: {
+        ...mapMutations("liquidaciones", [
+            "REMOVE_MOVIMIENTO",
+            "AGREGAR_MOVIMIENTO",
+        ]),
+        getErrorMessage(error) {
+            return Array.isArray(error) ? error[0] : error;
+        },
         siguiente() {
-            this.$emit("siguiente");
+            this.$store
+                .dispatch(
+                    "liquidaciones/validarMovimientos",
+                    this.form.movimientos
+                )
+                .then(() => {
+                    this.$emit("siguiente");
+                    this.$toast.open({
+                        message: "Datos validados exitosamente!",
+                        type: "success",
+                        position: "top-right",
+                        duration: 2000,
+                    });
+                })
+                .catch(() => {
+                    this.$toast.open({
+                        message: "Corrija los siguientes errores!",
+                        type: "error",
+                        position: "top-right",
+                        duration: 2000,
+                    });
+                });
         },
         anterior() {
             this.$emit("anterior");
         },
         quitarMovimiento(index) {
-            this.$store.commit("REMOVE_MOVIMIENTO", index);
+            this.REMOVE_MOVIMIENTO(index);
         },
-        agregarMovimiento(index){
-            this.$store.commit("AGREGAR_MOVIMIENTO", index);
-        }
+        agregarMovimiento(index) {
+            this.AGREGAR_MOVIMIENTO(index);
+        },
     },
     computed: {
-        ...mapGetters({
-            chofer: "getChofer",
-            form: "getForm",
-            removedMovimientos: "getRemovedMovimientos"
+        ...mapState("liquidaciones", {
+            form: (state) => state.form,
+            chofer: (state) => state.chofer,
+            errors: (state) => state.errors,
+            removedMovimientos: (state) => state.removedMovimientos,
         }),
         totalPrecioChofer() {
             return this.form.movimientos?.reduce(

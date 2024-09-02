@@ -26,7 +26,9 @@
             <div class="card-body">
                 <form action="{{ route('admin.clientes.store') }}" method="POST">
                     @csrf
-                    <cliente-create  redirect="true"/>
+                    <cliente-create :retencion_ganancias="{{ $retencionGanancias }}" :provincias="{{ $provincias }}"
+                        :condiciones_iva="{{ $condicionesIva }}" :retencion_ingresos_bruto="{{ $retencionIngresosBruto }}"
+                        :tipo_documentos="{{ $tipoDocumentos }}" redirect="true" />
                 </form>
             </div>
         </div>

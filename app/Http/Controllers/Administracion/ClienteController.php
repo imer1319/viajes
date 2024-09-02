@@ -7,6 +7,11 @@ use App\Models\Cliente;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cliente\StoreRequest;
 use App\Http\Requests\Cliente\UpdateRequest;
+use App\Models\CondicionIva;
+use App\Models\Provincia;
+use App\Models\RetencionGanancia;
+use App\Models\RetencionIngresosBruto;
+use App\Models\TipoDocumento;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ClienteController extends Controller
@@ -22,6 +27,11 @@ class ClienteController extends Controller
     {
         return view('admin.clientes.create', [
             'cliente' => new Cliente(),
+            'provincias' => Provincia::all(),
+            'retencionGanancias' => RetencionGanancia::all(),
+            'retencionIngresosBruto' => RetencionIngresosBruto::all(),
+            'tipoDocumentos' => TipoDocumento::all(),
+            'condicionesIva' => CondicionIva::all(),
         ]);
     }
 
