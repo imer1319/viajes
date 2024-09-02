@@ -56,12 +56,7 @@ class FacturacionController extends Controller
                 'movimientos.movimiento',
                 'movimientos.movimiento.cliente',
                 'movimientos.movimiento.tipoViaje',
-                'gastos.gasto',
-                'gastos.gasto.proveedor',
-                'gastos.gasto.chofer',
-                'gastos.gasto.flota',
-                'anticipos.anticipo',
-                'chofer'
+                'cliente'
             ])
         ]);
     }

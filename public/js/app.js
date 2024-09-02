@@ -10876,7 +10876,7 @@ var render = function render() {
     attrs: {
       "for": "numero_factura"
     }
-  }, [_vm._v("Numero de factura")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Numero de remito")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-4"
