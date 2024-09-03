@@ -8,23 +8,17 @@ use App\Events\GastoCreado;
 use App\Events\GastoEliminado;
 use App\Events\LiquidacionCreada;
 use App\Events\LiquidacionEliminada;
-use App\Events\MovimientoActualizado;
 use App\Events\MovimientoCreado;
 use App\Events\MovimientoEliminado;
-use App\Listeners\ActualizarFacturaMovimiento;
 use App\Listeners\ActualizarSaldoChoferPorAnticipoCreado;
 use App\Listeners\ActualizarSaldoChoferPorAnticipoEliminado;
 use App\Listeners\ActualizarSaldoChoferPorGastoCreado;
 use App\Listeners\ActualizarSaldoChoferPorGastoEliminado;
 use App\Listeners\ActualizarSaldosMovimientoCreado;
 use App\Listeners\ActualizarSaldosMovimientoEliminado;
-use App\Listeners\CrearFacturaMovimiento;
 use App\Listeners\EliminarAnticiposListener;
-use App\Listeners\EliminarFacturaMovimiento;
 use App\Listeners\EliminarGastosListener;
 use App\Listeners\EliminarMovimientosListener;
-use App\Listeners\EnviarNotificacionMovimientoCreado;
-use App\Listeners\EnviarNotificacionMovimientoEliminado;
 use App\Listeners\GuardarAnticiposListener;
 use App\Listeners\GuardarGastosListener;
 use App\Listeners\GuardarMovimientosListener;
@@ -46,14 +40,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         MovimientoCreado::class => [
             ActualizarSaldosMovimientoCreado::class,
-            CrearFacturaMovimiento::class,
-        ],
-        MovimientoActualizado::class => [
-            ActualizarFacturaMovimiento::class,
         ],
         MovimientoEliminado::class => [
             ActualizarSaldosMovimientoEliminado::class,
-            EliminarFacturaMovimiento::class,
         ],
         //liquidacion
         LiquidacionCreada::class => [

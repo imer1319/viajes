@@ -23,7 +23,6 @@ use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
 use App\Models\TipoViaje;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -96,7 +95,6 @@ class MovimientoController extends Controller
             event(new MovimientoEliminado($movimiento));
             $movimiento->update($request->validated());
             event(new MovimientoCreado($movimiento));
-            event(new MovimientoActualizado($movimiento));
             DB::commit();
             return response()->json([
                 'message' => 'Movimiento creado exitosamente.',

@@ -34,7 +34,11 @@ class FacturacionController extends Controller
 
             foreach ($movimientos as $movimiento) {
                 Movimiento::where('id', $movimiento['id'])->update(['facturado' => true]);
+                $factura->detalles()->create([
+                    'movimiento_id' => $movimiento['id'],
+                ]);
             }
+    
             DB::commit();
             return response()->json([
                 'message' => 'Factura creada exitosamente.',

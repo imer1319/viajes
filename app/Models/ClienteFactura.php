@@ -23,9 +23,9 @@ class ClienteFactura extends Model
         'numero_interno',
     ];
 
-    public function movimientos()
+    public function detalles()
     {
-        return $this->hasMany(Movimiento::class);
+        return $this->hasMany(DetalleFactura::class, 'factura_id');
     }
 
     public function cliente()

@@ -27,7 +27,8 @@
                 <div class="row">
                     <div class="col-5">
                         <strong><i class="fas fa-money-check mr-1"></i> Movimiento</strong>
-                        <p class="text-muted"><strong>Facturado:</strong> {{ $movimiento->facturado }}</p>
+                        <p class="text-muted"><strong>Facturado:</strong>
+                            {{ $movimiento->facturado = 1 ? 'Si' : 'No' }}</p>
                         <p class="text-muted"><strong>Numero interno:</strong> {{ $movimiento->numero_interno }}</p>
                         <p class="text-muted">Fecha: {{ $movimiento->fecha }}</p>
                         <p class="text-muted">Tipo de viaje: {{ $movimiento->tipoViaje->descripcion }}</p>

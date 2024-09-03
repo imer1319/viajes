@@ -12,6 +12,7 @@ use App\Models\Provincia;
 use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
+use App\Traits\NumeroALetra;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\DB;
 
 class FacturacionController extends Controller
 {
+    use NumeroALetra;
+
     public function index()
     {
         return view('admin.facturas.index', [
@@ -42,10 +45,10 @@ class FacturacionController extends Controller
         ]);
     }
 
-    public function show(ClienteFactura $factura)
+    public function show(ClienteFactura $facturacione)
     {
         return view('admin.facturas.show', [
-            'factura' => $factura
+            'factura' => $facturacione->load('cliente','detalles')
         ]);
     }
 
@@ -85,11 +88,9 @@ class FacturacionController extends Controller
     public function downloadPdf(ClienteFactura $factura)
     {
         $factura->load([
-            'movimientos.movimiento',
-            'gastos.gasto',
-            'anticipos.anticipo',
+            'detalles.movimiento',
         ]);
-        $numero_letra = $this->convertirNumeroALetras($factura->total_factura);
+        $numero_letra = $this->convertirNumeroALetras($factura->total);
         $pdf = Pdf::loadView('reportes.factura', compact('factura', 'numero_letra'));
         return $pdf->stream();
     }

@@ -68,7 +68,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     // PDF
     Route::get('liquidacion/{liquidacion}/download', [LiquidacionController::class, 'downloadPdf'])->name('liquidacion.download.pdf');
     Route::get('/movimientos/{movimiento}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('movimiento.download.pdf');
-    Route::get('/facturas/{factura}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('factura.download.pdf');
+    Route::get('/facturas/{factura}/pdf/export', [FacturacionController::class, 'downloadPdf'])->name('factura.download.pdf');
     Route::get('/recibos/{recibo}/pdf/export', [MovimientoController::class, 'downloadPdf'])->name('recibo.download.pdf');
     // EXPORT EXCEL
     Route::get('/movimientos/excel/export', [MovimientoController::class, 'downloadExcel'])->name('movimiento.download.excel');

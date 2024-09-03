@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.liquidaciones.index') }}">Listado</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.facturaciones.index') }}">Listado</a></li>
                         <li class="breadcrumb-item active">Ver</li>
                     </ol>
                 </div>
@@ -25,20 +25,49 @@
 
             <div class="card-body">
                 <div class="row">
-                    <div class="col-5">
-                        <strong><i class="fas fa-money-check mr-1"></i> Movimiento</strong>
-                        <p class="text-muted">Estado: {{ $liquidacion->estado = 1 ? 'ACTIVO' : 'INACTIVO' }}</p>
+                    <div class="col-md-6">
+                        <strong><i class="fas fa-money-check mr-1"></i> Cliente</strong>
+                        <p class="text-muted">Razon social: {{ $factura->cliente->razon_social }}</p>
+                        <p class="text-muted">CUIT : {{ $factura->cliente->cuit }}</p>
                     </div>
-                    <div class="col-7">
-                        <strong><i class="fas fa-comments-dollar mr-1"></i> Condicion IVA</strong>
-                        <hr>
-                        <strong><i class="fas fa-map-marker mr-1"></i> Ubicacion</strong>
-                        <p class="text-muted">Domicilio: {{ $liquidacion->domicilio }}</p>
-                        <p class="text-muted">Codigo postal: {{ $liquidacion->codigo_postal }}</p>
-                        <hr>
-                        <strong><i class="fas fa-chart-area mr-1"></i> Retencion de ganancia</strong>
-                        <hr>
-                        <strong><i class="fas fa-keyboard mr-1"></i> Retencion de ingreso bruto</strong>
+                    <div class="col-md-6">
+                        <strong><i class="fas fa-money-check mr-1"></i>Datos del la
+                            factura</strong>
+                        <p class="text-muted">Fecha: {{ $factura->fecha }}</p>
+                        <p class="text-muted">Observaciones: {{ $factura->observaciones }}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <strong><i class="fa fa-bus mr-1"></i>Movimientos</strong>
+                        <table class="table table-bordered col-md-12">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Fecha</th>
+                                    <th>Tipo de viaje</th>
+                                    <th>Precio real</th>
+                                    <th>IVA</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($factura->detalles as $movimiento)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $movimiento->movimiento->fecha }}</td>
+                                        <td>{{ $movimiento->movimiento->tipoViaje->descripcion }}</td>
+                                        <td>{{ number_format($movimiento->movimiento->precio_real, 2, ',', '.') }}</td>
+                                        <td>{{ number_format($movimiento->movimiento->iva, 2, ',', '.') }}</td>
+                                        <td>{{ number_format($movimiento->movimiento->total, 2, ',', '.') }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12 text-right">
+                        <h5 class="text-center"><i class="fa fa-book mr-3"></i>Resumen</h5>
+                        <p>Neto: {{ number_format($factura->neto, 2, ',', '.') }}</p>
+                        <p>Iva: {{ number_format($factura->iva, 2, ',', '.') }}</p>
+                        <p>Total: {{ number_format($factura->total, 2, ',', '.') }}</p>
                     </div>
                 </div>
             </div>
