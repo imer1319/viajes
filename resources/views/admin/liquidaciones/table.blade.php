@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Numero interno</th>
+            <th># interno</th>
             <th>Fecha</th>
             <th>Chofer</th>
             <th>Total</th>

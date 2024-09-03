@@ -77,26 +77,36 @@ class LiquidacionController extends Controller
     {
         try {
             DB::beginTransaction();
+    
+            $saldoAnterior = $liquidacion->total_liquidacion;
+    
             event(new LiquidacionEliminada($liquidacion->chofer_id, $liquidacion->id));
-
+    
             $liquidacion->update($request->validated());
-
+    
             $movimientos = Movimiento::whereIn('id', collect($request->movimientos)->pluck('id'))->get();
             $anticipos = AnticipoChofer::whereIn('id', collect($request->anticipos)->pluck('id'))->get();
             $gastos = GastoChofer::whereIn('id', collect($request->gastos)->pluck('id'))->get();
-
+    
             event(new LiquidacionCreada($request->chofer_id, $liquidacion->id, $movimientos, $anticipos, $gastos));
+    
             $chofer = Chofer::find($request->chofer_id);
+    
+            $nuevoSaldo = $chofer->saldo + $saldoAnterior - $request->total_liquidacion;
+    
             $chofer->update([
-                'saldo' => $chofer->saldo - $request->total_liquidacion
+                'saldo' => $nuevoSaldo
             ]);
+    
             DB::commit();
+    
             return response()->json([
                 'message' => 'Liquidación actualizada exitosamente.',
                 'liquidacion' => $liquidacion,
             ], 200);
         } catch (\Exception $e) {
             DB::rollBack();
+    
             return response()->json([
                 'message' => 'Hubo un error al actualizar la liquidación.',
                 'error' => $e->getMessage(),

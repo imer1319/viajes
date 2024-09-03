@@ -37,14 +37,12 @@ class UpdateRequest extends FormRequest
             'movimientos.*.fecha' => 'required|date',
             // gastos
             'gastos' => 'required|array',
-            'gastos.*.id' => 'nullable|exists:gastos,id',
+            'gastos.*.id' => 'nullable|exists:gasto_chofers,id',
             'gastos.*.importe' => 'required|numeric',
-            'gastos.*.chofer_id' => 'required|exists:chofers,id',
             // anticipos
             'anticipos' => 'required|array',
-            'anticipos.*.id' => 'nullable|exists:anticipos,id',
+            'anticipos.*.id' => 'nullable|exists:anticipo_chofers,id',
             'anticipos.*.importe' => 'required|numeric',
-            'anticipos.*.chofer_id' => 'required|exists:chofers,id',
         ];
     }
 

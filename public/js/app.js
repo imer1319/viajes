@@ -4366,7 +4366,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     agregarLiquidacion: function agregarLiquidacion() {
       var _this = this;
       this.form.total_liquidacion = this.totalGastoLiquidacion;
-      this.$store.dispatch("liquidaciones/agregarLiquidacion", this.form).then(function () {
+      var ruta = "liquidaciones/agregarLiquidacion";
+      if (this.isEditing) {
+        ruta = "liquidaciones/actualizarLiquidacion";
+      }
+      this.$store.dispatch(ruta, this.form).then(function () {
         window.location = "/liquidaciones";
         _this.$toast.open({
           message: "Datos guardados exitosamente!",
@@ -4390,6 +4394,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     chofer: function chofer(state) {
       return state.chofer;
+    },
+    isEditing: function isEditing(state) {
+      return state.isEditing;
     }
   })), {}, {
     totalPrecioChofer: function totalPrecioChofer() {
@@ -10630,7 +10637,7 @@ var render = function render() {
         return _vm.agregarLiquidacion();
       }
     }
-  }, [_vm._v("Guardar")])])]);
+  }, [_vm._v(_vm._s(_vm.isEditing ? "Actualizar" : "Guardar"))])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -15389,20 +15396,48 @@ var actions = {
       }, _callee6, null, [[1, 7]]);
     }))();
   },
-  clearErrors: function clearErrors(_ref8) {
-    var commit = _ref8.commit;
+  actualizarLiquidacion: function actualizarLiquidacion(_ref8, form) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+      var commit, dispatch;
+      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+        while (1) switch (_context7.prev = _context7.next) {
+          case 0:
+            commit = _ref8.commit, dispatch = _ref8.dispatch;
+            _context7.prev = 1;
+            _context7.next = 4;
+            return axios.put('/api/liquidaciones/' + form.id, form);
+          case 4:
+            dispatch('clearErrors');
+            _context7.next = 11;
+            break;
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](1);
+            if (_context7.t0.response && _context7.t0.response.data && _context7.t0.response.data.errors) {
+              commit('SET_ERRORS', _context7.t0.response.data.errors);
+            }
+            throw _context7.t0;
+          case 11:
+          case "end":
+            return _context7.stop();
+        }
+      }, _callee7, null, [[1, 7]]);
+    }))();
+  },
+  clearErrors: function clearErrors(_ref9) {
+    var commit = _ref9.commit;
     commit('CLEAR_ERRORS');
   },
-  updateErrors: function updateErrors(_ref9, errors) {
-    var commit = _ref9.commit;
+  updateErrors: function updateErrors(_ref10, errors) {
+    var commit = _ref10.commit;
     commit('SET_ERRORS', errors);
   },
-  setForm: function setForm(_ref10, formData) {
-    var commit = _ref10.commit;
+  setForm: function setForm(_ref11, formData) {
+    var commit = _ref11.commit;
     commit('SET_FORM', formData);
   },
-  setChoferes: function setChoferes(_ref11, choferes) {
-    var commit = _ref11.commit;
+  setChoferes: function setChoferes(_ref12, choferes) {
+    var commit = _ref12.commit;
     commit('SET_CHOFERES', choferes);
   }
 };

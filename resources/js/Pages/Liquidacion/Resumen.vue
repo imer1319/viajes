@@ -146,9 +146,9 @@
             <button class="btn btn-primary" @click.prevent="anterior()">
                 Anterior
             </button>
-            <a @click.prevent="agregarLiquidacion()" class="btn btn-primary"
-                >Guardar</a
-            >
+            <a @click.prevent="agregarLiquidacion()" class="btn btn-primary">{{
+                isEditing ? "Actualizar" : "Guardar"
+            }}</a>
         </div>
     </div>
 </template>
@@ -162,8 +162,12 @@ export default {
         },
         agregarLiquidacion() {
             this.form.total_liquidacion = this.totalGastoLiquidacion;
+            var ruta = "liquidaciones/agregarLiquidacion";
+            if (this.isEditing) {
+                ruta = "liquidaciones/actualizarLiquidacion";
+            }
             this.$store
-                .dispatch("liquidaciones/agregarLiquidacion", this.form)
+                .dispatch(ruta, this.form)
                 .then(() => {
                     window.location = "/liquidaciones";
                     this.$toast.open({
@@ -187,6 +191,7 @@ export default {
         ...mapState("liquidaciones", {
             form: (state) => state.form,
             chofer: (state) => state.chofer,
+            isEditing: (state) => state.isEditing,
         }),
         totalPrecioChofer() {
             return this.form.movimientos?.reduce(

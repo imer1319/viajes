@@ -108,6 +108,17 @@ const actions = {
             throw error;
         }
     },
+    async actualizarLiquidacion({ commit, dispatch }, form) {
+        try {
+            await axios.put('/api/liquidaciones/' + form.id, form);
+            dispatch('clearErrors');
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.errors) {
+                commit('SET_ERRORS', error.response.data.errors);
+            }
+            throw error;
+        }
+    },
     clearErrors({ commit }) {
         commit('CLEAR_ERRORS');
     },
