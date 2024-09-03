@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\FacturaCreada;
+use App\Events\FacturaEliminada;
 use App\Models\Cliente;
 use App\Models\ClienteFactura;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Factura\HeadRequest;
 use App\Http\Requests\Factura\MovimientoRequest;
 use App\Http\Requests\Factura\StoreRequest;
+use App\Http\Requests\Factura\UpdateRequest;
 use App\Models\Movimiento;
 use Illuminate\Support\Facades\DB;
 
@@ -32,17 +35,42 @@ class FacturacionController extends Controller
             $factura = ClienteFactura::create($request->validated());
             $movimientos = $request->movimientos;
 
-            foreach ($movimientos as $movimiento) {
-                Movimiento::where('id', $movimiento['id'])->update(['facturado' => true]);
-                $factura->detalles()->create([
-                    'movimiento_id' => $movimiento['id'],
-                ]);
-            }
-    
+            event(new FacturaCreada($factura, $movimientos));
+
             DB::commit();
             return response()->json([
                 'message' => 'Factura creada exitosamente.',
                 'factura' => $factura,
+            ], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'message' => 'Hubo un error al crear el liquidacion.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    public function update(UpdateRequest $request, ClienteFactura $facturacione)
+    {
+        try {
+            DB::beginTransaction();
+            
+            $movimientos = $facturacione->detalles->map(function ($detalle) {
+                return $detalle->movimiento;
+            })->all();
+
+            event(new FacturaEliminada($facturacione, $movimientos));
+
+            $facturacione->update($request->validated());
+            $movimientos = $request->movimientos;
+
+            event(new FacturaCreada($facturacione, $movimientos));
+
+            DB::commit();
+            return response()->json([
+                'message' => 'Factura creada exitosamente.',
+                'factura' => $facturacione,
             ], 201);
         } catch (\Exception $e) {
             DB::rollBack();

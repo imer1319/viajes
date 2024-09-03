@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Events\FacturaEliminada;
 use App\Exports\FacturasExport;
 use App\Http\Controllers\Controller;
 use App\Models\Cliente;
@@ -48,7 +49,7 @@ class FacturacionController extends Controller
     public function show(ClienteFactura $facturacione)
     {
         return view('admin.facturas.show', [
-            'factura' => $facturacione->load('cliente','detalles')
+            'factura' => $facturacione->load('cliente', 'detalles')
         ]);
     }
 
@@ -64,24 +65,20 @@ class FacturacionController extends Controller
         ]);
     }
 
-    public function destroy(ClienteFactura $facturae)
+    public function destroy(ClienteFactura $facturacione)
     {
         try {
             DB::beginTransaction();
-            // event(new LiquidacionEliminada($facturae->chofer_id, $facturae->id));
-            $facturae->delete();
-            // $chofer = Cliente::find($facturae->chofer_id);
-            // $chofer->update([
-            //     'saldo' => $chofer->saldo + $facturae->total_factura
-            // ]);
+            $movimientos = $facturacione->detalles->map(function ($detalle) {
+                return $detalle->movimiento;
+            })->all();
+            event(new FacturaEliminada($facturacione, $movimientos));
+            $facturacione->delete();
             DB::commit();
-            return redirect()->route('admin.facturas.index')->with('flash', 'ClienteFactura eliminada corretamente');
+            return redirect()->route('admin.facturaciones.index')->with('success', 'Factura eliminada exitosamente.');
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json([
-                'message' => 'Hubo un error al eliminar la liquidación.',
-                'error' => $e->getMessage(),
-            ], 500);
+            return redirect()->route('admin.facturaciones.index')->with('error', 'Hubo un error al eliminar la factura.');
         }
     }
 

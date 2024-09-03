@@ -4,12 +4,15 @@ namespace App\Providers;
 
 use App\Events\AnticipoCreado;
 use App\Events\AnticipoEliminado;
+use App\Events\FacturaCreada;
+use App\Events\FacturaEliminada;
 use App\Events\GastoCreado;
 use App\Events\GastoEliminado;
 use App\Events\LiquidacionCreada;
 use App\Events\LiquidacionEliminada;
 use App\Events\MovimientoCreado;
 use App\Events\MovimientoEliminado;
+use App\Listeners\ActualizarMovimientosFactura;
 use App\Listeners\ActualizarSaldoChoferPorAnticipoCreado;
 use App\Listeners\ActualizarSaldoChoferPorAnticipoEliminado;
 use App\Listeners\ActualizarSaldoChoferPorGastoCreado;
@@ -22,6 +25,7 @@ use App\Listeners\EliminarMovimientosListener;
 use App\Listeners\GuardarAnticiposListener;
 use App\Listeners\GuardarGastosListener;
 use App\Listeners\GuardarMovimientosListener;
+use App\Listeners\RevertirMovimientosFactura;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -43,6 +47,13 @@ class EventServiceProvider extends ServiceProvider
         ],
         MovimientoEliminado::class => [
             ActualizarSaldosMovimientoEliminado::class,
+        ],
+        //facturacion
+        FacturaCreada::class => [
+            ActualizarMovimientosFactura::class
+        ],
+        FacturaEliminada::class => [
+            RevertirMovimientosFactura::class
         ],
         //liquidacion
         LiquidacionCreada::class => [
