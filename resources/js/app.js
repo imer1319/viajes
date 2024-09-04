@@ -27,9 +27,11 @@ Vue.component('liquidacion-create', require('./Pages/Liquidacion/Create.vue').de
 Vue.component('liquidacion-edit', require('./Pages/Liquidacion/Edit.vue').default);
 Vue.component('factura-create', require('./Pages/Factura/Create.vue').default);
 Vue.component('factura-edit', require('./Pages/Factura/Edit.vue').default);
+Vue.component('recibo-create', require('./Pages/Recibo/Create.vue').default);
+Vue.component('recibo-edit', require('./Pages/Recibo/Edit.vue').default);
 
 Vue.filter('formatNumber', function (value) {
-    if (!value) return '';
+    if (value === null || value === undefined) return '';
     return new Intl.NumberFormat('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
 });
 

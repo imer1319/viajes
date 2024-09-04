@@ -23,8 +23,11 @@
             <div class="card-header">Crear recibo</div>
             <div class="card-body">
 
-                <recibo-create redirect="true" :numero_interno="{{ $numero_interno }}" />
-
+                <recibo-create :clientes_data="{{ $clientes }}" :numero_interno="{{ $numero_interno }}"
+                    :condiciones_iva_data="{{ $condicionesIva }}" :provincias_data="{{ $provincias }}"
+                    :retencion_ganancias_data="{{ $retencionGanancias }}"
+                    :retencion_ingresos_bruto_data="{{ $retencionIngresosBruto }}"
+                    :tipo_documentos_data="{{ $tipoDocumentos }}" />
             </div>
         </div>
 

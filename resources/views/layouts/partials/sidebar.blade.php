@@ -251,7 +251,7 @@
                                     <a href="{{ route('admin.recibos.index') }}"
                                         class="nav-link {{ setActiveRoute('admin.recibos.*') }}">
                                         <i class="fas fa-money-bill-wave-alt nav-icon"></i>
-                                        <p>Cobro a clientes / Recibos</p>
+                                        <p>Cobro / Recibos</p>
                                     </a>
                                 </li>
                             </ul>
@@ -266,7 +266,7 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.facturaciones.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.facturaciones.*') }}">
-                                <i class="fas fa-file-invoice-dollar nav-icon"></i>
+                                <i class="fas fa-file-invoice nav-icon"></i>
                                 <p>Facturacion</p>
                             </a>
                         </li>

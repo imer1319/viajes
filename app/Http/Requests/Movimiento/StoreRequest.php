@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Movimiento;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -29,8 +30,16 @@ class StoreRequest extends FormRequest
             'cliente_id' => 'required|exists:clientes,id',
             'tipo_viaje_id' => 'required|exists:tipo_viajes,id',
             'detalle' => 'required|string',
-            'numero_factura_1' => 'required|string',
-            'numero_factura_2' => 'required|string',
+            'numero_factura_1' => 'required|string|size:4',
+            'numero_factura_2' => [
+                'required',
+                'string',
+                'size:8',
+                Rule::unique('movimientos')
+                    ->where(function ($query) {
+                        return $query->where('numero_factura_1', $this->numero_factura_1);
+                    }),
+            ],
             'precio_real' => 'required|numeric|min:0',
             'iva' => 'required|numeric|min:0',
             'total' => 'required|numeric|min:0',
@@ -61,6 +70,7 @@ class StoreRequest extends FormRequest
             'numero_factura_1.string' => 'El número de factura 1 debe ser un texto.',
             'numero_factura_2.required' => 'El número de factura 2 es obligatorio.',
             'numero_factura_2.string' => 'El número de factura 2 debe ser un texto.',
+            'numero_factura_2.unique' => 'Este numero ya ha sido registrado.',
             'precio_real.required' => 'El precio real es obligatorio.',
             'precio_real.numeric' => 'El precio real debe ser un número.',
             'precio_real.min' => 'El precio real debe ser mayor o igual a 0.',

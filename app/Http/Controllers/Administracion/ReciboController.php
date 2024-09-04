@@ -7,6 +7,13 @@ use App\Models\Recibo;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
+use App\Models\CondicionesPago;
+use App\Models\CondicionIva;
+use App\Models\Provincia;
+use App\Models\RetencionGanancia;
+use App\Models\RetencionIngresosBruto;
+use App\Models\TipoDocumento;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReciboController extends Controller
@@ -25,6 +32,12 @@ class ReciboController extends Controller
         return view('admin.recibos.create', [
             'liquidacion' => new Recibo(),
             'numero_interno' => $ultimaRecibo ? $ultimaRecibo->id + 1 : 1,
+            'clientes' => Cliente::all(),
+            'condicionesIva' => CondicionIva::all(),
+            'provincias' => Provincia::all(),
+            'retencionGanancias' => RetencionGanancia::all(),
+            'retencionIngresosBruto' => RetencionIngresosBruto::all(),
+            'tipoDocumentos' => TipoDocumento::all(),
         ]);
     }
 

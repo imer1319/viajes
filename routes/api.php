@@ -45,11 +45,14 @@ Route::post('/liquidacion/gastos', [LiquidacionController::class, 'gastos']);
 // facturacion
 Route::post('/facturacion/head', [FacturacionController::class, 'head']);
 Route::post('/facturacion/movimientos', [FacturacionController::class, 'movimientos']);
-
-Route::post('recibo/head', [ReciboController::class, 'head']);
+// recibos
+Route::post('/recibos/head', [ReciboController::class, 'head']);
+Route::post('/recibos/facturas', [ReciboController::class, 'facturas']);
+Route::post('/recibos/formaPagos', [ReciboController::class, 'formaPagos']);
+//
 Route::get('liquidacion/{chofer}', [MovimientoController::class, 'movimientosChofer']);
 Route::get('facturacion/{cliente}', [FacturacionController::class, 'movimientosCliente']);
-Route::get('movimientos/{cliente}', [ReciboController::class, 'movimientosCliente']);
+Route::get('recibos/{cliente}', [ReciboController::class, 'facturasCliente']);
 Route::post('liquidaciones', [LiquidacionController::class, 'store']);
 Route::put('liquidaciones/{liquidacion}', [LiquidacionController::class, 'update']);
 Route::post('facturaciones', [FacturacionController::class, 'store']);
