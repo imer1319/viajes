@@ -51,9 +51,9 @@
             <button class="btn btn-primary" @click.prevent="anterior()">
                 Anterior
             </button>
-            <a @click.prevent="agregarFactura()" class="btn btn-primary"
-                >Guardar</a
-            >
+            <a @click.prevent="agregarFactura()" class="btn btn-primary">{{
+                isEditing ? "Actualizar" : "Guardar"
+            }}</a>
         </div>
     </div>
 </template>
@@ -70,8 +70,12 @@ export default {
             this.form.total = this.totalSaldo;
             this.form.neto = this.totalPrecioReal;
             this.form.iva = this.totalIva;
+            var ruta = "facturas/agregarFactura";
+            if (this.isEditing) {
+                ruta = "facturas/actualizarFactura";
+            }
             this.$store
-                .dispatch("facturas/agregarFactura", this.form)
+                .dispatch(ruta, this.form)
                 .then(() => {
                     window.location = "/facturaciones";
                     this.$toast.open({
@@ -95,6 +99,7 @@ export default {
         ...mapState("facturas", {
             form: (state) => state.form,
             cliente: (state) => state.cliente,
+            isEditing: (state) => state.isEditing,
         }),
         totalPrecioReal() {
             return this.form.movimientos?.reduce(

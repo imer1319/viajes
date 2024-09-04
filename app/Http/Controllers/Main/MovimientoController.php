@@ -156,7 +156,6 @@ class MovimientoController extends Controller
         $edit = request()->query('edit', false);
         $chofer_id_anterior = request()->query('chofer_id_anterior', null);
         $liquidacion = request()->query('liquidacion', null);
-
         $choferData = $this->loadChoferData($chofer);
 
         if ($edit && $chofer_id_anterior && $chofer_id_anterior == $chofer->id && $liquidacion) {

@@ -16,11 +16,11 @@ class DetalleFactura extends Model
 
     public function factura()
     {
-        return $this->belongsTo(ClienteFactura::class);
+        return $this->belongsTo(ClienteFactura::class, 'factura_id');
     }
 
     public function movimiento()
     {
-        return $this->belongsTo(Movimiento::class);
+        return $this->belongsTo(Movimiento::class, 'movimiento_id');
     }
 }

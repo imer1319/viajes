@@ -28,7 +28,7 @@ const getters = {
 const actions = {
     async getMovimientosCliente({ commit, state }, cliente_id) {
         try {
-            const response = await axios.get(`/api/facturacion/${cliente_id}?edit=${state.isEditing}&cliente_id_anterior=${state.cliente_id_anterior}&liquidacion=${state.form.id}`);
+            const response = await axios.get(`/api/facturacion/${cliente_id}?edit=${state.isEditing}&cliente_id_anterior=${state.cliente_id_anterior}&factura=${state.form.id}`);
             const clienteData = response.data.cliente;
             const movimientos = response.data.movimientos;
             commit('SET_CLIENTE', clienteData);
@@ -68,6 +68,17 @@ const actions = {
     async agregarFactura({ commit, dispatch }, form) {
         try {
             await axios.post('/api/facturaciones', form);
+            dispatch('clearErrors');
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.errors) {
+                commit('SET_ERRORS', error.response.data.errors);
+            }
+            throw error;
+        }
+    },
+    async actualizarFactura({ commit, dispatch }, form) {
+        try {
+            await axios.put('/api/facturaciones/' + form.id, form);
             dispatch('clearErrors');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.errors) {

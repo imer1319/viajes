@@ -53,15 +53,17 @@ class FacturacionController extends Controller
         ]);
     }
 
-    public function edit(ClienteFactura $facturae)
+    public function edit(ClienteFactura $facturacione)
     {
         return view('admin.facturas.edit', [
-            'factura' => $facturae->load([
-                'movimientos.movimiento',
-                'movimientos.movimiento.cliente',
-                'movimientos.movimiento.tipoViaje',
-                'cliente'
-            ])
+            'factura' => $facturacione->load('cliente'),
+            'clientes' => Cliente::all(),
+            'condicionesPago' => CondicionesPago::all(),
+            'condicionesIva' => CondicionIva::all(),
+            'provincias' => Provincia::all(),
+            'retencionGanancias' => RetencionGanancia::all(),
+            'retencionIngresosBruto' => RetencionIngresosBruto::all(),
+            'tipoDocumentos' => TipoDocumento::all(),
         ]);
     }
 

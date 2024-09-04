@@ -20,11 +20,15 @@
     <!-- Main content -->
     <section class="content mx-3">
 
-        <div class="card card-primary card-outline ñpt-4">
+        <div class="card card-primary card-outline">
             <div class="card-header">Editar factura</div>
 
             <div class="card-body">
-                <factura-edit :factura="{{ $factura }}" :numero_interno="{{ $factura->numero_interno }}" redirect="true"></factura-edit>
+                <factura-edit :factura="{{ $factura }}" :clientes_data="{{ $clientes }}"
+                    :condiciones_iva_data="{{ $condicionesIva }}"
+                    :provincias_data="{{ $provincias }}" :retencion_ganancias_data="{{ $retencionGanancias }}"
+                    :retencion_ingresos_bruto_data="{{ $retencionIngresosBruto }}"
+                    :condiciones_pago_data="{{ $condicionesPago }}" :tipo_documentos_data="{{ $tipoDocumentos }}" />
             </div>
         </div>
 

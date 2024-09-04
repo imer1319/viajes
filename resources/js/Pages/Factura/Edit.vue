@@ -2,7 +2,7 @@
     <div>
         <form-wizard
             next-button-text="Siguiente"
-            title="Editar liquidacion"
+            title="Editar factura"
             subtitle=""
             color="#0d6efd"
             shape="square"
@@ -12,7 +12,14 @@
             <tab-content title="Datos del chofer" icon="fa fa-user">
                 <Head
                     @siguiente="siguienteTab()"
-                    :numero_interno="numero_interno"
+                    :condiciones_iva_data="condiciones_iva_data"
+                    :provincias_data="provincias_data"
+                    :retencion_ganancias_data="retencion_ganancias_data"
+                    :retencion_ingresos_bruto_data="
+                        retencion_ingresos_bruto_data
+                    "
+                    :tipo_documentos_data="tipo_documentos_data"
+                    :condiciones_pago_data="condiciones_pago_data"
                 />
             </tab-content>
             <tab-content title="Movimientos del chofer" icon="fa fa-bus">
@@ -36,7 +43,17 @@ import Resumen from "./Resumen.vue";
 import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
-    props: ["numero_interno", "liquidacion", "choferes"],
+    props: [
+        "numero_interno",
+        "clientes_data",
+        "condiciones_iva_data",
+        "provincias_data",
+        "retencion_ganancias_data",
+        "retencion_ingresos_bruto_data",
+        "tipo_documentos_data",
+        "condiciones_pago_data",
+        "factura",
+    ],
     components: {
         FormWizard,
         TabContent,
@@ -45,19 +62,19 @@ export default {
         Resumen,
     },
     mounted() {
-        this.setChoferes(this.choferes);
+        this.setClientes(this.clientes_data);
         this.initializeForm();
     },
     computed: {
-        ...mapState("liquidaciones", {
+        ...mapState("facturas", {
             isEditing: (state) => state.isEditing,
         }),
     },
     methods: {
-        ...mapActions("liquidaciones", ["setForm", "setChoferes"]),
-        ...mapMutations("liquidaciones", [
+        ...mapActions("facturas", ["setForm", "setClientes"]),
+        ...mapMutations("facturas", [
             "SET_IS_EDITING",
-            "SET_CHOFER_ID_ANTERIOR",
+            "SET_CLIENTE_ID_ANTERIOR",
         ]),
         siguienteTab() {
             this.$refs.formWizard.nextTab();
@@ -67,17 +84,20 @@ export default {
         },
         initializeForm() {
             this.SET_IS_EDITING(true);
-            this.SET_CHOFER_ID_ANTERIOR(this.liquidacion.chofer_id);
+            this.SET_CLIENTE_ID_ANTERIOR(this.factura.cliente_id);
             this.setForm({
-                id: this.liquidacion.id,
-                fecha: this.liquidacion.fecha,
-                chofer_id: this.liquidacion.chofer_id,
-                numero_interno: this.liquidacion.numero_interno,
-                observaciones: this.liquidacion.observaciones,
-                total_liquidacion: this.liquidacion.total_liquidacion,
-                movimientos: this.liquidacion.movimientos,
-                anticipos: this.liquidacion.anticipos,
-                gastos: this.liquidacion.gastos,
+                id: this.factura.id,
+                fecha: this.factura.fecha,
+                cliente_id: this.factura.cliente_id,
+                numero_interno: this.factura.numero_interno,
+                observaciones: this.factura.observaciones,
+                condiciones_pago_id: this.factura.condiciones_pago_id,
+                neto: this.factura.neto,
+                iva: this.factura.iva,
+                total: this.factura.total,
+                numero_factura_1: this.factura.numero_factura_1,
+                numero_factura_2: this.factura.numero_factura_2,
+                movimientos: this.factura.movimientos,
             });
         },
     },

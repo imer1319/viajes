@@ -45,37 +45,34 @@ class FacturacionController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
-                'message' => 'Hubo un error al crear el liquidacion.',
+                'message' => 'Hubo un error al crear el factura.',
                 'error' => $e->getMessage(),
             ], 500);
         }
     }
 
-    public function update(UpdateRequest $request, ClienteFactura $facturacione)
+    public function update(UpdateRequest $request, ClienteFactura $facturacion)
     {
         try {
             DB::beginTransaction();
             
-            $movimientos = $facturacione->detalles->map(function ($detalle) {
+            $movimientos = $facturacion->detalles->map(function ($detalle) {
                 return $detalle->movimiento;
             })->all();
-
-            event(new FacturaEliminada($facturacione, $movimientos));
-
-            $facturacione->update($request->validated());
+            event(new FacturaEliminada($facturacion, $movimientos));
+            $facturacion->update($request->validated());
             $movimientos = $request->movimientos;
 
-            event(new FacturaCreada($facturacione, $movimientos));
-
+            event(new FacturaCreada($facturacion, $movimientos));
             DB::commit();
             return response()->json([
                 'message' => 'Factura creada exitosamente.',
-                'factura' => $facturacione,
+                'factura' => $facturacion,
             ], 201);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
-                'message' => 'Hubo un error al crear el liquidacion.',
+                'message' => 'Hubo un error al crear el factura.',
                 'error' => $e->getMessage(),
             ], 500);
         }
@@ -86,9 +83,7 @@ class FacturacionController extends Controller
         $edit = request()->query('edit', false);
         $cliente_id_anterior = request()->query('cliente_id_anterior', null);
         $factura = request()->query('factura', null);
-
         $clienteData = $this->loadClienteData($cliente);
-
         if ($edit && $cliente_id_anterior && $cliente_id_anterior == $cliente->id && $factura) {
             return $this->handleEditWithSameCliente($clienteData, $factura);
         }
@@ -105,12 +100,11 @@ class FacturacionController extends Controller
         ])->find($cliente->id);
     }
 
-    private function handleEditWithSameCliente($clienteData, $liquidacion)
+    private function handleEditWithSameCliente($clienteData, $factura)
     {
-        $liquidacionData = $this->loadLiquidacionData($liquidacion);
+        $facturaData = $this->loadFacturaData($factura);
 
-        $movimientosGuardados = $liquidacionData->movimientos->map->movimiento;
-
+        $movimientosGuardados = $facturaData->detalles->map->movimiento;
         $movimientosCero = $this->filterUnfacturedMovements($clienteData->movimientos);
 
         return $this->createResponse($clienteData, $movimientosGuardados, $movimientosCero);
@@ -119,15 +113,14 @@ class FacturacionController extends Controller
     private function handleNewOrDifferentCliente($clienteData)
     {
         $movimientosGuardados = $this->filterUnfacturedMovements($clienteData->movimientos);
-
         return $this->createResponse($clienteData, $movimientosGuardados);
     }
 
-    private function loadLiquidacionData($factura)
+    private function loadFacturaData($factura)
     {
         return ClienteFactura::with([
-            'movimientos.movimiento' => function ($query) {
-                $query->with('tipoViaje', 'flota', 'cliente');
+            'detalles.movimiento' => function ($query) {
+                $query->with('tipoViaje');
             },
         ])->find($factura);
     }
@@ -135,7 +128,7 @@ class FacturacionController extends Controller
     private function filterUnfacturedMovements($collection)
     {
         return $collection->filter(function ($item) {
-            return !$item->facturado; // Filtrar movimientos donde 'facturado' es false
+            return !$item->facturado;
         });
     }
 

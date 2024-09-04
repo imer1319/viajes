@@ -3002,7 +3002,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["numero_interno", "liquidacion", "choferes"],
+  props: ["numero_interno", "clientes_data", "condiciones_iva_data", "provincias_data", "retencion_ganancias_data", "retencion_ingresos_bruto_data", "tipo_documentos_data", "condiciones_pago_data", "factura"],
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
@@ -3011,15 +3011,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   mounted: function mounted() {
-    this.setChoferes(this.choferes);
+    this.setClientes(this.clientes_data);
     this.initializeForm();
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)("liquidaciones", {
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)("facturas", {
     isEditing: function isEditing(state) {
       return state.isEditing;
     }
   })),
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("liquidaciones", ["setForm", "setChoferes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapMutations)("liquidaciones", ["SET_IS_EDITING", "SET_CHOFER_ID_ANTERIOR"])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("facturas", ["setForm", "setClientes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapMutations)("facturas", ["SET_IS_EDITING", "SET_CLIENTE_ID_ANTERIOR"])), {}, {
     siguienteTab: function siguienteTab() {
       this.$refs.formWizard.nextTab();
     },
@@ -3028,17 +3028,20 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     initializeForm: function initializeForm() {
       this.SET_IS_EDITING(true);
-      this.SET_CHOFER_ID_ANTERIOR(this.liquidacion.chofer_id);
+      this.SET_CLIENTE_ID_ANTERIOR(this.factura.cliente_id);
       this.setForm({
-        id: this.liquidacion.id,
-        fecha: this.liquidacion.fecha,
-        chofer_id: this.liquidacion.chofer_id,
-        numero_interno: this.liquidacion.numero_interno,
-        observaciones: this.liquidacion.observaciones,
-        total_liquidacion: this.liquidacion.total_liquidacion,
-        movimientos: this.liquidacion.movimientos,
-        anticipos: this.liquidacion.anticipos,
-        gastos: this.liquidacion.gastos
+        id: this.factura.id,
+        fecha: this.factura.fecha,
+        cliente_id: this.factura.cliente_id,
+        numero_interno: this.factura.numero_interno,
+        observaciones: this.factura.observaciones,
+        condiciones_pago_id: this.factura.condiciones_pago_id,
+        neto: this.factura.neto,
+        iva: this.factura.iva,
+        total: this.factura.total,
+        numero_factura_1: this.factura.numero_factura_1,
+        numero_factura_2: this.factura.numero_factura_2,
+        movimientos: this.factura.movimientos
       });
     }
   })
@@ -3294,7 +3297,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.form.total = this.totalSaldo;
       this.form.neto = this.totalPrecioReal;
       this.form.iva = this.totalIva;
-      this.$store.dispatch("facturas/agregarFactura", this.form).then(function () {
+      var ruta = "facturas/agregarFactura";
+      if (this.isEditing) {
+        ruta = "facturas/actualizarFactura";
+      }
+      this.$store.dispatch(ruta, this.form).then(function () {
         window.location = "/facturaciones";
         _this.$toast.open({
           message: "Datos guardados exitosamente!",
@@ -3318,6 +3325,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     cliente: function cliente(state) {
       return state.cliente;
+    },
+    isEditing: function isEditing(state) {
+      return state.isEditing;
     }
   })), {}, {
     totalPrecioReal: function totalPrecioReal() {
@@ -8063,7 +8073,7 @@ var render = function render() {
     ref: "formWizard",
     attrs: {
       "next-button-text": "Siguiente",
-      title: "Editar liquidacion",
+      title: "Editar factura",
       subtitle: "",
       color: "#0d6efd",
       shape: "square",
@@ -8076,7 +8086,12 @@ var render = function render() {
     }
   }, [_c("Head", {
     attrs: {
-      numero_interno: _vm.numero_interno
+      condiciones_iva_data: _vm.condiciones_iva_data,
+      provincias_data: _vm.provincias_data,
+      retencion_ganancias_data: _vm.retencion_ganancias_data,
+      retencion_ingresos_bruto_data: _vm.retencion_ingresos_bruto_data,
+      tipo_documentos_data: _vm.tipo_documentos_data,
+      condiciones_pago_data: _vm.condiciones_pago_data
     },
     on: {
       siguiente: function siguiente($event) {
@@ -8543,7 +8558,7 @@ var render = function render() {
         return _vm.agregarFactura();
       }
     }
-  }, [_vm._v("Guardar")])])]);
+  }, [_vm._v(_vm._s(_vm.isEditing ? "Actualizar" : "Guardar"))])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -14973,7 +14988,7 @@ var actions = {
             commit = _ref.commit, state = _ref.state;
             _context.prev = 1;
             _context.next = 4;
-            return axios.get("/api/facturacion/".concat(cliente_id, "?edit=").concat(state.isEditing, "&cliente_id_anterior=").concat(state.cliente_id_anterior, "&liquidacion=").concat(state.form.id));
+            return axios.get("/api/facturacion/".concat(cliente_id, "?edit=").concat(state.isEditing, "&cliente_id_anterior=").concat(state.cliente_id_anterior, "&factura=").concat(state.form.id));
           case 4:
             response = _context.sent;
             clienteData = response.data.cliente;
@@ -15084,20 +15099,48 @@ var actions = {
       }, _callee4, null, [[1, 7]]);
     }))();
   },
-  setClientes: function setClientes(_ref5, clientes) {
-    var commit = _ref5.commit;
+  actualizarFactura: function actualizarFactura(_ref5, form) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+      var commit, dispatch;
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
+          case 0:
+            commit = _ref5.commit, dispatch = _ref5.dispatch;
+            _context5.prev = 1;
+            _context5.next = 4;
+            return axios.put('/api/facturaciones/' + form.id, form);
+          case 4:
+            dispatch('clearErrors');
+            _context5.next = 11;
+            break;
+          case 7:
+            _context5.prev = 7;
+            _context5.t0 = _context5["catch"](1);
+            if (_context5.t0.response && _context5.t0.response.data && _context5.t0.response.data.errors) {
+              commit('SET_ERRORS', _context5.t0.response.data.errors);
+            }
+            throw _context5.t0;
+          case 11:
+          case "end":
+            return _context5.stop();
+        }
+      }, _callee5, null, [[1, 7]]);
+    }))();
+  },
+  setClientes: function setClientes(_ref6, clientes) {
+    var commit = _ref6.commit;
     commit('SET_CLIENTES', clientes);
   },
-  clearErrors: function clearErrors(_ref6) {
-    var commit = _ref6.commit;
+  clearErrors: function clearErrors(_ref7) {
+    var commit = _ref7.commit;
     commit('CLEAR_ERRORS');
   },
-  updateErrors: function updateErrors(_ref7, errors) {
-    var commit = _ref7.commit;
+  updateErrors: function updateErrors(_ref8, errors) {
+    var commit = _ref8.commit;
     commit('SET_ERRORS', errors);
   },
-  setForm: function setForm(_ref8, formData) {
-    var commit = _ref8.commit;
+  setForm: function setForm(_ref9, formData) {
+    var commit = _ref9.commit;
     commit('SET_FORM', formData);
   }
 };

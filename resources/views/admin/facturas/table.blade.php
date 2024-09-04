@@ -14,7 +14,7 @@
     <tbody>
         @foreach ($facturas as $factura)
             <tr>
-                <td>{{ $factura->id }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $factura->numero_interno }}</td>
                 <td>{{ $factura->fecha }}</td>
                 <td>{{ $factura->cliente->razon_social }}</td>
