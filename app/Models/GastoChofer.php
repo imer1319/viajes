@@ -34,4 +34,9 @@ class GastoChofer extends Model
     {
         return $this->belongsTo(Flota::class);
     }
+
+    public function tipoGastos()
+    {
+        return $this->belongsToMany(TipoGasto::class, 'chofer_tipo_gasto');
+    }
 }

@@ -32,7 +32,7 @@
                         <p class="text-muted"><strong>Numero interno:</strong> {{ $movimiento->numero_interno }}</p>
                         <p class="text-muted">Fecha: {{ $movimiento->fecha }}</p>
                         <p class="text-muted">Tipo de viaje: {{ $movimiento->tipoViaje->descripcion }}</p>
-                        <p class="text-muted"># Factura:
+                        <p class="text-muted"># Remito:
                             {{ $movimiento->numero_factura_1 }}-{{ $movimiento->numero_factura_2 }}</p>
                         <p class="text-muted">Precio real: {{ number_format($movimiento->precio_real, 2, ',', '.') }}</p>
                         <p class="text-muted">IVA: {{ number_format($movimiento->iva, 2, ',', '.') }}</p>

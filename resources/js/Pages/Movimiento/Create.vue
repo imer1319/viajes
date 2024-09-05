@@ -362,18 +362,16 @@ export default {
     },
     watch: {
         "form.precio_real": function (newVal) {
-            const iva = newVal * 0.21;
-            this.form.iva = this.$options.filters.formatNumber(iva);
-            const total = parseFloat(newVal) + iva;
-            this.form.total = new Intl.NumberFormat("es-AR", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-            }).format(total);
+            this.form.iva = (newVal * 0.21).toFixed(2);
+            this.form.total = (
+                parseFloat(newVal) + parseFloat(this.form.iva)
+            ).toFixed(2);
         },
         "form.precio_chofer": function (newVal) {
-            const comisionChofer = newVal * (this.form.porcentaje_pago / 100);
-            this.form.comision_chofer =
-                this.$options.filters.formatNumber(comisionChofer);
+            this.form.comision_chofer = (
+                newVal *
+                (this.form.porcentaje_pago / 100)
+            ).toFixed(2);
         },
         "form.chofer_id": function (newVal) {
             this.$nextTick(() => {

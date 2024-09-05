@@ -24,7 +24,7 @@
             <div class="card-header">Editar gasto</div>
 
             <div class="card-body">
-                <gasto-edit :gasto="{{ $gasto }}" redirect="true"></gasto-edit>
+                <gasto-edit :tipo_gastos_data="{{ $tipoGastos }}"  :gasto="{{ $gasto }}" redirect="true"></gasto-edit>
             </div>
         </div>
 

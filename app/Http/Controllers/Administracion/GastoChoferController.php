@@ -6,6 +6,7 @@ use App\Exports\GastoChoferExport;
 use App\Http\Controllers\Controller;
 use App\Models\Chofer;
 use App\Models\GastoChofer;
+use App\Models\TipoGasto;
 use Maatwebsite\Excel\Facades\Excel;
 
 class GastoChoferController extends Controller
@@ -14,7 +15,7 @@ class GastoChoferController extends Controller
     {
         return view('admin.gastoChofer.index', [
             'chofer' => $chofer,
-            'gastos' => $chofer->anticipos()->with('chofer')->paginate(8)
+            'gastos' => $chofer->gastos()->paginate(8)
         ]);
     }
 
@@ -23,6 +24,7 @@ class GastoChoferController extends Controller
         $ultimoGastoChofer = GastoChofer::latest()->first();
         return view('admin.gastoChofer.create', [
             'chofer' => $chofer,
+            'tipoGastos' => TipoGasto::all(),
             'numero_interno' => $ultimoGastoChofer ? $ultimoGastoChofer->id + 1 : 1,
         ]);
     }
@@ -32,6 +34,7 @@ class GastoChoferController extends Controller
         return view('admin.gastoChofer.edit', [
             'chofer' => $chofer,
             'gasto' => $gasto,
+            'tipoGastos' => TipoGasto::all(),
         ]);
     }
 
@@ -42,7 +45,7 @@ class GastoChoferController extends Controller
             'gasto' => $gasto,
         ]);
     }
-    
+
     public function downloadExcel(Chofer $chofer)
     {
         return Excel::download(new GastoChoferExport($chofer), 'gasto_chofer.xlsx');

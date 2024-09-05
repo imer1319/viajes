@@ -21,6 +21,8 @@ class CreateBancosTable extends Migration
             $table->string('numero_cuenta');
             $table->string('cbu');
             $table->string('alias');
+            // combo box propio o de tercero
+            // el cbu tiene 22 numeros
             $table->timestamps();
         });
     }

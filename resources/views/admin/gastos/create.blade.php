@@ -23,8 +23,9 @@
             <div class="card-header">Crear gasto</div>
             <div class="card-body">
 
-                <gasto-create :numero_interno="{{ $numero_interno }}" redirect="true" />
-                
+                <gasto-create :tipo_gastos_data="{{ $tipoGastos }}" :numero_interno="{{ $numero_interno }}"
+                    redirect="true" />
+
             </div>
         </div>
 

@@ -197,9 +197,9 @@
                             </a>
                         </li>
                         <li
-                            class="nav-item {{ menuOpen(['admin.choferes.*', 'admin.anticipos.*', 'admin.gastos.*']) }}">
+                            class="nav-item {{ menuOpen(['admin.choferes.*', 'admin.anticipos.*', 'admin.gastos.*', 'admin.facturaciones.*']) }}">
                             <a href="#"
-                                class="nav-link {{ setActiveRoute(['admin.choferes.*', 'admin.anticipos.*', 'admin.gastos.*']) }}">
+                                class="nav-link {{ setActiveRoute(['admin.choferes.*', 'admin.anticipos.*', 'admin.gastos.*', 'admin.facturaciones.*']) }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Choferes
@@ -228,11 +228,19 @@
                                         <p>Agregar gasto</p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.facturaciones.index') }}"
+                                        class="nav-link {{ setActiveRoute('admin.facturaciones.*') }}">
+                                        <i class="fas fa-file-invoice nav-icon"></i>
+                                        <p>Facturacion</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-                        <li class="nav-item {{ menuOpen(['admin.clientes.*', 'admin.recibos.*']) }}">
+                        <li
+                            class="nav-item {{ menuOpen(['admin.clientes.*', 'admin.recibos.*', 'admin.liquidaciones.*']) }}">
                             <a href="#"
-                                class="nav-link  {{ setActiveRoute(['admin.clientes.*', 'admin.recibos.*']) }}">
+                                class="nav-link  {{ setActiveRoute(['admin.clientes.*', 'admin.recibos.*', 'admin.liquidaciones.*']) }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Clientes
@@ -248,6 +256,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="{{ route('admin.liquidaciones.index') }}"
+                                        class="nav-link {{ setActiveRoute('admin.liquidaciones.*') }}">
+                                        <i class="fas fa-file-invoice-dollar nav-icon"></i>
+                                        <p>Liquidaciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="{{ route('admin.recibos.index') }}"
                                         class="nav-link {{ setActiveRoute('admin.recibos.*') }}">
                                         <i class="fas fa-money-bill-wave-alt nav-icon"></i>
@@ -255,20 +270,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.liquidaciones.index') }}"
-                                class="nav-link {{ setActiveRoute('admin.liquidaciones.*') }}">
-                                <i class="fas fa-file-invoice-dollar nav-icon"></i>
-                                <p>Liquidaciones</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.facturaciones.index') }}"
-                                class="nav-link {{ setActiveRoute('admin.facturaciones.*') }}">
-                                <i class="fas fa-file-invoice nav-icon"></i>
-                                <p>Facturacion</p>
-                            </a>
                         </li>
                     </ul>
                 </li>

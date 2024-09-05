@@ -128,6 +128,43 @@
                     getErrorMessage(errors.detalle)
                 }}</span>
             </div>
+            <div class="col-6">
+                <label for="tipo_gastos">Tipo de gasto</label>
+                <div class="d-flex w-100">
+                    <div class="flex-grow-1">
+                        <v-select
+                            taggable
+                            multiple
+                            :options="tipo_gastos_data"
+                            v-model="form.tipo_gastos"
+                            :reduce="
+                                (tipoGasto) => {
+                                    if (typeof tipoGasto === 'string') {
+                                        return {
+                                            id: '',
+                                            descripcion: tipoGasto,
+                                        };
+                                    }
+                                    return {
+                                        id: tipoGasto.id,
+                                        descripcion: tipoGasto.descripcion,
+                                    };
+                                }
+                            "
+                            label="descripcion"
+                        >
+                            <template
+                                #no-options="{ search, searching, loading }"
+                            >
+                                No se encontraron tipos de pago
+                            </template>
+                        </v-select>
+                    </div>
+                </div>
+                <span v-if="errors.tipo_gastos" class="text-danger">{{
+                    getErrorMessage(errors.tipo_gastos)
+                }}</span>
+            </div>
             <div class="col-12 d-flex justify-content-end mt-3">
                 <button
                     class="btn btn-primary btn-sm"
@@ -179,7 +216,7 @@ export default {
         FlotaTable,
         ModalComponent,
     },
-    props: ["numero_interno", "chofer_id", "redirect"],
+    props: ["numero_interno", "chofer_id", "redirect", "tipo_gastos_data"],
     mounted() {
         this.form.fecha = this.getTodayDate();
         this.form.numero_interno = this.numero_interno;
@@ -198,6 +235,7 @@ export default {
                 proveedor_id: "",
                 saldo: "",
                 detalle: "",
+                tipo_gastos: [],
             },
         };
     },

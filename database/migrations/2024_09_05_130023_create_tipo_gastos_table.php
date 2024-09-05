@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateTipoGastosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('formas_pagos', function (Blueprint $table) {
+        Schema::create('tipo_gastos', function (Blueprint $table) {
             $table->id();
-            $table->string('abreviacion');
             $table->string('descripcion');
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formas_pagos');
+        Schema::dropIfExists('tipo_gastos');
     }
-};
+}

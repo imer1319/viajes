@@ -8,6 +8,7 @@ use App\Http\Requests\Gasto\StoreRequest;
 use App\Http\Requests\Gasto\UpdateRequest;
 use App\Models\Chofer;
 use App\Models\GastoChofer;
+use App\Models\TipoGasto;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -23,19 +24,32 @@ class GastoController extends Controller
     public function create()
     {
         $ultimoGastoChofer = GastoChofer::latest()->first();
-        $numeroInterno = $ultimoGastoChofer ? $ultimoGastoChofer->id + 1 : 1;
         return view('admin.gastos.create', [
-            'numero_interno' => $numeroInterno
+            'tipoGastos' => TipoGasto::all(),
+            'numero_interno' => $ultimoGastoChofer ? $ultimoGastoChofer->id + 1 : 1
         ]);
     }
 
     public function store(StoreRequest $request)
     {
-        $gasto = GastoChofer::create($request->validated());
+        $validatedData = $request->validated();
+        $gasto = GastoChofer::create($validatedData);
         $chofer = Chofer::find($request->chofer_id);
         $chofer->update([
             'saldo' => $chofer->saldo + $gasto->importe
         ]);
+        $tipoGastos = collect($validatedData['tipo_gastos'])->map(function ($tipoGasto) {
+            if (is_array($tipoGasto) && isset($tipoGasto['id']) && $tipoGasto['id']) {
+                return $tipoGasto['id'];
+            } else {
+                $nuevoTipoGasto = TipoGasto::create([
+                    'descripcion' => is_array($tipoGasto) ? $tipoGasto['descripcion'] : $tipoGasto
+                ]);
+                return $nuevoTipoGasto->id;
+            }
+        });
+
+        $gasto->tipoGastos()->sync($tipoGastos);
         if ($gasto) {
             return response()->json(['message' => 'Gasto creado correctamente'], 201);
         }
@@ -52,16 +66,28 @@ class GastoController extends Controller
     public function edit(GastoChofer $gasto)
     {
         return view('admin.gastos.edit', [
-            'gasto' => $gasto
+            'gasto' => $gasto->load('tipoGastos'),
+            'tipoGastos' => TipoGasto::all(),
         ]);
     }
 
     public function update(UpdateRequest $request, GastoChofer $gasto)
     {
         $valorAnterior = $gasto->importe;
+        $validatedData = $request->validated();
+        $respuesta = $gasto->update($validatedData);
+        $tipoGastos = collect($validatedData['tipo_gastos'])->map(function ($tipoGasto) {
+            if (is_array($tipoGasto) && isset($tipoGasto['id']) && $tipoGasto['id']) {
+                return $tipoGasto['id'];
+            } else {
+                $nuevoTipoGasto = TipoGasto::create([
+                    'descripcion' => is_array($tipoGasto) ? $tipoGasto['descripcion'] : $tipoGasto
+                ]);
+                return $nuevoTipoGasto->id;
+            }
+        });
 
-        $respuesta = $gasto->update($request->validated());
-
+        $gasto->tipoGastos()->sync($tipoGastos);
         if ($respuesta) {
             $diferencia = $request->importe - $valorAnterior;
             $chofer = $gasto->chofer;
@@ -76,7 +102,7 @@ class GastoController extends Controller
     public function destroy(GastoChofer $gasto)
     {
         $chofer = Chofer::find($gasto->chofer_id);
-        
+
         $chofer->update([
             'saldo' => $chofer->saldo - $gasto->importe
         ]);

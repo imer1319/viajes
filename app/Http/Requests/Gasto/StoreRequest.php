@@ -31,7 +31,8 @@ class StoreRequest extends FormRequest
             'saldo' => 'required|numeric|min:0',
             'chofer_id' => 'required|exists:chofers,id',
             'flota_id' => 'required|exists:flotas,id',
-            'detalle' => 'required|min:3|string'
+            'detalle' => 'required|min:3|string',
+            'tipo_gastos' => 'required|array',
         ];
     }
     
@@ -56,6 +57,8 @@ class StoreRequest extends FormRequest
             'flota_id.exists' => 'La flota seleccionada no es válida.',
             'detalle.required' => 'El detalle es obligatorio.',
             'detalle.min' => 'El detalle debe ser mayor o igual a 3 caracteres.',
+            'tipo_gastos.required' => 'Los tipos de gasto son obligatorio',
+            'tipo_gastos.array' => 'Los tipos de gasto deben ser un array',
         ];
     }
 }

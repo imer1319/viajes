@@ -3586,7 +3586,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     FlotaTable: _Pages_Flota_Table_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
-  props: ["numero_interno", "chofer_id", "redirect"],
+  props: ["numero_interno", "chofer_id", "redirect", "tipo_gastos_data"],
   mounted: function mounted() {
     this.form.fecha = this.getTodayDate();
     this.form.numero_interno = this.numero_interno;
@@ -3604,7 +3604,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         flota_id: "",
         proveedor_id: "",
         saldo: "",
-        detalle: ""
+        detalle: "",
+        tipo_gastos: []
       }
     };
   },
@@ -3737,7 +3738,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     FlotaTable: _Pages_Flota_Table_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  props: ["numero_interno", "chofer_id", "redirect", "gasto"],
+  props: ["numero_interno", "chofer_id", "redirect", "gasto", "tipo_gastos_data"],
   created: function created() {
     if (this.gasto) {
       this.setFormValues(this.gasto);
@@ -3756,7 +3757,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         flota_id: "",
         importe: "",
         saldo: "",
-        detalle: ""
+        detalle: "",
+        tipo_gastos: []
       }
     };
   },
@@ -3800,6 +3802,13 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         });
       });
     },
+    handleInput: function handleInput(selectedItems) {
+      this.form.tipo_gastos = selectedItems.filter(function (item, index, self) {
+        return index === self.findIndex(function (t) {
+          return t.descripcion === item.descripcion;
+        });
+      });
+    },
     resetForm: function resetForm() {
       this.form = {
         id: "",
@@ -3838,6 +3847,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.form.importe = gasto.importe;
       this.form.saldo = gasto.saldo;
       this.form.detalle = gasto.detalle;
+      this.form.tipo_gastos = gasto.tipo_gastos.map(function (tipo) {
+        return {
+          id: tipo.id,
+          descripcion: tipo.descripcion
+        };
+      });
     }
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapGetters)({
@@ -4530,17 +4545,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   }),
   watch: {
     "form.precio_real": function formPrecio_real(newVal) {
-      var iva = newVal * 0.21;
-      this.form.iva = this.$options.filters.formatNumber(iva);
-      var total = parseFloat(newVal) + iva;
-      this.form.total = new Intl.NumberFormat("es-AR", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }).format(total);
+      this.form.iva = (newVal * 0.21).toFixed(2);
+      this.form.total = (parseFloat(newVal) + parseFloat(this.form.iva)).toFixed(2);
     },
     "form.precio_chofer": function formPrecio_chofer(newVal) {
-      var comisionChofer = newVal * (this.form.porcentaje_pago / 100);
-      this.form.comision_chofer = this.$options.filters.formatNumber(comisionChofer);
+      this.form.comision_chofer = (newVal * (this.form.porcentaje_pago / 100)).toFixed(2);
     },
     "form.chofer_id": function formChofer_id(newVal) {
       this.$nextTick(function () {
@@ -9954,6 +9963,53 @@ var render = function render() {
   }), _vm._v(" "), _vm.errors.detalle ? _c("span", {
     staticClass: "text-danger"
   }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.detalle)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "tipo_gastos"
+    }
+  }, [_vm._v("Tipo de gasto")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex w-100"
+  }, [_c("div", {
+    staticClass: "flex-grow-1"
+  }, [_c("v-select", {
+    attrs: {
+      taggable: "",
+      multiple: "",
+      options: _vm.tipo_gastos_data,
+      reduce: function reduce(tipoGasto) {
+        if (typeof tipoGasto === "string") {
+          return {
+            id: "",
+            descripcion: tipoGasto
+          };
+        }
+        return {
+          id: tipoGasto.id,
+          descripcion: tipoGasto.descripcion
+        };
+      },
+      label: "descripcion"
+    },
+    scopedSlots: _vm._u([{
+      key: "no-options",
+      fn: function fn(_ref) {
+        var search = _ref.search,
+          searching = _ref.searching,
+          loading = _ref.loading;
+        return [_vm._v("\n                            No se encontraron tipos de pago\n                        ")];
+      }
+    }]),
+    model: {
+      value: _vm.form.tipo_gastos,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "tipo_gastos", $$v);
+      },
+      expression: "form.tipo_gastos"
+    }
+  })], 1)]), _vm._v(" "), _vm.errors.tipo_gastos ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.tipo_gastos)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
@@ -10282,6 +10338,56 @@ var render = function render() {
   }), _vm._v(" "), _vm.errors.detalle ? _c("span", {
     staticClass: "text-danger"
   }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.detalle)))]) : _vm._e()]), _vm._v(" "), _c("div", {
+    staticClass: "col-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "tipo_gastos"
+    }
+  }, [_vm._v("Tipo de gasto")]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex w-100"
+  }, [_c("div", {
+    staticClass: "flex-grow-1"
+  }, [_c("v-select", {
+    attrs: {
+      taggable: "",
+      multiple: "",
+      options: _vm.tipo_gastos_data,
+      label: "descripcion",
+      reduce: function reduce(tipoGasto) {
+        if (typeof tipoGasto === "string") {
+          return {
+            id: "",
+            descripcion: tipoGasto
+          };
+        }
+        return {
+          id: tipoGasto.id,
+          descripcion: tipoGasto.descripcion
+        };
+      }
+    },
+    on: {
+      input: _vm.handleInput
+    },
+    scopedSlots: _vm._u([{
+      key: "no-options",
+      fn: function fn(_ref) {
+        var search = _ref.search,
+          searching = _ref.searching,
+          loading = _ref.loading;
+        return [_vm._v("\n                            No se encontraron tipos de pago\n                        ")];
+      }
+    }]),
+    model: {
+      value: _vm.form.tipo_gastos,
+      callback: function callback($$v) {
+        _vm.$set(_vm.form, "tipo_gastos", $$v);
+      },
+      expression: "form.tipo_gastos"
+    }
+  })], 1)]), _vm._v(" "), _vm.errors.tipo_gastos ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.tipo_gastos)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
