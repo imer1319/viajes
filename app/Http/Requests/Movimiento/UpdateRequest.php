@@ -24,22 +24,35 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
+        $movimientoId = $this->route('movimiento')->id ?? null;
+
         return [
             'numero_interno' => 'required|integer',
             'fecha' => 'required|date',
             'cliente_id' => 'required|exists:clientes,id',
             'tipo_viaje_id' => 'required|exists:tipo_viajes,id',
             'detalle' => 'required|string',
-            'numero_factura_1' => 'required|string|size:4',
+            'numero_factura_1' => [
+                'required',
+                'string',
+                'size:4',
+                Rule::unique('movimientos')
+                    ->where(function ($query) {
+                        return $query->where('cliente_id', $this->cliente_id);
+                    })
+                    ->ignore($movimientoId),
+            ],
             'numero_factura_2' => [
                 'required',
                 'string',
                 'size:8',
                 Rule::unique('movimientos')
                     ->where(function ($query) {
-                        return $query->where('numero_factura_1', $this->numero_factura_1);
+                        return $query
+                            ->where('numero_factura_1', $this->numero_factura_1)
+                            ->where('cliente_id', $this->cliente_id);
                     })
-                    ->ignore($this->route('movimiento')),
+                    ->ignore($movimientoId),
             ],
             'precio_real' => 'required|numeric|min:0',
             'iva' => 'required|numeric|min:0',
@@ -69,6 +82,7 @@ class UpdateRequest extends FormRequest
             'detalle.string' => 'El detalle debe ser un texto.',
             'numero_factura_1.required' => 'El número de factura 1 es obligatorio.',
             'numero_factura_1.string' => 'El número de factura 1 debe ser un texto.',
+            'numero_factura_1.unique' => 'Este numero ya ha sido registrado.',
             'numero_factura_2.required' => 'El número de factura 2 es obligatorio.',
             'numero_factura_2.string' => 'El número de factura 2 debe ser un texto.',
             'numero_factura_2.unique' => 'Este numero ya ha sido registrado.',
