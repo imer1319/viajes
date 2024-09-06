@@ -29,6 +29,7 @@
                     <th></th>
                     <th>#</th>
                     <th>Fecha</th>
+                    <th># remito</th>
                     <th>Tipo de viaje</th>
                     <th>Precio real</th>
                     <th>IVA</th>
@@ -49,6 +50,11 @@
                     </td>
                     <td>{{ index + 1 }}</td>
                     <td>{{ movimiento.fecha }}</td>
+                    <td>
+                        {{ movimiento.numero_factura_1 }}-{{
+                            movimiento.numero_factura_2
+                        }}
+                    </td>
                     <td>{{ movimiento.tipo_viaje.descripcion }}</td>
                     <td>{{ movimiento.precio_real | formatNumber }}</td>
                     <td>{{ movimiento.iva | formatNumber }}</td>
@@ -57,8 +63,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3"><b>Totales</b></td>
-                    <td></td>
+                    <td colspan="5"><b>Totales</b></td>
                     <td>{{ totalPrecioReal | formatNumber }}</td>
                     <td>{{ totalIva | formatNumber }}</td>
                     <td>{{ totalSaldo | formatNumber }}</td>
@@ -81,6 +86,7 @@
                             <th></th>
                             <th>#</th>
                             <th>Fecha</th>
+                            <th># remito</th>
                             <th>Tipo de viaje</th>
                             <th>Precio real</th>
                             <th>IVA</th>
@@ -101,6 +107,11 @@
                             </td>
                             <td>{{ index + 1 }}</td>
                             <td>{{ movimiento.fecha }}</td>
+                            <td>
+                                {{ movimiento.numero_factura_1 }}-{{
+                                    movimiento.numero_factura_2
+                                }}
+                            </td>
                             <td>{{ movimiento.tipo_viaje.descripcion }}</td>
                             <td>{{ movimiento.precio_real | formatNumber }}</td>
                             <td>{{ movimiento.iva | formatNumber }}</td>

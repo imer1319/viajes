@@ -1,7 +1,6 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>#</th>
             <th>Nombre</th>
             <th>DNI</th>
             <th>CUIL</th>
@@ -13,7 +12,6 @@
     <tbody>
         @forelse ($choferes as $chofer)
             <tr>
-                <td>{{ $chofer->id }}</td>
                 <td>{{ $chofer->nombre }}</td>
                 <td>{{ $chofer->dni }}</td>
                 <td>{{ $chofer->cuil }}</td>

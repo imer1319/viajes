@@ -1,8 +1,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>#</th>
-            <th>Numero interno</th>
+            <th># interno</th>
             <th>Fecha</th>
             <th>Importe</th>
             <th>Saldo</th>
@@ -12,7 +11,6 @@
     <tbody>
         @foreach ($gastos as $gasto)
             <tr>
-                <td>{{ $gasto->id }}</td>
                 <td>{{ $gasto->numero_interno }}</td>
                 <td>{{ $gasto->fecha }}</td>
                 <td>{{ number_format($gasto->importe, 2, ',', '.')  }}</td>

@@ -2,7 +2,6 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Fecha</th>
                 <th>Cliente</th>
                 <th>Tipo de viaje</th>
@@ -13,13 +12,13 @@
                 <th>Chofer</th>
                 <th>Comision chofer</th>
                 <th>Saldo comision chofer</th>
+                <th>Facturado</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach ($movimientos as $movimiento)
                 <tr>
-                    <td>{{ $movimiento->id }}</td>
                     <td>{{ $movimiento->fecha }}</td>
                     <td>{{ $movimiento->cliente->razon_social }}</td>
                     <td>{{ $movimiento->tipoViaje->descripcion }}</td>
@@ -30,6 +29,7 @@
                     <td>{{ $movimiento->chofer->nombre }}</td>
                     <td>{{ number_format($movimiento->comision_chofer, 2, ',', '.') }}</td>
                     <td>{{ number_format($movimiento->saldo_comision_chofer, 2, ',', '.') }}</td>
+                    <td>{{ $movimiento->facturado == 1 ? 'Si' : 'No' }}</td>
                     <td>
                         <div class="d-flex">
                             <a href="{{ route('admin.movimiento.download.pdf', $movimiento) }}" target="_blank"

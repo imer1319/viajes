@@ -34,7 +34,7 @@
                         <p class="text-muted">Celular: {{ $cliente->celular }}</p>
                         <p class="text-muted">Email: {{ $cliente->email }}</p>
                         <p class="text-muted">Contacto: {{ $cliente->contacto }}</p>
-                        <p class="text-muted">Saldo: {{ $cliente->saldo }}</p>
+                        <p class="text-muted">Saldo: {{ number_format($cliente->saldo, 2, ',', '.') }}</p>
                         <p class="text-muted">Estado: {{ $cliente->estado = 1 ? 'ACTIVO' : 'INACTIVO' }}</p>
                     </div>
                     <div class="col-7">

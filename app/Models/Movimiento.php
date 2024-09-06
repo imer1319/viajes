@@ -49,4 +49,44 @@ class Movimiento extends Model
     {
         return $this->belongsTo(Chofer::class);
     }
+
+    public function scopeByChoferId($query, $choferId = null)
+    {
+        if ($choferId) {
+            return $query->where('chofer_id', $choferId);
+        }
+        return $query;
+    }
+
+    public function scopeByTipoViajeId($query, $tipo_viaje_id = null)
+    {
+        if ($tipo_viaje_id) {
+            return $query->where('tipo_viaje_id', $tipo_viaje_id);
+        }
+        return $query;
+    }
+
+    public function scopeByFlotaId($query, $flota_id = null)
+    {
+        if ($flota_id) {
+            return $query->where('flota_id', $flota_id);
+        }
+        return $query;
+    }
+
+    public function scopeByClienteId($query, $cliente_id = null)
+    {
+        if ($cliente_id) {
+            return $query->where('cliente_id', $cliente_id);
+        }
+        return $query;
+    }
+
+    public function scopeByFacturado($query, $facturado = null)
+    {
+        if ($facturado === '1' || $facturado === '0') {
+            return $query->where('facturado', $facturado);
+        }
+        return $query;
+    }
 }

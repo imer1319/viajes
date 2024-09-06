@@ -21,21 +21,38 @@
     <section class="content mx-3">
 
         <div class="card card-primary card-outline">
-            <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
-                <h5>Listado de movimientos</h5>
-                <div>
-                    <a href="{{ route('admin.movimiento.download.excel') }}" class="btn btn-primary rounded-pill float-end">
-                        <i class="fas fa-file-excel"></i>
-                    </a>
-                    <a href="{{ route('admin.movimientos.create') }}" class="btn btn-primary rounded-pill float-end">
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
             <div class="card-body">
+                @include('admin.movimientos.search')
                 @include('admin.movimientos.table')
             </div>
         </div>
 
     </section>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        function create() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.movimientos.create') }}";
+        }
+
+        function search() {
+            var url = "{{ route('admin.movimientos.search') }}";
+            $("#form").attr('action', url);
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            $("#form").submit();
+        }
+
+        function limpiar() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.movimientos.index') }}";
+        }
+    </script>
 @endsection

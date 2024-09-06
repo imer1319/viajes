@@ -8949,8 +8949,8 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fa fa-trash"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_real)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.iva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.total)))])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioReal)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalIva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldo)))])])])]), _vm._v(" "), _c("div", {
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v("\n                    " + _vm._s(movimiento.numero_factura_1) + "-" + _vm._s(movimiento.numero_factura_2) + "\n                ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_real)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.iva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.total)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioReal)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalIva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldo)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -8975,7 +8975,7 @@ var render = function render() {
     }
   }, [_c("div", [_c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio real")]), _vm._v(" "), _c("th", [_vm._v("IVA")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.removedMovimientos, function (movimiento, index) {
+  }, [_c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("# remito")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio real")]), _vm._v(" "), _c("th", [_vm._v("IVA")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.removedMovimientos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_c("a", {
@@ -8988,7 +8988,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fa fa-plus"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_real)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.iva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.total)))])]);
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v("\n                            " + _vm._s(movimiento.numero_factura_1) + "-" + _vm._s(movimiento.numero_factura_2) + "\n                        ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_real)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.iva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.total)))])]);
   }), 0)])])])], 1);
 };
 var staticRenderFns = [function () {
@@ -9016,13 +9016,13 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio real")]), _vm._v(" "), _c("th", [_vm._v("IVA")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("# remito")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio real")]), _vm._v(" "), _c("th", [_vm._v("IVA")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("td", {
     attrs: {
-      colspan: "3"
+      colspan: "5"
     }
   }, [_c("b", [_vm._v("Totales")])]);
 }];

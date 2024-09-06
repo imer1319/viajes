@@ -1,20 +1,20 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>#</th>
             <th>Razon social</th>
             <th>Email</th>
             <th># Documento</th>
+            <th>Saldo</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($clientes as $cliente)
             <tr>
-                <td>{{ $cliente->id }}</td>
                 <td>{{ $cliente->razon_social }}</td>
                 <td>{{ $cliente->email }}</td>
                 <td>{{ $cliente->numero_documento }}</td>
+                <td>{{ number_format($cliente->saldo, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.clientes.show', $cliente) }}"
                         class="btn btn-primary btn-sm rounded-pill">

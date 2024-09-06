@@ -1,7 +1,6 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>#</th>
             <th>Numero interno</th>
             <th>Fecha</th>
             <th>Importe</th>
@@ -12,7 +11,6 @@
     <tbody>
         @forelse ($anticipos as $anticipo)
             <tr>
-                <td>{{ $anticipo->id }}</td>
                 <td>{{ $anticipo->numero_interno }}</td>
                 <td>{{ $anticipo->fecha }}</td>
                 <td>{{ number_format($anticipo->importe, 2, ',', '.') }}</td>

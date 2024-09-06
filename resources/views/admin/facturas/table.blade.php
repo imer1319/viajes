@@ -1,26 +1,28 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>#</th>
             <th># interno</th>
+            <th># factura</th>
             <th>Fecha</th>
             <th>Cliente</th>
             <th>Neto</th>
             <th>Iva</th>
             <th>Total</th>
+            <th>Saldo</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($facturas as $factura)
             <tr>
-                <td>{{ $loop->iteration }}</td>
                 <td>{{ $factura->numero_interno }}</td>
+                <td>{{ $factura->numero_factura_1 }}-{{ $factura->numero_factura_2 }}</td>
                 <td>{{ $factura->fecha }}</td>
                 <td>{{ $factura->cliente->razon_social }}</td>
                 <td>{{ number_format($factura->neto, 2, ',', '.') }}</td>
                 <td>{{ number_format($factura->iva, 2, ',', '.') }}</td>
                 <td>{{ number_format($factura->total, 2, ',', '.') }}</td>
+                <td>{{ number_format($factura->saldo_total, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.factura.download.pdf', $factura) }}" target="_blank"
                         class="btn btn-primary btn-sm rounded-pill">

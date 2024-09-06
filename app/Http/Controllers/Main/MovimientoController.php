@@ -25,13 +25,39 @@ use App\Models\TipoViaje;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Http\Request;
 
 class MovimientoController extends Controller
 {
     public function index()
     {
         return view('admin.movimientos.index', [
-            'movimientos' => Movimiento::latest()->paginate(8)
+            'movimientos' => Movimiento::latest()->paginate(8),
+            'choferes' => Chofer::all(),
+            'tipoViajes' => TipoViaje::all(),
+            'flotas' => Flota::all(),
+            'clientes' => Cliente::all()
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $movimientos = Movimiento::query()
+            ->byChoferId($request->input('chofer_id'))
+            ->byTipoViajeId($request->input('tipo_viaje_id'))
+            ->byClienteId($request->input('cliente_id'))
+            ->byFlotaId($request->input('flota_id'))
+            ->byFacturado($request->input('facturado'))
+            ->latest()
+            ->paginate(8);
+
+        $movimientos->appends($request->except('page'));
+        return view('admin.movimientos.index', [
+            'movimientos' => $movimientos,
+            'choferes' => Chofer::all(),
+            'tipoViajes' => TipoViaje::all(),
+            'flotas' => Flota::all(),
+            'clientes' => Cliente::all()
         ]);
     }
 

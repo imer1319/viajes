@@ -1,7 +1,6 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>#</th>
             <th># interno</th>
             <th>Fecha</th>
             <th>Chofer</th>
@@ -12,7 +11,6 @@
     <tbody>
         @foreach ($liquidaciones as $liquidacion)
             <tr>
-                <td>{{ $liquidacion->id }}</td>
                 <td>{{ $liquidacion->numero_interno }}</td>
                 <td>{{ $liquidacion->fecha }}</td>
                 <td>{{ $liquidacion->chofer->nombre }}</td>
