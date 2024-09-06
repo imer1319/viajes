@@ -129,6 +129,12 @@ const mutations = {
     SET_FORM_NUMERO_INTERNO(state, numero_interno) {
         state.form.numero_interno = numero_interno
     },
+    SET_FORM_NUMERO_FACTURA_1(state, numero_factura_1) {
+        state.form.numero_factura_1 = numero_factura_1
+    },
+    SET_FORM_NUMERO_FACTURA_2(state, numero_factura_2) {
+        state.form.numero_factura_2 = numero_factura_2
+    },
     SET_CLIENTE(state, cliente) {
         state.cliente = cliente
     },

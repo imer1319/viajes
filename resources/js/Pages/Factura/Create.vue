@@ -51,6 +51,8 @@ export default {
         "retencion_ingresos_bruto_data",
         "tipo_documentos_data",
         "condiciones_pago_data",
+        "sugerencia_numero_factura_1",
+        "sugerencia_numero_factura_2",
     ],
     components: {
         FormWizard,
@@ -62,10 +64,16 @@ export default {
     mounted() {
         this.setClientes(this.clientes_data);
         this.SET_FORM_NUMERO_INTERNO(this.numero_interno);
+        this.SET_FORM_NUMERO_FACTURA_1(this.sugerencia_numero_factura_1);
+        this.SET_FORM_NUMERO_FACTURA_2(this.sugerencia_numero_factura_2);
     },
     methods: {
         ...mapActions("facturas", ["setClientes"]),
-        ...mapMutations("facturas", ["SET_FORM_NUMERO_INTERNO"]),
+        ...mapMutations("facturas", [
+            "SET_FORM_NUMERO_INTERNO",
+            "SET_FORM_NUMERO_FACTURA_1",
+            "SET_FORM_NUMERO_FACTURA_2",
+        ]),
 
         siguienteTab() {
             this.$refs.formWizard.nextTab();

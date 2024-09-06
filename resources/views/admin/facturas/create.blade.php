@@ -22,14 +22,13 @@
         <div class="card card-primary card-outline ñpt-4">
             <div class="card-header">Crear factura</div>
             <div class="card-body">
-
                 <factura-create :clientes_data="{{ $clientes }}" :numero_interno="{{ $numero_interno }}"
                     :condiciones_iva_data="{{ $condicionesIva }}" :provincias_data="{{ $provincias }}"
                     :retencion_ganancias_data="{{ $retencionGanancias }}"
                     :retencion_ingresos_bruto_data="{{ $retencionIngresosBruto }}"
-                    :condiciones_pago_data="{{ $condicionesPago }}"
-                    :tipo_documentos_data="{{ $tipoDocumentos }}" />
-
+                    :condiciones_pago_data="{{ $condicionesPago }}" :tipo_documentos_data="{{ $tipoDocumentos }}"
+                    :sugerencia_numero_factura_1="'{{ $sugerenciaNumeroFactura1 }}'"
+                    :sugerencia_numero_factura_2="'{{ $sugerenciaNumeroFactura2 }}'" />
             </div>
         </div>
 

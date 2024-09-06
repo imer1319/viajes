@@ -2947,7 +2947,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["numero_interno", "clientes_data", "condiciones_iva_data", "provincias_data", "retencion_ganancias_data", "retencion_ingresos_bruto_data", "tipo_documentos_data", "condiciones_pago_data"],
+  props: ["numero_interno", "clientes_data", "condiciones_iva_data", "provincias_data", "retencion_ganancias_data", "retencion_ingresos_bruto_data", "tipo_documentos_data", "condiciones_pago_data", "sugerencia_numero_factura_1", "sugerencia_numero_factura_2"],
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
@@ -2958,8 +2958,10 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   mounted: function mounted() {
     this.setClientes(this.clientes_data);
     this.SET_FORM_NUMERO_INTERNO(this.numero_interno);
+    this.SET_FORM_NUMERO_FACTURA_1(this.sugerencia_numero_factura_1);
+    this.SET_FORM_NUMERO_FACTURA_2(this.sugerencia_numero_factura_2);
   },
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("facturas", ["setClientes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapMutations)("facturas", ["SET_FORM_NUMERO_INTERNO"])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("facturas", ["setClientes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapMutations)("facturas", ["SET_FORM_NUMERO_INTERNO", "SET_FORM_NUMERO_FACTURA_1", "SET_FORM_NUMERO_FACTURA_2"])), {}, {
     siguienteTab: function siguienteTab() {
       this.$refs.formWizard.nextTab();
     },
@@ -16526,6 +16528,12 @@ var mutations = {
   },
   SET_FORM_NUMERO_INTERNO: function SET_FORM_NUMERO_INTERNO(state, numero_interno) {
     state.form.numero_interno = numero_interno;
+  },
+  SET_FORM_NUMERO_FACTURA_1: function SET_FORM_NUMERO_FACTURA_1(state, numero_factura_1) {
+    state.form.numero_factura_1 = numero_factura_1;
+  },
+  SET_FORM_NUMERO_FACTURA_2: function SET_FORM_NUMERO_FACTURA_2(state, numero_factura_2) {
+    state.form.numero_factura_2 = numero_factura_2;
   },
   SET_CLIENTE: function SET_CLIENTE(state, cliente) {
     state.cliente = cliente;

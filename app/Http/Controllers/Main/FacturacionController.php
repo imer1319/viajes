@@ -33,6 +33,23 @@ class FacturacionController extends Controller
     public function create()
     {
         $ultimaLiquidacion = ClienteFactura::latest()->first();
+        $ultimaFactura = ClienteFactura::latest()->first();
+
+        $sugerenciaNumeroFactura1 = '0001';
+        $sugerenciaNumeroFactura2 = '00000001';
+        if ($ultimaFactura) {
+            $ultimoNumeroFactura1 = str_pad($ultimaFactura->numero_factura_1, 4, '0', STR_PAD_LEFT);
+            $ultimoNumeroFactura2 = str_pad($ultimaFactura->numero_factura_2, 8, '0', STR_PAD_LEFT);
+            $numero1 = (int) $ultimoNumeroFactura1;
+            $numero2 = (int) $ultimoNumeroFactura2;
+            $numero2++;
+            if ($numero2 > 99999999) {
+                $numero2 = 1;
+                $numero1++;
+            }
+            $sugerenciaNumeroFactura1 = str_pad($numero1, 4, '0', STR_PAD_LEFT);
+            $sugerenciaNumeroFactura2 = str_pad($numero2, 8, '0', STR_PAD_LEFT);
+        }
 
         return view('admin.facturas.create', [
             'numero_interno' => $ultimaLiquidacion ? $ultimaLiquidacion->id + 1 : 1,
@@ -43,6 +60,8 @@ class FacturacionController extends Controller
             'retencionGanancias' => RetencionGanancia::all(),
             'retencionIngresosBruto' => RetencionIngresosBruto::all(),
             'tipoDocumentos' => TipoDocumento::all(),
+            'sugerenciaNumeroFactura1' => $sugerenciaNumeroFactura1,
+            'sugerenciaNumeroFactura2' => $sugerenciaNumeroFactura2,
         ]);
     }
 
