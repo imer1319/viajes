@@ -47,7 +47,7 @@ class UpdateRequest extends FormRequest
                 Rule::unique('chofers')->ignore($this->chofere->id)
             ],
             'telefono' => 'required|string|max:20',
-            'saldo' => 'required|numeric|min:0'
+            'saldo' => 'required|numeric'
         ];
     }
 
@@ -66,7 +66,6 @@ class UpdateRequest extends FormRequest
             'telefono.required' => 'El teléfono es obligatorio.',
             'saldo.required' => 'El saldo es obligatorio.',
             'saldo.numeric' => 'El saldo debe ser un número.',
-            'saldo.min' => 'El saldo debe ser al menos 0.'
         ];
     }
 }

@@ -27,7 +27,8 @@
                     :condiciones_iva_data="{{ $condicionesIva }}" :provincias_data="{{ $provincias }}"
                     :retencion_ganancias_data="{{ $retencionGanancias }}"
                     :retencion_ingresos_bruto_data="{{ $retencionIngresosBruto }}"
-                    :tipo_documentos_data="{{ $tipoDocumentos }}" />
+                    :tipo_documentos_data="{{ $tipoDocumentos }}" :forma_pagos="{{ $formaPagos }}"
+                    :bancos="{{ $bancos }}" />
             </div>
         </div>
 

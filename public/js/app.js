@@ -5320,7 +5320,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["numero_interno", "clientes_data", "condiciones_iva_data", "provincias_data", "retencion_ganancias_data", "retencion_ingresos_bruto_data", "tipo_documentos_data"],
+  props: ["numero_interno", "clientes_data", "condiciones_iva_data", "provincias_data", "retencion_ganancias_data", "retencion_ingresos_bruto_data", "tipo_documentos_data", "forma_pagos", "bancos"],
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
@@ -5455,7 +5455,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     siguiente: function siguiente() {
       var _this = this;
-      this.$store.dispatch("recibos/validarFacturas", this.form.facturas).then(function () {
+      this.form.total_pagado = this.totalPago;
+      this.form.total_factura = this.totalSaldoTotal;
+      this.$store.dispatch("recibos/validarFacturas", this.form).then(function () {
         _this.$emit("siguiente");
         _this.$toast.open({
           message: "Datos validados exitosamente!",
@@ -5470,6 +5472,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           position: "top-right",
           duration: 2000
         });
+      });
+    },
+    actualizarTotalPago: function actualizarTotalPago() {
+      var _this2 = this;
+      this.$nextTick(function () {
+        _this2.totalPago;
       });
     },
     anterior: function anterior() {
@@ -5496,6 +5504,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       return state.removedFacturas;
     }
   })), {}, {
+    hasFacturaErrors: function hasFacturaErrors() {
+      return Object.keys(this.errors).some(function (key) {
+        return key.includes("form.facturas");
+      });
+    },
     totalImporte: function totalImporte() {
       var _this$form$facturas;
       return (_this$form$facturas = this.form.facturas) === null || _this$form$facturas === void 0 ? void 0 : _this$form$facturas.reduce(function (total, factura) {
@@ -5506,6 +5519,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this$form$facturas2;
       return (_this$form$facturas2 = this.form.facturas) === null || _this$form$facturas2 === void 0 ? void 0 : _this$form$facturas2.reduce(function (total, factura) {
         return total + parseFloat(factura.saldo_total);
+      }, 0);
+    },
+    totalPago: function totalPago() {
+      return this.form.facturas.reduce(function (total, factura) {
+        return total + parseFloat(factura.pago || 0);
       }, 0);
     }
   })
@@ -5536,16 +5554,20 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["bancos", "forma_pagos"],
   components: {
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("facturas", ["REMOVE_MOVIMIENTO", "AGREGAR_MOVIMIENTO"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("recibos", ["REMOVE_PAGO", "AGREGAR_PAGO", "SET_PAGO_FORMA_PAGO_ID"])), {}, {
+    updateFormaPagoId: function updateFormaPagoId(event) {
+      this.SET_PAGO_FORMA_PAGO_ID(event.target.value);
+    },
     getErrorMessage: function getErrorMessage(error) {
       return Array.isArray(error) ? error[0] : error;
     },
     siguiente: function siguiente() {
       var _this = this;
-      this.$store.dispatch("facturas/validarMovimientos", this.form.movimientos).then(function () {
+      this.$store.dispatch("recibos/validarPagos", this.form.formaPagos).then(function () {
         _this.$emit("siguiente");
         _this.$toast.open({
           message: "Datos validados exitosamente!",
@@ -5565,14 +5587,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     anterior: function anterior() {
       this.$emit("anterior");
     },
-    quitarMovimiento: function quitarMovimiento(index) {
-      this.REMOVE_MOVIMIENTO(index);
+    quitarPago: function quitarPago(index) {
+      this.REMOVE_PAGO(index);
     },
-    agregarMovimiento: function agregarMovimiento(index) {
-      this.AGREGAR_MOVIMIENTO(index);
+    agregarPago: function agregarPago(index) {
+      this.AGREGAR_PAGO(index);
     }
   }),
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("facturas", {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("recibos", {
     form: function form(state) {
       return state.form;
     },
@@ -5582,26 +5604,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     errors: function errors(state) {
       return state.errors;
     },
-    removedMovimientos: function removedMovimientos(state) {
-      return state.removedMovimientos;
+    form_pago: function form_pago(state) {
+      return state.form_pago;
     }
   })), {}, {
-    totalPrecioReal: function totalPrecioReal() {
-      var _this$form$movimiento;
-      return (_this$form$movimiento = this.form.movimientos) === null || _this$form$movimiento === void 0 ? void 0 : _this$form$movimiento.reduce(function (total, movimiento) {
-        return total + parseFloat(movimiento.precio_real);
-      }, 0);
-    },
-    totalIva: function totalIva() {
-      var _this$form$movimiento2;
-      return (_this$form$movimiento2 = this.form.movimientos) === null || _this$form$movimiento2 === void 0 ? void 0 : _this$form$movimiento2.reduce(function (total, movimiento) {
-        return total + parseFloat(movimiento.iva);
-      }, 0);
-    },
-    totalSaldo: function totalSaldo() {
-      var _this$form$movimiento3;
-      return (_this$form$movimiento3 = this.form.movimientos) === null || _this$form$movimiento3 === void 0 ? void 0 : _this$form$movimiento3.reduce(function (total, movimiento) {
-        return total + parseFloat(movimiento.total);
+    totalImportePagos: function totalImportePagos() {
+      var _this$form$formaPagos;
+      return (_this$form$formaPagos = this.form.formaPagos) === null || _this$form$formaPagos === void 0 ? void 0 : _this$form$formaPagos.reduce(function (total, forma) {
+        return total + parseFloat(forma.importe);
       }, 0);
     }
   })
@@ -14064,6 +14074,10 @@ var render = function render() {
       icon: "fa fa-money-check"
     }
   }, [_c("FormaPago", {
+    attrs: {
+      forma_pagos: _vm.forma_pagos,
+      bancos: _vm.bancos
+    },
     on: {
       siguiente: function siguiente($event) {
         return _vm.siguienteTab();
@@ -14190,8 +14204,20 @@ var render = function render() {
   }, [_c("div", [_vm._m(0), _vm._v("\n            " + _vm._s(_vm.cliente.razon_social) + "\n            "), _c("p", {
     staticClass: "text-muted"
   }, [_vm._v("CUIT: " + _vm._s(_vm.cliente.cuit))])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm.errors.facturas ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.facturas)))]) : _vm._e(), _vm._v(" "), _c("table", {
+    staticClass: "text-danger d-block"
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.facturas)))]) : _vm._e(), _vm._v(" "), _vm._l(_vm.errors, function (facturaErrors, facturaIndex) {
+    return _c("div", {
+      key: facturaIndex,
+      staticClass: "w-100"
+    }, _vm._l(facturaErrors, function (errors, field) {
+      return _c("div", {
+        key: field,
+        staticClass: "w-100 d-block"
+      }, [_c("div", {
+        staticClass: "text-danger"
+      }, [_vm._v("\n                " + _vm._s(errors) + "\n            ")])]);
+    }), 0);
+  }), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
   }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.form.facturas, function (factura, index) {
     return _c("tr", {
@@ -14206,8 +14232,32 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fa fa-trash"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.total))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(factura.saldo_total)))]), _vm._v(" "), _vm._m(3, true)]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(4), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldoTotal)))])])])]), _vm._v(" "), _c("div", {
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.fecha))]), _vm._v(" "), _c("td", [_vm._v("\n                    " + _vm._s(factura.numero_factura_1) + "-" + _vm._s(factura.numero_factura_2) + "\n                ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.total))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(factura.saldo_total)))]), _vm._v(" "), _c("td", {
+      attrs: {
+        width: "150"
+      }
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: factura.pago,
+        expression: "factura.pago"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text"
+      },
+      domProps: {
+        value: factura.pago
+      },
+      on: {
+        input: [function ($event) {
+          if ($event.target.composing) return;
+          _vm.$set(factura, "pago", $event.target.value);
+        }, _vm.actualizarTotalPago]
+      }
+    })])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldoTotal)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPago)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -14232,7 +14282,7 @@ var render = function render() {
     }
   }, [_c("div", [_c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Importe")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.removedFacturas, function (factura, index) {
+  }, [_c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("# Factura")]), _vm._v(" "), _c("th", [_vm._v("Importe")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.removedFacturas, function (factura, index) {
     return _c("tr", {
       key: factura.id
     }, [_c("td", [_c("a", {
@@ -14245,8 +14295,8 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fa fa-plus"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.total))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(factura.saldo_total)))])]);
-  }), 0)])])])], 1);
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.fecha))]), _vm._v(" "), _c("td", [_vm._v("\n                            " + _vm._s(factura.numero_factura_1) + "-" + _vm._s(factura.numero_factura_2) + "\n                        ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.total))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(factura.saldo_total)))])]);
+  }), 0)])])])], 2);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -14273,26 +14323,13 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Importe")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")]), _vm._v(" "), _c("th", [_vm._v("Pago")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("# Factura")]), _vm._v(" "), _c("th", [_vm._v("Importe")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")]), _vm._v(" "), _c("th", [_vm._v("Pago")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("td", {
     attrs: {
-      width: "150"
-    }
-  }, [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("td", {
-    attrs: {
-      colspan: "3"
+      colspan: "4"
     }
   }, [_c("b", [_vm._v("Totales")])]);
 }];
@@ -14322,11 +14359,13 @@ var render = function render() {
     staticClass: "col-md-12 d-flex justify-content-between align-items-center mb-2"
   }, [_c("div", [_vm._m(0), _vm._v("\n            " + _vm._s(_vm.cliente.razon_social) + "\n            "), _c("p", {
     staticClass: "text-muted"
-  }, [_vm._v("CUIT: " + _vm._s(_vm.cliente.cuit))])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm.errors.movimientos ? _c("span", {
+  }, [_c("b", [_vm._v("CUIT:")]), _vm._v(" " + _vm._s(_vm.cliente.cuit))]), _vm._v(" "), _c("p", {
+    staticClass: "text-muted"
+  }, [_c("b", [_vm._v("Total a pagar:")]), _vm._v(" " + _vm._s(_vm.form.total_pagado) + "\n            ")])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm.errors.formaPagos ? _c("span", {
     staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.movimientos)))]) : _vm._e(), _vm._v(" "), _c("table", {
+  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.formaPagos)))]) : _vm._e(), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.form.movimientos, function (movimiento, index) {
+  }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.form.formaPagos, function (movimiento, index) {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_c("a", {
@@ -14334,13 +14373,13 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.preventDefault();
-          return _vm.quitarMovimiento(index);
+          return _vm.quitarPago(index);
         }
       }
     }, [_c("i", {
       staticClass: "fa fa-trash"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_real)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.iva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.total)))])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPrecioReal)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalIva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldo)))])])])]), _vm._v(" "), _c("div", {
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.iva))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.total))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.precio_real))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImportePagos)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -14360,26 +14399,124 @@ var render = function render() {
     }
   }, [_vm._v("\n            Siguiente\n        ")])]), _vm._v(" "), _c("modal-component", {
     attrs: {
-      modal_id: "modal_movimientos",
-      titulo: "Movimientos"
+      modal_id: "modal_formaPagos",
+      titulo: "Formas de pago"
     }
-  }, [_c("div", [_c("table", {
-    staticClass: "table table-bordered col-md-12"
-  }, [_c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio real")]), _vm._v(" "), _c("th", [_vm._v("IVA")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.removedMovimientos, function (movimiento, index) {
-    return _c("tr", {
-      key: movimiento.id
-    }, [_c("td", [_c("a", {
-      staticClass: "btn btn-sm btn-primary",
-      on: {
-        click: function click($event) {
-          $event.preventDefault();
-          return _vm.agregarMovimiento(index);
-        }
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-12"
+  }, [_c("label", {
+    attrs: {
+      "for": "forma_pago_id"
+    }
+  }, [_vm._v("Forma de pago")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.forma_pago_id,
+      expression: "form_pago.forma_pago_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "forma_pago_id"
+    },
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_pago, "forma_pago_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }, _vm.updateFormaPagoId]
+    }
+  }, _vm._l(_vm.forma_pagos, function (forma) {
+    return _c("option", {
+      domProps: {
+        value: forma.id
       }
-    }, [_c("i", {
-      staticClass: "fa fa-plus"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_real)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.iva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.total)))])]);
-  }), 0)])])])], 1);
+    }, [_vm._v("\n                        " + _vm._s(forma.descripcion) + "\n                    ")]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "banco_id"
+    }
+  }, [_vm._v("Bancos")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.banco_id,
+      expression: "form_pago.banco_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "banco_id"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_pago, "banco_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(_vm.bancos, function (banco) {
+    return _c("option", {
+      domProps: {
+        value: banco.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(banco.descripcion) + "\n                    ")]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "importe"
+    }
+  }, [_vm._v("Importe")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "numero"
+    }
+  }, [_vm._v("Numero")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "f_emision"
+    }
+  }, [_vm._v("Fecha emision")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "f_vencimiento"
+    }
+  }, [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    }
+  })])])])], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -14398,7 +14535,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "button",
       "data-toggle": "modal",
-      "data-target": "#modal_movimientos"
+      "data-target": "#modal_formaPagos"
     }
   }, [_c("i", {
     staticClass: "fa fa-plus"
@@ -14406,13 +14543,13 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio real")]), _vm._v(" "), _c("th", [_vm._v("IVA")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Forma")]), _vm._v(" "), _c("th", [_vm._v("Descripcion")]), _vm._v(" "), _c("th", [_vm._v("Fecha emision")]), _vm._v(" "), _c("th", [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("td", {
     attrs: {
-      colspan: "3"
+      colspan: "6"
     }
   }, [_c("b", [_vm._v("Totales")])]);
 }];
@@ -17034,10 +17171,21 @@ var state = {
     numero_interno: "",
     observaciones: "",
     total: "",
-    total_recibo: "",
-    total_pago: "",
-    facturas: []
+    total_factura: "",
+    total_pagado: "",
+    total_forma: "",
+    facturas: [],
+    formaPagos: []
   },
+  form_pago: {
+    id: '',
+    forma_pago_id: '',
+    banco_id: '',
+    importe: '',
+    f_emision: '',
+    f_vencimiento: ''
+  },
+  forma_pago_selected: '',
   removedFacturas: [],
   clientes: [],
   errors: {}
@@ -17106,7 +17254,7 @@ var actions = {
       }, _callee2, null, [[1, 7]]);
     }))();
   },
-  validarFacturas: function validarFacturas(_ref3, facturas) {
+  validarFacturas: function validarFacturas(_ref3, form) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
       var commit, dispatch;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -17116,7 +17264,7 @@ var actions = {
             _context3.prev = 1;
             _context3.next = 4;
             return axios.post('/api/recibos/facturas', {
-              facturas: facturas
+              form: form
             });
           case 4:
             dispatch('clearErrors');
@@ -17210,6 +17358,9 @@ var actions = {
   }
 };
 var mutations = {
+  SET_PAGO_FORMA_PAGO_ID: function SET_PAGO_FORMA_PAGO_ID(state, forma_pago_id) {
+    state.form_pago.forma_pago_id = forma_pago_id;
+  },
   SET_CLIENTES: function SET_CLIENTES(state, clientes) {
     state.clientes = clientes;
   },
@@ -17233,6 +17384,12 @@ var mutations = {
   },
   SET_FORM_OBSERVACIONES: function SET_FORM_OBSERVACIONES(state, observaciones) {
     state.form.observaciones = observaciones;
+  },
+  SET_FORM_TOTAL_FACTURA: function SET_FORM_TOTAL_FACTURA(state, totalFactura) {
+    state.form.total_factura = totalFactura;
+  },
+  SET_FORM_TOTAL_PAGODO: function SET_FORM_TOTAL_PAGODO(state, total_pagado) {
+    state.form.total_pagado = total_pagado;
   },
   SET_FORM_NUMERO_INTERNO: function SET_FORM_NUMERO_INTERNO(state, numero_interno) {
     state.form.numero_interno = numero_interno;

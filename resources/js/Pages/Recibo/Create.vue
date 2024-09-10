@@ -22,7 +22,10 @@
                     :tipo_documentos_data="tipo_documentos_data"
                 />
             </tab-content>
-            <tab-content title="Facturas del cliente" icon="fas fa-file-invoice">
+            <tab-content
+                title="Facturas del cliente"
+                icon="fas fa-file-invoice"
+            >
                 <Factura
                     @siguiente="siguienteTab()"
                     @anterior="anteriorTab()"
@@ -30,6 +33,8 @@
             </tab-content>
             <tab-content title="Forma de pago" icon="fa fa-money-check">
                 <FormaPago
+                    :forma_pagos="forma_pagos"
+                    :bancos="bancos"
                     @siguiente="siguienteTab()"
                     @anterior="anteriorTab()"
                 />
@@ -57,6 +62,8 @@ export default {
         "retencion_ganancias_data",
         "retencion_ingresos_bruto_data",
         "tipo_documentos_data",
+        "forma_pagos",
+        "bancos",
     ],
     components: {
         FormWizard,

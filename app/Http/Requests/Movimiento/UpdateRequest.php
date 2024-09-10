@@ -36,23 +36,20 @@ class UpdateRequest extends FormRequest
                 'required',
                 'string',
                 'size:4',
-                Rule::unique('movimientos')
-                    ->where(function ($query) {
-                        return $query->where('cliente_id', $this->cliente_id);
-                    })
-                    ->ignore($movimientoId),
+                Rule::unique('movimientos')->where(function ($query) {
+                    return $query->where('cliente_id', $this->cliente_id);
+                })->ignore($this->id),
             ],
+
             'numero_factura_2' => [
                 'required',
                 'string',
                 'size:8',
-                Rule::unique('movimientos')
-                    ->where(function ($query) {
-                        return $query
-                            ->where('numero_factura_1', $this->numero_factura_1)
-                            ->where('cliente_id', $this->cliente_id);
-                    })
-                    ->ignore($movimientoId),
+                Rule::unique('movimientos')->where(function ($query) {
+                    return $query
+                        ->where('numero_factura_1', $this->numero_factura_1)
+                        ->where('cliente_id', $this->cliente_id);
+                })->ignore($this->id),
             ],
             'precio_real' => 'required|numeric|min:0',
             'iva' => 'required|numeric|min:0',

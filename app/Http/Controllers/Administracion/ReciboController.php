@@ -7,9 +7,11 @@ use App\Models\Recibo;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Banco;
 use App\Models\Cliente;
 use App\Models\CondicionesPago;
 use App\Models\CondicionIva;
+use App\Models\FormasPagos;
 use App\Models\Provincia;
 use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
@@ -38,6 +40,8 @@ class ReciboController extends Controller
             'retencionGanancias' => RetencionGanancia::all(),
             'retencionIngresosBruto' => RetencionIngresosBruto::all(),
             'tipoDocumentos' => TipoDocumento::all(),
+            'formaPagos' => FormasPagos::all(),
+            'bancos' => Banco::all(),
         ]);
     }
 

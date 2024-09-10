@@ -6,43 +6,46 @@
             <div>
                 <strong><i class="fa fa-user mr-2"></i>Cliente:</strong>
                 {{ cliente.razon_social }}
-                <p class="text-muted">CUIT: {{ cliente.cuit }}</p>
+                <p class="text-muted"><b>CUIT:</b> {{ cliente.cuit }}</p>
+                <p class="text-muted">
+                    <b>Total a pagar:</b> {{ form.total_pagado }}
+                </p>
             </div>
             <div>
                 <button
                     class="btn btn-primary"
                     type="button"
                     data-toggle="modal"
-                    data-target="#modal_movimientos"
+                    data-target="#modal_formaPagos"
                     style="flex-shrink: 0"
                 >
                     <i class="fa fa-plus"></i>
                 </button>
             </div>
         </div>
-        <span v-if="errors.movimientos" class="text-danger">{{
-            getErrorMessage(errors.movimientos)
+        <span v-if="errors.formaPagos" class="text-danger">{{
+            getErrorMessage(errors.formaPagos)
         }}</span>
         <table class="table table-bordered col-md-12">
             <thead>
                 <tr>
                     <th></th>
                     <th>#</th>
-                    <th>Fecha</th>
-                    <th>Tipo de viaje</th>
-                    <th>Precio real</th>
-                    <th>IVA</th>
-                    <th>Saldo total</th>
+                    <th>Forma</th>
+                    <th>Descripcion</th>
+                    <th>Fecha emision</th>
+                    <th>Fecha vencimiento</th>
+                    <th>Importe</th>
                 </tr>
             </thead>
             <tbody>
                 <tr
-                    v-for="(movimiento, index) in form.movimientos"
+                    v-for="(movimiento, index) in form.formaPagos"
                     :key="movimiento.id"
                 >
                     <td>
                         <a
-                            @click.prevent="quitarMovimiento(index)"
+                            @click.prevent="quitarPago(index)"
                             class="btn btn-sm btn-danger"
                             ><i class="fa fa-trash"></i
                         ></a>
@@ -50,18 +53,15 @@
                     <td>{{ index + 1 }}</td>
                     <td>{{ movimiento.fecha }}</td>
                     <td>{{ movimiento.tipo_viaje.descripcion }}</td>
-                    <td>{{ movimiento.precio_real | formatNumber }}</td>
-                    <td>{{ movimiento.iva | formatNumber }}</td>
-                    <td>{{ movimiento.total | formatNumber }}</td>
+                    <td>{{ movimiento.iva }}</td>
+                    <td>{{ movimiento.total }}</td>
+                    <td>{{ movimiento.precio_real }}</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3"><b>Totales</b></td>
-                    <td></td>
-                    <td>{{ totalPrecioReal | formatNumber }}</td>
-                    <td>{{ totalIva | formatNumber }}</td>
-                    <td>{{ totalSaldo | formatNumber }}</td>
+                    <td colspan="6"><b>Totales</b></td>
+                    <td>{{ totalImportePagos | formatNumber }}</td>
                 </tr>
             </tfoot>
         </table>
@@ -73,41 +73,49 @@
                 Siguiente
             </button>
         </div>
-        <modal-component modal_id="modal_movimientos" titulo="Movimientos">
-            <div>
-                <table class="table table-bordered col-md-12">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>#</th>
-                            <th>Fecha</th>
-                            <th>Tipo de viaje</th>
-                            <th>Precio real</th>
-                            <th>IVA</th>
-                            <th>Saldo total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr
-                            v-for="(movimiento, index) in removedMovimientos"
-                            :key="movimiento.id"
-                        >
-                            <td>
-                                <a
-                                    @click.prevent="agregarMovimiento(index)"
-                                    class="btn btn-sm btn-primary"
-                                    ><i class="fa fa-plus"></i
-                                ></a>
-                            </td>
-                            <td>{{ index + 1 }}</td>
-                            <td>{{ movimiento.fecha }}</td>
-                            <td>{{ movimiento.tipo_viaje.descripcion }}</td>
-                            <td>{{ movimiento.precio_real | formatNumber }}</td>
-                            <td>{{ movimiento.iva | formatNumber }}</td>
-                            <td>{{ movimiento.total | formatNumber }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <modal-component modal_id="modal_formaPagos" titulo="Formas de pago">
+            <div class="row">
+                <div class="col-12">
+                    <label for="forma_pago_id">Forma de pago</label>
+                    <select
+                        id="forma_pago_id"
+                        class="form-control"
+                        v-model="form_pago.forma_pago_id"
+                        @change="updateFormaPagoId"
+                    >
+                        <option :value="forma.id" v-for="forma in forma_pagos">
+                            {{ forma.descripcion }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="banco_id">Bancos</label>
+                    <select
+                        id="banco_id"
+                        class="form-control"
+                        v-model="form_pago.banco_id"
+                    >
+                        <option :value="banco.id" v-for="banco in bancos">
+                            {{ banco.descripcion }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="importe">Importe</label>
+                    <input type="text" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label for="numero">Numero</label>
+                    <input type="text" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label for="f_emision">Fecha emision</label>
+                    <input type="date" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                    <label for="f_vencimiento">Fecha vencimiento</label>
+                    <input type="date" class="form-control" />
+                </div>
             </div>
         </modal-component>
     </div>
@@ -117,20 +125,25 @@ import { mapState } from "vuex";
 import ModalComponent from "../../components/Modal.vue";
 import { mapMutations } from "vuex";
 export default {
+    props: ["bancos", "forma_pagos"],
     components: {
         ModalComponent,
     },
     methods: {
-        ...mapMutations("facturas", [
-            "REMOVE_MOVIMIENTO",
-            "AGREGAR_MOVIMIENTO",
+        ...mapMutations("recibos", [
+            "REMOVE_PAGO",
+            "AGREGAR_PAGO",
+            "SET_PAGO_FORMA_PAGO_ID",
         ]),
+        updateFormaPagoId(event) {
+            this.SET_PAGO_FORMA_PAGO_ID(event.target.value);
+        },
         getErrorMessage(error) {
             return Array.isArray(error) ? error[0] : error;
         },
         siguiente() {
             this.$store
-                .dispatch("facturas/validarMovimientos", this.form.movimientos)
+                .dispatch("recibos/validarPagos", this.form.formaPagos)
                 .then(() => {
                     this.$emit("siguiente");
                     this.$toast.open({
@@ -152,36 +165,23 @@ export default {
         anterior() {
             this.$emit("anterior");
         },
-        quitarMovimiento(index) {
-            this.REMOVE_MOVIMIENTO(index);
+        quitarPago(index) {
+            this.REMOVE_PAGO(index);
         },
-        agregarMovimiento(index) {
-            this.AGREGAR_MOVIMIENTO(index);
+        agregarPago(index) {
+            this.AGREGAR_PAGO(index);
         },
     },
     computed: {
-        ...mapState("facturas", {
+        ...mapState("recibos", {
             form: (state) => state.form,
             cliente: (state) => state.cliente,
             errors: (state) => state.errors,
-            removedMovimientos: (state) => state.removedMovimientos,
+            form_pago: (state) => state.form_pago,
         }),
-        totalPrecioReal() {
-            return this.form.movimientos?.reduce(
-                (total, movimiento) =>
-                    total + parseFloat(movimiento.precio_real),
-                0
-            );
-        },
-        totalIva() {
-            return this.form.movimientos?.reduce(
-                (total, movimiento) => total + parseFloat(movimiento.iva),
-                0
-            );
-        },
-        totalSaldo() {
-            return this.form.movimientos?.reduce(
-                (total, movimiento) => total + parseFloat(movimiento.total),
+        totalImportePagos() {
+            return this.form.formaPagos?.reduce(
+                (total, forma) => total + parseFloat(forma.importe),
                 0
             );
         },

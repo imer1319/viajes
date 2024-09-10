@@ -2,6 +2,7 @@ const state = {
     cliente: {},
     isEditing: false,
     cliente_id_anterior: null,
+
     form: {
         id: "",
         fecha: "",
@@ -9,10 +10,21 @@ const state = {
         numero_interno: "",
         observaciones: "",
         total: "",
-        total_recibo: "",
-        total_pago: "",
+        total_factura: "",
+        total_pagado: "",
+        total_forma: "",
         facturas: [],
+        formaPagos: []
     },
+    form_pago: {
+        id: '',
+        forma_pago_id: '',
+        banco_id: '',
+        importe: '',
+        f_emision: '',
+        f_vencimiento: '',
+    },
+    forma_pago_selected: '',
     removedFacturas: [],
     clientes: [],
     errors: {},
@@ -50,9 +62,9 @@ const actions = {
             throw error;
         }
     },
-    async validarFacturas({ commit, dispatch }, facturas) {
+    async validarFacturas({ commit, dispatch }, form) {
         try {
-            await axios.post('/api/recibos/facturas', { facturas });
+            await axios.post('/api/recibos/facturas', { form });
             dispatch('clearErrors');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.errors) {
@@ -98,6 +110,9 @@ const actions = {
 };
 
 const mutations = {
+    SET_PAGO_FORMA_PAGO_ID(state, forma_pago_id) {
+        state.form_pago.forma_pago_id = forma_pago_id;
+    },
     SET_CLIENTES(state, clientes) {
         state.clientes = clientes;
     },
@@ -121,6 +136,12 @@ const mutations = {
     },
     SET_FORM_OBSERVACIONES(state, observaciones) {
         state.form.observaciones = observaciones
+    },
+    SET_FORM_TOTAL_FACTURA(state, totalFactura) {
+        state.form.total_factura = totalFactura;
+    },
+    SET_FORM_TOTAL_PAGODO(state, total_pagado) {
+        state.form.total_pagado = total_pagado;
     },
     SET_FORM_NUMERO_INTERNO(state, numero_interno) {
         state.form.numero_interno = numero_interno

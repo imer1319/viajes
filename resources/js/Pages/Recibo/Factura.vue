@@ -20,15 +20,31 @@
                 </button>
             </div>
         </div>
-        <span v-if="errors.facturas" class="text-danger">{{
+        <span v-if="errors.facturas" class="text-danger d-block">{{
             getErrorMessage(errors.facturas)
         }}</span>
+        <div
+            v-for="(facturaErrors, facturaIndex) in errors"
+            :key="facturaIndex"
+            class="w-100"
+        >
+            <div
+                v-for="(errors, field) in facturaErrors"
+                :key="field"
+                class="w-100 d-block"
+            >
+                <div class="text-danger">
+                    {{ errors }}
+                </div>
+            </div>
+        </div>
         <table class="table table-bordered col-md-12">
             <thead>
                 <tr>
                     <th></th>
                     <th>#</th>
                     <th>Fecha</th>
+                    <th># Factura</th>
                     <th>Importe</th>
                     <th>Saldo total</th>
                     <th>Pago</th>
@@ -40,23 +56,35 @@
                         <a
                             @click.prevent="quitarMovimiento(index)"
                             class="btn btn-sm btn-primary"
-                            ><i class="fa fa-trash"></i
-                        ></a>
+                        >
+                            <i class="fa fa-trash"></i>
+                        </a>
                     </td>
                     <td>{{ index + 1 }}</td>
                     <td>{{ factura.fecha }}</td>
+                    <td>
+                        {{ factura.numero_factura_1 }}-{{
+                            factura.numero_factura_2
+                        }}
+                    </td>
                     <td>{{ factura.total }}</td>
                     <td>{{ factura.saldo_total | formatNumber }}</td>
                     <td width="150">
-                        <input type="text" class="form-control" />
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="factura.pago"
+                            @input="actualizarTotalPago"
+                        />
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3"><b>Totales</b></td>
+                    <td colspan="4"><b>Totales</b></td>
                     <td>{{ totalImporte | formatNumber }}</td>
                     <td>{{ totalSaldoTotal | formatNumber }}</td>
+                    <td>{{ totalPago | formatNumber }}</td>
                 </tr>
             </tfoot>
         </table>
@@ -76,6 +104,7 @@
                             <th></th>
                             <th>#</th>
                             <th>Fecha</th>
+                            <th># Factura</th>
                             <th>Importe</th>
                             <th>Saldo total</th>
                         </tr>
@@ -94,6 +123,11 @@
                             </td>
                             <td>{{ index + 1 }}</td>
                             <td>{{ factura.fecha }}</td>
+                            <td>
+                                {{ factura.numero_factura_1 }}-{{
+                                    factura.numero_factura_2
+                                }}
+                            </td>
                             <td>{{ factura.total }}</td>
                             <td>{{ factura.saldo_total | formatNumber }}</td>
                         </tr>
@@ -117,8 +151,10 @@ export default {
             return Array.isArray(error) ? error[0] : error;
         },
         siguiente() {
+            this.form.total_pagado = this.totalPago;
+            this.form.total_factura = this.totalSaldoTotal;
             this.$store
-                .dispatch("recibos/validarFacturas", this.form.facturas)
+                .dispatch("recibos/validarFacturas", this.form)
                 .then(() => {
                     this.$emit("siguiente");
                     this.$toast.open({
@@ -137,6 +173,11 @@ export default {
                     });
                 });
         },
+        actualizarTotalPago() {
+            this.$nextTick(() => {
+                this.totalPago;
+            });
+        },
         anterior() {
             this.$emit("anterior");
         },
@@ -154,6 +195,11 @@ export default {
             errors: (state) => state.errors,
             removedFacturas: (state) => state.removedFacturas,
         }),
+        hasFacturaErrors() {
+            return Object.keys(this.errors).some((key) =>
+                key.includes("form.facturas")
+            );
+        },
         totalImporte() {
             return this.form.facturas?.reduce(
                 (total, factura) => total + parseFloat(factura.total),
@@ -163,6 +209,12 @@ export default {
         totalSaldoTotal() {
             return this.form.facturas?.reduce(
                 (total, factura) => total + parseFloat(factura.saldo_total),
+                0
+            );
+        },
+        totalPago() {
+            return this.form.facturas.reduce(
+                (total, factura) => total + parseFloat(factura.pago || 0),
                 0
             );
         },

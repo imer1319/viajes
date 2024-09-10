@@ -24,6 +24,7 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('movimiento');
         return [
             'numero_interno' => 'required|integer',
             'fecha' => 'required|date',
@@ -34,19 +35,25 @@ class StoreRequest extends FormRequest
                 'required',
                 'string',
                 'size:4',
-                Rule::unique('movimientos')->where(function ($query) {
-                    return $query->where('cliente_id', $this->cliente_id);
-                }),
+                Rule::unique('movimientos')
+                    ->where(function ($query) {
+                        return $query
+                            ->where('cliente_id', $this->cliente_id)
+                            ->where('numero_factura_2', $this->numero_factura_2);
+                    })
+                    ->ignore($id),
             ],
             'numero_factura_2' => [
                 'required',
                 'string',
                 'size:8',
-                Rule::unique('movimientos')->where(function ($query) {
-                    return $query
-                        ->where('numero_factura_1', $this->numero_factura_1)
-                        ->where('cliente_id', $this->cliente_id);
-                }),
+                Rule::unique('movimientos')
+                    ->where(function ($query) {
+                        return $query
+                            ->where('cliente_id', $this->cliente_id)
+                            ->where('numero_factura_1', $this->numero_factura_1);
+                    })
+                    ->ignore($id),
             ],
             'precio_real' => 'required|numeric|min:0',
             'iva' => 'required|numeric|min:0',

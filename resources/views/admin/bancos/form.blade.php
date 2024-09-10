@@ -31,8 +31,8 @@
     </div>
     <div class="col-md-6">
         <label for="cbu">CBU</label>
-        <input type="text" class="form-control  @error('cbu') is-invalid @enderror" name="cbu"
-            id="cbu" value="{{ old('cbu', $banco->cbu) }}">
+        <input type="text" class="form-control  @error('cbu') is-invalid @enderror" name="cbu" id="cbu"
+            value="{{ old('cbu', $banco->cbu) }}">
         @error('cbu')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -41,9 +41,19 @@
     </div>
     <div class="col-md-6">
         <label for="alias">Alias</label>
-        <input type="text" class="form-control  @error('alias') is-invalid @enderror" name="alias"
-            id="alias" value="{{ old('alias', $banco->alias) }}">
+        <input type="text" class="form-control  @error('alias') is-invalid @enderror" name="alias" id="alias"
+            value="{{ old('alias', $banco->alias) }}">
         @error('alias')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+    <div class="col-md-6">
+        <label for="saldo">Saldo</label>
+        <input type="number" class="form-control  @error('saldo') is-invalid @enderror" name="saldo" id="saldo"
+            value="{{ old('saldo', $banco->saldo) }}">
+        @error('saldo')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

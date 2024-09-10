@@ -19,8 +19,18 @@
 
     <!-- Main content -->
     <section class="content mx-3">
-
-        <div class="card card-primary card-outline ñpt-4">
+        @if (count($errors) > 0)
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <div>{{ $error }}</div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endif
+        <div class="card card-primary card-outline">
             <div class="card-header">Crear banco</div>
 
             <div class="card-body">
