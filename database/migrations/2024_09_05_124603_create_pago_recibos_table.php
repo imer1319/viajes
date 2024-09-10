@@ -16,6 +16,7 @@ class CreatePagoRecibosTable extends Migration
         Schema::create('pago_recibos', function (Blueprint $table) {
             $table->id();
             $table->string('nro');
+            $table->foreignId('recibo_id')->constrained('recibos');
             $table->foreignId('forma_pago_id')->constrained('formas_pagos');
             $table->foreignId('banco_id')->nullable()->constrained('bancos');
             $table->decimal('importe', 15, 2);
