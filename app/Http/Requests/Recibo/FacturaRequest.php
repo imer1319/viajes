@@ -26,13 +26,13 @@ class FacturaRequest extends FormRequest
         return [
             'form.total_factura' => ['required', 'numeric', 'min:0'],
             'form.facturas' => ['required', 'array'],
-            'form.total_pagado' => [
+            'form.saldo_total' => [
                 'required',
                 'numeric',
                 'min:1',
                 function ($attribute, $value, $fail) {
-                    if ($value >= $this->input('form.total_factura')) {
-                        $fail('El total pagado debe ser menor o igual que el total del saldo de las facturas.');
+                    if ($value < $this->input('form.total_factura')) {
+                        $fail('El total de la factura debe ser menor o igual que el total del saldo de las facturas.');
                     }
                 },
             ],

@@ -48,6 +48,7 @@ Route::post('/facturacion/movimientos', [FacturacionController::class, 'movimien
 // recibos
 Route::post('/recibos/head', [ReciboController::class, 'head']);
 Route::post('/recibos/facturas', [ReciboController::class, 'facturas']);
+Route::post('/recibos/formaPago', [ReciboController::class, 'formaPago']);
 Route::post('/recibos/formaPagos', [ReciboController::class, 'formaPagos']);
 //
 Route::get('liquidacion/{chofer}', [MovimientoController::class, 'movimientosChofer']);

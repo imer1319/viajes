@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recibo\FacturaRequest;
 use App\Http\Requests\Recibo\FormaPagoRequest;
+use App\Http\Requests\Recibo\FormaPagosRequest;
 use App\Http\Requests\Recibo\HeadRequest;
 use App\Models\Cliente;
 use App\Models\ClienteFactura;
@@ -23,7 +24,13 @@ class ReciboController extends Controller
         return response($datos);
     }
 
-    public function formaPagos(FormaPagoRequest $request)
+    public function formaPago(FormaPagoRequest $request)
+    {
+        $datos = $request->validated();
+        return response($datos);
+    }
+
+    public function formaPagos(FormaPagosRequest $request)
     {
         $datos = $request->validated();
         return response($datos);

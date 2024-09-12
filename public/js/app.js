@@ -5449,14 +5449,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("recibos", ["REMOVE_FACTURA", "AGREGAR_FACTURA"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("recibos", ["REMOVE_FACTURA", "AGREGAR_FACTURA", "SET_MONTO_FALTANTE"])), {}, {
     getErrorMessage: function getErrorMessage(error) {
       return Array.isArray(error) ? error[0] : error;
     },
     siguiente: function siguiente() {
       var _this = this;
-      this.form.total_pagado = this.totalPago;
-      this.form.total_factura = this.totalSaldoTotal;
+      this.form.total_factura = this.totalPago;
+      this.form.saldo_total = this.totalSaldoTotal;
+      this.SET_MONTO_FALTANTE(this.totalPago);
       this.$store.dispatch("recibos/validarFacturas", this.form).then(function () {
         _this.$emit("siguiente");
         _this.$toast.open({
@@ -5502,6 +5503,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     removedFacturas: function removedFacturas(state) {
       return state.removedFacturas;
+    },
+    monto_faltante: function monto_faltante(state) {
+      return state.monto_faltante;
     }
   })), {}, {
     hasFacturaErrors: function hasFacturaErrors() {
@@ -5558,7 +5562,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("recibos", ["REMOVE_PAGO", "AGREGAR_PAGO", "SET_PAGO_FORMA_PAGO_ID"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("recibos", ["ELIMINAR_FORMA_PAGO", "AGREGAR_FORMA_PAGO", "SET_PAGO_FORMA_PAGO_ID"])), {}, {
     updateFormaPagoId: function updateFormaPagoId(event) {
       this.SET_PAGO_FORMA_PAGO_ID(event.target.value);
     },
@@ -5567,7 +5571,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     siguiente: function siguiente() {
       var _this = this;
-      this.$store.dispatch("recibos/validarPagos", this.form.formaPagos).then(function () {
+      this.$store.dispatch("recibos/validarFormaPagos").then(function () {
         _this.$emit("siguiente");
         _this.$toast.open({
           message: "Datos validados exitosamente!",
@@ -5588,10 +5592,40 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.$emit("anterior");
     },
     quitarPago: function quitarPago(index) {
-      this.REMOVE_PAGO(index);
+      this.ELIMINAR_FORMA_PAGO(index);
     },
-    agregarPago: function agregarPago(index) {
-      this.AGREGAR_PAGO(index);
+    agregarPago: function agregarPago() {
+      var _this2 = this;
+      var formaPagoId = this.form_pago.forma_pago_id;
+      var bancoId = this.form_pago.banco_id;
+      var forma = this.forma_pagos.find(function (forma) {
+        return forma.id == formaPagoId;
+      });
+      this.form_pago.abreviacion = forma.abreviacion;
+      if (formaPagoId == 1) {
+        var banco = this.bancos.find(function (banco) {
+          return banco.id == bancoId;
+        });
+        this.form_pago.descripcion = banco.descripcion;
+      } else {
+        this.form_pago.descripcion = forma.descripcion;
+      }
+      this.$store.dispatch("recibos/validarFormaPago", this.form_pago).then(function () {
+        $("#modal_formaPagos").modal("hide");
+        _this2.$toast.open({
+          message: "Forma de pago agregada exitosamente!",
+          type: "success",
+          position: "top-right",
+          duration: 2000
+        });
+      })["catch"](function () {
+        _this2.$toast.open({
+          message: "Error al validar la forma de pago. Corrija los errores!",
+          type: "error",
+          position: "top-right",
+          duration: 2000
+        });
+      });
     }
   }),
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("recibos", {
@@ -5606,6 +5640,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     form_pago: function form_pago(state) {
       return state.form_pago;
+    },
+    monto_faltante: function monto_faltante(state) {
+      return state.monto_faltante;
     }
   })), {}, {
     totalImportePagos: function totalImportePagos() {
@@ -14359,15 +14396,71 @@ var render = function render() {
     staticClass: "col-md-12 d-flex justify-content-between align-items-center mb-2"
   }, [_c("div", [_vm._m(0), _vm._v("\n            " + _vm._s(_vm.cliente.razon_social) + "\n            "), _c("p", {
     staticClass: "text-muted"
-  }, [_c("b", [_vm._v("CUIT:")]), _vm._v(" " + _vm._s(_vm.cliente.cuit))]), _vm._v(" "), _c("p", {
+  }, [_c("b", [_vm._v("CUIT:")]), _vm._v(" " + _vm._s(_vm.cliente.cuit))])]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex align-items-center form-group"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.forma_pago_id,
+      expression: "form_pago.forma_pago_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "forma_pago_id"
+    },
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_pago, "forma_pago_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }, _vm.updateFormaPagoId]
+    }
+  }, [_c("option", {
+    attrs: {
+      value: "",
+      disabled: "",
+      selected: ""
+    }
+  }, [_vm._v("Forma de pago")]), _vm._v(" "), _vm._l(_vm.forma_pagos, function (forma, index) {
+    return _c("option", {
+      key: index,
+      domProps: {
+        value: forma.id
+      }
+    }, [_vm._v("\n                    " + _vm._s(forma.descripcion) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_formaPagos",
+      disabled: !_vm.form_pago.forma_pago_id || _vm.monto_faltante == 0
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-plus"
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("p", {
     staticClass: "text-muted"
-  }, [_c("b", [_vm._v("Total a pagar:")]), _vm._v(" " + _vm._s(_vm.form.total_pagado) + "\n            ")])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm.errors.formaPagos ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.formaPagos)))]) : _vm._e(), _vm._v(" "), _c("table", {
+  }, [_c("b", [_vm._v("Total a pagar:")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.form.total_factura)) + "\n            "), _c("br"), _vm._v(" "), _c("b", [_vm._v("Monto faltante:")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n        ")])]), _vm._v(" "), _c("div", {
+    staticClass: "w-100"
+  }, [_vm.errors.formaPagos ? _c("span", {
+    staticClass: "text-danger w-100 d-block"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors.formaPagos)) + "\n        ")]) : _vm._e(), _vm._v(" "), _vm.errors.monto_faltante ? _c("span", {
+    staticClass: "text-danger w-100 d-block"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors.monto_faltante)) + "\n        ")]) : _vm._e()]), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(2), _vm._v(" "), _c("tbody", _vm._l(_vm.form.formaPagos, function (movimiento, index) {
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.form.formaPagos, function (forma, index) {
     return _c("tr", {
-      key: movimiento.id
+      key: index
     }, [_c("td", [_c("a", {
       staticClass: "btn btn-sm btn-danger",
       on: {
@@ -14378,8 +14471,8 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fa fa-trash"
-    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.iva))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.total))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.precio_real))])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImportePagos)))])])])]), _vm._v(" "), _c("div", {
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.numero))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.abreviacion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.fecha_emision))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.fecha_vencimiento))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(forma.importe)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImportePagos)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -14406,39 +14499,9 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-12"
-  }, [_c("label", {
-    attrs: {
-      "for": "forma_pago_id"
-    }
-  }, [_vm._v("Forma de pago")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.forma_pago_id,
-      expression: "form_pago.forma_pago_id"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "forma_pago_id"
-    },
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.form_pago, "forma_pago_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }, _vm.updateFormaPagoId]
-    }
-  }, _vm._l(_vm.forma_pagos, function (forma) {
-    return _c("option", {
-      domProps: {
-        value: forma.id
-      }
-    }, [_vm._v("\n                        " + _vm._s(forma.descripcion) + "\n                    ")]);
-  }), 0)]), _vm._v(" "), _c("div", {
+  }, [_c("h5", {
+    staticClass: "text-center"
+  }, [_vm._v("\n                    Monto faltante:" + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n                ")])]), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
@@ -14468,55 +14531,130 @@ var render = function render() {
     }
   }, _vm._l(_vm.bancos, function (banco) {
     return _c("option", {
+      key: banco.id,
       domProps: {
         value: banco.id
       }
     }, [_vm._v("\n                        " + _vm._s(banco.descripcion) + "\n                    ")]);
-  }), 0)]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _vm.errors["form_pago.banco_id"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.banco_id"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || _vm.form_pago.forma_pago_id == 2 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
       "for": "importe"
     }
   }, [_vm._v("Importe")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.importe,
+      expression: "form_pago.importe"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text"
+    },
+    domProps: {
+      value: _vm.form_pago.importe
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "importe", $event.target.value);
+      }
     }
-  })]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors["form_pago.importe"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.importe"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
       "for": "numero"
     }
   }, [_vm._v("Numero")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.numero,
+      expression: "form_pago.numero"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text"
+    },
+    domProps: {
+      value: _vm.form_pago.numero
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "numero", $event.target.value);
+      }
     }
-  })]), _vm._v(" "), _c("div", {
+  })]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
-      "for": "f_emision"
+      "for": "fecha_emision"
     }
   }, [_vm._v("Fecha emision")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.fecha_emision,
+      expression: "form_pago.fecha_emision"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "date"
+    },
+    domProps: {
+      value: _vm.form_pago.fecha_emision
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "fecha_emision", $event.target.value);
+      }
     }
-  })]), _vm._v(" "), _c("div", {
+  })]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
-      "for": "f_vencimiento"
+      "for": "fecha_vencimiento"
     }
   }, [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.fecha_vencimiento,
+      expression: "form_pago.fecha_vencimiento"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "date"
+    },
+    domProps: {
+      value: _vm.form_pago.fecha_vencimiento
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "fecha_vencimiento", $event.target.value);
+      }
     }
-  })])])])], 1);
+  })]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12 mt-3"
+  }, [_c("a", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.agregarPago();
+      }
+    }
+  }, [_vm._v("Agregar")])])])])], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -14527,23 +14665,7 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("button", {
-    staticClass: "btn btn-primary",
-    staticStyle: {
-      "flex-shrink": "0"
-    },
-    attrs: {
-      type: "button",
-      "data-toggle": "modal",
-      "data-target": "#modal_formaPagos"
-    }
-  }, [_c("i", {
-    staticClass: "fa fa-plus"
-  })])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Forma")]), _vm._v(" "), _c("th", [_vm._v("Descripcion")]), _vm._v(" "), _c("th", [_vm._v("Fecha emision")]), _vm._v(" "), _c("th", [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Numero")]), _vm._v(" "), _c("th", [_vm._v("Forma")]), _vm._v(" "), _c("th", [_vm._v("Descripcion")]), _vm._v(" "), _c("th", [_vm._v("Fecha emision")]), _vm._v(" "), _c("th", [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -17157,6 +17279,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
@@ -17170,10 +17297,8 @@ var state = {
     cliente_id: "",
     numero_interno: "",
     observaciones: "",
-    total: "",
+    saldo_total: "",
     total_factura: "",
-    total_pagado: "",
-    total_forma: "",
     facturas: [],
     formaPagos: []
   },
@@ -17182,10 +17307,12 @@ var state = {
     forma_pago_id: '',
     banco_id: '',
     importe: '',
-    f_emision: '',
-    f_vencimiento: ''
+    fecha_emision: '',
+    fecha_vencimiento: '',
+    abreviacion: '',
+    descripcion: ''
   },
-  forma_pago_selected: '',
+  monto_faltante: '',
   removedFacturas: [],
   clientes: [],
   errors: {}
@@ -17284,82 +17411,183 @@ var actions = {
       }, _callee3, null, [[1, 7]]);
     }))();
   },
-  agregarFactura: function agregarFactura(_ref4, form) {
+  validarFormaPago: function validarFormaPago(_ref4, formPago) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-      var commit, dispatch;
+      var commit, state, dispatch, data;
       return _regeneratorRuntime().wrap(function _callee4$(_context4) {
         while (1) switch (_context4.prev = _context4.next) {
           case 0:
-            commit = _ref4.commit, dispatch = _ref4.dispatch;
+            commit = _ref4.commit, state = _ref4.state, dispatch = _ref4.dispatch;
             _context4.prev = 1;
-            _context4.next = 4;
-            return axios.post('/api/facturaciones', form);
-          case 4:
+            data = {
+              form_pago: formPago,
+              monto_faltante: state.monto_faltante
+            };
+            _context4.next = 5;
+            return axios.post('/api/recibos/formaPago', data);
+          case 5:
             dispatch('clearErrors');
-            _context4.next = 11;
+            commit('AGREGAR_FORMA_PAGO');
+            _context4.next = 13;
             break;
-          case 7:
-            _context4.prev = 7;
+          case 9:
+            _context4.prev = 9;
             _context4.t0 = _context4["catch"](1);
             if (_context4.t0.response && _context4.t0.response.data && _context4.t0.response.data.errors) {
               commit('SET_ERRORS', _context4.t0.response.data.errors);
             }
             throw _context4.t0;
-          case 11:
+          case 13:
           case "end":
             return _context4.stop();
         }
-      }, _callee4, null, [[1, 7]]);
+      }, _callee4, null, [[1, 9]]);
     }))();
   },
-  actualizarFactura: function actualizarFactura(_ref5, form) {
+  validarFormaPagos: function validarFormaPagos(_ref5) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-      var commit, dispatch;
+      var commit, state, dispatch, data;
       return _regeneratorRuntime().wrap(function _callee5$(_context5) {
         while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            commit = _ref5.commit, dispatch = _ref5.dispatch;
+            commit = _ref5.commit, state = _ref5.state, dispatch = _ref5.dispatch;
             _context5.prev = 1;
-            _context5.next = 4;
-            return axios.put('/api/facturaciones/' + form.id, form);
-          case 4:
+            data = {
+              formaPagos: state.form.formaPagos,
+              monto_faltante: state.monto_faltante
+            };
+            _context5.next = 5;
+            return axios.post('/api/recibos/formaPagos', data);
+          case 5:
             dispatch('clearErrors');
-            _context5.next = 11;
+            _context5.next = 12;
             break;
-          case 7:
-            _context5.prev = 7;
+          case 8:
+            _context5.prev = 8;
             _context5.t0 = _context5["catch"](1);
             if (_context5.t0.response && _context5.t0.response.data && _context5.t0.response.data.errors) {
               commit('SET_ERRORS', _context5.t0.response.data.errors);
             }
             throw _context5.t0;
-          case 11:
+          case 12:
           case "end":
             return _context5.stop();
         }
-      }, _callee5, null, [[1, 7]]);
+      }, _callee5, null, [[1, 8]]);
     }))();
   },
-  setClientes: function setClientes(_ref6, clientes) {
-    var commit = _ref6.commit;
+  agregarFactura: function agregarFactura(_ref6, form) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+      var commit, dispatch;
+      return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+        while (1) switch (_context6.prev = _context6.next) {
+          case 0:
+            commit = _ref6.commit, dispatch = _ref6.dispatch;
+            _context6.prev = 1;
+            _context6.next = 4;
+            return axios.post('/api/facturaciones', form);
+          case 4:
+            dispatch('clearErrors');
+            _context6.next = 11;
+            break;
+          case 7:
+            _context6.prev = 7;
+            _context6.t0 = _context6["catch"](1);
+            if (_context6.t0.response && _context6.t0.response.data && _context6.t0.response.data.errors) {
+              commit('SET_ERRORS', _context6.t0.response.data.errors);
+            }
+            throw _context6.t0;
+          case 11:
+          case "end":
+            return _context6.stop();
+        }
+      }, _callee6, null, [[1, 7]]);
+    }))();
+  },
+  actualizarFactura: function actualizarFactura(_ref7, form) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
+      var commit, dispatch;
+      return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+        while (1) switch (_context7.prev = _context7.next) {
+          case 0:
+            commit = _ref7.commit, dispatch = _ref7.dispatch;
+            _context7.prev = 1;
+            _context7.next = 4;
+            return axios.put('/api/facturaciones/' + form.id, form);
+          case 4:
+            dispatch('clearErrors');
+            _context7.next = 11;
+            break;
+          case 7:
+            _context7.prev = 7;
+            _context7.t0 = _context7["catch"](1);
+            if (_context7.t0.response && _context7.t0.response.data && _context7.t0.response.data.errors) {
+              commit('SET_ERRORS', _context7.t0.response.data.errors);
+            }
+            throw _context7.t0;
+          case 11:
+          case "end":
+            return _context7.stop();
+        }
+      }, _callee7, null, [[1, 7]]);
+    }))();
+  },
+  setClientes: function setClientes(_ref8, clientes) {
+    var commit = _ref8.commit;
     commit('SET_CLIENTES', clientes);
   },
-  clearErrors: function clearErrors(_ref7) {
-    var commit = _ref7.commit;
+  clearErrors: function clearErrors(_ref9) {
+    var commit = _ref9.commit;
     commit('CLEAR_ERRORS');
   },
-  updateErrors: function updateErrors(_ref8, errors) {
-    var commit = _ref8.commit;
+  updateErrors: function updateErrors(_ref10, errors) {
+    var commit = _ref10.commit;
     commit('SET_ERRORS', errors);
   },
-  setForm: function setForm(_ref9, formData) {
-    var commit = _ref9.commit;
+  setForm: function setForm(_ref11, formData) {
+    var commit = _ref11.commit;
     commit('SET_FORM', formData);
   }
 };
 var mutations = {
+  AGREGAR_FORMA_PAGO: function AGREGAR_FORMA_PAGO(state) {
+    var importe = parseFloat(state.form_pago.importe || 0);
+    state.form.formaPagos.push(_objectSpread({}, state.form_pago));
+    state.monto_faltante -= importe;
+    state.form_pago = {
+      id: '',
+      forma_pago_id: '',
+      banco_id: '',
+      importe: '',
+      fecha_emision: '',
+      fecha_vencimiento: '',
+      abreviacion: '',
+      descripcion: ''
+    };
+  },
+  ELIMINAR_FORMA_PAGO: function ELIMINAR_FORMA_PAGO(state, index) {
+    var importe = parseFloat(state.form.formaPagos[index].importe || 0);
+    state.form.formaPagos.splice(index, 1);
+    state.monto_faltante += importe;
+  },
+  CLEAR_FORM_PAGO: function CLEAR_FORM_PAGO(state) {
+    state.form_pago = {
+      id: '',
+      forma_pago_id: '',
+      banco_id: '',
+      importe: '',
+      fecha_emision: '',
+      fecha_vencimiento: ''
+    };
+  },
+  SET_FORM_PAGO: function SET_FORM_PAGO(state, payload) {
+    state.form_pago = _objectSpread(_objectSpread({}, state.form_pago), payload);
+  },
   SET_PAGO_FORMA_PAGO_ID: function SET_PAGO_FORMA_PAGO_ID(state, forma_pago_id) {
     state.form_pago.forma_pago_id = forma_pago_id;
+  },
+  SET_MONTO_FALTANTE: function SET_MONTO_FALTANTE(state, monto_faltante) {
+    state.monto_faltante = monto_faltante;
   },
   SET_CLIENTES: function SET_CLIENTES(state, clientes) {
     state.clientes = clientes;

@@ -9,10 +9,8 @@ const state = {
         cliente_id: "",
         numero_interno: "",
         observaciones: "",
-        total: "",
+        saldo_total: "",
         total_factura: "",
-        total_pagado: "",
-        total_forma: "",
         facturas: [],
         formaPagos: []
     },
@@ -21,10 +19,12 @@ const state = {
         forma_pago_id: '',
         banco_id: '',
         importe: '',
-        f_emision: '',
-        f_vencimiento: '',
+        fecha_emision: '',
+        fecha_vencimiento: '',
+        abreviacion: '',
+        descripcion: ''
     },
-    forma_pago_selected: '',
+    monto_faltante: '',
     removedFacturas: [],
     clientes: [],
     errors: {},
@@ -73,6 +73,37 @@ const actions = {
             throw error;
         }
     },
+    async validarFormaPago({ commit, state, dispatch }, formPago) {
+        try {
+            const data = {
+                form_pago: formPago,
+                monto_faltante: state.monto_faltante,
+            };
+            await axios.post('/api/recibos/formaPago', data);
+            dispatch('clearErrors');
+            commit('AGREGAR_FORMA_PAGO');
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.errors) {
+                commit('SET_ERRORS', error.response.data.errors);
+            }
+            throw error;
+        }
+    },
+    async validarFormaPagos({ commit, state, dispatch }) {
+        try {
+            const data = {
+                formaPagos: state.form.formaPagos,
+                monto_faltante: state.monto_faltante,
+            };
+            await axios.post('/api/recibos/formaPagos', data);
+            dispatch('clearErrors');
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.errors) {
+                commit('SET_ERRORS', error.response.data.errors);
+            }
+            throw error;
+        }
+    },
     async agregarFactura({ commit, dispatch }, form) {
         try {
             await axios.post('/api/facturaciones', form);
@@ -110,8 +141,44 @@ const actions = {
 };
 
 const mutations = {
+    AGREGAR_FORMA_PAGO(state) {
+        const importe = parseFloat(state.form_pago.importe || 0);
+        state.form.formaPagos.push({ ...state.form_pago });
+        state.monto_faltante -= importe;
+        state.form_pago = {
+            id: '',
+            forma_pago_id: '',
+            banco_id: '',
+            importe: '',
+            fecha_emision: '',
+            fecha_vencimiento: '',
+            abreviacion: '',
+            descripcion: '',
+        };
+    },
+    ELIMINAR_FORMA_PAGO(state, index) {
+        const importe = parseFloat(state.form.formaPagos[index].importe || 0);
+        state.form.formaPagos.splice(index, 1);
+        state.monto_faltante += importe;
+    },
+    CLEAR_FORM_PAGO(state) {
+        state.form_pago = {
+            id: '',
+            forma_pago_id: '',
+            banco_id: '',
+            importe: '',
+            fecha_emision: '',
+            fecha_vencimiento: '',
+        };
+    },
+    SET_FORM_PAGO(state, payload) {
+        state.form_pago = { ...state.form_pago, ...payload };
+    },
     SET_PAGO_FORMA_PAGO_ID(state, forma_pago_id) {
         state.form_pago.forma_pago_id = forma_pago_id;
+    },
+    SET_MONTO_FALTANTE(state, monto_faltante) {
+        state.monto_faltante = monto_faltante;
     },
     SET_CLIENTES(state, clientes) {
         state.clientes = clientes;

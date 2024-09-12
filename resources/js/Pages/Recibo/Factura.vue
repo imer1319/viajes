@@ -146,13 +146,19 @@ export default {
         ModalComponent,
     },
     methods: {
-        ...mapMutations("recibos", ["REMOVE_FACTURA", "AGREGAR_FACTURA"]),
+        ...mapMutations("recibos", [
+            "REMOVE_FACTURA",
+            "AGREGAR_FACTURA",
+            "SET_MONTO_FALTANTE",
+        ]),
         getErrorMessage(error) {
             return Array.isArray(error) ? error[0] : error;
         },
         siguiente() {
-            this.form.total_pagado = this.totalPago;
-            this.form.total_factura = this.totalSaldoTotal;
+            this.form.total_factura = this.totalPago;
+            this.form.saldo_total = this.totalSaldoTotal;
+            this.SET_MONTO_FALTANTE(this.totalPago);
+
             this.$store
                 .dispatch("recibos/validarFacturas", this.form)
                 .then(() => {
@@ -194,6 +200,7 @@ export default {
             cliente: (state) => state.cliente,
             errors: (state) => state.errors,
             removedFacturas: (state) => state.removedFacturas,
+            monto_faltante: (state) => state.monto_faltante,
         }),
         hasFacturaErrors() {
             return Object.keys(this.errors).some((key) =>
