@@ -21,4 +21,14 @@ class Recibo extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
+
+    public function pagos()
+    {
+        return $this->hasMany(PagoRecibo::class, 'recibo_id');
+    }
+
+    public function facturas()
+    {
+        return $this->hasMany(FacturaRecibo::class, 'recibo_id');
+    }
 }

@@ -10,7 +10,7 @@ const state = {
         numero_interno: "",
         observaciones: "",
         saldo_total: "",
-        total_factura: "",
+        total_recibo: "",
         facturas: [],
         formaPagos: []
     },
@@ -18,6 +18,7 @@ const state = {
         id: '',
         forma_pago_id: '',
         banco_id: '',
+        numero: '',
         importe: '',
         fecha_emision: '',
         fecha_vencimiento: '',
@@ -104,9 +105,9 @@ const actions = {
             throw error;
         }
     },
-    async agregarFactura({ commit, dispatch }, form) {
+    async agregarRecibo({ commit, dispatch }, form) {
         try {
-            await axios.post('/api/facturaciones', form);
+            await axios.post('/api/recibos', form);
             dispatch('clearErrors');
         } catch (error) {
             if (error.response && error.response.data && error.response.data.errors) {
@@ -204,8 +205,8 @@ const mutations = {
     SET_FORM_OBSERVACIONES(state, observaciones) {
         state.form.observaciones = observaciones
     },
-    SET_FORM_TOTAL_FACTURA(state, totalFactura) {
-        state.form.total_factura = totalFactura;
+    SET_FORM_TOTAL_RECIBO(state, total_recibo) {
+        state.form.total_recibo = total_recibo;
     },
     SET_FORM_TOTAL_PAGODO(state, total_pagado) {
         state.form.total_pagado = total_pagado;

@@ -11,9 +11,9 @@
     <tbody>
         @foreach ($recibos as $recibo)
             <tr>
-                <td>{{ $recibo->id }}</td>
+                <td>{{ $recibo->numero_interno }}</td>
                 <td>{{ $recibo->fecha }}</td>
-                <td>{{ $recibo->chofer->nombre }}</td>
+                <td>{{ $recibo->cliente->razon_social }}</td>
                 <td>{{ $recibo->total_recibo }}</td>
                 <td>
                     <a href="{{ route('admin.recibo.download.pdf', $recibo) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill">

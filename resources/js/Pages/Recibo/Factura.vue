@@ -155,7 +155,7 @@ export default {
             return Array.isArray(error) ? error[0] : error;
         },
         siguiente() {
-            this.form.total_factura = this.totalPago;
+            this.form.total_recibo = this.totalPago;
             this.form.saldo_total = this.totalSaldoTotal;
             this.SET_MONTO_FALTANTE(this.totalPago);
 

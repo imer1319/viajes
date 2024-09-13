@@ -5455,7 +5455,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     siguiente: function siguiente() {
       var _this = this;
-      this.form.total_factura = this.totalPago;
+      this.form.total_recibo = this.totalPago;
       this.form.saldo_total = this.totalSaldoTotal;
       this.SET_MONTO_FALTANTE(this.totalPago);
       this.$store.dispatch("recibos/validarFacturas", this.form).then(function () {
@@ -5787,18 +5787,15 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     anterior: function anterior() {
       this.$emit("anterior");
     },
-    agregarFactura: function agregarFactura() {
+    agregarRecibo: function agregarRecibo() {
       var _this = this;
-      this.form.saldo_total = this.totalSaldo;
-      this.form.total = this.totalSaldo;
-      this.form.neto = this.totalPrecioReal;
-      this.form.iva = this.totalIva;
-      var ruta = "facturas/agregarFactura";
+      this.form.total_recibo = this.totalPago;
+      var ruta = "recibos/agregarRecibo";
       if (this.isEditing) {
-        ruta = "facturas/actualizarFactura";
+        ruta = "recibos/actualizarRecibo";
       }
       this.$store.dispatch(ruta, this.form).then(function () {
-        window.location = "/facturaciones";
+        window.location = "/recibos";
         _this.$toast.open({
           message: "Datos guardados exitosamente!",
           type: "success",
@@ -5815,7 +5812,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       });
     }
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("facturas", {
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("recibos", {
     form: function form(state) {
       return state.form;
     },
@@ -5826,22 +5823,28 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       return state.isEditing;
     }
   })), {}, {
-    totalPrecioReal: function totalPrecioReal() {
-      var _this$form$movimiento;
-      return (_this$form$movimiento = this.form.movimientos) === null || _this$form$movimiento === void 0 ? void 0 : _this$form$movimiento.reduce(function (total, movimiento) {
-        return total + parseFloat(movimiento.precio_real);
+    totalImporte: function totalImporte() {
+      var _this$form$facturas;
+      return (_this$form$facturas = this.form.facturas) === null || _this$form$facturas === void 0 ? void 0 : _this$form$facturas.reduce(function (total, factura) {
+        return total + parseFloat(factura.total);
       }, 0);
     },
-    totalIva: function totalIva() {
-      var _this$form$movimiento2;
-      return (_this$form$movimiento2 = this.form.movimientos) === null || _this$form$movimiento2 === void 0 ? void 0 : _this$form$movimiento2.reduce(function (total, movimiento) {
-        return total + parseFloat(movimiento.iva);
+    totalSaldoTotal: function totalSaldoTotal() {
+      var _this$form$facturas2;
+      return (_this$form$facturas2 = this.form.facturas) === null || _this$form$facturas2 === void 0 ? void 0 : _this$form$facturas2.reduce(function (total, factura) {
+        return total + parseFloat(factura.saldo_total);
       }, 0);
     },
-    totalSaldo: function totalSaldo() {
-      var _this$form$movimiento3;
-      return (_this$form$movimiento3 = this.form.movimientos) === null || _this$form$movimiento3 === void 0 ? void 0 : _this$form$movimiento3.reduce(function (total, movimiento) {
-        return total + parseFloat(movimiento.total);
+    totalPago: function totalPago() {
+      var _this$form$facturas3;
+      return (_this$form$facturas3 = this.form.facturas) === null || _this$form$facturas3 === void 0 ? void 0 : _this$form$facturas3.reduce(function (total, factura) {
+        return total + parseFloat(factura.pago || 0);
+      }, 0);
+    },
+    totalImportePagos: function totalImportePagos() {
+      var _this$form$formaPagos;
+      return (_this$form$formaPagos = this.form.formaPagos) === null || _this$form$formaPagos === void 0 ? void 0 : _this$form$formaPagos.reduce(function (total, forma) {
+        return total + parseFloat(forma.importe);
       }, 0);
     }
   })
@@ -14450,7 +14453,7 @@ var render = function render() {
     staticClass: "col-md-12"
   }, [_c("p", {
     staticClass: "text-muted"
-  }, [_c("b", [_vm._v("Total a pagar:")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.form.total_factura)) + "\n            "), _c("br"), _vm._v(" "), _c("b", [_vm._v("Monto faltante:")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n        ")])]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("Total a pagar:")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.form.total_recibo)) + "\n            "), _c("br"), _vm._v(" "), _c("b", [_vm._v("Monto faltante:")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n        ")])]), _vm._v(" "), _c("div", {
     staticClass: "w-100"
   }, [_vm.errors.formaPagos ? _c("span", {
     staticClass: "text-danger w-100 d-block"
@@ -14910,27 +14913,25 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-md-6"
-  }, [_vm._m(0), _vm._v(" "), _c("p", {
+  }, [_vm._m(0), _vm._v("\n        " + _vm._s(_vm.cliente.razon_social) + "\n        "), _c("p", {
     staticClass: "text-muted"
-  }, [_vm._v("Razon social: " + _vm._s(_vm.cliente.razon_social))]), _vm._v(" "), _c("p", {
-    staticClass: "text-muted"
-  }, [_vm._v("CUIT : " + _vm._s(_vm.cliente.cuit))])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }, [_vm._m(1), _vm._v(" "), _c("p", {
-    staticClass: "text-muted"
-  }, [_vm._v("Fecha: " + _vm._s(_vm.form.fecha))]), _vm._v(" "), _c("p", {
-    staticClass: "text-muted"
-  }, [_vm._v("Observaciones: " + _vm._s(_vm.form.observaciones))])]), _vm._v(" "), _c("div", {
+  }, [_c("b", [_vm._v("CUIT:")]), _vm._v(" " + _vm._s(_vm.cliente.cuit))])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12"
-  }, [_vm._m(2), _vm._v(" "), _c("table", {
+  }, [_c("h5", [_vm._v("Facturas del cliente")]), _vm._v(" "), _c("table", {
     staticClass: "table table-bordered col-md-12"
-  }, [_vm._m(3), _vm._v(" "), _c("tbody", _vm._l(_vm.form.movimientos, function (movimiento, index) {
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.form.facturas, function (factura, index) {
     return _c("tr", {
-      key: movimiento.id
-    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(movimiento.tipo_viaje.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.precio_real)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.iva)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(movimiento.total)))])]);
-  }), 0)])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12 text-right"
-  }, [_vm._m(4), _vm._v(" "), _c("p", [_vm._v("Neto: " + _vm._s(_vm._f("formatNumber")(_vm.totalPrecioReal)))]), _vm._v(" "), _c("p", [_vm._v("Iva: " + _vm._s(_vm._f("formatNumber")(_vm.totalIva)))]), _vm._v(" "), _c("p", [_vm._v("Total: " + _vm._s(_vm._f("formatNumber")(_vm.totalSaldo)))])]), _vm._v(" "), _c("div", {
+      key: factura.id
+    }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.fecha))]), _vm._v(" "), _c("td", [_vm._v("\n                        " + _vm._s(factura.numero_factura_1) + "-" + _vm._s(factura.numero_factura_2) + "\n                    ")]), _vm._v(" "), _c("td", [_vm._v(_vm._s(factura.total))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(factura.saldo_total)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(factura.pago)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalSaldoTotal)))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalPago)))])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("h5", [_vm._v("Formas de pago")]), _vm._v(" "), _c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_vm._m(3), _vm._v(" "), _c("tbody", _vm._l(_vm.form.formaPagos, function (forma, index) {
+    return _c("tr", {
+      key: index
+    }, [_c("td", [_vm._v(_vm._s(forma.numero))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.abreviacion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.fecha_emision))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.fecha_vencimiento))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(forma.importe)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(4), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImportePagos)))])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -14945,7 +14946,7 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.agregarFactura();
+        return _vm.agregarRecibo();
       }
     }
   }, [_vm._v(_vm._s(_vm.isEditing ? "Actualizar" : "Guardar"))])])]);
@@ -14954,32 +14955,32 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("strong", [_c("i", {
-    staticClass: "fas fa-money-check mr-1"
-  }), _vm._v(" Cliente")]);
+    staticClass: "fa fa-user mr-2"
+  }), _vm._v("Cliente:")]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("strong", [_c("i", {
-    staticClass: "fas fa-money-check mr-1"
-  }), _vm._v("Datos del la\n            factura")]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("# Factura")]), _vm._v(" "), _c("th", [_vm._v("Importe")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")]), _vm._v(" "), _c("th", [_vm._v("Pago")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("strong", [_c("i", {
-    staticClass: "fa fa-bus mr-1"
-  }), _vm._v("Movimientos")]);
+  return _c("td", {
+    attrs: {
+      colspan: "3"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("#")]), _vm._v(" "), _c("th", [_vm._v("Fecha")]), _vm._v(" "), _c("th", [_vm._v("Tipo de viaje")]), _vm._v(" "), _c("th", [_vm._v("Precio real")]), _vm._v(" "), _c("th", [_vm._v("IVA")]), _vm._v(" "), _c("th", [_vm._v("Saldo total")])])]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("Numero")]), _vm._v(" "), _c("th", [_vm._v("Forma")]), _vm._v(" "), _c("th", [_vm._v("Descripcion")]), _vm._v(" "), _c("th", [_vm._v("Fecha emision")]), _vm._v(" "), _c("th", [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("h5", {
-    staticClass: "text-center"
-  }, [_c("i", {
-    staticClass: "fa fa-book mr-3"
-  }), _vm._v("Resumen")]);
+  return _c("td", {
+    attrs: {
+      colspan: "5"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
 }];
 render._withStripped = true;
 
@@ -17298,7 +17299,7 @@ var state = {
     numero_interno: "",
     observaciones: "",
     saldo_total: "",
-    total_factura: "",
+    total_recibo: "",
     facturas: [],
     formaPagos: []
   },
@@ -17306,6 +17307,7 @@ var state = {
     id: '',
     forma_pago_id: '',
     banco_id: '',
+    numero: '',
     importe: '',
     fecha_emision: '',
     fecha_vencimiento: '',
@@ -17476,7 +17478,7 @@ var actions = {
       }, _callee5, null, [[1, 8]]);
     }))();
   },
-  agregarFactura: function agregarFactura(_ref6, form) {
+  agregarRecibo: function agregarRecibo(_ref6, form) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
       var commit, dispatch;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
@@ -17485,7 +17487,7 @@ var actions = {
             commit = _ref6.commit, dispatch = _ref6.dispatch;
             _context6.prev = 1;
             _context6.next = 4;
-            return axios.post('/api/facturaciones', form);
+            return axios.post('/api/recibos', form);
           case 4:
             dispatch('clearErrors');
             _context6.next = 11;
@@ -17613,8 +17615,8 @@ var mutations = {
   SET_FORM_OBSERVACIONES: function SET_FORM_OBSERVACIONES(state, observaciones) {
     state.form.observaciones = observaciones;
   },
-  SET_FORM_TOTAL_FACTURA: function SET_FORM_TOTAL_FACTURA(state, totalFactura) {
-    state.form.total_factura = totalFactura;
+  SET_FORM_TOTAL_RECIBO: function SET_FORM_TOTAL_RECIBO(state, total_recibo) {
+    state.form.total_recibo = total_recibo;
   },
   SET_FORM_TOTAL_PAGODO: function SET_FORM_TOTAL_PAGODO(state, total_pagado) {
     state.form.total_pagado = total_pagado;

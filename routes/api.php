@@ -58,3 +58,5 @@ Route::post('liquidaciones', [LiquidacionController::class, 'store']);
 Route::put('liquidaciones/{liquidacion}', [LiquidacionController::class, 'update']);
 Route::post('facturaciones', [FacturacionController::class, 'store']);
 Route::put('facturaciones/{facturacion}', [FacturacionController::class, 'update']);
+Route::post('recibos', [ReciboController::class, 'store']);
+Route::put('recibos/{recibo}', [ReciboController::class, 'update']);

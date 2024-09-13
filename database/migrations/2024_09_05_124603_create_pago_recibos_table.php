@@ -15,13 +15,13 @@ class CreatePagoRecibosTable extends Migration
     {
         Schema::create('pago_recibos', function (Blueprint $table) {
             $table->id();
-            $table->string('nro');
+            $table->string('nro')->nullable();
             $table->foreignId('recibo_id')->constrained('recibos');
             $table->foreignId('forma_pago_id')->constrained('formas_pagos');
             $table->foreignId('banco_id')->nullable()->constrained('bancos');
             $table->decimal('importe', 15, 2);
-            $table->date('fecha_emision');
-            $table->date('fecha_vencimiento');
+            $table->date('fecha_emision')->nullable();
+            $table->date('fecha_vencimiento')->nullable();
             $table->timestamps();
         });
     }

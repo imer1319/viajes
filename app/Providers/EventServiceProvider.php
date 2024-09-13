@@ -2,30 +2,7 @@
 
 namespace App\Providers;
 
-use App\Events\AnticipoCreado;
-use App\Events\AnticipoEliminado;
-use App\Events\FacturaCreada;
-use App\Events\FacturaEliminada;
-use App\Events\GastoCreado;
-use App\Events\GastoEliminado;
-use App\Events\LiquidacionCreada;
-use App\Events\LiquidacionEliminada;
-use App\Events\MovimientoCreado;
-use App\Events\MovimientoEliminado;
-use App\Listeners\ActualizarMovimientosFactura;
-use App\Listeners\ActualizarSaldoChoferPorAnticipoCreado;
-use App\Listeners\ActualizarSaldoChoferPorAnticipoEliminado;
-use App\Listeners\ActualizarSaldoChoferPorGastoCreado;
-use App\Listeners\ActualizarSaldoChoferPorGastoEliminado;
-use App\Listeners\ActualizarSaldosMovimientoCreado;
-use App\Listeners\ActualizarSaldosMovimientoEliminado;
-use App\Listeners\EliminarAnticiposListener;
-use App\Listeners\EliminarGastosListener;
-use App\Listeners\EliminarMovimientosListener;
-use App\Listeners\GuardarAnticiposListener;
-use App\Listeners\GuardarGastosListener;
-use App\Listeners\GuardarMovimientosListener;
-use App\Listeners\RevertirMovimientosFactura;
+
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -42,43 +19,56 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        MovimientoCreado::class => [
-            ActualizarSaldosMovimientoCreado::class,
+        \App\Events\MovimientoCreado::class => [
+            \App\Listeners\ActualizarSaldosMovimientoCreado::class,
         ],
-        MovimientoEliminado::class => [
-            ActualizarSaldosMovimientoEliminado::class,
+        \App\Events\MovimientoEliminado::class => [
+            \App\Listeners\ActualizarSaldosMovimientoEliminado::class,
         ],
         //facturacion
-        FacturaCreada::class => [
-            ActualizarMovimientosFactura::class
+        \App\Events\FacturaCreada::class => [
+            \App\Listeners\ActualizarMovimientosFactura::class
         ],
-        FacturaEliminada::class => [
-            RevertirMovimientosFactura::class
+        \App\Events\FacturaEliminada::class => [
+            \App\Listeners\RevertirMovimientosFactura::class
         ],
         //liquidacion
-        LiquidacionCreada::class => [
-            GuardarMovimientosListener::class,
-            GuardarAnticiposListener::class,
-            GuardarGastosListener::class,
+        \App\Events\LiquidacionCreada::class => [
+            \App\Listeners\GuardarMovimientosListener::class,
+            \App\Listeners\GuardarAnticiposListener::class,
+            \App\Listeners\GuardarGastosListener::class,
         ],
-        LiquidacionEliminada::class => [
-            EliminarMovimientosListener::class,
-            EliminarAnticiposListener::class,
-            EliminarGastosListener::class,
+        \App\Events\LiquidacionEliminada::class => [
+            \App\Listeners\EliminarMovimientosListener::class,
+            \App\Listeners\EliminarAnticiposListener::class,
+            \App\Listeners\EliminarGastosListener::class,
+        ],
+        // Recibo
+        \App\Events\ReciboCreado::class => [
+            \App\Listeners\GuardarPagosRecibo::class,
+            \App\Listeners\GuardarFacturasRecibo::class,
+            \App\Listeners\ActualizarSaldoClienteRecibo::class,
+            \App\Listeners\ActualizarSaldoFacturasRecibo::class,
+        ],
+        \App\Events\ReciboEliminado::class => [
+            \App\Listeners\RevertirSaldoClienteRecibo::class,
+            \App\Listeners\RevertirSaldoFacturasRecibo::class,
+            \App\Listeners\EliminarPagosRecibo::class,
+            \App\Listeners\EliminarFacturasRecibo::class,
         ],
         // gasto
-        GastoCreado::class => [
-            ActualizarSaldoChoferPorGastoCreado::class,
+        \App\Events\GastoCreado::class => [
+            \App\Listeners\ActualizarSaldoChoferPorGastoCreado::class,
         ],
-        GastoEliminado::class => [
-            ActualizarSaldoChoferPorGastoEliminado::class,
+        \App\Events\GastoEliminado::class => [
+            \App\Listeners\ActualizarSaldoChoferPorGastoEliminado::class,
         ],
         // anticipo
-        AnticipoCreado::class => [
-            ActualizarSaldoChoferPorAnticipoCreado::class,
+        \App\Events\AnticipoCreado::class => [
+            \App\Listeners\ActualizarSaldoChoferPorAnticipoCreado::class,
         ],
-        AnticipoEliminado::class => [
-            ActualizarSaldoChoferPorAnticipoEliminado::class,
+        \App\Events\AnticipoEliminado::class => [
+            \App\Listeners\ActualizarSaldoChoferPorAnticipoEliminado::class,
         ],
     ];
 

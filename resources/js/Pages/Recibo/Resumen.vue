@@ -1,57 +1,86 @@
 <template>
     <div class="row">
         <div class="col-md-6">
-            <strong><i class="fas fa-money-check mr-1"></i> Cliente</strong>
-            <p class="text-muted">Razon social: {{ cliente.razon_social }}</p>
-            <p class="text-muted">CUIT : {{ cliente.cuit }}</p>
-        </div>
-        <div class="col-md-6">
-            <strong
-                ><i class="fas fa-money-check mr-1"></i>Datos del la
-                factura</strong
-            >
-            <p class="text-muted">Fecha: {{ form.fecha }}</p>
-            <p class="text-muted">Observaciones: {{ form.observaciones }}</p>
+            <strong><i class="fa fa-user mr-2"></i>Cliente:</strong>
+            {{ cliente.razon_social }}
+            <p class="text-muted"><b>CUIT:</b> {{ cliente.cuit }}</p>
         </div>
         <div class="col-md-12">
-            <strong><i class="fa fa-bus mr-1"></i>Movimientos</strong>
+            <h5>Facturas del cliente</h5>
             <table class="table table-bordered col-md-12">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Fecha</th>
-                        <th>Tipo de viaje</th>
-                        <th>Precio real</th>
-                        <th>IVA</th>
+                        <th># Factura</th>
+                        <th>Importe</th>
                         <th>Saldo total</th>
+                        <th>Pago</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr
-                        v-for="(movimiento, index) in form.movimientos"
-                        :key="movimiento.id"
+                        v-for="(factura, index) in form.facturas"
+                        :key="factura.id"
                     >
                         <td>{{ index + 1 }}</td>
-                        <td>{{ movimiento.fecha }}</td>
-                        <td>{{ movimiento.tipo_viaje.descripcion }}</td>
-                        <td>{{ movimiento.precio_real | formatNumber }}</td>
-                        <td>{{ movimiento.iva | formatNumber }}</td>
-                        <td>{{ movimiento.total | formatNumber }}</td>
+                        <td>{{ factura.fecha }}</td>
+                        <td>
+                            {{ factura.numero_factura_1 }}-{{
+                                factura.numero_factura_2
+                            }}
+                        </td>
+                        <td>{{ factura.total }}</td>
+                        <td>{{ factura.saldo_total | formatNumber }}</td>
+                        <td>{{ factura.pago | formatNumber }}</td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><b>Totales</b></td>
+                        <td>{{ totalImporte | formatNumber }}</td>
+                        <td>{{ totalSaldoTotal | formatNumber }}</td>
+                        <td>{{ totalPago | formatNumber }}</td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
-        <div class="col-md-12 text-right">
-            <h5 class="text-center"><i class="fa fa-book mr-3"></i>Resumen</h5>
-            <p>Neto: {{ totalPrecioReal | formatNumber }}</p>
-            <p>Iva: {{ totalIva | formatNumber }}</p>
-            <p>Total: {{ totalSaldo | formatNumber }}</p>
+        <div class="col-md-12">
+            <h5>Formas de pago</h5>
+            <table class="table table-bordered col-md-12">
+                <thead>
+                    <tr>
+                        <th>Numero</th>
+                        <th>Forma</th>
+                        <th>Descripcion</th>
+                        <th>Fecha emision</th>
+                        <th>Fecha vencimiento</th>
+                        <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(forma, index) in form.formaPagos" :key="index">
+                        <td>{{ forma.numero }}</td>
+                        <td>{{ forma.abreviacion }}</td>
+                        <td>{{ forma.descripcion }}</td>
+                        <td>{{ forma.fecha_emision }}</td>
+                        <td>{{ forma.fecha_vencimiento }}</td>
+                        <td>{{ forma.importe | formatNumber }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5"><b>Totales</b></td>
+                        <td>{{ totalImportePagos | formatNumber }}</td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
         <div class="col-12 d-flex justify-content-between mt-3">
             <button class="btn btn-primary" @click.prevent="anterior()">
                 Anterior
             </button>
-            <a @click.prevent="agregarFactura()" class="btn btn-primary">{{
+            <a @click.prevent="agregarRecibo()" class="btn btn-primary">{{
                 isEditing ? "Actualizar" : "Guardar"
             }}</a>
         </div>
@@ -65,19 +94,16 @@ export default {
         anterior() {
             this.$emit("anterior");
         },
-        agregarFactura() {
-            this.form.saldo_total = this.totalSaldo;
-            this.form.total = this.totalSaldo;
-            this.form.neto = this.totalPrecioReal;
-            this.form.iva = this.totalIva;
-            var ruta = "facturas/agregarFactura";
+        agregarRecibo() {
+            this.form.total_recibo = this.totalPago;
+            var ruta = "recibos/agregarRecibo";
             if (this.isEditing) {
-                ruta = "facturas/actualizarFactura";
+                ruta = "recibos/actualizarRecibo";
             }
             this.$store
                 .dispatch(ruta, this.form)
                 .then(() => {
-                    window.location = "/facturaciones";
+                    window.location = "/recibos";
                     this.$toast.open({
                         message: "Datos guardados exitosamente!",
                         type: "success",
@@ -96,27 +122,32 @@ export default {
         },
     },
     computed: {
-        ...mapState("facturas", {
+        ...mapState("recibos", {
             form: (state) => state.form,
             cliente: (state) => state.cliente,
             isEditing: (state) => state.isEditing,
         }),
-        totalPrecioReal() {
-            return this.form.movimientos?.reduce(
-                (total, movimiento) =>
-                    total + parseFloat(movimiento.precio_real),
+        totalImporte() {
+            return this.form.facturas?.reduce(
+                (total, factura) => total + parseFloat(factura.total),
                 0
             );
         },
-        totalIva() {
-            return this.form.movimientos?.reduce(
-                (total, movimiento) => total + parseFloat(movimiento.iva),
+        totalSaldoTotal() {
+            return this.form.facturas?.reduce(
+                (total, factura) => total + parseFloat(factura.saldo_total),
                 0
             );
         },
-        totalSaldo() {
-            return this.form.movimientos?.reduce(
-                (total, movimiento) => total + parseFloat(movimiento.total),
+        totalPago() {
+            return this.form.facturas?.reduce(
+                (total, factura) => total + parseFloat(factura.pago || 0),
+                0
+            );
+        },
+        totalImportePagos() {
+            return this.form.formaPagos?.reduce(
+                (total, forma) => total + parseFloat(forma.importe),
                 0
             );
         },

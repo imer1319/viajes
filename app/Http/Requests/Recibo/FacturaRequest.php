@@ -24,14 +24,14 @@ class FacturaRequest extends FormRequest
     public function rules()
     {
         return [
-            'form.total_factura' => ['required', 'numeric', 'min:0'],
+            'form.total_recibo' => ['required', 'numeric', 'min:0'],
             'form.facturas' => ['required', 'array'],
             'form.saldo_total' => [
                 'required',
                 'numeric',
                 'min:1',
                 function ($attribute, $value, $fail) {
-                    if ($value < $this->input('form.total_factura')) {
+                    if ($value < $this->input('form.total_recibo')) {
                         $fail('El total de la factura debe ser menor o igual que el total del saldo de las facturas.');
                     }
                 },

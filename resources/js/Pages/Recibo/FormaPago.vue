@@ -39,7 +39,7 @@
         <div class="col-md-12">
             <p class="text-muted">
                 <b>Total a pagar:</b>
-                {{ form.total_factura | formatNumber }}
+                {{ form.total_recibo | formatNumber }}
                 <br />
                 <b>Monto faltante:</b>
                 {{ monto_faltante | formatNumber }}

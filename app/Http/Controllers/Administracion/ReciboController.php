@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Administracion;
 
+use App\Events\ReciboEliminado;
 use App\Exports\ReciboExport;
 use App\Models\Recibo;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -16,6 +17,7 @@ use App\Models\Provincia;
 use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReciboController extends Controller
@@ -69,24 +71,25 @@ class ReciboController extends Controller
         ]);
     }
 
-    public function destroy(Recibo $recibo)
+    public function destroy($id)
     {
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
-            // event(new ReciboEliminada($recibo->chofer_id, $recibo->id));
-            // $recibo->delete();
-            // $chofer = Chofer::find($recibo->chofer_id);
-            // $chofer->update([
-            //     'saldo' => $chofer->saldo + $recibo->total_liquidacion
-            // ]);
+            $recibo = Recibo::findOrFail($id);
+
+            event(new ReciboEliminado($recibo));
+
+            $recibo->delete();
+
             DB::commit();
-            return redirect()->route('admin.recibos.index')->with('flash', 'Recibo eliminada corretamente');
+            return redirect()->route('admin.recibos.index')->with('success', 'Recibo eliminado correctamente.');
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json([
-                'message' => 'Hubo un error al eliminar la liquidación.',
+            Log::error('Error al eliminar el recibo:', [
                 'error' => $e->getMessage(),
-            ], 500);
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return redirect()->route('admin.recibos.index')->with('error', 'Error al eliminar el recibo. Intente nuevamente.');
         }
     }
 
