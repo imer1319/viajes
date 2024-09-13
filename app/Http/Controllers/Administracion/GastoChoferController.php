@@ -25,7 +25,7 @@ class GastoChoferController extends Controller
         return view('admin.gastoChofer.create', [
             'chofer' => $chofer,
             'tipoGastos' => TipoGasto::all(),
-            'numero_interno' => $ultimoGastoChofer ? $ultimoGastoChofer->id + 1 : 1,
+            'numero_interno' => $ultimoGastoChofer ? $ultimoGastoChofer->numero_interno + 1 : 1,
         ]);
     }
 

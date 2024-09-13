@@ -14086,7 +14086,6 @@ var render = function render() {
       provincias_data: _vm.provincias_data,
       retencion_ganancias_data: _vm.retencion_ganancias_data,
       retencion_ingresos_bruto_data: _vm.retencion_ingresos_bruto_data,
-      numero_interno: _vm.numero_interno,
       tipo_documentos_data: _vm.tipo_documentos_data
     },
     on: {

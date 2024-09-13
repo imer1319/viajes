@@ -24,7 +24,7 @@ class AnticipoChoferController extends Controller
         return view('admin.anticipoChofer.create', [
             'chofer' => $chofer,
             'anticipos' => $chofer->anticipos()->with('chofer')->paginate(8),
-            'numero_interno' => $ultimoAnticipoChofer ? $ultimoAnticipoChofer->id + 1 : 1,
+            'numero_interno' => $ultimoAnticipoChofer ? $ultimoAnticipoChofer->numero_interno + 1 : 1,
         ]);
     }
 

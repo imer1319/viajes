@@ -18,7 +18,6 @@
                     :retencion_ingresos_bruto_data="
                         retencion_ingresos_bruto_data
                     "
-                    :numero_interno="numero_interno"
                     :tipo_documentos_data="tipo_documentos_data"
                 />
             </tab-content>

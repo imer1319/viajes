@@ -35,7 +35,7 @@ class ReciboController extends Controller
 
         return view('admin.recibos.create', [
             'liquidacion' => new Recibo(),
-            'numero_interno' => $ultimaRecibo ? $ultimaRecibo->id + 1 : 1,
+            'numero_interno' => $ultimaRecibo ? $ultimaRecibo->numero_interno + 1 : 1,
             'clientes' => Cliente::all(),
             'condicionesIva' => CondicionIva::all(),
             'provincias' => Provincia::all(),

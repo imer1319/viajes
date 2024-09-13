@@ -32,7 +32,7 @@ class LiquidacionController extends Controller
         return view('admin.liquidaciones.create', [
             'choferes' => Chofer::all(),
             'liquidacion' => new Liquidacion(),
-            'numero_interno' => $ultimaLiquidacion ? $ultimaLiquidacion->id + 1 : 1,
+            'numero_interno' => $ultimaLiquidacion ? $ultimaLiquidacion->numero_interno + 1 : 1,
         ]);
     }
 

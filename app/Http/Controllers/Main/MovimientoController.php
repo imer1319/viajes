@@ -64,7 +64,7 @@ class MovimientoController extends Controller
     public function create()
     {
         $ultimoMovimiento = Movimiento::latest()->first();
-        $numeroInterno = $ultimoMovimiento ? $ultimoMovimiento->id + 1 : 1;
+        $numeroInterno = $ultimoMovimiento ? $ultimoMovimiento->numero_interno + 1 : 1;
         return view('admin.movimientos.create', [
             'movimiento' => new Movimiento(),
             'numero_interno' => $numeroInterno,

@@ -24,7 +24,7 @@ class AnticipoController extends Controller
     public function create()
     {
         $ultimoAnticipoChofer = AnticipoChofer::latest()->first();
-        $numeroInterno = $ultimoAnticipoChofer ? $ultimoAnticipoChofer->id + 1 : 1;
+        $numeroInterno = $ultimoAnticipoChofer ? $ultimoAnticipoChofer->numero_interno + 1 : 1;
         return view('admin.anticipos.create', [
             'numero_interno' => $numeroInterno
         ]);
