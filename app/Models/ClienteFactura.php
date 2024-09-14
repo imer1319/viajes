@@ -37,4 +37,23 @@ class ClienteFactura extends Model
     {
         return $this->belongsTo(CondicionesPago::class);
     }
+
+    public function scopeByClienteId($query, $cliente_id = null)
+    {
+        if ($cliente_id) {
+            return $query->where('cliente_id', $cliente_id);
+        }
+        return $query;
+    }
+    
+    public function scopeBySaldo($query, $saldo = null)
+    {
+        if ($saldo === '1') {
+            return $query->where('saldo_total', '!=', 0);
+        } elseif ($saldo === '0') {
+            return $query->where('saldo_total', '=', 0);
+        }
+        return $query;
+    }
+    
 }

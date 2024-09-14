@@ -80,7 +80,9 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::get('/anticipos/{chofer}/excel/export', [AnticipoChoferController::class, 'downloadExcel'])->name('anticipos.chofer.download.excel');
     Route::get('/choferes/excel/export', [ChoferController::class, 'downloadExcel'])->name('choferes.download.excel');
     Route::get('/clientes/excel/export', [ClienteController::class, 'downloadExcel'])->name('clientes.download.excel');
+    Route::get('/facturas/excel/export', [FacturacionController::class, 'downloadExcel'])->name('facturas.download.excel');
 
     //search
     Route::get('movimiento/search', [MovimientoController::class, 'search'])->name('movimientos.search');
+    Route::get('factura/search', [FacturacionController::class, 'search'])->name('facturaciones.search');
 });

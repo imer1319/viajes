@@ -31,8 +31,37 @@
                 </div>
             </div>
             <div class="card-body">
+
+                @include('admin.facturas.search')
                 @include('admin.facturas.table')
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        function create() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.facturaciones.create') }}";
+        }
+
+        function search() {
+            var url = "{{ route('admin.facturaciones.search') }}";
+            $("#form").attr('action', url);
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            $("#form").submit();
+        }
+
+        function limpiar() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.facturaciones.index') }}";
+        }
+    </script>
 @endsection

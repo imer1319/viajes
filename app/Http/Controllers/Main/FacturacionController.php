@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class FacturacionController extends Controller
 {
@@ -26,10 +27,26 @@ class FacturacionController extends Controller
     public function index()
     {
         return view('admin.facturas.index', [
-            'facturas' => ClienteFactura::with('cliente')->paginate(8)
+            'facturas' => ClienteFactura::with('cliente')->paginate(8),
+            'clientes' => Cliente::all()
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $facturas = ClienteFactura::query()
+            ->byClienteId($request->input('cliente_id'))
+            ->bySaldo($request->input('saldo'))
+            ->with('cliente')
+            ->latest()
+            ->paginate(8);
+
+        $facturas->appends($request->except('page'));
+        return view('admin.facturas.index', [
+            'facturas' => $facturas,
+            'clientes' => Cliente::all()
+        ]);
+    }
     public function create()
     {
         $ultimaLiquidacion = ClienteFactura::latest()->first();
@@ -99,6 +116,11 @@ class FacturacionController extends Controller
             return redirect()->route('admin.facturaciones.index')->with('success', 'Factura eliminada exitosamente.');
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Error al eliminar la factura:', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'factura_id' => $facturacione->id, // Si quieres guardar más detalles, como el ID de la factura
+            ]);
             return redirect()->route('admin.facturaciones.index')->with('error', 'Hubo un error al eliminar la factura.');
         }
     }
