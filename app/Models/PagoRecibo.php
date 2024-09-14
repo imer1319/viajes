@@ -16,7 +16,9 @@ class PagoRecibo extends Model
         'banco_id',
         'importe',
         'fecha_emision',
-        'fecha_vencimiento'
+        'fecha_vencimiento',
+        'abreviacion',
+        'descripcion'
     ];
 
     public function recibo()

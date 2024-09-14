@@ -32,7 +32,7 @@ class MovimientoController extends Controller
     public function index()
     {
         return view('admin.movimientos.index', [
-            'movimientos' => Movimiento::latest()->paginate(8),
+            'movimientos' => Movimiento::with('facturas')->latest()->paginate(8),
             'choferes' => Chofer::all(),
             'tipoViajes' => TipoViaje::all(),
             'flotas' => Flota::all(),

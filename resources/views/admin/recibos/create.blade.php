@@ -19,7 +19,7 @@
 
     <!-- Main content -->
     <section class="content mx-3">
-        <div class="card card-primary card-outline ñpt-4">
+        <div class="card card-primary card-outline">
             <div class="card-header">Crear recibo</div>
             <div class="card-body">
 

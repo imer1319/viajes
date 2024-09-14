@@ -40,6 +40,11 @@ class Movimiento extends Model
         return $this->belongsTo(TipoViaje::class);
     }
 
+    public function facturas()
+    {
+        return $this->belongsToMany(ClienteFactura::class, 'detalle_facturas', 'movimiento_id', 'factura_id');
+    }
+    
     public function flota()
     {
         return $this->belongsTo(Flota::class);

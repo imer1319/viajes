@@ -14163,7 +14163,7 @@ var render = function render() {
     ref: "formWizard",
     attrs: {
       "next-button-text": "Siguiente",
-      title: "Editar factura",
+      title: "Crear Recibo",
       subtitle: "",
       color: "#0d6efd",
       shape: "square",
@@ -14171,7 +14171,7 @@ var render = function render() {
     }
   }, [_c("tab-content", {
     attrs: {
-      title: "Datos del chofer",
+      title: "Datos del cliente",
       icon: "fa fa-user"
     }
   }, [_c("Head", {
@@ -14180,8 +14180,7 @@ var render = function render() {
       provincias_data: _vm.provincias_data,
       retencion_ganancias_data: _vm.retencion_ganancias_data,
       retencion_ingresos_bruto_data: _vm.retencion_ingresos_bruto_data,
-      tipo_documentos_data: _vm.tipo_documentos_data,
-      condiciones_pago_data: _vm.condiciones_pago_data
+      tipo_documentos_data: _vm.tipo_documentos_data
     },
     on: {
       siguiente: function siguiente($event) {
@@ -14190,10 +14189,28 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("tab-content", {
     attrs: {
-      title: "Facturas del chofer",
-      icon: "fa fa-bus"
+      title: "Facturas del cliente",
+      icon: "fas fa-file-invoice"
     }
   }, [_c("Factura", {
+    on: {
+      siguiente: function siguiente($event) {
+        return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
+      }
+    }
+  })], 1), _vm._v(" "), _c("tab-content", {
+    attrs: {
+      title: "Forma de pago",
+      icon: "fa fa-money-check"
+    }
+  }, [_c("FormaPago", {
+    attrs: {
+      forma_pagos: _vm.forma_pagos,
+      bancos: _vm.bancos
+    },
     on: {
       siguiente: function siguiente($event) {
         return _vm.siguienteTab();

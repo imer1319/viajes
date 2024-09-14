@@ -2,14 +2,14 @@
     <div>
         <form-wizard
             next-button-text="Siguiente"
-            title="Editar factura"
+            title="Crear Recibo"
             subtitle=""
             color="#0d6efd"
             shape="square"
             :hideButtons="true"
             ref="formWizard"
         >
-            <tab-content title="Datos del chofer" icon="fa fa-user">
+            <tab-content title="Datos del cliente" icon="fa fa-user">
                 <Head
                     @siguiente="siguienteTab()"
                     :condiciones_iva_data="condiciones_iva_data"
@@ -19,11 +19,21 @@
                         retencion_ingresos_bruto_data
                     "
                     :tipo_documentos_data="tipo_documentos_data"
-                    :condiciones_pago_data="condiciones_pago_data"
                 />
             </tab-content>
-            <tab-content title="Facturas del chofer" icon="fa fa-bus">
+            <tab-content
+                title="Facturas del cliente"
+                icon="fas fa-file-invoice"
+            >
                 <Factura
+                    @siguiente="siguienteTab()"
+                    @anterior="anteriorTab()"
+                />
+            </tab-content>
+            <tab-content title="Forma de pago" icon="fa fa-money-check">
+                <FormaPago
+                    :forma_pagos="forma_pagos"
+                    :bancos="bancos"
                     @siguiente="siguienteTab()"
                     @anterior="anteriorTab()"
                 />

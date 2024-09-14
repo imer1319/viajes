@@ -22,6 +22,8 @@ class CreatePagoRecibosTable extends Migration
             $table->decimal('importe', 15, 2);
             $table->date('fecha_emision')->nullable();
             $table->date('fecha_vencimiento')->nullable();
+            $table->string('abreviacion');
+            $table->string('descripcion');
             $table->timestamps();
         });
     }
