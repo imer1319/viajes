@@ -18,6 +18,10 @@
                 <td>{{ $flota->marca }}</td>
                 <td>{{ $flota->anio }}</td>
                 <td>
+                    <a href="{{ route('admin.flotas.show', $flota) }}"
+                        class="btn btn-primary btn-sm rounded-pill">
+                        <i class="fa fa-eye"></i>
+                    </a>
                     <a href="{{ route('admin.flotas.edit', $flota) }}"
                         class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-edit"></i>

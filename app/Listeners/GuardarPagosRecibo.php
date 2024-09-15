@@ -38,6 +38,8 @@ class GuardarPagosRecibo
                 'fecha_emision' => $pago['fecha_emision'],
                 'fecha_vencimiento' => $pago['fecha_vencimiento'],
                 'nro' => $pago['numero'],
+                'abreviacion' => $pago['abreviacion'],
+                'descripcion' => $pago['descripcion'],
             ]);
         }
     }

@@ -24,6 +24,13 @@ class FlotaController extends Controller
         ]);
     }
 
+    public function show(Flota $flota)
+    {
+        return view('admin.flotas.show', [
+            'flota' => $flota
+        ]);
+    }
+
     public function edit(Flota $flota)
     {
         return view('admin.flotas.edit', [

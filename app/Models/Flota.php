@@ -17,4 +17,5 @@ class Flota extends Model
         'kilometraje',
         'identificacion',
     ];
+
 }
