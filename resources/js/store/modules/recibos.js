@@ -150,6 +150,7 @@ const mutations = {
             id: '',
             forma_pago_id: '',
             banco_id: '',
+            numero: '',
             importe: '',
             fecha_emision: '',
             fecha_vencimiento: '',
