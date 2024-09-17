@@ -17,11 +17,14 @@ use App\Models\Provincia;
 use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
+use App\Traits\NumeroALetra;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReciboController extends Controller
 {
+    use NumeroALetra;
+    
     public function index()
     {
         return view('admin.recibos.index', [
@@ -90,16 +93,13 @@ class ReciboController extends Controller
         }
     }
 
-    public function downloadPdf(Recibo $liquidacion)
+    public function downloadPdf(Recibo $recibo)
     {
-        $liquidacion->load([
-            'movimientos.movimiento',
-            'gastos.gasto',
-            'anticipos.anticipo',
-            'chofer'
+        $recibo->load([
+            'cliente'
         ]);
-        $numero_letra = $this->convertirNumeroALetras($liquidacion->total_liquidacion);
-        $pdf = Pdf::loadView('reportes.liquidacion', compact('liquidacion', 'numero_letra'));
+        $numero_letra = $this->convertirNumeroALetras($recibo->total_recibo);
+        $pdf = Pdf::loadView('reportes.recibo', compact('recibo', 'numero_letra'));
         return $pdf->stream();
     }
 

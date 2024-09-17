@@ -156,11 +156,11 @@
                 <table style="width: 90%; margin: 0 auto;  text-align:center; margin-top:10px">
                     <tr>
                         <td class="text-gray-500">Chofer:</td>
-                        <td class="text-gray-500" style="text-align: right">{{ $liquidacion->chofer->nombre }}</td>
+                        <td class="text-gray-500" style="text-align: right">{{ $recibo->cliente->razon_social }}</td>
                     </tr>
                     <tr>
                         <td class="text-gray-500">Domicilio:</td>
-                        <td class="text-gray-500" style="text-align: right">{{ $liquidacion->chofer->domicilio }}</td>
+                        <td class="text-gray-500" style="text-align: right">{{ $recibo->cliente->domicilio }}</td>
                     </tr>
                 </table>
             </td>
@@ -174,12 +174,12 @@
                     <tr>
                         <td class="text-gray-500">Nro.: </td>
                         <td class="text-gray-500" style="text-align:right">
-                            {{ str_pad($liquidacion->numero_interno, 5, '0', STR_PAD_LEFT) }}</td>
+                            {{ str_pad($recibo->numero_interno, 5, '0', STR_PAD_LEFT) }}</td>
                     </tr>
                     <tr>
                         <td class="text-gray-500">Fecha</td>
                         <td class="text-gray-500" style="text-align:right">
-                            {{ $liquidacion->created_at->format('d/m/Y') }}</td>
+                            {{ $recibo->created_at->format('d/m/Y') }}</td>
                     </tr>
                 </table>
             </td>
@@ -190,36 +190,37 @@
             <thead class="text-xs text-white uppercase bg-blue-400">
                 <tr>
                     <td colspan="6" align="center">
-                        <p style="margin:0.5rem;">MOVIMIENTOS DEL CHOFER</p>
+                        <p style="margin:0.5rem;">FACTURAS DE CLIENTE</p>
                     </td>
                 </tr>
                 <tr>
                     <td class="px-6 py-2">Ord</td>
-                    <td class="px-6 py-2">Nro</td>
                     <td class="px-6 py-2">Fecha</td>
-                    <td class="px-6 py-2">Precio Chofer</td>
-                    <td class="px-6 py-2">%</td>
-                    <td class="px-6 py-2">Comisión Chofer</td>
+                    <td class="px-6 py-2"># Factura</td>
+                    <td class="px-6 py-2">Importe</td>
+                    <td class="px-6 py-2">Saldo total</td>
+                    <td class="px-6 py-2">Pago</td>
                 </tr>
             </thead>
             <tbody>
                 @php
-                    $totalLiquidacionMovimiento = 0;
+                    $totalFactura = 0;
                 @endphp
 
-                @foreach ($liquidacion->movimientos as $movimiento)
+                @foreach ($recibo->facturas as $factura)
                     @php
-                        $totalLiquidacionMovimiento += $movimiento->movimiento->comision_chofer;
+                        $totalFactura += $factura->pago;
                     @endphp
                     <tr class="odd:bg-white even:bg-gray-50 border-b">
                         <td class="px-2 py-4">{{ $loop->iteration }}</td>
-                        <td class="px-2 py-4">{{ $movimiento->id }}</td>
-                        <td class="px-2 py-4">{{ $movimiento->fecha }}</td>
-                        <td class="px-2 py-4">{{ number_format($movimiento->movimiento->precio_chofer, 2, ',', '.') }}
-                        </td>
-                        <td class="px-2 py-4">{{ $movimiento->movimiento->porcentaje_pago }}</td>
+                        <td class="px-2 py-4">{{ $factura->factura->fecha }}</td>
                         <td class="px-2 py-4">
-                            {{ number_format($movimiento->movimiento->comision_chofer, 2, ',', '.') }}
+                            {{ $factura->factura->numero_factura_1 }}-{{ $factura->factura->numero_factura_2 }}</td>
+                        <td class="px-2 py-4">{{ number_format($factura->factura->total, 2, ',', '.') }}
+                        </td>
+                        <td class="px-2 py-4">{{ number_format($factura->factura->saldo_total, 2, ',', '.') }}</td>
+                        <td class="px-2 py-4">
+                            {{ number_format($factura->pago, 2, ',', '.') }}
                         </td>
                     </tr>
                 @endforeach
@@ -229,107 +230,7 @@
                     <td>Total</td>
                     <td colspan="4"></td>
                     <td class="px-2 py-2">
-                        {{ number_format($totalLiquidacionMovimiento, 2, ',', '.') }}
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-    <div class="relative overflow-x-auto shadow-md">
-        <table class="text-sm text-left rtl:text-right text-gray-500" width="100%">
-            <thead class="text-xs text-white uppercase bg-blue-400">
-                <tr>
-                    <td colspan="5" align="center">
-                        <p style="margin:0.5rem;">ANTICIPOS DEL CHOFER</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-2">Ord</td>
-                    <td class="px-6 py-2">Nro</td>
-                    <td class="px-6 py-2">Fecha</td>
-                    <td class="px-6 py-2">Imp Anticipo</td>
-                    <td class="px-6 py-2">Pago</td>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $totalLiquidacionAnticipo = 0;
-                @endphp
-
-                @foreach ($liquidacion->anticipos as $anticipo)
-                    @php
-                        $totalLiquidacionAnticipo += $anticipo->importe;
-                    @endphp
-                    <tr class="odd:bg-white even:bg-gray-50 border-b">
-                        <td class="px-2 py-4">{{ $loop->iteration }}</td>
-                        <td class="px-2 py-4">{{ $anticipo->anticipo->id }}</td>
-                        <td class="px-2 py-4">{{ $anticipo->anticipo->fecha }}</td>
-                        <td class="px-2 py-4">
-                            {{ number_format($anticipo->anticipo->importe, 2, ',', '.') }}
-                        </td>
-                        <td class="px-2 py-4">
-                            {{ number_format($anticipo->importe, 2, ',', '.') }}
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>Total</td>
-                    <td colspan="3"></td>
-                    <td class="px-2 py-2">
-                        {{ number_format($totalLiquidacionAnticipo, 2, ',', '.') }}
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-    <div class="relative overflow-x-auto shadow-md">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-            <thead class="text-xs text-white uppercase bg-blue-400">
-                <tr>
-                    <td colspan="6" align="center">
-                        <p style="margin:0.5rem;">GASTOS VARIOS</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-2">Ord</td>
-                    <td class="px-6 py-2">Nro</td>
-                    <td class="px-6 py-2">Fecha</td>
-                    <td class="px-6 py-2">Camion</td>
-                    <td class="px-6 py-2">Imp Gasto</td>
-                    <td class="px-6 py-2">Pago</td>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $totalLiquidacionGasto = 0;
-                @endphp
-
-                @foreach ($liquidacion->gastos as $gasto)
-                    @php
-                        $totalLiquidacionGasto += $gasto->importe;
-                    @endphp
-                    <tr class="odd:bg-white even:bg-gray-50 border-b">
-                        <td class="px-2 py-4">{{ $loop->iteration }}</td>
-                        <td class="px-2 py-4">{{ $gasto->id }}</td>
-                        <td class="px-2 py-4">{{ $gasto->gasto->fecha }}</td>
-                        <td class="px-2 py-4">{{ $gasto->gasto->flota->nombre }}</td>
-                        <td class="px-2 py-4">
-                            {{ number_format($gasto->gasto->importe, 2, ',', '.') }}
-                        </td>
-                        <td class="px-2 py-4">
-                            {{ number_format($gasto->importe, 2, ',', '.') }}
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>Total</td>
-                    <td colspan="4"></td>
-                    <td class="px-2 py-2">
-                        {{ number_format($totalLiquidacionGasto, 2, ',', '.') }}
+                        {{ number_format($totalFactura, 2, ',', '.') }}
                     </td>
                 </tr>
             </tfoot>
@@ -358,7 +259,7 @@
                     $totalPagos = 0;
                 @endphp
 
-                @foreach ($liquidacion->pagos as $pago)
+                @foreach ($recibo->pagos as $pago)
                     @php
                         $totalPagos += $pago->importe;
                     @endphp
@@ -391,7 +292,7 @@
             <tr>
                 <td align="right">
                     <span class="text-gray-500">CANCELACION:
-                        {{ number_format($liquidacion->total_liquidacion, 2, ',', '.') }}</span>
+                        {{ number_format($recibo->total_recibo, 2, ',', '.') }}</span>
                 </td>
             </tr>
         </table>
@@ -400,7 +301,7 @@
             <br>
             <span class="text-gray-500">Observaciones:</span>
             <br>
-            <span class="text-gray-500">{{ $liquidacion->observaciones }}</span>
+            <span class="text-gray-500">{{ $recibo->observaciones }}</span>
         </div>
     </div>
 </body>

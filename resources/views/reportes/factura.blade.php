@@ -172,7 +172,7 @@
                     <tr>
                         <td class="text-gray-500">Nro.: </td>
                         <td class="text-gray-500" style="text-align:right">
-                            {{ str_pad($factura->id, 5, '0', STR_PAD_LEFT) }}</td>
+                            {{ str_pad($factura->numero_interno, 5, '0', STR_PAD_LEFT) }}</td>
                     </tr>
                     <tr>
                         <td class="text-gray-500">Fecha</td>
