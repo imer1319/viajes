@@ -24,7 +24,12 @@
             <div class="card-header">Editar recibo</div>
 
             <div class="card-body">
-                <recibo-edit :recibo="{{ $recibo }}" :numero_interno="{{ $recibo->numero_interno }}" redirect="true"></recibo-edit>
+                <recibo-edit :recibo="{{ $recibo }}" :clientes_data="{{ $clientes }}"
+                    :condiciones_iva_data="{{ $condicionesIva }}" :provincias_data="{{ $provincias }}"
+                    :retencion_ganancias_data="{{ $retencionGanancias }}"
+                    :retencion_ingresos_bruto_data="{{ $retencionIngresosBruto }}"
+                    :tipo_documentos_data="{{ $tipoDocumentos }}" :forma_pagos="{{ $formaPagos }}"
+                    :bancos="{{ $bancos }}" />
             </div>
         </div>
 

@@ -5516,8 +5516,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_form_wizard_dist_vue_form_wizard_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-form-wizard/dist/vue-form-wizard.min.css */ "./node_modules/vue-form-wizard/dist/vue-form-wizard.min.css");
 /* harmony import */ var _Head_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Head.vue */ "./resources/js/Pages/Recibo/Head.vue");
 /* harmony import */ var _Factura_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Factura.vue */ "./resources/js/Pages/Recibo/Factura.vue");
-/* harmony import */ var _Resumen_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Resumen.vue */ "./resources/js/Pages/Recibo/Resumen.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _FormaPago_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./FormaPago.vue */ "./resources/js/Pages/Recibo/FormaPago.vue");
+/* harmony import */ var _Resumen_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Resumen.vue */ "./resources/js/Pages/Recibo/Resumen.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -5530,25 +5531,27 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["numero_interno", "clientes_data", "condiciones_iva_data", "provincias_data", "retencion_ganancias_data", "retencion_ingresos_bruto_data", "tipo_documentos_data", "condiciones_pago_data", "factura"],
+  props: ["recibo", "clientes_data", "condiciones_iva_data", "provincias_data", "retencion_ganancias_data", "retencion_ingresos_bruto_data", "tipo_documentos_data", "forma_pagos", "bancos"],
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
     Head: _Head_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Factura: _Factura_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-    Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    FormaPago: _FormaPago_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   mounted: function mounted() {
     this.setClientes(this.clientes_data);
     this.initializeForm();
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapState)("facturas", {
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapState)("recibos", {
     isEditing: function isEditing(state) {
       return state.isEditing;
     }
   })),
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)("facturas", ["setForm", "setClientes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapMutations)("facturas", ["SET_IS_EDITING", "SET_CLIENTE_ID_ANTERIOR"])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)("recibos", ["setForm", "setClientes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapMutations)("recibos", ["SET_IS_EDITING", "SET_CLIENTE_ID_ANTERIOR"])), {}, {
     siguienteTab: function siguienteTab() {
       this.$refs.formWizard.nextTab();
     },
@@ -5557,20 +5560,17 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     initializeForm: function initializeForm() {
       this.SET_IS_EDITING(true);
-      this.SET_CLIENTE_ID_ANTERIOR(this.factura.cliente_id);
+      this.SET_CLIENTE_ID_ANTERIOR(this.recibo.cliente_id);
       this.setForm({
-        id: this.factura.id,
-        fecha: this.factura.fecha,
-        cliente_id: this.factura.cliente_id,
-        numero_interno: this.factura.numero_interno,
-        observaciones: this.factura.observaciones,
-        condiciones_pago_id: this.factura.condiciones_pago_id,
-        neto: this.factura.neto,
-        iva: this.factura.iva,
-        total: this.factura.total,
-        numero_factura_1: this.factura.numero_factura_1,
-        numero_factura_2: this.factura.numero_factura_2,
-        movimientos: this.factura.movimientos
+        id: this.recibo.id,
+        fecha: this.recibo.fecha,
+        cliente_id: this.recibo.cliente_id,
+        numero_interno: this.recibo.numero_interno,
+        observaciones: this.recibo.observaciones,
+        saldo_total: this.recibo.saldo_total,
+        total_recibo: this.recibo.total_recibo,
+        facturas: this.recibo.facturas,
+        formaPagos: this.recibo.pagos
       });
     }
   })
@@ -5681,7 +5681,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       }, 0);
     },
     totalPago: function totalPago() {
-      return this.form.facturas.reduce(function (total, factura) {
+      var _this$form$facturas3;
+      return (_this$form$facturas3 = this.form.facturas) === null || _this$form$facturas3 === void 0 ? void 0 : _this$form$facturas3.reduce(function (total, factura) {
         return total + parseFloat(factura.pago || 0);
       }, 0);
     }
@@ -10214,7 +10215,7 @@ var render = function render() {
       },
       expression: "form.tipo_gastos"
     }
-  })], 1)]), _vm._v(" "), _vm.errors.tipo_gastos ? _c("span", {
+  })], 1)]), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm.errors.tipo_gastos ? _c("span", {
     staticClass: "text-danger"
   }, [_vm._v(_vm._s(_vm.getErrorMessage(_vm.errors.tipo_gastos)))]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-end mt-3"
@@ -10313,6 +10314,12 @@ var staticRenderFns = [function () {
   }, [_vm._v("Detalle"), _c("span", {
     staticClass: "text-danger"
   }, [_vm._v("*")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("span", {
+    staticClass: "text-muted"
+  }, [_vm._v("Precione "), _c("b", [_vm._v("enter")]), _vm._v(" para agregar uno nuevo")]);
 }];
 render._withStripped = true;
 
@@ -14685,7 +14692,7 @@ var render = function render() {
     ref: "formWizard",
     attrs: {
       "next-button-text": "Siguiente",
-      title: "Crear Recibo",
+      title: "Editar Recibo",
       subtitle: "",
       color: "#0d6efd",
       shape: "square",

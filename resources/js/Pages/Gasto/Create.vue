@@ -161,6 +161,7 @@
                         </v-select>
                     </div>
                 </div>
+                <span class="text-muted">Precione <b>enter</b> para agregar uno nuevo</span>
                 <span v-if="errors.tipo_gastos" class="text-danger">{{
                     getErrorMessage(errors.tipo_gastos)
                 }}</span>

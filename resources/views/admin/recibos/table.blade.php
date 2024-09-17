@@ -14,16 +14,13 @@
                 <td>{{ $recibo->numero_interno }}</td>
                 <td>{{ $recibo->fecha }}</td>
                 <td>{{ $recibo->cliente->razon_social }}</td>
-                <td>{{ $recibo->total_recibo }}</td>
+                <td>{{ number_format($recibo->total_recibo, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.recibo.download.pdf', $recibo) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-file-pdf"></i>
                     </a>
                     <a href="{{ route('admin.recibos.show', $recibo) }}" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-eye"></i>
-                    </a>
-                    <a href="{{ route('admin.recibos.edit', $recibo) }}" class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-edit"></i>
                     </a>
                     <form action="{{ route('admin.recibos.destroy', $recibo) }}" style="display:inline" method="post">
                         @csrf

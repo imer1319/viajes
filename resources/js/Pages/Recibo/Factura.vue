@@ -220,7 +220,7 @@ export default {
             );
         },
         totalPago() {
-            return this.form.facturas.reduce(
+            return this.form.facturas?.reduce(
                 (total, factura) => total + parseFloat(factura.pago || 0),
                 0
             );

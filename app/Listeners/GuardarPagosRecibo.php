@@ -28,7 +28,6 @@ class GuardarPagosRecibo
     public function handle(ReciboCreado $event)
     {
         $recibo = $event->recibo;
-
         foreach (request()->input('formaPagos', []) as $pago) {
             PagoRecibo::create([
                 'recibo_id' => $recibo->id,

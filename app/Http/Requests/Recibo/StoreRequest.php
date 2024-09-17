@@ -30,8 +30,8 @@ class StoreRequest extends FormRequest
             'observaciones' => 'nullable|string',
             'saldo_total' => 'required|numeric|min:0',
             'total_recibo' => 'required|numeric|min:0',
-            'facturas' => 'required|array|min:1',
-            'formaPagos' => 'required|array|min:1',
+            'facturas' => 'required|array',
+            'formaPagos' => 'required|array',
         ];
     }
 

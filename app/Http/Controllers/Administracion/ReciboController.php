@@ -34,7 +34,6 @@ class ReciboController extends Controller
         $ultimaRecibo = Recibo::latest()->first();
 
         return view('admin.recibos.create', [
-            'liquidacion' => new Recibo(),
             'numero_interno' => $ultimaRecibo ? $ultimaRecibo->numero_interno + 1 : 1,
             'clientes' => Cliente::all(),
             'condicionesIva' => CondicionIva::all(),
@@ -50,24 +49,22 @@ class ReciboController extends Controller
     public function show(Recibo $recibo)
     {
         return view('admin.recibos.show', [
-            'liquidacion' => $recibo
+            'recibo' => $recibo
         ]);
     }
 
     public function edit(Recibo $recibo)
     {
         return view('admin.recibos.edit', [
-            'liquidacion' => $recibo->load([
-                'movimientos.movimiento',
-                'movimientos.movimiento.cliente',
-                'movimientos.movimiento.tipoViaje',
-                'gastos.gasto',
-                'gastos.gasto.proveedor',
-                'gastos.gasto.chofer',
-                'gastos.gasto.flota',
-                'anticipos.anticipo',
-                'chofer'
-            ])
+            'recibo' => $recibo,
+            'clientes' => Cliente::all(),
+            'condicionesIva' => CondicionIva::all(),
+            'provincias' => Provincia::all(),
+            'retencionGanancias' => RetencionGanancia::all(),
+            'retencionIngresosBruto' => RetencionIngresosBruto::all(),
+            'tipoDocumentos' => TipoDocumento::all(),
+            'formaPagos' => FormasPagos::all(),
+            'bancos' => Banco::all(),
         ]);
     }
 
