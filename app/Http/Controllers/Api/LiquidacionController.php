@@ -16,6 +16,7 @@ use App\Models\Chofer;
 use App\Models\GastoChofer;
 use App\Models\Liquidacion;
 use App\Models\Movimiento;
+use App\Models\PagoLiquidacion;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -50,15 +51,9 @@ class LiquidacionController extends Controller
         try {
             DB::beginTransaction();
             $liquidacion = Liquidacion::create($request->validated());
-            $movimientos = Movimiento::whereIn('id', collect($request->movimientos)->pluck('id'))->get();
-            $anticipos = AnticipoChofer::whereIn('id', collect($request->anticipos)->pluck('id'))->get();
-            $gastos = GastoChofer::whereIn('id', collect($request->gastos)->pluck('id'))->get();
 
-            event(new LiquidacionCreada($request->chofer_id, $liquidacion->id, $movimientos, $anticipos, $gastos));
-            $chofer = Chofer::find($request->chofer_id);
-            $chofer->update([
-                'saldo' => $chofer->saldo - $request->total_liquidacion
-            ]);
+            event(new LiquidacionCreada($liquidacion));
+
             DB::commit();
             return response()->json([
                 'message' => 'Liquidacion creado exitosamente.',
@@ -78,25 +73,11 @@ class LiquidacionController extends Controller
         try {
             DB::beginTransaction();
     
-            $saldoAnterior = $liquidacion->total_liquidacion;
-    
-            event(new LiquidacionEliminada($liquidacion->chofer_id, $liquidacion->id));
+            event(new LiquidacionEliminada($liquidacion));
     
             $liquidacion->update($request->validated());
     
-            $movimientos = Movimiento::whereIn('id', collect($request->movimientos)->pluck('id'))->get();
-            $anticipos = AnticipoChofer::whereIn('id', collect($request->anticipos)->pluck('id'))->get();
-            $gastos = GastoChofer::whereIn('id', collect($request->gastos)->pluck('id'))->get();
-    
-            event(new LiquidacionCreada($request->chofer_id, $liquidacion->id, $movimientos, $anticipos, $gastos));
-    
-            $chofer = Chofer::find($request->chofer_id);
-    
-            $nuevoSaldo = $chofer->saldo + $saldoAnterior - $request->total_liquidacion;
-    
-            $chofer->update([
-                'saldo' => $nuevoSaldo
-            ]);
+            event(new LiquidacionCreada($liquidacion));
     
             DB::commit();
     

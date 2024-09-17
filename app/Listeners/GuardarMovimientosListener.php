@@ -28,16 +28,17 @@ class GuardarMovimientosListener
      */
     public function handle(LiquidacionCreada $event)
     {
-        foreach ($event->movimientos as $movimiento) {
+        $liquidacion = $event->liquidacion;
+        foreach (request()->input('movimientos', []) as $movimiento) {
             LiquidacionMovimiento::create([
-                'chofer_id' => $event->chofer_id,
-                'movimiento_id' => $movimiento->id,
-                'fecha' => $movimiento->fecha,
-                'importe' => $movimiento->saldo_total,
-                'liquidacion_id' => $event->liquidacion_id,
+                'chofer_id' => $liquidacion->chofer_id,
+                'movimiento_id' => $movimiento["id"],
+                'fecha' => $movimiento["fecha"],
+                'importe' => $movimiento["saldo_total"],
+                'liquidacion_id' => $liquidacion["id"],
             ]);
-
-            $movimiento->update([
+            $movi = Movimiento::find($movimiento["id"]);
+            $movi->update([
                 'saldo_total' => 0,
                 'saldo_comision_chofer' => 0,
             ]);

@@ -25,7 +25,8 @@
 
             <div class="card-body">
                 <liquidacion-edit :liquidacion="{{ $liquidacion }}" :choferes="{{ $choferes }}"
-                    :numero_interno="{{ $liquidacion->numero_interno }}" redirect="true" />
+                    :numero_interno="{{ $liquidacion->numero_interno }}" redirect="true" :forma_pagos="{{ $formaPagos }}"
+                    :bancos="{{ $bancos }}" />
             </div>
         </div>
 

@@ -2,7 +2,6 @@ const state = {
     cliente: {},
     isEditing: false,
     cliente_id_anterior: null,
-
     form: {
         id: "",
         fecha: "",

@@ -28,7 +28,8 @@ class EliminarGastosListener
      */
     public function handle(LiquidacionEliminada $event)
     {
-        $liquidacionGastos = LiquidacionGasto::where('liquidacion_id', $event->liquidacion_id)->get();
+        $liquidacion = $event->liquidacion;
+        $liquidacionGastos = LiquidacionGasto::where('liquidacion_id', $liquidacion->id)->get();
         foreach ($liquidacionGastos as $liquidacionGasto) {
             $gasto = GastoChofer::find($liquidacionGasto->gasto_id);
             if ($gasto) {

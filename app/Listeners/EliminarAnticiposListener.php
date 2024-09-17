@@ -28,9 +28,9 @@ class EliminarAnticiposListener
      */
     public function handle(LiquidacionEliminada $event)
     {
-        $liquidacionAnticipos = LiquidacionAnticipo::where('liquidacion_id', $event->liquidacion_id)->get();
+        $liquidacion = $event->liquidacion;
+        $liquidacionAnticipos = LiquidacionAnticipo::where('liquidacion_id', $liquidacion->id)->get();
         foreach ($liquidacionAnticipos as $liquidacionAnticipo) {
-            // Obtener el anticipo asociado
             $anticipo = AnticipoChofer::find($liquidacionAnticipo->anticipo_id);
             if ($anticipo) {
                 $anticipo->update([

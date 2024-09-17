@@ -32,6 +32,11 @@ class Liquidacion extends Model
         return $this->hasMany(LiquidacionAnticipo::class);
     }
 
+    public function pagos()
+    {
+        return $this->hasMany(PagoLiquidacion::class);
+    }
+
     public function chofer()
     {
         return $this->belongsTo(Chofer::class);

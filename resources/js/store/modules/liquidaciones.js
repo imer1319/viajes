@@ -12,7 +12,21 @@ const state = {
         movimientos: [],
         gastos: [],
         anticipos: [],
+        anticipos: [],
+        formaPagos: []
     },
+    form_pago: {
+        id: '',
+        forma_pago_id: '',
+        banco_id: '',
+        numero: '',
+        importe: '',
+        fecha_emision: '',
+        fecha_vencimiento: '',
+        abreviacion: '',
+        descripcion: ''
+    },
+    monto_faltante: '',
     removedMovimientos: [],
     removedAnticipos: [],
     removedGastos: [],
@@ -41,8 +55,10 @@ const actions = {
                 commit('SET_FORM_MOVIMIENTOS', movimientos);
                 commit('SET_FORM_ANTICIPOS', anticipos);
                 commit('SET_FORM_GASTOS', gastos);
+                commit('SET_FORM_PAGOS', []);
                 commit('SET_REMOVED_MOVIMIENTOS', response.data.movimientosCero);
                 commit('SET_REMOVED_ANTICIPOS', response.data.anticiposCero);
+                commit('SET_REMOVED_GASTOS', response.data.gastosCero);
                 commit('SET_REMOVED_GASTOS', response.data.gastosCero);
             } else {
                 commit('SET_FORM_MOVIMIENTOS', movimientos);
@@ -97,6 +113,37 @@ const actions = {
             throw error;
         }
     },
+    async validarFormaPago({ commit, state, dispatch }, formPago) {
+        try {
+            const data = {
+                form_pago: formPago,
+                monto_faltante: state.monto_faltante,
+            };
+            await axios.post('/api/recibos/formaPago', data);
+            dispatch('clearErrors');
+            commit('AGREGAR_FORMA_PAGO');
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.errors) {
+                commit('SET_ERRORS', error.response.data.errors);
+            }
+            throw error;
+        }
+    },
+    async validarFormaPagos({ commit, state, dispatch }) {
+        try {
+            const data = {
+                formaPagos: state.form.formaPagos,
+                monto_faltante: state.monto_faltante,
+            };
+            await axios.post('/api/recibos/formaPagos', data);
+            dispatch('clearErrors');
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.errors) {
+                commit('SET_ERRORS', error.response.data.errors);
+            }
+            throw error;
+        }
+    },
     async agregarLiquidacion({ commit, dispatch }, form) {
         try {
             await axios.post('/api/liquidaciones', form);
@@ -134,6 +181,40 @@ const actions = {
 };
 
 const mutations = {
+    AGREGAR_FORMA_PAGO(state) {
+        const importe = parseFloat(state.form_pago.importe || 0);
+        state.form.formaPagos.push({ ...state.form_pago });
+        console.log('Después de push:', state.form.formaPagos);
+        state.monto_faltante -= importe;
+        state.form_pago = {
+            id: '',
+            forma_pago_id: '',
+            banco_id: '',
+            numero: '',
+            importe: '',
+            fecha_emision: '',
+            fecha_vencimiento: '',
+            abreviacion: '',
+            descripcion: '',
+        };
+    },
+    ELIMINAR_FORMA_PAGO(state, index) {
+        const importe = parseFloat(state.form.formaPagos[index].importe || 0);
+        state.form.formaPagos.splice(index, 1);
+        state.monto_faltante += importe;
+    },
+    SET_FORM_TOTAL_LIQUIDACION(state, total_liquidacion) {
+        state.form.total_liquidacion = total_liquidacion;
+    },
+    SET_FORM_PAGO(state, payload) {
+        state.form_pago = { ...state.form_pago, ...payload };
+    },
+    SET_PAGO_FORMA_PAGO_ID(state, forma_pago_id) {
+        state.form_pago.forma_pago_id = forma_pago_id;
+    },
+    SET_MONTO_FALTANTE(state, monto_faltante) {
+        state.monto_faltante = monto_faltante;
+    },
     SET_REMOVED_MOVIMIENTOS(state, movimientosCero) {
         state.removedMovimientos = movimientosCero;
     },
@@ -151,6 +232,9 @@ const mutations = {
     },
     SET_FORM_GASTOS(state, gastos) {
         state.form.gastos = gastos;
+    },
+    SET_FORM_PAGOS(state, pagos) {
+        state.form.formaPagos = pagos;
     },
     SET_FORM_FECHA(state, fecha) {
         state.form.fecha = fecha;

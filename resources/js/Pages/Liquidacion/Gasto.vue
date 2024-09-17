@@ -56,7 +56,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{{ totalImporte | formatNumber }}</td>
+                    <td>{{ totalGasto | formatNumber }}</td>
                 </tr>
             </tfoot>
         </table>
@@ -116,16 +116,16 @@ export default {
         ...mapMutations("liquidaciones", [
             "REMOVE_GASTO",
             "AGREGAR_GASTO",
+            "SET_MONTO_FALTANTE",
         ]),
         getErrorMessage(error) {
             return Array.isArray(error) ? error[0] : error;
         },
         siguiente() {
+            this.form.total_liquidacion = this.totalLiquidacion;
+            this.SET_MONTO_FALTANTE(this.totalLiquidacion);
             this.$store
-                .dispatch(
-                    "liquidaciones/validarGastos",
-                    this.form.gastos
-                )
+                .dispatch("liquidaciones/validarGastos", this.form.gastos)
                 .then(() => {
                     this.$emit("siguiente");
                     this.$toast.open({
@@ -159,12 +159,26 @@ export default {
             form: (state) => state.form,
             chofer: (state) => state.chofer,
             removedGastos: (state) => state.removedGastos,
+            isEditing: (state) => state.isEditing,
             errors: (state) => state.errors,
         }),
-        totalImporte() {
-            return this.form.gastos?.reduce((total, anticipo) => {
+        totalGasto() {
+            return this.form.gastos?.reduce((total, gasto) => {
+                return total + parseFloat(gasto.importe);
+            }, 0);
+        },
+        totalAnticipo() {
+            return this.form.anticipos?.reduce((total, anticipo) => {
                 return total + parseFloat(anticipo.importe);
             }, 0);
+        },
+        totalMovimientos() {
+            return this.form.movimientos?.reduce((total, movimiento) => {
+                return total + parseFloat(movimiento.comision_chofer);
+            }, 0);
+        },
+        totalLiquidacion() {
+            return this.totalMovimientos - this.totalAnticipo + this.totalGasto;
         },
     },
 };

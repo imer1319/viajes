@@ -37,11 +37,15 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\GuardarMovimientosListener::class,
             \App\Listeners\GuardarAnticiposListener::class,
             \App\Listeners\GuardarGastosListener::class,
+            \App\Listeners\GuardarPagosLiquidacion::class,
+            \App\Listeners\ActualizarSaldoChoferLiquidacion::class,
         ],
         \App\Events\LiquidacionEliminada::class => [
             \App\Listeners\EliminarMovimientosListener::class,
             \App\Listeners\EliminarAnticiposListener::class,
             \App\Listeners\EliminarGastosListener::class,
+            \App\Listeners\EliminarPagosLiquidacion::class,
+            \App\Listeners\RevertirSaldoChoferLiquidacion::class,
         ],
         // Recibo
         \App\Events\ReciboCreado::class => [

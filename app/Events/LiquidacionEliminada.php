@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Liquidacion;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -13,17 +14,16 @@ use Illuminate\Queue\SerializesModels;
 class LiquidacionEliminada
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $chofer_id;
-    public $liquidacion_id;
+    
+    public $liquidacion;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-     public function __construct($chofer_id, $liquidacion_id)
+     public function __construct(Liquidacion $liquidacion)
      {
-         $this->chofer_id = $chofer_id;
-         $this->liquidacion_id = $liquidacion_id;
+         $this->liquidacion = $liquidacion;
      }
 
     /**

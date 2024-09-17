@@ -10,9 +10,7 @@
             ref="formWizard"
         >
             <tab-content title="Datos del chofer" icon="fa fa-user">
-                <Head
-                    @siguiente="siguienteTab()"
-                />
+                <Head @siguiente="siguienteTab()" />
             </tab-content>
             <tab-content title="Movimientos del chofer" icon="fa fa-bus">
                 <Movimiento
@@ -29,8 +27,16 @@
                     @anterior="anteriorTab()"
                 />
             </tab-content>
-            <tab-content title="Gastos del chofer" icon="fa fa-money-check">
+            <tab-content title="Gastos del chofer" icon="fas fa-hand-holding-usd">
                 <Gasto @siguiente="siguienteTab()" @anterior="anteriorTab()" />
+            </tab-content>
+            <tab-content title="Forma de pago" icon="fa fa-money-check">
+                <FormaPago
+                    @siguiente="siguienteTab()"
+                    @anterior="anteriorTab()"
+                    :forma_pagos="forma_pagos"
+                    :bancos="bancos"
+                />
             </tab-content>
             <tab-content title="Resumen" icon="fa fa-book">
                 <Resumen @anterior="anteriorTab()" />
@@ -45,10 +51,11 @@ import Head from "./Head.vue";
 import Movimiento from "./Movimiento.vue";
 import Anticipo from "./Anticipo.vue";
 import Gasto from "./Gasto.vue";
+import FormaPago from "./FormaPago.vue";
 import Resumen from "./Resumen.vue";
 import { mapActions, mapMutations } from "vuex";
 export default {
-    props: ["numero_interno", "choferes"],
+    props: ["numero_interno", "choferes", "bancos", "forma_pagos"],
     components: {
         FormWizard,
         TabContent,
@@ -56,6 +63,7 @@ export default {
         Movimiento,
         Anticipo,
         Gasto,
+        FormaPago,
         Resumen,
     },
     mounted() {
@@ -64,10 +72,8 @@ export default {
     },
     methods: {
         ...mapActions("liquidaciones", ["setChoferes"]),
-        ...mapMutations("liquidaciones", [
-            "SET_FORM_NUMERO_INTERNO",
-        ]),
-        
+        ...mapMutations("liquidaciones", ["SET_FORM_NUMERO_INTERNO"]),
+
         siguienteTab() {
             this.$refs.formWizard.nextTab();
         },

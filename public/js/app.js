@@ -3971,8 +3971,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Movimiento.vue */ "./resources/js/Pages/Liquidacion/Movimiento.vue");
 /* harmony import */ var _Anticipo_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Anticipo.vue */ "./resources/js/Pages/Liquidacion/Anticipo.vue");
 /* harmony import */ var _Gasto_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Gasto.vue */ "./resources/js/Pages/Liquidacion/Gasto.vue");
-/* harmony import */ var _Resumen_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Resumen.vue */ "./resources/js/Pages/Liquidacion/Resumen.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _FormaPago_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./FormaPago.vue */ "./resources/js/Pages/Liquidacion/FormaPago.vue");
+/* harmony import */ var _Resumen_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Resumen.vue */ "./resources/js/Pages/Liquidacion/Resumen.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -3987,8 +3988,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["numero_interno", "choferes"],
+  props: ["numero_interno", "choferes", "bancos", "forma_pagos"],
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
@@ -3996,13 +3998,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     Movimiento: _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Anticipo: _Anticipo_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     Gasto: _Gasto_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    FormaPago: _FormaPago_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   mounted: function mounted() {
     this.setChoferes(this.choferes);
     this.SET_FORM_NUMERO_INTERNO(this.numero_interno);
   },
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)("liquidaciones", ["setChoferes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapMutations)("liquidaciones", ["SET_FORM_NUMERO_INTERNO"])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)("liquidaciones", ["setChoferes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapMutations)("liquidaciones", ["SET_FORM_NUMERO_INTERNO"])), {}, {
     siguienteTab: function siguienteTab() {
       this.$refs.formWizard.nextTab();
     },
@@ -4032,8 +4035,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Movimiento.vue */ "./resources/js/Pages/Liquidacion/Movimiento.vue");
 /* harmony import */ var _Anticipo_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Anticipo.vue */ "./resources/js/Pages/Liquidacion/Anticipo.vue");
 /* harmony import */ var _Gasto_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Gasto.vue */ "./resources/js/Pages/Liquidacion/Gasto.vue");
-/* harmony import */ var _Resumen_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Resumen.vue */ "./resources/js/Pages/Liquidacion/Resumen.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _FormaPago_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./FormaPago.vue */ "./resources/js/Pages/Liquidacion/FormaPago.vue");
+/* harmony import */ var _Resumen_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Resumen.vue */ "./resources/js/Pages/Liquidacion/Resumen.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -4048,8 +4052,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["numero_interno", "liquidacion", "choferes"],
+  props: ["numero_interno", "liquidacion", "choferes", "forma_pagos", "bancos"],
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
@@ -4057,18 +4062,19 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     Movimiento: _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Anticipo: _Anticipo_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     Gasto: _Gasto_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+    FormaPago: _FormaPago_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   mounted: function mounted() {
     this.setChoferes(this.choferes);
     this.initializeForm();
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapState)("liquidaciones", {
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapState)("liquidaciones", {
     isEditing: function isEditing(state) {
       return state.isEditing;
     }
   })),
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)("liquidaciones", ["setForm", "setChoferes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapMutations)("liquidaciones", ["SET_IS_EDITING", "SET_CHOFER_ID_ANTERIOR"])), {}, {
+  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)("liquidaciones", ["setForm", "setChoferes"])), (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapMutations)("liquidaciones", ["SET_IS_EDITING", "SET_CHOFER_ID_ANTERIOR"])), {}, {
     siguienteTab: function siguienteTab() {
       this.$refs.formWizard.nextTab();
     },
@@ -4087,8 +4093,131 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         total_liquidacion: this.liquidacion.total_liquidacion,
         movimientos: this.liquidacion.movimientos,
         anticipos: this.liquidacion.anticipos,
-        gastos: this.liquidacion.gastos
+        gastos: this.liquidacion.gastos,
+        formaPagos: this.liquidacion.pagos
       });
+    }
+  })
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=script&lang=js":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=script&lang=js ***!
+  \**********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["bancos", "forma_pagos"],
+  components: {
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("liquidaciones", ["ELIMINAR_FORMA_PAGO", "AGREGAR_FORMA_PAGO", "SET_PAGO_FORMA_PAGO_ID"])), {}, {
+    updateFormaPagoId: function updateFormaPagoId(event) {
+      this.SET_PAGO_FORMA_PAGO_ID(event.target.value);
+    },
+    getErrorMessage: function getErrorMessage(error) {
+      return Array.isArray(error) ? error[0] : error;
+    },
+    siguiente: function siguiente() {
+      var _this = this;
+      this.$store.dispatch("liquidaciones/validarFormaPagos").then(function () {
+        _this.$emit("siguiente");
+        _this.$toast.open({
+          message: "Datos validados exitosamente!",
+          type: "success",
+          position: "top-right",
+          duration: 2000
+        });
+      })["catch"](function () {
+        _this.$toast.open({
+          message: "Corrija los siguientes errores!",
+          type: "error",
+          position: "top-right",
+          duration: 2000
+        });
+      });
+    },
+    anterior: function anterior() {
+      this.$emit("anterior");
+    },
+    quitarPago: function quitarPago(index) {
+      this.ELIMINAR_FORMA_PAGO(index);
+    },
+    agregarPago: function agregarPago() {
+      var _this2 = this;
+      var formaPagoId = this.form_pago.forma_pago_id;
+      var bancoId = this.form_pago.banco_id;
+      var forma = this.forma_pagos.find(function (forma) {
+        return forma.id == formaPagoId;
+      });
+      this.form_pago.abreviacion = forma.abreviacion;
+      if (formaPagoId == 1) {
+        var banco = this.bancos.find(function (banco) {
+          return banco.id == bancoId;
+        });
+        this.form_pago.descripcion = banco.descripcion;
+      } else {
+        this.form_pago.descripcion = forma.descripcion;
+      }
+      this.$store.dispatch("liquidaciones/validarFormaPago", this.form_pago).then(function () {
+        $("#modal_formaPagos").modal("hide");
+        _this2.$toast.open({
+          message: "Forma de pago agregada exitosamente!",
+          type: "success",
+          position: "top-right",
+          duration: 2000
+        });
+      })["catch"](function (err) {
+        console.log(err);
+        _this2.$toast.open({
+          message: "Error al validar la forma de pago. Corrija los errores!",
+          type: "error",
+          position: "top-right",
+          duration: 2000
+        });
+      });
+    }
+  }),
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("liquidaciones", {
+    form: function form(state) {
+      return state.form;
+    },
+    chofer: function chofer(state) {
+      return state.chofer;
+    },
+    errors: function errors(state) {
+      return state.errors;
+    },
+    form_pago: function form_pago(state) {
+      return state.form_pago;
+    },
+    monto_faltante: function monto_faltante(state) {
+      return state.monto_faltante;
+    }
+  })), {}, {
+    totalImportePagos: function totalImportePagos() {
+      var _this$form$formaPagos;
+      return (_this$form$formaPagos = this.form.formaPagos) === null || _this$form$formaPagos === void 0 ? void 0 : _this$form$formaPagos.reduce(function (total, forma) {
+        return total + parseFloat(forma.importe);
+      }, 0);
     }
   })
 });
@@ -4120,12 +4249,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("liquidaciones", ["REMOVE_GASTO", "AGREGAR_GASTO"])), {}, {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("liquidaciones", ["REMOVE_GASTO", "AGREGAR_GASTO", "SET_MONTO_FALTANTE"])), {}, {
     getErrorMessage: function getErrorMessage(error) {
       return Array.isArray(error) ? error[0] : error;
     },
     siguiente: function siguiente() {
       var _this = this;
+      this.form.total_liquidacion = this.totalLiquidacion;
+      this.SET_MONTO_FALTANTE(this.totalLiquidacion);
       this.$store.dispatch("liquidaciones/validarGastos", this.form.gastos).then(function () {
         _this.$emit("siguiente");
         _this.$toast.open({
@@ -4163,15 +4294,33 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     removedGastos: function removedGastos(state) {
       return state.removedGastos;
     },
+    isEditing: function isEditing(state) {
+      return state.isEditing;
+    },
     errors: function errors(state) {
       return state.errors;
     }
   })), {}, {
-    totalImporte: function totalImporte() {
+    totalGasto: function totalGasto() {
       var _this$form$gastos;
-      return (_this$form$gastos = this.form.gastos) === null || _this$form$gastos === void 0 ? void 0 : _this$form$gastos.reduce(function (total, anticipo) {
+      return (_this$form$gastos = this.form.gastos) === null || _this$form$gastos === void 0 ? void 0 : _this$form$gastos.reduce(function (total, gasto) {
+        return total + parseFloat(gasto.importe);
+      }, 0);
+    },
+    totalAnticipo: function totalAnticipo() {
+      var _this$form$anticipos;
+      return (_this$form$anticipos = this.form.anticipos) === null || _this$form$anticipos === void 0 ? void 0 : _this$form$anticipos.reduce(function (total, anticipo) {
         return total + parseFloat(anticipo.importe);
       }, 0);
+    },
+    totalMovimientos: function totalMovimientos() {
+      var _this$form$movimiento;
+      return (_this$form$movimiento = this.form.movimientos) === null || _this$form$movimiento === void 0 ? void 0 : _this$form$movimiento.reduce(function (total, movimiento) {
+        return total + parseFloat(movimiento.comision_chofer);
+      }, 0);
+    },
+    totalLiquidacion: function totalLiquidacion() {
+      return this.totalMovimientos - this.totalAnticipo + this.totalGasto;
     }
   })
 });
@@ -4448,6 +4597,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this$form$gastos;
       return (_this$form$gastos = this.form.gastos) === null || _this$form$gastos === void 0 ? void 0 : _this$form$gastos.reduce(function (total, anticipo) {
         return total + parseFloat(anticipo.importe);
+      }, 0);
+    },
+    totalImportePagos: function totalImportePagos() {
+      var _this$form$formaPagos;
+      return (_this$form$formaPagos = this.form.formaPagos) === null || _this$form$formaPagos === void 0 ? void 0 : _this$form$formaPagos.reduce(function (total, forma) {
+        return total + parseFloat(forma.importe);
       }, 0);
     },
     totalGastoLiquidacion: function totalGastoLiquidacion() {
@@ -10729,9 +10884,27 @@ var render = function render() {
   })], 1), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Gastos del chofer",
-      icon: "fa fa-money-check"
+      icon: "fas fa-hand-holding-usd"
     }
   }, [_c("Gasto", {
+    on: {
+      siguiente: function siguiente($event) {
+        return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
+      }
+    }
+  })], 1), _vm._v(" "), _c("tab-content", {
+    attrs: {
+      title: "Forma de pago",
+      icon: "fa fa-money-check"
+    }
+  }, [_c("FormaPago", {
+    attrs: {
+      forma_pagos: _vm.forma_pagos,
+      bancos: _vm.bancos
+    },
     on: {
       siguiente: function siguiente($event) {
         return _vm.siguienteTab();
@@ -10829,9 +11002,27 @@ var render = function render() {
   })], 1), _vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Gastos del chofer",
-      icon: "fa fa-money-check"
+      icon: "fas fa-hand-holding-usd"
     }
   }, [_c("Gasto", {
+    on: {
+      siguiente: function siguiente($event) {
+        return _vm.siguienteTab();
+      },
+      anterior: function anterior($event) {
+        return _vm.anteriorTab();
+      }
+    }
+  })], 1), _vm._v(" "), _c("tab-content", {
+    attrs: {
+      title: "Forma de pago",
+      icon: "fa fa-money-check"
+    }
+  }, [_c("FormaPago", {
+    attrs: {
+      forma_pagos: _vm.forma_pagos,
+      bancos: _vm.bancos
+    },
     on: {
       siguiente: function siguiente($event) {
         return _vm.siguienteTab();
@@ -10854,6 +11045,311 @@ var render = function render() {
   })], 1)], 1)], 1);
 };
 var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=template&id=c6f0fa10":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=template&id=c6f0fa10 ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-12 d-flex justify-content-between align-items-center mb-2"
+  }, [_c("div", [_vm._m(0), _vm._v("\n            " + _vm._s(_vm.chofer.nombre) + "\n            "), _c("p", {
+    staticClass: "text-muted"
+  }, [_vm._v("DNI: " + _vm._s(_vm.chofer.dni))])]), _vm._v(" "), _c("div", {
+    staticClass: "d-flex align-items-center form-group"
+  }, [_c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.forma_pago_id,
+      expression: "form_pago.forma_pago_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "forma_pago_id"
+    },
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_pago, "forma_pago_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }, _vm.updateFormaPagoId]
+    }
+  }, [_c("option", {
+    attrs: {
+      value: "",
+      disabled: "",
+      selected: ""
+    }
+  }, [_vm._v("Forma de pago")]), _vm._v(" "), _vm._l(_vm.forma_pagos, function (forma, index) {
+    return _c("option", {
+      key: index,
+      domProps: {
+        value: forma.id
+      }
+    }, [_vm._v("\n                    " + _vm._s(forma.descripcion) + "\n                ")]);
+  })], 2), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    staticStyle: {
+      "flex-shrink": "0"
+    },
+    attrs: {
+      type: "button",
+      "data-toggle": "modal",
+      "data-target": "#modal_formaPagos",
+      disabled: !_vm.form_pago.forma_pago_id || _vm.monto_faltante == 0
+    }
+  }, [_c("i", {
+    staticClass: "fa fa-plus"
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("p", {
+    staticClass: "text-muted"
+  }, [_c("b", [_vm._v("Total a pagar:")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.form.total_liquidacion)) + "\n            "), _c("br"), _vm._v(" "), _c("b", [_vm._v("Monto faltante:")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n        ")])]), _vm._v(" "), _c("div", {
+    staticClass: "w-100"
+  }, [_vm.errors.formaPagos ? _c("span", {
+    staticClass: "text-danger w-100 d-block"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors.formaPagos)) + "\n        ")]) : _vm._e(), _vm._v(" "), _vm.errors.monto_faltante ? _c("span", {
+    staticClass: "text-danger w-100 d-block"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors.monto_faltante)) + "\n        ")]) : _vm._e()]), _vm._v(" "), _c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.form.formaPagos, function (forma, index) {
+    return _c("tr", {
+      key: index
+    }, [_c("td", [_c("a", {
+      staticClass: "btn btn-sm btn-danger",
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.quitarPago(index);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-trash"
+    })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.numero))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.abreviacion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.fecha_emision))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.fecha_vencimiento))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(forma.importe)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(2), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImportePagos)))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-12 d-flex justify-content-between mt-3"
+  }, [_c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.anterior();
+      }
+    }
+  }, [_vm._v("\n            Anterior\n        ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.siguiente();
+      }
+    }
+  }, [_vm._v("\n            Siguiente\n        ")])]), _vm._v(" "), _c("modal-component", {
+    attrs: {
+      modal_id: "modal_formaPagos",
+      titulo: "Formas de pago"
+    }
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-12"
+  }, [_c("h5", {
+    staticClass: "text-center"
+  }, [_vm._v("\n                    Monto faltante:" + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n                ")])]), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "banco_id"
+    }
+  }, [_vm._v("Bancos")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.banco_id,
+      expression: "form_pago.banco_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "banco_id"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_pago, "banco_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(_vm.bancos, function (banco) {
+    return _c("option", {
+      key: banco.id,
+      domProps: {
+        value: banco.id
+      }
+    }, [_vm._v("\n                        " + _vm._s(banco.descripcion) + "\n                    ")]);
+  }), 0), _vm._v(" "), _vm.errors["form_pago.banco_id"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.banco_id"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || _vm.form_pago.forma_pago_id == 2 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "importe"
+    }
+  }, [_vm._v("Importe")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.importe,
+      expression: "form_pago.importe"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form_pago.importe
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "importe", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors["form_pago.importe"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.importe"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "numero"
+    }
+  }, [_vm._v("Numero")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.numero,
+      expression: "form_pago.numero"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form_pago.numero
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "numero", $event.target.value);
+      }
+    }
+  })]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "fecha_emision"
+    }
+  }, [_vm._v("Fecha emision")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.fecha_emision,
+      expression: "form_pago.fecha_emision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.form_pago.fecha_emision
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "fecha_emision", $event.target.value);
+      }
+    }
+  })]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "fecha_vencimiento"
+    }
+  }, [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.fecha_vencimiento,
+      expression: "form_pago.fecha_vencimiento"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.form_pago.fecha_vencimiento
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "fecha_vencimiento", $event.target.value);
+      }
+    }
+  })]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12 mt-3"
+  }, [_c("a", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.agregarPago();
+      }
+    }
+  }, [_vm._v("Agregar")])])])])], 1);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("strong", [_c("i", {
+    staticClass: "fa fa-user mr-2"
+  }), _vm._v("Chofer:")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Numero")]), _vm._v(" "), _c("th", [_vm._v("Forma")]), _vm._v(" "), _c("th", [_vm._v("Descripcion")]), _vm._v(" "), _c("th", [_vm._v("Fecha emision")]), _vm._v(" "), _c("th", [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", {
+    attrs: {
+      colspan: "6"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
+}];
 render._withStripped = true;
 
 
@@ -10898,7 +11394,7 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "fa fa-trash"
     })])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(gasto.importe)))])]);
-  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporte)))])])])]), _vm._v(" "), _c("div", {
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(3), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalGasto)))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-12 d-flex justify-content-between mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
@@ -11306,8 +11802,16 @@ var render = function render() {
       key: gasto.id
     }, [_c("td", [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.fecha))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.proveedor.razon_social))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.flota.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(gasto.chofer.nombre))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(gasto.importe)))])]);
   }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(10), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td"), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImporteGasto)))])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_vm._m(11), _vm._v(" "), _c("table", {
+    staticClass: "table table-bordered col-md-12"
+  }, [_vm._m(12), _vm._v(" "), _c("tbody", _vm._l(_vm.form.formaPagos, function (forma, index) {
+    return _c("tr", {
+      key: index
+    }, [_c("td", [_vm._v(_vm._s(forma.numero))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.abreviacion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.descripcion))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.fecha_emision))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(forma.fecha_vencimiento))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(forma.importe)))])]);
+  }), 0), _vm._v(" "), _c("tfoot", [_c("tr", [_vm._m(13), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm._f("formatNumber")(_vm.totalImportePagos)))])])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-12 text-right"
-  }, [_vm._m(11), _vm._v(" "), _c("strong", [_vm._v("Total movimientos: "), _c("span", {
+  }, [_vm._m(14), _vm._v(" "), _c("strong", [_vm._v("Total movimientos: "), _c("span", {
     staticClass: "text-primary"
   }, [_vm._v("(+)")]), _vm._v("\n            " + _vm._s(_vm._f("formatNumber")(_vm.totalComisionChofer)))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("strong", [_vm._v("Total total adelantos: "), _c("span", {
     staticClass: "text-danger"
@@ -11385,7 +11889,7 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("strong", [_c("i", {
-    staticClass: "fa fa-money-check mr-1"
+    staticClass: "fas fa-hand-holding-usd"
   }), _vm._v("Gastos")]);
 }, function () {
   var _vm = this,
@@ -11397,6 +11901,24 @@ var staticRenderFns = [function () {
   return _c("td", {
     attrs: {
       colspan: "2"
+    }
+  }, [_c("b", [_vm._v("Totales")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("strong", [_c("i", {
+    staticClass: "fa fa-money-check mr-1"
+  }), _vm._v("Formas de pago")]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("Numero")]), _vm._v(" "), _c("th", [_vm._v("Forma")]), _vm._v(" "), _c("th", [_vm._v("Descripcion")]), _vm._v(" "), _c("th", [_vm._v("Fecha emision")]), _vm._v(" "), _c("th", [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("th", [_vm._v("Importe")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", {
+    attrs: {
+      colspan: "5"
     }
   }, [_c("b", [_vm._v("Totales")])]);
 }, function () {
@@ -16860,14 +17382,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var state = {
   chofer: {},
   isEditing: false,
   chofer_id_anterior: null,
-  form: {
+  form: _defineProperty(_defineProperty({
     id: "",
     fecha: "",
     chofer_id: "",
@@ -16877,7 +17404,19 @@ var state = {
     movimientos: [],
     gastos: [],
     anticipos: []
+  }, "anticipos", []), "formaPagos", []),
+  form_pago: {
+    id: '',
+    forma_pago_id: '',
+    banco_id: '',
+    numero: '',
+    importe: '',
+    fecha_emision: '',
+    fecha_vencimiento: '',
+    abreviacion: '',
+    descripcion: ''
   },
+  monto_faltante: '',
   removedMovimientos: [],
   removedAnticipos: [],
   removedGastos: [],
@@ -16911,8 +17450,10 @@ var actions = {
               commit('SET_FORM_MOVIMIENTOS', movimientos);
               commit('SET_FORM_ANTICIPOS', anticipos);
               commit('SET_FORM_GASTOS', gastos);
+              commit('SET_FORM_PAGOS', []);
               commit('SET_REMOVED_MOVIMIENTOS', response.data.movimientosCero);
               commit('SET_REMOVED_ANTICIPOS', response.data.anticiposCero);
+              commit('SET_REMOVED_GASTOS', response.data.gastosCero);
               commit('SET_REMOVED_GASTOS', response.data.gastosCero);
             } else {
               commit('SET_FORM_MOVIMIENTOS', movimientos);
@@ -17050,80 +17591,179 @@ var actions = {
       }, _callee5, null, [[1, 7]]);
     }))();
   },
-  agregarLiquidacion: function agregarLiquidacion(_ref7, form) {
+  validarFormaPago: function validarFormaPago(_ref7, formPago) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-      var commit, dispatch;
+      var commit, state, dispatch, data;
       return _regeneratorRuntime().wrap(function _callee6$(_context6) {
         while (1) switch (_context6.prev = _context6.next) {
           case 0:
-            commit = _ref7.commit, dispatch = _ref7.dispatch;
+            commit = _ref7.commit, state = _ref7.state, dispatch = _ref7.dispatch;
             _context6.prev = 1;
-            _context6.next = 4;
-            return axios.post('/api/liquidaciones', form);
-          case 4:
+            data = {
+              form_pago: formPago,
+              monto_faltante: state.monto_faltante
+            };
+            _context6.next = 5;
+            return axios.post('/api/recibos/formaPago', data);
+          case 5:
             dispatch('clearErrors');
-            _context6.next = 11;
+            commit('AGREGAR_FORMA_PAGO');
+            _context6.next = 13;
             break;
-          case 7:
-            _context6.prev = 7;
+          case 9:
+            _context6.prev = 9;
             _context6.t0 = _context6["catch"](1);
             if (_context6.t0.response && _context6.t0.response.data && _context6.t0.response.data.errors) {
               commit('SET_ERRORS', _context6.t0.response.data.errors);
             }
             throw _context6.t0;
-          case 11:
+          case 13:
           case "end":
             return _context6.stop();
         }
-      }, _callee6, null, [[1, 7]]);
+      }, _callee6, null, [[1, 9]]);
     }))();
   },
-  actualizarLiquidacion: function actualizarLiquidacion(_ref8, form) {
+  validarFormaPagos: function validarFormaPagos(_ref8) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
-      var commit, dispatch;
+      var commit, state, dispatch, data;
       return _regeneratorRuntime().wrap(function _callee7$(_context7) {
         while (1) switch (_context7.prev = _context7.next) {
           case 0:
-            commit = _ref8.commit, dispatch = _ref8.dispatch;
+            commit = _ref8.commit, state = _ref8.state, dispatch = _ref8.dispatch;
             _context7.prev = 1;
-            _context7.next = 4;
-            return axios.put('/api/liquidaciones/' + form.id, form);
-          case 4:
+            data = {
+              formaPagos: state.form.formaPagos,
+              monto_faltante: state.monto_faltante
+            };
+            _context7.next = 5;
+            return axios.post('/api/recibos/formaPagos', data);
+          case 5:
             dispatch('clearErrors');
-            _context7.next = 11;
+            _context7.next = 12;
             break;
-          case 7:
-            _context7.prev = 7;
+          case 8:
+            _context7.prev = 8;
             _context7.t0 = _context7["catch"](1);
             if (_context7.t0.response && _context7.t0.response.data && _context7.t0.response.data.errors) {
               commit('SET_ERRORS', _context7.t0.response.data.errors);
             }
             throw _context7.t0;
-          case 11:
+          case 12:
           case "end":
             return _context7.stop();
         }
-      }, _callee7, null, [[1, 7]]);
+      }, _callee7, null, [[1, 8]]);
     }))();
   },
-  clearErrors: function clearErrors(_ref9) {
-    var commit = _ref9.commit;
+  agregarLiquidacion: function agregarLiquidacion(_ref9, form) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+      var commit, dispatch;
+      return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+        while (1) switch (_context8.prev = _context8.next) {
+          case 0:
+            commit = _ref9.commit, dispatch = _ref9.dispatch;
+            _context8.prev = 1;
+            _context8.next = 4;
+            return axios.post('/api/liquidaciones', form);
+          case 4:
+            dispatch('clearErrors');
+            _context8.next = 11;
+            break;
+          case 7:
+            _context8.prev = 7;
+            _context8.t0 = _context8["catch"](1);
+            if (_context8.t0.response && _context8.t0.response.data && _context8.t0.response.data.errors) {
+              commit('SET_ERRORS', _context8.t0.response.data.errors);
+            }
+            throw _context8.t0;
+          case 11:
+          case "end":
+            return _context8.stop();
+        }
+      }, _callee8, null, [[1, 7]]);
+    }))();
+  },
+  actualizarLiquidacion: function actualizarLiquidacion(_ref10, form) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
+      var commit, dispatch;
+      return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+        while (1) switch (_context9.prev = _context9.next) {
+          case 0:
+            commit = _ref10.commit, dispatch = _ref10.dispatch;
+            _context9.prev = 1;
+            _context9.next = 4;
+            return axios.put('/api/liquidaciones/' + form.id, form);
+          case 4:
+            dispatch('clearErrors');
+            _context9.next = 11;
+            break;
+          case 7:
+            _context9.prev = 7;
+            _context9.t0 = _context9["catch"](1);
+            if (_context9.t0.response && _context9.t0.response.data && _context9.t0.response.data.errors) {
+              commit('SET_ERRORS', _context9.t0.response.data.errors);
+            }
+            throw _context9.t0;
+          case 11:
+          case "end":
+            return _context9.stop();
+        }
+      }, _callee9, null, [[1, 7]]);
+    }))();
+  },
+  clearErrors: function clearErrors(_ref11) {
+    var commit = _ref11.commit;
     commit('CLEAR_ERRORS');
   },
-  updateErrors: function updateErrors(_ref10, errors) {
-    var commit = _ref10.commit;
+  updateErrors: function updateErrors(_ref12, errors) {
+    var commit = _ref12.commit;
     commit('SET_ERRORS', errors);
   },
-  setForm: function setForm(_ref11, formData) {
-    var commit = _ref11.commit;
+  setForm: function setForm(_ref13, formData) {
+    var commit = _ref13.commit;
     commit('SET_FORM', formData);
   },
-  setChoferes: function setChoferes(_ref12, choferes) {
-    var commit = _ref12.commit;
+  setChoferes: function setChoferes(_ref14, choferes) {
+    var commit = _ref14.commit;
     commit('SET_CHOFERES', choferes);
   }
 };
 var mutations = {
+  AGREGAR_FORMA_PAGO: function AGREGAR_FORMA_PAGO(state) {
+    var importe = parseFloat(state.form_pago.importe || 0);
+    state.form.formaPagos.push(_objectSpread({}, state.form_pago));
+    console.log('Después de push:', state.form.formaPagos);
+    state.monto_faltante -= importe;
+    state.form_pago = {
+      id: '',
+      forma_pago_id: '',
+      banco_id: '',
+      numero: '',
+      importe: '',
+      fecha_emision: '',
+      fecha_vencimiento: '',
+      abreviacion: '',
+      descripcion: ''
+    };
+  },
+  ELIMINAR_FORMA_PAGO: function ELIMINAR_FORMA_PAGO(state, index) {
+    var importe = parseFloat(state.form.formaPagos[index].importe || 0);
+    state.form.formaPagos.splice(index, 1);
+    state.monto_faltante += importe;
+  },
+  SET_FORM_TOTAL_LIQUIDACION: function SET_FORM_TOTAL_LIQUIDACION(state, total_liquidacion) {
+    state.form.total_liquidacion = total_liquidacion;
+  },
+  SET_FORM_PAGO: function SET_FORM_PAGO(state, payload) {
+    state.form_pago = _objectSpread(_objectSpread({}, state.form_pago), payload);
+  },
+  SET_PAGO_FORMA_PAGO_ID: function SET_PAGO_FORMA_PAGO_ID(state, forma_pago_id) {
+    state.form_pago.forma_pago_id = forma_pago_id;
+  },
+  SET_MONTO_FALTANTE: function SET_MONTO_FALTANTE(state, monto_faltante) {
+    state.monto_faltante = monto_faltante;
+  },
   SET_REMOVED_MOVIMIENTOS: function SET_REMOVED_MOVIMIENTOS(state, movimientosCero) {
     state.removedMovimientos = movimientosCero;
   },
@@ -17141,6 +17781,9 @@ var mutations = {
   },
   SET_FORM_GASTOS: function SET_FORM_GASTOS(state, gastos) {
     state.form.gastos = gastos;
+  },
+  SET_FORM_PAGOS: function SET_FORM_PAGOS(state, pagos) {
+    state.form.formaPagos = pagos;
   },
   SET_FORM_FECHA: function SET_FORM_FECHA(state, fecha) {
     state.form.fecha = fecha;
@@ -19457,6 +20100,45 @@ component.options.__file = "resources/js/Pages/Liquidacion/Edit.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Liquidacion/FormaPago.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/Liquidacion/FormaPago.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _FormaPago_vue_vue_type_template_id_c6f0fa10__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormaPago.vue?vue&type=template&id=c6f0fa10 */ "./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=template&id=c6f0fa10");
+/* harmony import */ var _FormaPago_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormaPago.vue?vue&type=script&lang=js */ "./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FormaPago_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormaPago_vue_vue_type_template_id_c6f0fa10__WEBPACK_IMPORTED_MODULE_0__.render,
+  _FormaPago_vue_vue_type_template_id_c6f0fa10__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Liquidacion/FormaPago.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Liquidacion/Gasto.vue":
 /*!**************************************************!*\
   !*** ./resources/js/Pages/Liquidacion/Gasto.vue ***!
@@ -20495,6 +21177,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=script&lang=js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=script&lang=js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormaPago.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Liquidacion/Gasto.vue?vue&type=script&lang=js":
 /*!**************************************************************************!*\
   !*** ./resources/js/Pages/Liquidacion/Gasto.vue?vue&type=script&lang=js ***!
@@ -21136,6 +21834,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_9c0b2350__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_9c0b2350__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Edit.vue?vue&type=template&id=9c0b2350 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/Edit.vue?vue&type=template&id=9c0b2350");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=template&id=c6f0fa10":
+/*!************************************************************************************!*\
+  !*** ./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=template&id=c6f0fa10 ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_template_id_c6f0fa10__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_template_id_c6f0fa10__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_template_id_c6f0fa10__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormaPago.vue?vue&type=template&id=c6f0fa10 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Liquidacion/FormaPago.vue?vue&type=template&id=c6f0fa10");
 
 
 /***/ }),

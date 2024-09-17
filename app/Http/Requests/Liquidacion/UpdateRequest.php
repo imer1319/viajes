@@ -29,20 +29,10 @@ class UpdateRequest extends FormRequest
             'observaciones' => 'required|string',
             'total_liquidacion' => 'required|numeric',
             'numero_interno' => 'required|numeric',
-            // movimientos
             'movimientos' => 'required|array',
-            'movimientos.*.id' => 'nullable|exists:movimientos,id',
-            'movimientos.*.saldo_total' => 'required|numeric',
-            'movimientos.*.chofer_id' => 'required|exists:chofers,id',
-            'movimientos.*.fecha' => 'required|date',
-            // gastos
             'gastos' => 'required|array',
-            'gastos.*.id' => 'nullable|exists:gasto_chofers,id',
-            'gastos.*.importe' => 'required|numeric',
-            // anticipos
             'anticipos' => 'required|array',
-            'anticipos.*.id' => 'nullable|exists:anticipo_chofers,id',
-            'anticipos.*.importe' => 'required|numeric',
+            'formaPagos' => 'required|array',
         ];
     }
 
@@ -59,25 +49,13 @@ class UpdateRequest extends FormRequest
             'numero_interno.required' => 'El número interno es obligatorio.',
             'numero_interno.numeric' => 'El número interno debe ser un número.',
             'movimientos.required' => 'Debe incluir al menos un movimiento.',
-            'movimientos.*.id.exists' => 'El movimiento no es válido.',
-            'movimientos.*.saldo_total.required' => 'El saldo total del movimiento es obligatorio.',
-            'movimientos.*.saldo_total.numeric' => 'El saldo total del movimiento debe ser un número.',
-            'movimientos.*.chofer_id.required' => 'El chofer del movimiento es obligatorio.',
-            'movimientos.*.chofer_id.exists' => 'El chofer del movimiento no es válido.',
-            'movimientos.*.fecha.required' => 'La fecha del movimiento es obligatoria.',
-            'movimientos.*.fecha.date' => 'La fecha del movimiento no tiene un formato válido.',
+            'movimientos.required' => 'Los movimientos deben ser un array.',
             'gastos.required' => 'Debe incluir al menos un gasto.',
-            'gastos.*.id.exists' => 'El gasto no es válido.',
-            'gastos.*.importe.required' => 'El importe del gasto es obligatorio.',
-            'gastos.*.importe.numeric' => 'El importe del gasto debe ser un número.',
-            'gastos.*.chofer_id.required' => 'El chofer del gasto es obligatorio.',
-            'gastos.*.chofer_id.exists' => 'El chofer del gasto no es válido.',
+            'gastos.array' => 'Los gastos deben ser un array.',
             'anticipos.required' => 'Debe incluir al menos un anticipo.',
-            'anticipos.*.id.exists' => 'El anticipo no es válido.',
-            'anticipos.*.importe.required' => 'El importe del anticipo es obligatorio.',
-            'anticipos.*.importe.numeric' => 'El importe del anticipo debe ser un número.',
-            'anticipos.*.chofer_id.required' => 'El chofer del anticipo es obligatorio.',
-            'anticipos.*.chofer_id.exists' => 'El chofer del anticipo no es válido.',
+            'anticipos.array' => 'Los anticipos deben ser un array.',
+            'formaPagos.required' => 'Debe proporcionar al menos una forma de pago.',
+            'formaPagos.array' => 'Las formas de pago ser un array.',
         ];
     }
 }

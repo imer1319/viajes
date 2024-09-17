@@ -166,6 +166,44 @@
                             </tr>
                         </tfoot>
                     </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Numero</th>
+                                <th>Forma</th>
+                                <th>Descripcion</th>
+                                <th>Fecha emision</th>
+                                <th>Fecha vencimiento</th>
+                                <th>Importe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $totalPago = 0;
+                            @endphp
+                            @foreach ($liquidacion->pagos as $pago)
+                                @php
+                                    $totalPago += $pago->importe;
+                                @endphp
+                                <tr>
+                                    <td>{{ $pago->nro }}</td>
+                                    <td>{{ $pago->abreviacion }}</td>
+                                    <td>{{ $pago->descripcion }}</td>
+                                    <td>{{ $pago->fecha_emision }}</td>
+                                    <td>{{ $pago->fecha_vencimiento }}</td>
+                                    <td>{{ number_format($pago->importe, 2, ',', '.') }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5">Total</th>
+                                <th>
+                                    {{ number_format($totalPago, 2, ',', '.') }}
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
                     <table>
                         <tr>
                             <td align="right">

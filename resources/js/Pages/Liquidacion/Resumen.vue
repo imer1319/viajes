@@ -86,7 +86,7 @@
             </table>
         </div>
         <div class="col-md-12">
-            <strong><i class="fa fa-money-check mr-1"></i>Gastos</strong>
+            <strong><i class="fas fa-hand-holding-usd"></i>Gastos</strong>
             <table class="table table-bordered col-md-12">
                 <thead>
                     <tr>
@@ -115,6 +115,37 @@
                         <td></td>
                         <td></td>
                         <td>{{ totalImporteGasto | formatNumber }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="col-md-12">
+            <strong><i class="fa fa-money-check mr-1"></i>Formas de pago</strong>
+            <table class="table table-bordered col-md-12">
+                <thead>
+                    <tr>
+                        <th>Numero</th>
+                        <th>Forma</th>
+                        <th>Descripcion</th>
+                        <th>Fecha emision</th>
+                        <th>Fecha vencimiento</th>
+                        <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(forma, index) in form.formaPagos" :key="index">
+                        <td>{{ forma.numero }}</td>
+                        <td>{{ forma.abreviacion }}</td>
+                        <td>{{ forma.descripcion }}</td>
+                        <td>{{ forma.fecha_emision }}</td>
+                        <td>{{ forma.fecha_vencimiento }}</td>
+                        <td>{{ forma.importe | formatNumber }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5"><b>Totales</b></td>
+                        <td>{{ totalImportePagos | formatNumber }}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -216,6 +247,12 @@ export default {
             return this.form.gastos?.reduce((total, anticipo) => {
                 return total + parseFloat(anticipo.importe);
             }, 0);
+        },
+        totalImportePagos() {
+            return this.form.formaPagos?.reduce(
+                (total, forma) => total + parseFloat(forma.importe),
+                0
+            );
         },
         totalGastoLiquidacion() {
             return (

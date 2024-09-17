@@ -10,6 +10,7 @@
         body {
             font-family: sans-serif
         }
+
         tbody,
         tfoot,
         thead {
@@ -122,6 +123,7 @@
         .hover\:underline:hover {
             text-decoration: underline;
         }
+
         footer {
             position: fixed;
             bottom: 1cm;
@@ -224,10 +226,8 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3">Total</td>
-                    <td>
-                    </td>
-                    <td></td>
+                    <td>Total</td>
+                    <td colspan="4"></td>
                     <td class="px-2 py-2">
                         {{ number_format($totalLiquidacionMovimiento, 2, ',', '.') }}
                     </td>
@@ -275,8 +275,8 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3">Total</td>
-                    <td></td>
+                    <td>Total</td>
+                    <td colspan="3"></td>
                     <td class="px-2 py-2">
                         {{ number_format($totalLiquidacionAnticipo, 2, ',', '.') }}
                     </td>
@@ -326,19 +326,72 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3">Total</td>
-                    <td></td>
-                    <td></td>
+                    <td>Total</td>
+                    <td colspan="4"></td>
                     <td class="px-2 py-2">
                         {{ number_format($totalLiquidacionGasto, 2, ',', '.') }}
                     </td>
                 </tr>
             </tfoot>
         </table>
+    </div>
+    <div class="relative overflow-x-auto shadow-md">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-white uppercase bg-blue-400">
+                <tr>
+                    <td colspan="7" align="center">
+                        <p style="margin:0.5rem;">FORMAS DE PAGO</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-2">Ord</td>
+                    <td class="px-6 py-2">Numero</td>
+                    <td class="px-6 py-2">Forma</td>
+                    <td class="px-6 py-2">Descripcion</td>
+                    <td class="px-6 py-2">Fecha emision</td>
+                    <td class="px-6 py-2">Fecha vencimiento</td>
+                    <td class="px-6 py-2">Importe</td>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $totalPagos = 0;
+                @endphp
+
+                @foreach ($liquidacion->pagos as $pago)
+                    @php
+                        $totalPagos += $pago->importe;
+                    @endphp
+                    <tr class="odd:bg-white even:bg-gray-50 border-b">
+                        <td class="px-2 py-4">{{ $loop->iteration }}</td>
+                        <td class="px-2 py-4">{{ $pago->numero }}</td>
+                        <td class="px-2 py-4">{{ $pago->abreviacion }}</td>
+                        <td class="px-2 py-4">{{ $pago->descripcion }}</td>
+                        <td class="px-2 py-4">{{ $pago->fecha_emision }}</td>
+                        <td class="px-2 py-4">{{ $pago->fecha_vencimiento }}</td>
+                        <td class="px-2 py-4">
+                            {{ number_format($pago->importe, 2, ',', '.') }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total</td>
+                    <td colspan="5"></td>
+                    <td class="px-2 py-2">
+                        {{ number_format($totalPagos, 2, ',', '.') }}
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="relative overflow-x-auto shadow-md">
         <table width="100%">
             <tr>
                 <td align="right">
-                    <span class="text-gray-500">CANCELACION: {{ number_format($liquidacion->total_liquidacion, 2, ',', '.') }}</span>
+                    <span class="text-gray-500">CANCELACION:
+                        {{ number_format($liquidacion->total_liquidacion, 2, ',', '.') }}</span>
                 </td>
             </tr>
         </table>

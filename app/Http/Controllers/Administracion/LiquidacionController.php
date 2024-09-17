@@ -7,11 +7,14 @@ use App\Exports\LiquidacionesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Liquidacion\StoreRequest;
 use App\Http\Requests\Liquidacion\UpdateRequest;
+use App\Models\Banco;
 use App\Models\Chofer;
+use App\Models\FormasPagos;
 use App\Models\Liquidacion;
 use App\Traits\NumeroALetra;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LiquidacionController extends Controller
@@ -33,13 +36,15 @@ class LiquidacionController extends Controller
             'choferes' => Chofer::all(),
             'liquidacion' => new Liquidacion(),
             'numero_interno' => $ultimaLiquidacion ? $ultimaLiquidacion->numero_interno + 1 : 1,
+            'formaPagos' => FormasPagos::all(),
+            'bancos' => Banco::all(),
         ]);
     }
 
     public function show(Liquidacion $liquidacione)
     {
         return view('admin.liquidaciones.show', [
-            'liquidacion' => $liquidacione,
+            'liquidacion' => $liquidacione->load('movimientos', 'gastos', 'anticipos', 'pagos'),
             'numero_letra' => $this->convertirNumeroALetras($liquidacione->total_liquidacion)
         ]);
     }
@@ -49,6 +54,8 @@ class LiquidacionController extends Controller
         return view('admin.liquidaciones.edit', [
             'liquidacion' => $liquidacione,
             'choferes' => Chofer::all(),
+            'formaPagos' => FormasPagos::all(),
+            'bancos' => Banco::all(),
         ]);
     }
 
@@ -56,16 +63,17 @@ class LiquidacionController extends Controller
     {
         try {
             DB::beginTransaction();
-            event(new LiquidacionEliminada($liquidacione->chofer_id, $liquidacione->id));
+            event(new LiquidacionEliminada($liquidacione));
             $liquidacione->delete();
-            $chofer = Chofer::find($liquidacione->chofer_id);
-            $chofer->update([
-                'saldo' => $chofer->saldo + $liquidacione->total_liquidacion
-            ]);
+
             DB::commit();
             return redirect()->route('admin.liquidaciones.index')->with('flash', 'Liquidacion eliminada corretamente');
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Error al eliminar la liquidacion:', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
             return response()->json([
                 'message' => 'Hubo un error al eliminar la liquidación.',
                 'error' => $e->getMessage(),
