@@ -2951,6 +2951,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
+    WizardStep: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.WizardStep,
     Head: _Head_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Movimiento: _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -3008,6 +3009,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
+    WizardStep: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.WizardStep,
     Head: _Head_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Movimiento: _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Resumen: _Resumen_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -3994,6 +3996,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
+    WizardStep: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.WizardStep,
     Head: _Head_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Movimiento: _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Anticipo: _Anticipo_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -4058,6 +4061,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
+    WizardStep: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.WizardStep,
     Head: _Head_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Movimiento: _Movimiento_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     Anticipo: _Anticipo_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -5479,6 +5483,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
+    WizardStep: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.WizardStep,
     Head: _Head_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Factura: _Factura_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     FormaPago: _FormaPago_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
@@ -5537,6 +5542,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   components: {
     FormWizard: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.FormWizard,
     TabContent: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.TabContent,
+    WizardStep: vue_form_wizard__WEBPACK_IMPORTED_MODULE_0__.WizardStep,
     Head: _Head_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Factura: _Factura_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     FormaPago: _FormaPago_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -8739,8 +8745,20 @@ var render = function render() {
       color: "#0d6efd",
       shape: "square",
       hideButtons: true
-    }
-  }, [_c("tab-content", {
+    },
+    scopedSlots: _vm._u([{
+      key: "step",
+      fn: function fn(props) {
+        return _c("wizard-step", {
+          attrs: {
+            tab: props.tab,
+            transition: props.transition,
+            index: props.index
+          }
+        });
+      }
+    }])
+  }, [_vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Datos del cliente",
       icon: "fa fa-user"
@@ -8816,8 +8834,20 @@ var render = function render() {
       color: "#0d6efd",
       shape: "square",
       hideButtons: true
-    }
-  }, [_c("tab-content", {
+    },
+    scopedSlots: _vm._u([{
+      key: "step",
+      fn: function fn(props) {
+        return _c("wizard-step", {
+          attrs: {
+            tab: props.tab,
+            transition: props.transition,
+            index: props.index
+          }
+        });
+      }
+    }])
+  }, [_vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Datos del chofer",
       icon: "fa fa-user"
@@ -9148,7 +9178,7 @@ var render = function render() {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_c("a", {
-      staticClass: "btn btn-sm btn-danger",
+      staticClass: "btn btn-sm btn-primary",
       on: {
         click: function click($event) {
           $event.preventDefault();
@@ -10733,7 +10763,7 @@ var render = function render() {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_c("a", {
-      staticClass: "btn btn-sm btn-danger",
+      staticClass: "btn btn-sm btn-primary",
       on: {
         click: function click($event) {
           $event.preventDefault();
@@ -10848,8 +10878,20 @@ var render = function render() {
       color: "#0d6efd",
       shape: "square",
       hideButtons: true
-    }
-  }, [_c("tab-content", {
+    },
+    scopedSlots: _vm._u([{
+      key: "step",
+      fn: function fn(props) {
+        return _c("wizard-step", {
+          attrs: {
+            tab: props.tab,
+            transition: props.transition,
+            index: props.index
+          }
+        });
+      }
+    }])
+  }, [_vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Datos del chofer",
       icon: "fa fa-user"
@@ -10963,8 +11005,20 @@ var render = function render() {
       color: "#0d6efd",
       shape: "square",
       hideButtons: true
-    }
-  }, [_c("tab-content", {
+    },
+    scopedSlots: _vm._u([{
+      key: "step",
+      fn: function fn(props) {
+        return _c("wizard-step", {
+          attrs: {
+            tab: props.tab,
+            transition: props.transition,
+            index: props.index
+          }
+        });
+      }
+    }])
+  }, [_vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Datos del chofer",
       icon: "fa fa-user"
@@ -11144,7 +11198,7 @@ var render = function render() {
     return _c("tr", {
       key: index
     }, [_c("td", [_c("a", {
-      staticClass: "btn btn-sm btn-danger",
+      staticClass: "btn btn-sm btn-primary",
       on: {
         click: function click($event) {
           $event.preventDefault();
@@ -11274,7 +11328,9 @@ var render = function render() {
         _vm.$set(_vm.form_pago, "numero", $event.target.value);
       }
     }
-  })]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+  }), _vm._v(" "), _vm.errors["form_pago.numero"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.numero"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
@@ -11300,7 +11356,9 @@ var render = function render() {
         _vm.$set(_vm.form_pago, "fecha_emision", $event.target.value);
       }
     }
-  })]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
+  }), _vm._v(" "), _vm.errors["form_pago.fecha_emision"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_emision"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
@@ -11326,7 +11384,9 @@ var render = function render() {
         _vm.$set(_vm.form_pago, "fecha_vencimiento", $event.target.value);
       }
     }
-  })]) : _vm._e(), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors["form_pago.fecha_vencimiento"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_vencimiento"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "col-md-12 mt-3"
   }, [_c("a", {
     staticClass: "btn btn-primary",
@@ -11391,7 +11451,7 @@ var render = function render() {
     return _c("tr", {
       key: gasto.id
     }, [_c("td", [_c("a", {
-      staticClass: "btn btn-sm btn-danger",
+      staticClass: "btn btn-sm btn-primary",
       on: {
         click: function click($event) {
           $event.preventDefault();
@@ -11658,7 +11718,7 @@ var render = function render() {
     return _c("tr", {
       key: movimiento.id
     }, [_c("td", [_c("a", {
-      staticClass: "btn btn-sm btn-danger",
+      staticClass: "btn btn-sm btn-primary",
       on: {
         click: function click($event) {
           $event.preventDefault();
@@ -14603,8 +14663,20 @@ var render = function render() {
       color: "#0d6efd",
       shape: "square",
       hideButtons: true
-    }
-  }, [_c("tab-content", {
+    },
+    scopedSlots: _vm._u([{
+      key: "step",
+      fn: function fn(props) {
+        return _c("wizard-step", {
+          attrs: {
+            tab: props.tab,
+            transition: props.transition,
+            index: props.index
+          }
+        });
+      }
+    }])
+  }, [_vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Datos del cliente",
       icon: "fa fa-user"
@@ -14697,8 +14769,20 @@ var render = function render() {
       color: "#0d6efd",
       shape: "square",
       hideButtons: true
-    }
-  }, [_c("tab-content", {
+    },
+    scopedSlots: _vm._u([{
+      key: "step",
+      fn: function fn(props) {
+        return _c("wizard-step", {
+          attrs: {
+            tab: props.tab,
+            transition: props.transition,
+            index: props.index
+          }
+        });
+      }
+    }])
+  }, [_vm._v(" "), _c("tab-content", {
     attrs: {
       title: "Datos del cliente",
       icon: "fa fa-user"
@@ -15010,7 +15094,7 @@ var render = function render() {
     return _c("tr", {
       key: index
     }, [_c("td", [_c("a", {
-      staticClass: "btn btn-sm btn-danger",
+      staticClass: "btn btn-sm btn-primary",
       on: {
         click: function click($event) {
           $event.preventDefault();
@@ -15140,7 +15224,9 @@ var render = function render() {
         _vm.$set(_vm.form_pago, "numero", $event.target.value);
       }
     }
-  })]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+  }), _vm._v(" "), _vm.errors["form_pago.numero"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.numero"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
@@ -15166,7 +15252,9 @@ var render = function render() {
         _vm.$set(_vm.form_pago, "fecha_emision", $event.target.value);
       }
     }
-  })]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
+  }), _vm._v(" "), _vm.errors["form_pago.fecha_emision"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_emision"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
     staticClass: "col-md-6"
   }, [_c("label", {
     attrs: {
@@ -15192,7 +15280,9 @@ var render = function render() {
         _vm.$set(_vm.form_pago, "fecha_vencimiento", $event.target.value);
       }
     }
-  })]) : _vm._e(), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.errors["form_pago.fecha_vencimiento"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_vencimiento"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "col-md-12 mt-3"
   }, [_c("a", {
     staticClass: "btn btn-primary",

@@ -44,7 +44,7 @@
                     <td>
                         <a
                             @click.prevent="quitarMovimiento(index)"
-                            class="btn btn-sm btn-danger"
+                            class="btn btn-sm btn-primary"
                             ><i class="fa fa-trash"></i
                         ></a>
                     </td>

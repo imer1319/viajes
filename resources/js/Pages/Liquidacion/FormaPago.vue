@@ -73,7 +73,7 @@
                     <td>
                         <a
                             @click.prevent="quitarPago(index)"
-                            class="btn btn-sm btn-danger"
+                            class="btn btn-sm btn-primary"
                             ><i class="fa fa-trash"></i
                         ></a>
                     </td>
@@ -165,6 +165,12 @@
                         class="form-control"
                         v-model="form_pago.numero"
                     />
+                    <span
+                        v-if="errors['form_pago.numero']"
+                        class="text-danger"
+                    >
+                        {{ getErrorMessage(errors["form_pago.numero"]) }}
+                    </span>
                 </div>
 
                 <div
@@ -180,6 +186,12 @@
                         class="form-control"
                         v-model="form_pago.fecha_emision"
                     />
+                    <span
+                        v-if="errors['form_pago.fecha_emision']"
+                        class="text-danger"
+                    >
+                        {{ getErrorMessage(errors["form_pago.fecha_emision"]) }}
+                    </span>
                 </div>
 
                 <div class="col-md-6" v-if="form_pago.forma_pago_id == 1">
@@ -189,6 +201,12 @@
                         class="form-control"
                         v-model="form_pago.fecha_vencimiento"
                     />
+                    <span
+                        v-if="errors['form_pago.fecha_vencimiento']"
+                        class="text-danger"
+                    >
+                        {{ getErrorMessage(errors["form_pago.fecha_vencimiento"]) }}
+                    </span>
                 </div>
                 <div class="col-md-12 mt-3">
                     <a @click.prevent="agregarPago()" class="btn btn-primary"

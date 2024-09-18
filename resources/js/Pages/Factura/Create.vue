@@ -9,6 +9,14 @@
             :hideButtons="true"
             ref="formWizard"
         >
+            <wizard-step
+                slot-scope="props"
+                slot="step"
+                :tab="props.tab"
+                :transition="props.transition"
+                :index="props.index"
+            >
+            </wizard-step>
             <tab-content title="Datos del cliente" icon="fa fa-user">
                 <Head
                     @siguiente="siguienteTab()"
@@ -35,7 +43,7 @@
     </div>
 </template>
 <script>
-import { FormWizard, TabContent } from "vue-form-wizard";
+import { FormWizard, TabContent, WizardStep } from "vue-form-wizard";
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import Head from "./Head.vue";
 import Movimiento from "./Movimiento.vue";
@@ -57,6 +65,7 @@ export default {
     components: {
         FormWizard,
         TabContent,
+        WizardStep,
         Head,
         Movimiento,
         Resumen,

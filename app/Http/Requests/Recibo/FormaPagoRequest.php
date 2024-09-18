@@ -57,6 +57,7 @@ class FormaPagoRequest extends FormRequest
             'form_pago.importe.min' => 'El importe debe ser al menos :min.',
             'form_pago.importe.max' => 'El importe no debe exceder :max.',
             'form_pago.importe.gt' => 'El importe debe ser mayor que 0.',
+            'form_pago.numero.required' => 'El numero es obligatorio.',
             'form_pago.fecha_emision.required' => 'La fecha de emisión es obligatoria.',
             'form_pago.fecha_emision.date' => 'La fecha de emisión debe ser una fecha válida.',
             'form_pago.fecha_emision.before_or_equal' => 'La fecha de emisión debe ser anterior o igual a la fecha de vencimiento.',
