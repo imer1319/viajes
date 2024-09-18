@@ -19,20 +19,37 @@
 
     <section class="content mx-3">
         <div class="card card-primary card-outline">
-            <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
-                <h5>Listado de recibos</h5>
-                <div>
-                    <a href="{{ route('admin.recibo.download.excel') }}" class="btn btn-primary rounded-pill float-end">
-                        <i class="fas fa-file-excel"></i>
-                    </a>
-                    <a href="{{ route('admin.recibos.create') }}" class="btn btn-primary rounded-pill float-end">
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
-            </div>
             <div class="card-body">
+                @include('admin.recibos.search')
                 @include('admin.recibos.table')
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        function create() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.recibos.create') }}";
+        }
+
+        function search() {
+            var url = "{{ route('admin.recibos.search') }}";
+            $("#form").attr('action', url);
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            $("#form").submit();
+        }
+
+        function limpiar() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.recibos.index') }}";
+        }
+    </script>
 @endsection

@@ -47,6 +47,14 @@
                 <option value="0" {{ request('facturado') === '0' ? 'selected' : '' }}>No</option>
             </select>
         </div>
+        <div class="col-md-3 mt-3">
+            <input type="date" class="form-control" name="desde" id="desde"
+                value="{{ old('desde', request('desde')) }}">
+        </div>
+        <div class="col-md-3 mt-3">
+            <input type="date" class="form-control" name="hasta" id="hasta"
+                value="{{ old('hasta', request('hasta')) }}">
+        </div>
     </div>
 
     <div class="form-group row">
@@ -54,7 +62,7 @@
             <a href="{{ route('admin.movimientos.create') }}" class="btn btn-primary rounded-pill float-end">
                 <i class="fa fa-plus"></i>
             </a>
-                <a href="{{ route('admin.movimiento.download.excel') }}" class="btn btn-primary rounded-pill float-end">
+                <a href="{{ route('admin.movimiento.download.excel', request()->all()) }}" class="btn btn-primary rounded-pill float-end">
                     <i class="fas fa-file-excel"></i>
                 </a>
         </div>

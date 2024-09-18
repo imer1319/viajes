@@ -37,6 +37,8 @@ class FacturacionController extends Controller
         $facturas = ClienteFactura::query()
             ->byClienteId($request->input('cliente_id'))
             ->bySaldo($request->input('saldo'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
             ->with('cliente')
             ->latest()
             ->paginate(8);
@@ -135,8 +137,8 @@ class FacturacionController extends Controller
         return $pdf->stream();
     }
 
-    public function downloadExcel()
+    public function downloadExcel(Request $request)
     {
-        return Excel::download(new FacturasExport, 'facturas.xlsx');
+        return Excel::download(new FacturasExport($request->all()), 'facturas.xlsx');
     }
 }

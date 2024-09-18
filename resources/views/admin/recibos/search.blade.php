@@ -11,14 +11,6 @@
             </select>
         </div>
         <div class="col-md-3">
-            <select name="saldo" id="saldo" class="form-control">
-                <option value="" {{ is_null(request('saldo')) ? 'selected' : '' }} disabled> -- ¿ Saldo ? --
-                </option>
-                <option value="1" {{ request('saldo') === '1' ? 'selected' : '' }}>Con saldo</option>
-                <option value="0" {{ request('saldo') === '0' ? 'selected' : '' }}>Sin saldo</option>
-            </select>
-        </div>
-        <div class="col-md-3">
             <input type="date" class="form-control" name="desde" id="desde"
                 value="{{ old('desde', request('desde')) }}">
         </div>
@@ -27,13 +19,12 @@
                 value="{{ old('hasta', request('hasta')) }}">
         </div>
     </div>
-
     <div class="form-group row">
         <div class="col-md-6">
-            <a href="{{ route('admin.facturaciones.create') }}" class="btn btn-primary rounded-pill float-end">
+            <a href="{{ route('admin.recibos.create') }}" class="btn btn-primary rounded-pill float-end">
                 <i class="fa fa-plus"></i>
             </a>
-            <a href="{{ route('admin.facturas.download.excel', request()->all()) }}"
+            <a href="{{ route('admin.recibo.download.excel', request()->all()) }}"
                 class="btn btn-primary rounded-pill float-end">
                 <i class="fas fa-file-excel"></i>
             </a>

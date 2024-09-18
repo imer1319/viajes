@@ -35,7 +35,7 @@ class ClienteFactura extends Model
 
     public function condicionPago()
     {
-        return $this->belongsTo(CondicionesPago::class);
+        return $this->belongsTo(CondicionesPago::class, 'condiciones_pago_id');
     }
 
     public function scopeByClienteId($query, $cliente_id = null)
@@ -45,7 +45,7 @@ class ClienteFactura extends Model
         }
         return $query;
     }
-    
+
     public function scopeBySaldo($query, $saldo = null)
     {
         if ($saldo === '1') {
@@ -56,4 +56,19 @@ class ClienteFactura extends Model
         return $query;
     }
     
+    public function scopeByDesde($query, $desde)
+    {
+        if ($desde) {
+            return $query->where('fecha', '>=', $desde);
+        }
+        return $query;
+    }
+
+    public function scopeByHasta($query, $hasta)
+    {
+        if ($hasta) {
+            return $query->where('fecha', '<=', $hasta);
+        }
+        return $query;
+    }
 }

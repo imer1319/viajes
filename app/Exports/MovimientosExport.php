@@ -29,17 +29,33 @@ implements
     WithEvents,
     WithCustomValueBinder
 {
+    protected $filters;
+
+    public function __construct(array $filters)
+    {
+        $this->filters = $filters;
+    }
+
+    public function collection()
+    {
+        return Movimiento::query()
+            ->with('cliente', 'chofer', 'flota', 'tipoViaje')
+            ->byChoferId($this->filters['chofer_id'] ?? null)
+            ->byTipoViajeId($this->filters['tipo_viaje_id'] ?? null)
+            ->byClienteId($this->filters['cliente_id'] ?? null)
+            ->byFlotaId($this->filters['flota_id'] ?? null)
+            ->byFacturado($this->filters['facturado'] ?? null)
+            ->byDesde($this->filters['desde'] ?? null)
+            ->byHasta($this->filters['hasta'] ?? null)
+            ->get();
+    }
+    
     public function styles(Worksheet $sheet)
     {
         return [
             2    => ['font' => ['bold' => true]],
             3    => ['font' => ['bold' => true]],
         ];
-    }
-  
-    public function collection()
-    {
-        return Movimiento::with('cliente', 'chofer', 'flota', 'tipoViaje')->get();
     }
 
     public function map($movimiento): array

@@ -31,4 +31,28 @@ class Recibo extends Model
     {
         return $this->hasMany(FacturaRecibo::class, 'recibo_id');
     }
+
+    public function scopeByClienteId($query, $cliente_id = null)
+    {
+        if ($cliente_id) {
+            return $query->where('cliente_id', $cliente_id);
+        }
+        return $query;
+    }
+
+    public function scopeByDesde($query, $desde)
+    {
+        if ($desde) {
+            return $query->where('fecha', '>=', $desde);
+        }
+        return $query;
+    }
+
+    public function scopeByHasta($query, $hasta)
+    {
+        if ($hasta) {
+            return $query->where('fecha', '<=', $hasta);
+        }
+        return $query;
+    }
 }

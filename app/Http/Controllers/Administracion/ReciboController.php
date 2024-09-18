@@ -18,20 +18,37 @@ use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
 use App\Traits\NumeroALetra;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReciboController extends Controller
 {
     use NumeroALetra;
-    
+
     public function index()
     {
         return view('admin.recibos.index', [
-            'recibos' => Recibo::with('cliente')->paginate(8)
+            'recibos' => Recibo::with('cliente')->paginate(8),
+            'clientes' => Cliente::all()
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $recibos = Recibo::query()
+            ->byClienteId($request->input('cliente_id'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->latest()
+            ->paginate(8);
+
+        $recibos->appends($request->except('page'));
+        return view('admin.recibos.index', [
+            'recibos' => $recibos,
+            'clientes' => Cliente::all()
+        ]);
+    }
     public function create()
     {
         $ultimaRecibo = Recibo::latest()->first();
@@ -103,8 +120,8 @@ class ReciboController extends Controller
         return $pdf->stream();
     }
 
-    public function downloadExcel()
+    public function downloadExcel(Request $request)
     {
-        return Excel::download(new ReciboExport, 'recibos.xlsx');
+        return Excel::download(new ReciboExport($request->all()), 'recibos.xlsx');
     }
 }

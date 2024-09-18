@@ -94,4 +94,20 @@ class Movimiento extends Model
         }
         return $query;
     }
+
+    public function scopeByDesde($query, $desde)
+    {
+        if ($desde) {
+            return $query->where('fecha', '>=', $desde);
+        }
+        return $query;
+    }
+
+    public function scopeByHasta($query, $hasta)
+    {
+        if ($hasta) {
+            return $query->where('fecha', '<=', $hasta);
+        }
+        return $query;
+    }
 }
