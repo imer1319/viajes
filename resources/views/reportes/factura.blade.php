@@ -223,7 +223,7 @@
             </tr>
         </table>
         <div>
-            <span class="text-gray-500"><b>{{ $numero_letra }}</b></span>
+            <span class="text-gray-500"><b>SON: {{ $numero_letra }}</b></span>
             <br>
             <span class="text-gray-500">Observaciones:</span>
             <br>

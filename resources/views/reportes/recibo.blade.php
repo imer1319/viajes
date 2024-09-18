@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Liquidacion</title>
+    <title>Recibo</title>
     <style>
         body {
             font-family: sans-serif
@@ -155,7 +155,7 @@
                     style="height: 100px;" alt="Company logo">
                 <table style="width: 90%; margin: 0 auto;  text-align:center; margin-top:10px">
                     <tr>
-                        <td class="text-gray-500">Chofer:</td>
+                        <td class="text-gray-500">Cliente:</td>
                         <td class="text-gray-500" style="text-align: right">{{ $recibo->cliente->razon_social }}</td>
                     </tr>
                     <tr>
@@ -168,7 +168,7 @@
                 <table style="width: 80%; margin: 0 auto;  text-align:center; margin-top:10px">
                     <tr>
                         <td colspan="2" style="text-align: center">
-                            <h3 class="text-gray-500">LIQUIDACION</h3>
+                            <h3 class="text-gray-500">RECIBO</h3>
                         </td>
                     </tr>
                     <tr>
@@ -240,12 +240,11 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-white uppercase bg-blue-400">
                 <tr>
-                    <td colspan="7" align="center">
+                    <td colspan="6" align="center">
                         <p style="margin:0.5rem;">FORMAS DE PAGO</p>
                     </td>
                 </tr>
                 <tr>
-                    <td class="px-6 py-2">Ord</td>
                     <td class="px-6 py-2">Numero</td>
                     <td class="px-6 py-2">Forma</td>
                     <td class="px-6 py-2">Descripcion</td>
@@ -264,7 +263,6 @@
                         $totalPagos += $pago->importe;
                     @endphp
                     <tr class="odd:bg-white even:bg-gray-50 border-b">
-                        <td class="px-2 py-4">{{ $loop->iteration }}</td>
                         <td class="px-2 py-4">{{ $pago->numero }}</td>
                         <td class="px-2 py-4">{{ $pago->abreviacion }}</td>
                         <td class="px-2 py-4">{{ $pago->descripcion }}</td>
@@ -279,7 +277,7 @@
             <tfoot>
                 <tr>
                     <td>Total</td>
-                    <td colspan="5"></td>
+                    <td colspan="4"></td>
                     <td class="px-2 py-2">
                         {{ number_format($totalPagos, 2, ',', '.') }}
                     </td>
@@ -297,7 +295,7 @@
             </tr>
         </table>
         <div>
-            <span class="text-gray-500"><b>{{ $numero_letra }}</b></span>
+            <span class="text-gray-500"><b>SON: {{ $numero_letra }}</b></span>
             <br>
             <span class="text-gray-500">Observaciones:</span>
             <br>

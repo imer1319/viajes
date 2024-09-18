@@ -8,7 +8,9 @@
     <title>Liquidacion</title>
     <style>
         body {
-            font-family: sans-serif
+            font-family: sans-serif;
+            right: 1cm;
+            left: 1cm;
         }
 
         tbody,
@@ -339,12 +341,11 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-white uppercase bg-blue-400">
                 <tr>
-                    <td colspan="7" align="center">
+                    <td colspan="6" align="center">
                         <p style="margin:0.5rem;">FORMAS DE PAGO</p>
                     </td>
                 </tr>
                 <tr>
-                    <td class="px-6 py-2">Ord</td>
                     <td class="px-6 py-2">Numero</td>
                     <td class="px-6 py-2">Forma</td>
                     <td class="px-6 py-2">Descripcion</td>
@@ -357,13 +358,11 @@
                 @php
                     $totalPagos = 0;
                 @endphp
-
                 @foreach ($liquidacion->pagos as $pago)
                     @php
                         $totalPagos += $pago->importe;
                     @endphp
                     <tr class="odd:bg-white even:bg-gray-50 border-b">
-                        <td class="px-2 py-4">{{ $loop->iteration }}</td>
                         <td class="px-2 py-4">{{ $pago->numero }}</td>
                         <td class="px-2 py-4">{{ $pago->abreviacion }}</td>
                         <td class="px-2 py-4">{{ $pago->descripcion }}</td>
@@ -378,7 +377,7 @@
             <tfoot>
                 <tr>
                     <td>Total</td>
-                    <td colspan="5"></td>
+                    <td colspan="4"></td>
                     <td class="px-2 py-2">
                         {{ number_format($totalPagos, 2, ',', '.') }}
                     </td>
@@ -396,7 +395,7 @@
             </tr>
         </table>
         <div>
-            <span class="text-gray-500"><b>{{ $numero_letra }}</b></span>
+            <span class="text-gray-500"><b>SON: {{ $numero_letra }}</b></span>
             <br>
             <span class="text-gray-500">Observaciones:</span>
             <br>

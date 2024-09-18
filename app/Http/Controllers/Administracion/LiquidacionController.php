@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Administracion;
 use App\Events\LiquidacionEliminada;
 use App\Exports\LiquidacionesExport;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Liquidacion\StoreRequest;
-use App\Http\Requests\Liquidacion\UpdateRequest;
 use App\Models\Banco;
 use App\Models\Chofer;
 use App\Models\FormasPagos;
@@ -89,7 +87,9 @@ class LiquidacionController extends Controller
             'anticipos.anticipo',
             'chofer'
         ]);
+       
         $numero_letra = $this->convertirNumeroALetras($liquidacion->total_liquidacion);
+
         $pdf = Pdf::loadView('reportes.liquidacion', compact('liquidacion', 'numero_letra'));
         return $pdf->stream();
     }
