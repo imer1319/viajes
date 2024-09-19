@@ -30,6 +30,13 @@ implements
     WithEvents,
     WithCustomValueBinder
 {
+    protected $filters;
+
+    public function __construct(array $filters)
+    {
+        $this->filters = $filters;
+    }
+
     public function styles(Worksheet $sheet)
     {
         return [
@@ -37,10 +44,16 @@ implements
             3    => ['font' => ['bold' => true]],
         ];
     }
-    
+
     public function collection()
     {
-        return AnticipoChofer::with('chofer')->get();
+        return AnticipoChofer::query()
+            ->with('chofer')
+            ->byChoferId($this->filters['chofer_id'] ?? null)
+            ->bySaldo($this->filters['saldo'] ?? null)
+            ->byDesde($this->filters['desde'] ?? null)
+            ->byHasta($this->filters['hasta'] ?? null)
+            ->get();
     }
 
     public function map($anticipo): array

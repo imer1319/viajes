@@ -6,6 +6,7 @@ use App\Exports\AnticipoChoferExport;
 use App\Http\Controllers\Controller;
 use App\Models\AnticipoChofer;
 use App\Models\Chofer;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AnticipoChoferController extends Controller
@@ -14,7 +15,23 @@ class AnticipoChoferController extends Controller
     {
         return view('admin.anticipoChofer.index', [
             'chofer' => $chofer,
-            'anticipos' => $chofer->anticipos()->with('chofer')->paginate(8)
+            'anticipos' => $chofer->anticipos()->paginate(8)
+        ]);
+    }
+
+    public function search(Request $request, Chofer $chofer)
+    {   
+        $anticipos = $chofer->anticipos()
+            ->bySaldo($request->input('saldo'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->latest()
+            ->paginate(8);
+
+        $anticipos->appends($request->except('page'));
+        return view('admin.anticipoChofer.index', [
+            'anticipos' => $anticipos,
+            'chofer' => $chofer
         ]);
     }
 
@@ -37,8 +54,8 @@ class AnticipoChoferController extends Controller
         ]);
     }
     
-    public function downloadExcel(Chofer $chofer)
+    public function downloadExcel(Chofer $chofer, Request $request)
     {
-        return Excel::download(new AnticipoChoferExport($chofer), 'anticipo_chofer.xlsx');
+        return Excel::download(new AnticipoChoferExport($chofer, $request->all()), 'anticipo_chofer.xlsx');
     }
 }

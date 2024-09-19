@@ -49,6 +49,7 @@ class FacturacionController extends Controller
             'clientes' => Cliente::all()
         ]);
     }
+    
     public function create()
     {
         $ultimaLiquidacion = ClienteFactura::latest()->first();

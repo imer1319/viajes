@@ -85,4 +85,6 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::get('movimiento/search', [MovimientoController::class, 'search'])->name('movimientos.search');
     Route::get('factura/search', [FacturacionController::class, 'search'])->name('facturaciones.search');
     Route::get('recibo/search', [ReciboController::class, 'search'])->name('recibos.search');
+    Route::get('anticipo/search', [AnticipoController::class, 'search'])->name('anticipos.search');
+    Route::get('anticipo/chofer/search/{chofer}', [AnticipoChoferController::class, 'search'])->name('anticipos.chofer.search');
 });

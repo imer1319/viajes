@@ -27,7 +27,7 @@ class Chofer extends Model
 
     public function anticipos()
     {
-        return $this->hasMany(AnticipoChofer::class);
+        return $this->hasMany(AnticipoChofer::class, 'chofer_id');
     }
 
     public function gastos()

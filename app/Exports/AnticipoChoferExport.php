@@ -31,10 +31,12 @@ implements
     WithCustomValueBinder
 {
     protected $chofer;
+    protected $filters;
 
-    public function __construct(Chofer $chofer)
+    public function __construct(Chofer $chofer, array $filters)
     {
         $this->chofer = $chofer;
+        $this->filters = $filters;
     }
 
     public function styles(Worksheet $sheet)
@@ -46,7 +48,11 @@ implements
     }
     public function collection()
     {
-        return AnticipoChofer::where('chofer_id', $this->chofer->id)->with('chofer')->get();
+        return AnticipoChofer::where('chofer_id', $this->chofer->id)->with('chofer')
+            ->bySaldo($this->filters['saldo'] ?? null)
+            ->byDesde($this->filters['desde'] ?? null)
+            ->byHasta($this->filters['hasta'] ?? null)
+            ->get();
     }
     public function map($anticipo): array
     {
@@ -71,7 +77,7 @@ implements
     {
         return [
             [
-                'Listado de anticipos del chofer: '. $this->chofer->nombre
+                'Listado de anticipos del chofer: ' . $this->chofer->nombre
             ],
             [
                 '#',

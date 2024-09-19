@@ -10,6 +10,7 @@ use App\Http\Requests\Anticipo\StoreRequest;
 use App\Http\Requests\Anticipo\UpdateRequest;
 use App\Models\AnticipoChofer;
 use App\Models\Chofer;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AnticipoController extends Controller
@@ -17,7 +18,26 @@ class AnticipoController extends Controller
     public function index()
     {
         return view('admin.anticipos.index', [
-            'anticipos' => AnticipoChofer::with('chofer')->paginate(8)
+            'anticipos' => AnticipoChofer::with('chofer')->paginate(8),
+            'choferes' => Chofer::all()
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $anticipos = AnticipoChofer::query()
+            ->byChoferId($request->input('chofer_id'))
+            ->bySaldo($request->input('saldo'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->with('chofer')
+            ->latest()
+            ->paginate(8);
+
+        $anticipos->appends($request->except('page'));
+        return view('admin.anticipos.index', [
+            'anticipos' => $anticipos,
+            'choferes' => Chofer::all()
         ]);
     }
 
@@ -87,8 +107,8 @@ class AnticipoController extends Controller
         return redirect()->route('admin.anticipos.index')->with('flash', 'Anticipo eliminado corretamente');
     }
 
-    public function downloadExcel()
+    public function downloadExcel(Request $request)
     {
-        return Excel::download(new AnticiposExport, 'anticipos.xlsx');
+        return Excel::download(new AnticiposExport($request->all()), 'anticipos.xlsx');
     }
 }
