@@ -49,6 +49,7 @@
                         'admin.condiciones-iva.*',
                         'admin.medidas.*',
                         'admin.bancos.*',
+                        'admin.tipos-gasto.*',
                     ]) }}">
                     <a href="#"
                         class="nav-link {{ setActiveRoute([
@@ -60,6 +61,7 @@
                             'admin.condiciones-iva.*',
                             'admin.medidas.*',
                             'admin.bancos.*',
+                            'admin.tipos-gasto.*',
                         ]) }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
@@ -122,6 +124,13 @@
                                 class="nav-link {{ setActiveRoute('admin.bancos.*') }}">
                                 <i class="fas fa-university nav-icon"></i>
                                 <p>Bancos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.tipos-gasto.index') }}"
+                                class="nav-link {{ setActiveRoute('admin.tipos-gasto.*') }}">
+                                <i class="fas fa-university nav-icon"></i>
+                                <p>Tipos de gasto</p>
                             </a>
                         </li>
                     </ul>

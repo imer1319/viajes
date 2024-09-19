@@ -18,6 +18,7 @@ use App\Http\Controllers\Configuracion\MedidaController;
 use App\Http\Controllers\Configuracion\RetencionGananciasController;
 use App\Http\Controllers\Configuracion\RetencionIngresosBrutoController;
 use App\Http\Controllers\Configuracion\TipoComprobanteController;
+use App\Http\Controllers\Configuracion\TipoGastoController;
 use App\Http\Controllers\Main\FacturacionController;
 use App\Http\Controllers\Main\FlotaController;
 use App\Http\Controllers\Main\MovimientoController;
@@ -42,6 +43,7 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('condiciones-iva', CondicionIvaController::class);
     Route::resource('medidas', MedidaController::class);
     Route::resource('bancos', BancoController::class);
+    Route::resource('tipos-gasto', TipoGastoController::class);
     // Administracion
     Route::resource('users', UserController::class);
     Route::resource('clientes', ClienteController::class);
