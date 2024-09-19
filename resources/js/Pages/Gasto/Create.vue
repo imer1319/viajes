@@ -156,12 +156,14 @@
                             <template
                                 #no-options="{ search, searching, loading }"
                             >
-                                No se encontraron tipos de pago
+                                No se encontraron gastos
                             </template>
                         </v-select>
                     </div>
                 </div>
-                <span class="text-muted">Precione <b>enter</b> para agregar uno nuevo</span>
+                <span class="text-muted"
+                    >Precione <b>enter</b> para agregar uno nuevo</span
+                >
                 <span v-if="errors.tipo_gastos" class="text-danger">{{
                     getErrorMessage(errors.tipo_gastos)
                 }}</span>

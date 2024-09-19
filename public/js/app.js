@@ -10235,7 +10235,7 @@ var render = function render() {
         var search = _ref.search,
           searching = _ref.searching,
           loading = _ref.loading;
-        return [_vm._v("\n                            No se encontraron tipos de pago\n                        ")];
+        return [_vm._v("\n                            No se encontraron gastos\n                        ")];
       }
     }]),
     model: {
@@ -10619,7 +10619,7 @@ var render = function render() {
         var search = _ref.search,
           searching = _ref.searching,
           loading = _ref.loading;
-        return [_vm._v("\n                            No se encontraron tipos de pago\n                        ")];
+        return [_vm._v("\n                            No se encontraron gastos\n                        ")];
       }
     }]),
     model: {

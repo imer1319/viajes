@@ -157,7 +157,7 @@
                             <template
                                 #no-options="{ search, searching, loading }"
                             >
-                                No se encontraron tipos de pago
+                                No se encontraron gastos
                             </template>
                         </v-select>
                     </div>
