@@ -21,18 +21,38 @@
         <div class="card card-primary card-outline">
             <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
                 <h5>Listado de gastos del chofer: <b>{{ $chofer->nombre }}</b></h5>
-               <div>
-                <a href="{{ route('admin.gastos.chofer.download.excel', $chofer->id) }}" class="btn btn-primary rounded-pill float-end">
-                    <i class="fas fa-file-excel"></i>
-                </a>
-                <a href="{{ route('admin.gastos.chofer.create', $chofer->id) }}" class="btn btn-primary rounded-pill float-end">
-                    <i class="fa fa-plus"></i>
-                </a>
-               </div>
             </div>
             <div class="card-body">
+                @include('admin.gastoChofer.search')
                 @include('admin.gastoChofer.table')
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        function create() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.gastos.chofer.create', $chofer->id) }}";
+        }
+
+        function search() {
+            var url = "{{ route('admin.gastos.chofer.search', $chofer->id) }}";
+            $("#form").attr('action', url);
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            $("#form").submit();
+        }
+
+        function limpiar() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.gastos.chofer.index', $chofer->id) }}";
+        }
+    </script>
 @endsection

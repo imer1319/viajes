@@ -20,23 +20,39 @@
     <section class="content mx-3">
         <div class="card card-primary card-outline">
             <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
-                @if (isset($chofer))
-                    <h5>Listado de gastos del chofer: <b>{{ $chofer->nombre }}</b></h5>
-                @else
                     <h5>Listado de gastos</h5>
-                @endif
-                <div>
-                    <a href="{{ route('admin.gastos.download.excel') }}" class="btn btn-primary rounded-pill float-end">
-                        <i class="fas fa-file-excel"></i>
-                    </a>
-                    <a href="{{ route('admin.gastos.create') }}" class="btn btn-primary rounded-pill float-end">
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </div>
             </div>
             <div class="card-body">
+                @include('admin.gastos.search')
                 @include('admin.gastos.table')
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        function create() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.gastos.create') }}";
+        }
+
+        function search() {
+            var url = "{{ route('admin.gastos.search') }}";
+            $("#form").attr('action', url);
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            $("#form").submit();
+        }
+
+        function limpiar() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.gastos.index') }}";
+        }
+    </script>
 @endsection

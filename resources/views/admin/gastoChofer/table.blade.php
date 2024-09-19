@@ -3,6 +3,7 @@
         <tr>
             <th># interno</th>
             <th>Fecha</th>
+            <th>Flota</th>
             <th>Importe</th>
             <th>Saldo</th>
             <th></th>
@@ -13,6 +14,7 @@
             <tr>
                 <td>{{ $gasto->numero_interno }}</td>
                 <td>{{ $gasto->fecha }}</td>
+                <td>{{ $gasto->flota->nombre }}</td>
                 <td>{{ number_format($gasto->importe, 2, ',', '.')  }}</td>
                 <td>{{ number_format($gasto->saldo, 2, ',', '.') }}</td>
                 <td>

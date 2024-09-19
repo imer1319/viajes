@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Gasto\StoreRequest;
 use App\Http\Requests\Gasto\UpdateRequest;
 use App\Models\Chofer;
+use App\Models\Flota;
 use App\Models\GastoChofer;
 use App\Models\TipoGasto;
 use Illuminate\Http\Request;
@@ -17,7 +18,29 @@ class GastoController extends Controller
     public function index()
     {
         return view('admin.gastos.index', [
-            'gastos' => GastoChofer::with('chofer')->paginate(8)
+            'gastos' => GastoChofer::with('chofer')->paginate(8),
+            'choferes' => Chofer::all(),
+            'flotas' => Flota::all()
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $gastos = GastoChofer::query()
+            ->byChoferId($request->input('chofer_id'))
+            ->byFlotaId($request->input('flota_id'))
+            ->bySaldo($request->input('saldo'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->with('chofer')
+            ->latest()
+            ->paginate(8);
+
+        $gastos->appends($request->except('page'));
+        return view('admin.gastos.index', [
+            'gastos' => $gastos,
+            'choferes' => Chofer::all(),
+            'flotas' => Flota::all()
         ]);
     }
 
@@ -111,8 +134,8 @@ class GastoController extends Controller
         return redirect()->route('admin.gastos.index')->with('flash', 'Gasto eliminado corretamente');
     }
 
-    public function downloadExcel()
+    public function downloadExcel(Request $request)
     {
-        return Excel::download(new GastosExport, 'gastos.xlsx');
+        return Excel::download(new GastosExport($request->all()), 'gastos.xlsx');
     }
 }

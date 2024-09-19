@@ -87,4 +87,6 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
     Route::get('recibo/search', [ReciboController::class, 'search'])->name('recibos.search');
     Route::get('anticipo/search', [AnticipoController::class, 'search'])->name('anticipos.search');
     Route::get('anticipo/chofer/search/{chofer}', [AnticipoChoferController::class, 'search'])->name('anticipos.chofer.search');
+    Route::get('gasto/search', [GastoController::class, 'search'])->name('gastos.search');
+    Route::get('gasto/chofer/search/{chofer}', [GastoChoferController::class, 'search'])->name('gastos.chofer.search');
 });
