@@ -11,6 +11,7 @@ use App\Models\FormasPagos;
 use App\Models\Liquidacion;
 use App\Traits\NumeroALetra;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
@@ -22,10 +23,31 @@ class LiquidacionController extends Controller
     public function index()
     {
         return view('admin.liquidaciones.index', [
-            'liquidaciones' => Liquidacion::with('chofer')->paginate(8)
+            'liquidaciones' => Liquidacion::with('chofer')->paginate(8),
+            'formas' => FormasPagos::all(),
+            'choferes' => Chofer::all(),
         ]);
     }
 
+    public function search(Request $request)
+    {
+        $liquidaciones = Liquidacion::query()
+            ->byFormaPagoId($request->input('forma_id'))
+            ->byChoferId($request->input('chofer_id'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->with('chofer')
+            ->latest()
+            ->paginate(8);
+
+        $liquidaciones->appends($request->except('page'));
+        return view('admin.liquidaciones.index', [
+            'liquidaciones' => $liquidaciones,
+            'choferes' => Chofer::all(),
+            'formas' => FormasPagos::all(),
+        ]);
+    }
+    
     public function create()
     {
         $ultimaLiquidacion = Liquidacion::latest()->first();
@@ -94,8 +116,8 @@ class LiquidacionController extends Controller
         return $pdf->stream();
     }
 
-    public function downloadExcel()
+    public function downloadExcel(Request $request)
     {
-        return Excel::download(new LiquidacionesExport, 'liquidaciones.xlsx');
+        return Excel::download(new LiquidacionesExport($request->all()), 'liquidaciones.xlsx');
     }
 }

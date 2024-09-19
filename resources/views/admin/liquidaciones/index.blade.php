@@ -31,8 +31,36 @@
                 </div>
             </div>
             <div class="card-body">
+                @include('admin.liquidaciones.search')
                 @include('admin.liquidaciones.table')
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        function create() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.liquidaciones.create') }}";
+        }
+
+        function search() {
+            var url = "{{ route('admin.liquidaciones.search') }}";
+            $("#form").attr('action', url);
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            $("#form").submit();
+        }
+
+        function limpiar() {
+            $(".btn").hide();
+            $(".btn-importar").hide();
+            $(".spinner-btn").show();
+            window.location.href = "{{ route('admin.liquidaciones.index') }}";
+        }
+    </script>
 @endsection

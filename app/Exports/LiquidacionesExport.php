@@ -29,6 +29,13 @@ implements
     WithEvents,
     WithCustomValueBinder
 {
+    protected $filters;
+
+    public function __construct(array $filters)
+    {
+        $this->filters = $filters;
+    }
+
     public function styles(Worksheet $sheet)
     {
         return [
@@ -39,7 +46,13 @@ implements
 
     public function collection()
     {
-        return Liquidacion::all();
+        return Liquidacion::query()
+            ->with('chofer','pagos')
+            ->byChoferId($this->filters['chofer_id'] ?? null)
+            ->byFormaPagoId($this->filters['forma_id'] ?? null)
+            ->byDesde($this->filters['desde'] ?? null)
+            ->byHasta($this->filters['hasta'] ?? null)
+            ->get();
     }
 
     public function map($liquidacion): array
@@ -50,7 +63,8 @@ implements
             $liquidacion->fecha,
             $liquidacion->chofer->nombre,
             $liquidacion->total_liquidacion,
-            $liquidacion->observaciones
+            $liquidacion->observaciones,
+            $liquidacion->pagos->pluck('forma.descripcion')->implode(', '),
         ];
     }
 
@@ -73,6 +87,7 @@ implements
                 'Chofer',
                 'Total',
                 'Observaciones',
+                'Formas de pago',
             ]
         ];
     }
@@ -86,7 +101,7 @@ implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getDelegate()->mergeCells('B2:G2');
+                $event->sheet->getDelegate()->mergeCells('B2:H2');
                 $event->sheet->getDelegate()->getStyle('B2')->applyFromArray([
                     'font' => [
                         'bold' => true,

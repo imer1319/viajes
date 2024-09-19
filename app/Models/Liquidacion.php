@@ -41,4 +41,38 @@ class Liquidacion extends Model
     {
         return $this->belongsTo(Chofer::class);
     }
+
+    public function scopeByChoferId($query, $chofer_id = null)
+    {
+        if ($chofer_id) {
+            return $query->where('chofer_id', $chofer_id);
+        }
+        return $query;
+    }
+
+    public function scopeByFormaPagoId($query, $forma_id = null)
+    {
+        if ($forma_id) {
+            return $query->whereHas('pagos', function ($q) use ($forma_id) {
+                $q->where('forma_pago_id', $forma_id);
+            });
+        }
+        return $query;
+    }
+
+    public function scopeByDesde($query, $desde)
+    {
+        if ($desde) {
+            return $query->where('fecha', '>=', $desde);
+        }
+        return $query;
+    }
+
+    public function scopeByHasta($query, $hasta)
+    {
+        if ($hasta) {
+            return $query->where('fecha', '<=', $hasta);
+        }
+        return $query;
+    }
 }

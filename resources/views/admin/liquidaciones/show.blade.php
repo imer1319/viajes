@@ -169,6 +169,11 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th colspan="6" class="text-center">
+                                    <p>FORMAS DE PAGO</p>
+                                </th>
+                            </tr>
+                            <tr>
                                 <th>Numero</th>
                                 <th>Forma</th>
                                 <th>Descripcion</th>

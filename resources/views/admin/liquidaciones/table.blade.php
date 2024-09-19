@@ -5,6 +5,7 @@
             <th>Fecha</th>
             <th>Chofer</th>
             <th>Total</th>
+            <th>Formas de pago</th>
             <th></th>
         </tr>
     </thead>
@@ -15,6 +16,11 @@
                 <td>{{ $liquidacion->fecha }}</td>
                 <td>{{ $liquidacion->chofer->nombre }}</td>
                 <td>{{ number_format($liquidacion->total_liquidacion, 2, ',', '.') }}</td>
+                <td>
+                    @foreach ($liquidacion->pagos as $pago)
+                        {{ $pago->forma->descripcion }} <br>
+                    @endforeach
+                </td>
                 <td>
                     <a href="{{ route('admin.liquidacion.download.pdf', $liquidacion) }}" target="_blank"
                         class="btn btn-primary btn-sm rounded-pill">

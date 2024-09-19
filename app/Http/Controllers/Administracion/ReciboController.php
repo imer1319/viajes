@@ -52,6 +52,7 @@ class ReciboController extends Controller
             'formas' => FormasPagos::all(),
         ]);
     }
+    
     public function create()
     {
         $ultimaRecibo = Recibo::latest()->first();
