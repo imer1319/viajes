@@ -5,6 +5,7 @@
             <th>Fecha</th>
             <th>Cliente</th>
             <th>Total</th>
+            <th>Formas de pago</th>
             <th></th>
         </tr>
     </thead>
@@ -15,6 +16,11 @@
                 <td>{{ $recibo->fecha }}</td>
                 <td>{{ $recibo->cliente->razon_social }}</td>
                 <td>{{ number_format($recibo->total_recibo, 2, ',', '.') }}</td>
+                <td>
+                    @foreach ($recibo->pagos as $pago)
+                        {{ $pago->forma->descripcion }} <br>
+                    @endforeach
+                </td>
                 <td>
                     <a href="{{ route('admin.recibo.download.pdf', $recibo) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-file-pdf"></i>

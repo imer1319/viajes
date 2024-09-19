@@ -1,6 +1,16 @@
 <form action="#" method="get" id="form">
     <div class="form-group row">
         <div class="col-md-3">
+            <select name="forma_id" id="forma_id" class="form-control">
+                <option value="" disabled selected>-- Seleccione una forma de pago --</option>
+                @foreach ($formas as $forma)
+                    <option value="{{ $forma->id }}" {{ request('forma_id') == $forma->id ? 'selected' : '' }}>
+                        {{ $forma->descripcion }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-3">
             <select name="cliente_id" id="cliente_id" class="form-control">
                 <option value="" disabled selected>-- Seleccione un cliente --</option>
                 @foreach ($clientes as $cliente)

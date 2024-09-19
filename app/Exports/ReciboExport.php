@@ -41,6 +41,7 @@ implements
         return Recibo::query()
             ->with('cliente')
             ->byClienteId($this->filters['cliente_id'] ?? null)
+            ->byFormaPagoId($this->filters['forma_id'] ?? null)
             ->byDesde($this->filters['desde'] ?? null)
             ->byHasta($this->filters['hasta'] ?? null)
             ->get();
@@ -54,14 +55,15 @@ implements
         ];
     }
 
-    public function map($factura): array
+    public function map($recibo): array
     {
         return [
-            $factura->numero_interno,
-            $factura->fecha,
-            $factura->total_recibo,
-            $factura->observaciones,
-            $factura->cliente->razon_social,
+            $recibo->numero_interno,
+            $recibo->fecha,
+            $recibo->total_recibo,
+            $recibo->observaciones,
+            $recibo->cliente->razon_social,
+            $recibo->pagos->pluck('forma.descripcion')->implode(', '),
         ];
     }
 
@@ -83,6 +85,7 @@ implements
                 'Total recibo',
                 'Observaciones ',
                 'Cliente',
+                'Formas de pago',
             ]
         ];
     }

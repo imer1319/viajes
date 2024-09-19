@@ -29,14 +29,16 @@ class ReciboController extends Controller
     public function index()
     {
         return view('admin.recibos.index', [
-            'recibos' => Recibo::with('cliente')->paginate(8),
-            'clientes' => Cliente::all()
+            'recibos' => Recibo::with('cliente','pagos','pagos.banco')->paginate(8),
+            'clientes' => Cliente::all(),
+            'formas' => FormasPagos::all(),
         ]);
     }
 
     public function search(Request $request)
     {
         $recibos = Recibo::query()
+            ->byFormaPagoId($request->input('forma_id'))
             ->byClienteId($request->input('cliente_id'))
             ->byDesde($request->input('desde'))
             ->byHasta($request->input('hasta'))
@@ -46,7 +48,8 @@ class ReciboController extends Controller
         $recibos->appends($request->except('page'));
         return view('admin.recibos.index', [
             'recibos' => $recibos,
-            'clientes' => Cliente::all()
+            'clientes' => Cliente::all(),
+            'formas' => FormasPagos::all(),
         ]);
     }
     public function create()

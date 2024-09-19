@@ -25,4 +25,14 @@ class PagoRecibo extends Model
     {
         return $this->belongsTo(Recibo::class, 'recibo_id');
     }
+
+    public function banco()
+    {
+        return $this->belongsTo(Banco::class, 'banco_id');
+    }
+
+    public function forma()
+    {
+        return $this->belongsTo(FormasPagos::class, 'forma_pago_id');
+    }
 }

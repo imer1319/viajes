@@ -40,6 +40,16 @@ class Recibo extends Model
         return $query;
     }
 
+    public function scopeByFormaPagoId($query, $forma_id = null)
+    {
+        if ($forma_id) {
+            return $query->whereHas('pagos', function ($q) use ($forma_id) {
+                $q->where('forma_pago_id', $forma_id);
+            });
+        }
+        return $query;
+    }
+
     public function scopeByDesde($query, $desde)
     {
         if ($desde) {
