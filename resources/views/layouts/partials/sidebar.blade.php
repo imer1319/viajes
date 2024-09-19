@@ -50,6 +50,7 @@
                         'admin.medidas.*',
                         'admin.bancos.*',
                         'admin.tipos-gasto.*',
+                        'admin.tipo-viajes.*',
                     ]) }}">
                     <a href="#"
                         class="nav-link {{ setActiveRoute([
@@ -62,6 +63,7 @@
                             'admin.medidas.*',
                             'admin.bancos.*',
                             'admin.tipos-gasto.*',
+                            'admin.tipo-viajes.*',
                         ]) }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
@@ -129,8 +131,15 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.tipos-gasto.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.tipos-gasto.*') }}">
-                                <i class="fas fa-university nav-icon"></i>
+                                <i class="fa fa-money-bill-wave nav-icon"></i>
                                 <p>Tipos de gasto</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.tipo-viajes.index') }}"
+                                class="nav-link {{ setActiveRoute('admin.tipo-viajes.*') }}">
+                                <i class="fa fa-suitcase nav-icon"></i>
+                                <p>Tipos de viaje</p>
                             </a>
                         </li>
                     </ul>
