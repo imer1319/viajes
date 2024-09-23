@@ -101,7 +101,7 @@ implements
             ],
             [
                 '#',
-                '# interno',
+                '# int',
                 'Fecha',
                 'Cliente',
                 'Tipo de viaje',

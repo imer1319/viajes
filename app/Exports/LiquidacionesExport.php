@@ -82,7 +82,7 @@ implements
             ],
             [
                 '#',
-                '# interno',
+                '# int',
                 'Fecha',
                 'Chofer',
                 'Total',

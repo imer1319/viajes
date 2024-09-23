@@ -86,7 +86,7 @@ implements
             ],
             [
                 '#',
-                '# interno',
+                '# int',
                 'Fecha',
                 'Proveedor',
                 'Importe',

@@ -41,7 +41,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th># interno</th>
+                                    <th>Int</th>
                                     <th>Fecha</th>
                                     <th>Importe</th>
                                     <th>Saldo</th>
@@ -69,7 +69,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th># interno</th>
+                                    <th>Int</th>
                                     <th>Fecha</th>
                                     <th>Importe</th>
                                     <th>Saldo</th>

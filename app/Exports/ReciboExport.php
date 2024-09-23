@@ -80,7 +80,7 @@ implements
                 'Listado de Recibos'
             ],
             [
-                '# interno',
+                '# int',
                 'Fecha',
                 'Total recibo',
                 'Observaciones ',

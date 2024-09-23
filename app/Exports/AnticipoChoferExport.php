@@ -81,7 +81,7 @@ implements
             ],
             [
                 '#',
-                '# interno',
+                '# int',
                 'Fecha',
                 'Importe',
                 'Saldo',

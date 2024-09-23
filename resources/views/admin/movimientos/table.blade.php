@@ -2,19 +2,19 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th># interno</th>
+                <th>Int</th>
                 <th>Fecha</th>
                 <th>Cliente</th>
-                <th>Tipo de viaje</th>
-                <th># de remito</th>
+                <th>Tipo viaje</th>
+                <th># Remito</th>
                 <th>Total</th>
-                <th>Saldo total</th>
+                <th>Saldo</th>
                 <th>Flota</th>
                 <th>Chofer</th>
                 <th>Comision chofer</th>
                 <th>Saldo comision chofer</th>
-                <th>Facturado</th>
-                <th># de factura</th>
+                <th>Fact</th>
+                <th># Factura</th>
                 <th></th>
             </tr>
         </thead>

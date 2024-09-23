@@ -88,7 +88,7 @@ implements
                 'Listado de facturas'
             ],
             [
-                '# interno',
+                '# int',
                 '# factura',
                 'Fecha',
                 'Cliente ',

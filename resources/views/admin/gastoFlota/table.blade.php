@@ -1,7 +1,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th># interno</th>
+            <th>Int</th>
             <th>Fecha</th>
             <th>Importe</th>
             <th>Saldo</th>
