@@ -172,6 +172,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="agregarGasto"
+                    :disabled="disabled"
                 >
                     Agregar
                 </button>
@@ -229,6 +230,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 numero_interno: "",
                 fecha: "",
@@ -265,6 +267,7 @@ export default {
             this.$store
                 .dispatch("agregarGasto", this.form)
                 .then(() => {
+                    this.disabled = true;
                     if (this.redirect) {
                         window.location = `/gastos`;
                         return;

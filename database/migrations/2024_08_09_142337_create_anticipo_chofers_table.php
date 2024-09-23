@@ -15,7 +15,7 @@ class CreateAnticipoChofersTable extends Migration
     {
         Schema::create('anticipo_chofers', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_interno');
+            $table->bigInteger('numero_interno')->unique();
             $table->date('fecha');
             $table->foreignId('chofer_id')->constrained('chofers');
             $table->decimal('importe', 15, 2);

@@ -1,5 +1,6 @@
 const state = {
     chofer: {},
+    disabled: false,
     isEditing: false,
     chofer_id_anterior: null,
     form: {
@@ -292,6 +293,9 @@ const mutations = {
     },
     SET_CHOFERES(state, choferes) {
         state.choferes = choferes;
+    },
+    SET_DISABLED(state, disabled) {
+        state.disabled = disabled;
     },
 };
 

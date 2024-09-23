@@ -320,6 +320,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="agregarCliente"
+                    :disabled="disabled"
                 >
                     Agregar
                 </button>
@@ -340,6 +341,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 razon_social: "",
                 cuit: "",
@@ -368,6 +370,7 @@ export default {
             this.$store
                 .dispatch("agregarCliente", this.form)
                 .then(() => {
+                    this.disabled = true;
                     if (this.redirect) {
                         window.location = "/clientes";
                         return;

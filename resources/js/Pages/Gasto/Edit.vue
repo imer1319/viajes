@@ -170,6 +170,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="actualizarGasto"
+                    :disabled="disabled"
                 >
                     Actualizar
                 </button>
@@ -234,6 +235,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 numero_interno: "",
                 fecha: "",
@@ -270,6 +272,7 @@ export default {
             this.$store
                 .dispatch("actualizarGasto", this.form)
                 .then(() => {
+                    this.disabled = true;
                     if (this.redirect) {
                         window.location = `/gastos`;
                         return;

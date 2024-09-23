@@ -96,6 +96,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="agregarFlota"
+                    :disabled="disabled"
                 >
                     Agregar
                 </button>
@@ -107,6 +108,7 @@
 export default {
     data() {
         return {
+            disabled: false,
             form: {
                 nombre: "",
                 placa: "",
@@ -122,6 +124,7 @@ export default {
             this.$store
                 .dispatch("agregarFlota", this.form)
                 .then(() => {
+                    this.disabled = true;
                     this.resetForm();
                     this.$toast.open({
                         message: "Flota agregado exitosamente!",

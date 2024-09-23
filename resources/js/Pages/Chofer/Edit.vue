@@ -107,6 +107,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="actualizarChofer"
+                    :disabled="disabled"
                 >
                     Actualizar
                 </button>
@@ -124,6 +125,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 id: "",
                 nombre: "",
@@ -153,6 +155,7 @@ export default {
             this.$store
                 .dispatch("actualizarChofer", this.form)
                 .then(() => {
+                    this.disabled = true;
                     if (this.redirect) {
                         window.location = "/choferes";
                         return;

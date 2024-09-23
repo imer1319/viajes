@@ -49,16 +49,6 @@
             </span>
         @enderror
     </div>
-    <div class="col-md-6">
-        <label for="saldo">Saldo</label>
-        <input type="number" class="form-control  @error('saldo') is-invalid @enderror" name="saldo" id="saldo"
-            value="{{ old('saldo', $banco->saldo) }}">
-        @error('saldo')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
 </div>
 <div class="row">
     <div class="col mt-3">

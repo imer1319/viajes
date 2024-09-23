@@ -22,7 +22,7 @@ class CreateClienteFacturasTable extends Migration
             $table->decimal('total', 10, 2);
             $table->decimal('saldo_total', 10, 2);
             $table->string('observaciones')->nullable();
-            $table->string('numero_interno');
+            $table->bigInteger('numero_interno')->unique();
             $table->string('numero_factura_1');
             $table->string('numero_factura_2');
             $table->foreignId('condiciones_pago_id')->constrained('condiciones_pagos');

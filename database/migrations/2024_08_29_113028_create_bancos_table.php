@@ -15,14 +15,12 @@ class CreateBancosTable extends Migration
     {
         Schema::create('bancos', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
+            $table->string('descripcion')->unique();
             $table->string('domicilio');
-            $table->bigInteger('saldo');
-            $table->string('numero_cuenta');
-            $table->string('cbu');
-            $table->string('alias');
-            // combo box propio o de tercero
-            // el cbu tiene 22 numeros
+            $table->bigInteger('saldo')->default(0);
+            $table->string('numero_cuenta')->unique();
+            $table->string('cbu')->unique();
+            $table->string('alias')->unique();
             $table->timestamps();
         });
     }

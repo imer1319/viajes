@@ -2095,6 +2095,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         numero_interno: "",
         fecha: "",
@@ -2116,6 +2117,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this = this;
       this.form.saldo = this.form.importe;
       this.$store.dispatch("agregarAnticipo", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/anticipos/".concat(_this.form.chofer_id, "/chofer");
           return;
@@ -2211,6 +2213,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         numero_interno: "",
         fecha: "",
@@ -2232,6 +2235,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this = this;
       this.form.saldo = this.form.importe;
       this.$store.dispatch("actualizarAnticipo", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/anticipos/".concat(_this.form.chofer_id, "/chofer");
           return;
@@ -2302,6 +2306,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ["redirect"],
   data: function data() {
     return {
+      disabled: false,
       form: {
         nombre: "",
         fecha_nacimiento: "",
@@ -2318,6 +2323,7 @@ __webpack_require__.r(__webpack_exports__);
     agregarChofer: function agregarChofer() {
       var _this = this;
       this.$store.dispatch("agregarChofer", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/choferes";
           return;
@@ -2381,6 +2387,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         id: "",
         nombre: "",
@@ -2409,6 +2416,7 @@ __webpack_require__.r(__webpack_exports__);
     actualizarChofer: function actualizarChofer() {
       var _this = this;
       this.$store.dispatch("actualizarChofer", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/choferes";
           return;
@@ -2523,6 +2531,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         razon_social: "",
         cuit: "",
@@ -2550,6 +2559,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     agregarCliente: function agregarCliente() {
       var _this = this;
       this.$store.dispatch("agregarCliente", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/clientes";
           return;
@@ -2701,6 +2711,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         id: "",
         razon_social: "",
@@ -2729,6 +2740,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     actualizarCliente: function actualizarCliente() {
       var _this2 = this;
       this.$store.dispatch("actualizarCliente", this.form).then(function () {
+        _this2.disabled = true;
         if (_this2.redirect) {
           window.location = "/clientes";
           return;
@@ -3291,7 +3303,7 @@ function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" 
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("facturas", ["SET_DISABLED"])), {}, {
     anterior: function anterior() {
       this.$emit("anterior");
     },
@@ -3306,6 +3318,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         ruta = "facturas/actualizarFactura";
       }
       this.$store.dispatch(ruta, this.form).then(function () {
+        _this.SET_DISABLED(true);
         window.location = "/facturaciones";
         _this.$toast.open({
           message: "Datos guardados exitosamente!",
@@ -3322,7 +3335,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         });
       });
     }
-  },
+  }),
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("facturas", {
     form: function form(state) {
       return state.form;
@@ -3332,6 +3345,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     isEditing: function isEditing(state) {
       return state.isEditing;
+    },
+    disabled: function disabled(state) {
+      return state.disabled;
     }
   })), {}, {
     totalPrecioReal: function totalPrecioReal() {
@@ -3371,6 +3387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      disabled: false,
       form: {
         nombre: "",
         placa: "",
@@ -3385,6 +3402,7 @@ __webpack_require__.r(__webpack_exports__);
     agregarFlota: function agregarFlota() {
       var _this = this;
       this.$store.dispatch("agregarFlota", this.form).then(function () {
+        _this.disabled = true;
         _this.resetForm();
         _this.$toast.open({
           message: "Flota agregado exitosamente!",
@@ -3442,6 +3460,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         id: "",
         nombre: "",
@@ -3457,6 +3476,7 @@ __webpack_require__.r(__webpack_exports__);
     actualizarFlota: function actualizarFlota() {
       var _this = this;
       this.$store.dispatch("actualizarFlota", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/flotas";
           return;
@@ -3650,6 +3670,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         numero_interno: "",
         fecha: "",
@@ -3685,6 +3706,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this = this;
       this.form.saldo = this.form.importe;
       this.$store.dispatch("agregarGasto", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/gastos";
           return;
@@ -3803,6 +3825,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         numero_interno: "",
         fecha: "",
@@ -3838,6 +3861,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       var _this = this;
       this.form.saldo = this.form.importe;
       this.$store.dispatch("actualizarGasto", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/gastos";
           return;
@@ -4592,7 +4616,7 @@ function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" 
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("liquidaciones", ["SET_DISABLED"])), {}, {
     anterior: function anterior() {
       this.$emit("anterior");
     },
@@ -4604,6 +4628,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         ruta = "liquidaciones/actualizarLiquidacion";
       }
       this.$store.dispatch(ruta, this.form).then(function () {
+        _this.SET_DISABLED(true);
         window.location = "/liquidaciones";
         _this.$toast.open({
           message: "Datos guardados exitosamente!",
@@ -4620,7 +4645,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         });
       });
     }
-  },
+  }),
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("liquidaciones", {
     form: function form(state) {
       return state.form;
@@ -4630,6 +4655,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     isEditing: function isEditing(state) {
       return state.isEditing;
+    },
+    disabled: function disabled(state) {
+      return state.disabled;
     }
   })), {}, {
     totalPrecioChofer: function totalPrecioChofer() {
@@ -4726,6 +4754,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         numero_interno: "",
         fecha: "",
@@ -4795,6 +4824,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.form.saldo_total = this.form.total;
       this.form.saldo_comision_chofer = this.form.comision_chofer;
       this.$store.dispatch("agregarMovimiento", this.form).then(function () {
+        _this.disabled = true;
         _this.resetForm();
         _this.$toast.open({
           message: "Movimiento agregado exitosamente!",
@@ -4942,6 +4972,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   },
   data: function data() {
     return {
+      disabled: false,
       form: {
         id: "",
         numero_interno: "",
@@ -5032,6 +5063,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.form.saldo_total = this.form.total;
       this.form.saldo_comision_chofer = this.form.comision_chofer;
       this.$store.dispatch("actualizarMovimiento", this.form).then(function () {
+        _this.disabled = true;
         _this.resetForm();
         _this.$toast.open({
           message: "Movimiento actualizado exitosamente!",
@@ -5145,6 +5177,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   data: function data() {
     var _form;
     return {
+      disabled: false,
       form: (_form = {
         razon_social: "",
         cuit: "",
@@ -5160,6 +5193,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     agregarProveedor: function agregarProveedor() {
       var _this = this;
       this.$store.dispatch("agregarProveedor", this.form).then(function () {
+        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/proveedores";
           return;
@@ -5304,6 +5338,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
   data: function data() {
     var _form;
     return {
+      disabled: false,
       form: (_form = {
         id: "",
         razon_social: "",
@@ -5320,6 +5355,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     actualizarProveedor: function actualizarProveedor() {
       var _this2 = this;
       this.$store.dispatch("actualizarProveedor", this.form).then(function () {
+        _this2.disabled = true;
         if (_this2.redirect) {
           window.location = "/proveedores";
           return;
@@ -6001,7 +6037,7 @@ function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" 
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("recibos", ["SET_DISABLED"])), {}, {
     anterior: function anterior() {
       this.$emit("anterior");
     },
@@ -6013,6 +6049,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         ruta = "recibos/actualizarRecibo";
       }
       this.$store.dispatch(ruta, this.form).then(function () {
+        _this.SET_DISABLED(true);
         window.location = "/recibos";
         _this.$toast.open({
           message: "Datos guardados exitosamente!",
@@ -6029,7 +6066,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
         });
       });
     }
-  },
+  }),
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)("recibos", {
     form: function form(state) {
       return state.form;
@@ -6039,6 +6076,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     },
     isEditing: function isEditing(state) {
       return state.isEditing;
+    },
+    disabled: function disabled(state) {
+      return state.disabled;
     }
   })), {}, {
     totalImporte: function totalImporte() {
@@ -6084,6 +6124,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      disabled: false,
       form: {
         descripcion: ""
       }
@@ -6093,6 +6134,7 @@ __webpack_require__.r(__webpack_exports__);
     agregarTipoViaje: function agregarTipoViaje() {
       var _this = this;
       this.$store.dispatch("agregarTipoViaje", this.form).then(function () {
+        _this.disabled = true;
         _this.resetForm();
         _this.$toast.open({
           message: "Flota agregado exitosamente!",
@@ -6338,6 +6380,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -6524,6 +6569,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -6784,6 +6832,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -7085,6 +7136,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -7791,6 +7845,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -8528,6 +8585,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -9376,6 +9436,9 @@ var render = function render() {
     }
   }, [_vm._v("\n            Anterior\n        ")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-primary",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -9611,6 +9674,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -9882,6 +9948,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -10202,11 +10271,7 @@ var render = function render() {
   }), _vm._v(" "), _vm.errors["form_pago.fecha_vencimiento"] ? _c("span", {
     staticClass: "text-danger"
   }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_vencimiento"])) + "\n        ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "col-md-6"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-12 mt-3 mx-2"
+    staticClass: "col-md-12 mt-3"
   }, [_c("a", {
     staticClass: "btn btn-primary",
     on: {
@@ -10215,7 +10280,7 @@ var render = function render() {
         return _vm.agregar();
       }
     }
-  }, [_vm._v("Agregar")])])])]);
+  }, [_vm._v("Agregar")])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -10499,6 +10564,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -10883,6 +10951,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -11987,6 +12058,9 @@ var render = function render() {
     }
   }, [_vm._v("\n            Anterior\n        ")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-primary",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -12572,6 +12646,9 @@ var render = function render() {
     staticClass: "col mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -13167,6 +13244,9 @@ var render = function render() {
     staticClass: "col mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -13810,6 +13890,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -14509,6 +14592,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -15530,6 +15616,9 @@ var render = function render() {
     }
   }, [_vm._v("\n            Anterior\n        ")]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-primary",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -15623,6 +15712,9 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
+    attrs: {
+      disabled: _vm.disabled
+    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -17161,6 +17253,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 var state = {
   cliente: {},
   isEditing: false,
+  disabled: false,
   cliente_id_anterior: null,
   form: {
     id: "",
@@ -17405,6 +17498,9 @@ var mutations = {
   SET_IS_EDITING: function SET_IS_EDITING(state, isEditing) {
     state.isEditing = isEditing;
   },
+  SET_DISABLED: function SET_DISABLED(state, disabled) {
+    state.disabled = disabled;
+  },
   SET_FORM: function SET_FORM(state, data) {
     state.form = data;
   }
@@ -17441,6 +17537,7 @@ function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" 
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 var state = {
   chofer: {},
+  disabled: false,
   isEditing: false,
   chofer_id_anterior: null,
   form: _defineProperty(_defineProperty({
@@ -17890,6 +17987,9 @@ var mutations = {
   },
   SET_CHOFERES: function SET_CHOFERES(state, choferes) {
     state.choferes = choferes;
+  },
+  SET_DISABLED: function SET_DISABLED(state, disabled) {
+    state.disabled = disabled;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -17998,6 +18098,7 @@ function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var state = {
   cliente: {},
+  disabled: false,
   isEditing: false,
   cliente_id_anterior: null,
   form: {
@@ -18363,6 +18464,9 @@ var mutations = {
   },
   SET_FORM: function SET_FORM(state, data) {
     state.form = data;
+  },
+  SET_DISABLED: function SET_DISABLED(state, disabled) {
+    state.disabled = disabled;
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

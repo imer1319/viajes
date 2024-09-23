@@ -15,7 +15,7 @@ class CreateMovimientosTable extends Migration
     {
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_interno');
+            $table->bigInteger('numero_interno')->unique();
             $table->date('fecha');
             $table->foreignId('cliente_id')->constrained('clientes');
             $table->foreignId('tipo_viaje_id')->constrained('tipo_viajes');

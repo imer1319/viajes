@@ -15,7 +15,7 @@ class CreateRecibosTable extends Migration
     {
         Schema::create('recibos', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('numero_interno');
+            $table->bigInteger('numero_interno')->unique();
             $table->date('fecha');
             $table->bigInteger('total_recibo');
             $table->string('observaciones')->nullable();

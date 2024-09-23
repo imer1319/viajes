@@ -96,6 +96,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="actualizarFlota"
+                    :disabled="disabled"
                 >
                     Actualizar
                 </button>
@@ -113,6 +114,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 id:"",
                 nombre: "",
@@ -129,6 +131,7 @@ export default {
             this.$store
                 .dispatch("actualizarFlota", this.form)
                 .then(() => {
+                    this.disabled = true;
                     if (this.redirect) {
                         window.location = "/flotas";
                         return;

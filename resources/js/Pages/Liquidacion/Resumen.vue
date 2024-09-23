@@ -120,7 +120,9 @@
             </table>
         </div>
         <div class="col-md-12">
-            <strong><i class="fa fa-money-check mr-1"></i>Formas de pago</strong>
+            <strong
+                ><i class="fa fa-money-check mr-1"></i>Formas de pago</strong
+            >
             <table class="table table-bordered col-md-12">
                 <thead>
                     <tr>
@@ -177,17 +179,21 @@
             <button class="btn btn-primary" @click.prevent="anterior()">
                 Anterior
             </button>
-            <a @click.prevent="agregarLiquidacion()" class="btn btn-primary">{{
-                isEditing ? "Actualizar" : "Guardar"
-            }}</a>
+            <a
+                @click.prevent="agregarLiquidacion()"
+                class="btn btn-primary"
+                :disabled="disabled"
+                >{{ isEditing ? "Actualizar" : "Guardar" }}</a
+            >
         </div>
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
     methods: {
+        ...mapMutations("liquidaciones", ["SET_DISABLED"]),
         anterior() {
             this.$emit("anterior");
         },
@@ -200,6 +206,7 @@ export default {
             this.$store
                 .dispatch(ruta, this.form)
                 .then(() => {
+                    this.SET_DISABLED(true);
                     window.location = "/liquidaciones";
                     this.$toast.open({
                         message: "Datos guardados exitosamente!",
@@ -223,6 +230,7 @@ export default {
             form: (state) => state.form,
             chofer: (state) => state.chofer,
             isEditing: (state) => state.isEditing,
+            disabled: (state) => state.disabled,
         }),
         totalPrecioChofer() {
             return this.form.movimientos?.reduce(

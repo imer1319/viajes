@@ -270,6 +270,7 @@
                 <button
                     class="btn btn-primary"
                     @click.prevent="agregarMovimiento"
+                    :disabled="disabled"
                 >
                     Guardar
                 </button>
@@ -334,6 +335,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 numero_interno: "",
                 fecha: "",
@@ -410,6 +412,7 @@ export default {
             this.$store
                 .dispatch("agregarMovimiento", this.form)
                 .then(() => {
+                    this.disabled = true;
                     this.resetForm();
                     this.$toast.open({
                         message: "Movimiento agregado exitosamente!",

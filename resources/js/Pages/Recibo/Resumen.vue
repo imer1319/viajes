@@ -80,17 +80,21 @@
             <button class="btn btn-primary" @click.prevent="anterior()">
                 Anterior
             </button>
-            <a @click.prevent="agregarRecibo()" class="btn btn-primary">{{
-                isEditing ? "Actualizar" : "Guardar"
-            }}</a>
+            <a
+                @click.prevent="agregarRecibo()"
+                class="btn btn-primary"
+                :disabled="disabled"
+                >{{ isEditing ? "Actualizar" : "Guardar" }}</a
+            >
         </div>
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
     methods: {
+        ...mapMutations("recibos", ["SET_DISABLED"]),
         anterior() {
             this.$emit("anterior");
         },
@@ -103,6 +107,7 @@ export default {
             this.$store
                 .dispatch(ruta, this.form)
                 .then(() => {
+                    this.SET_DISABLED(true);
                     window.location = "/recibos";
                     this.$toast.open({
                         message: "Datos guardados exitosamente!",
@@ -126,6 +131,7 @@ export default {
             form: (state) => state.form,
             cliente: (state) => state.cliente,
             isEditing: (state) => state.isEditing,
+            disabled: (state) => state.disabled,
         }),
         totalImporte() {
             return this.form.facturas?.reduce(

@@ -320,6 +320,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="actualizarCliente"
+                    :disabled="disabled"
                 >
                     Actualizar
                 </button>
@@ -352,6 +353,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 id: "",
                 razon_social: "",
@@ -381,6 +383,7 @@ export default {
             this.$store
                 .dispatch("actualizarCliente", this.form)
                 .then(() => {
+                    this.disabled = true;
                     if (this.redirect) {
                         window.location = "/clientes";
                         return;

@@ -51,17 +51,21 @@
             <button class="btn btn-primary" @click.prevent="anterior()">
                 Anterior
             </button>
-            <a @click.prevent="agregarFactura()" class="btn btn-primary">{{
-                isEditing ? "Actualizar" : "Guardar"
-            }}</a>
+            <a
+                @click.prevent="agregarFactura()"
+                :disabled="disabled"
+                class="btn btn-primary"
+                >{{ isEditing ? "Actualizar" : "Guardar" }}</a
+            >
         </div>
     </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
     methods: {
+        ...mapMutations("facturas", ["SET_DISABLED"]),
         anterior() {
             this.$emit("anterior");
         },
@@ -77,6 +81,7 @@ export default {
             this.$store
                 .dispatch(ruta, this.form)
                 .then(() => {
+                    this.SET_DISABLED(true);
                     window.location = "/facturaciones";
                     this.$toast.open({
                         message: "Datos guardados exitosamente!",
@@ -100,6 +105,7 @@ export default {
             form: (state) => state.form,
             cliente: (state) => state.cliente,
             isEditing: (state) => state.isEditing,
+            disabled: (state) => state.disabled,
         }),
         totalPrecioReal() {
             return this.form.movimientos?.reduce(

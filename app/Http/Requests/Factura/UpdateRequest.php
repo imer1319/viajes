@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Factura;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -28,7 +29,11 @@ class UpdateRequest extends FormRequest
             'cliente_id' => 'required|integer|exists:clientes,id',
             'numero_factura_1' => 'required|string|max:10',
             'numero_factura_2' => 'required|string|max:10',
-            'numero_interno' => 'required|integer',
+            'numero_interno' => [
+                'required',
+                'integer',
+                Rule::unique('cliente_facturas')->ignore($this->numero_interno)
+            ],
             'observaciones' => 'nullable|string|max:255',
             'condiciones_pago_id' => 'required|integer|exists:condiciones_pagos,id',
             'neto' => 'required|numeric|min:0',

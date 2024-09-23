@@ -67,6 +67,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="agregarAnticipo"
+                    :disabled="disabled"
                 >
                     Agregar
                 </button>
@@ -96,12 +97,13 @@ export default {
     mounted() {
         this.form.fecha = this.getTodayDate();
         this.form.numero_interno = this.numero_interno;
-        if(this.chofer_id){
+        if (this.chofer_id) {
             this.form.chofer_id = this.chofer_id;
         }
     },
     data() {
         return {
+            disabled: false,
             form: {
                 numero_interno: "",
                 fecha: "",
@@ -122,8 +124,9 @@ export default {
         agregarAnticipo() {
             this.form.saldo = this.form.importe;
             this.$store
-                .dispatch("agregarAnticipo", this.form)
-                .then(() => {
+            .dispatch("agregarAnticipo", this.form)
+            .then(() => {
+                    this.disabled = true;
                     if (this.redirect) {
                         window.location = `/anticipos/${this.form.chofer_id}/chofer`;
                         return;

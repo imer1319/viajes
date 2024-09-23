@@ -15,7 +15,7 @@ class CreateGastoChofersTable extends Migration
     {
         Schema::create('gasto_chofers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('numero_interno');
+            $table->bigInteger('numero_interno')->unique();
             $table->date('fecha');
             $table->foreignId('proveedor_id')->constrained('proveedors');
             $table->decimal('importe', 15, 2);

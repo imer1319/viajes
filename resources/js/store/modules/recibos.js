@@ -1,5 +1,6 @@
 const state = {
     cliente: {},
+    disabled: false,
     isEditing: false,
     cliente_id_anterior: null,
     form: {
@@ -245,6 +246,9 @@ const mutations = {
     },
     SET_FORM(state, data) {
         state.form = data;
+    },
+    SET_DISABLED(state, disabled) {
+        state.disabled = disabled;
     },
 };
 

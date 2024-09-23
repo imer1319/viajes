@@ -17,4 +17,14 @@ class Banco extends Model
         'cbu',
         'alias',
     ];
+
+    public function setDescripcionAttribute($value)
+    {
+        $this->attributes['descripcion'] = strtoupper($value);
+    }
+
+    public function setAliasAttribute($value)
+    {
+        $this->attributes['alias'] = strtoupper($value);
+    }
 }

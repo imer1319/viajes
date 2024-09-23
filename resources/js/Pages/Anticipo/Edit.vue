@@ -67,6 +67,7 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="actualizarAnticipo"
+                    :disabled="disabled"
                 >
                     Actualizar
                 </button>
@@ -103,6 +104,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 numero_interno: "",
                 fecha: "",
@@ -125,6 +127,7 @@ export default {
             this.$store
                 .dispatch("actualizarAnticipo", this.form)
                 .then(() => {
+                    this.disabled = true;
                     if (this.redirect) {
                         window.location = `/anticipos/${this.form.chofer_id}/chofer`;
                         return;

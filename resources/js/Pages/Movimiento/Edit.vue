@@ -274,6 +274,7 @@
                 <button
                     class="btn btn-primary"
                     @click.prevent="actualizarMovimiento"
+                    :disabled="disabled"
                 >
                     Actualizar
                 </button>
@@ -340,6 +341,7 @@ export default {
     },
     data() {
         return {
+            disabled: false,
             form: {
                 id: "",
                 numero_interno: "",
@@ -437,6 +439,7 @@ export default {
             this.$store
                 .dispatch("actualizarMovimiento", this.form)
                 .then(() => {
+                    this.disabled = true;
                     this.resetForm();
                     this.$toast.open({
                         message: "Movimiento actualizado exitosamente!",

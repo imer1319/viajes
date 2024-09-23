@@ -3,6 +3,8 @@
         <tr>
             <th>#</th>
             <th>Descripcion</th>
+            <th>Alias</th>
+            <th>CBU</th>
             <th></th>
         </tr>
     </thead>
@@ -11,6 +13,8 @@
             <tr>
                 <td>{{ $banco->id }}</td>
                 <td>{{ $banco->descripcion }}</td>
+                <td>{{ $banco->alias }}</td>
+                <td>{{ $banco->cbu }}</td>
                 <td>
                     <a href="{{ route('admin.bancos.edit', $banco) }}"
                         class="btn btn-primary btn-sm rounded-pill">

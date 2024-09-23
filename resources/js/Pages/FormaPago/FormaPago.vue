@@ -93,13 +93,8 @@
                 {{ getErrorMessage(errors["form_pago.fecha_vencimiento"]) }}
             </span>
         </div>
-        <div class="col-md-6"></div>
-        <div class="row">
-            <div class="col-md-12 mt-3 mx-2">
-                <a @click.prevent="agregar()" class="btn btn-primary"
-                    >Agregar</a
-                >
-            </div>
+        <div class="col-md-12 mt-3">
+            <a @click.prevent="agregar()" class="btn btn-primary">Agregar</a>
         </div>
     </div>
 </template>
@@ -112,8 +107,8 @@ export default {
         bancos: Array,
         vuexModule: {
             type: String,
-            required: true
-        }
+            required: true,
+        },
     },
     methods: {
         agregar() {
@@ -133,8 +128,8 @@ export default {
             },
             monto_faltante(state) {
                 return state[this.vuexModule].monto_faltante;
-            }
-        })
-    }
+            },
+        }),
+    },
 };
 </script>
