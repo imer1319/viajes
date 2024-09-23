@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Chofer\StoreRequest;
 use App\Http\Requests\Chofer\UpdateRequest;
 use App\Models\Chofer;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ChoferController extends Controller
@@ -15,6 +16,19 @@ class ChoferController extends Controller
     {
         return view('admin.choferes.index', [
             'choferes' => Chofer::paginate(8)
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $choferes = Chofer::query()
+            ->bySaldo($request->input('saldo'))
+            ->latest()
+            ->paginate(8);
+
+        $choferes->appends($request->except('page'));
+        return view('admin.choferes.index', [
+            'choferes' => $choferes
         ]);
     }
 
