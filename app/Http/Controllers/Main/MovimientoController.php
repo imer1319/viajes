@@ -325,8 +325,21 @@ class MovimientoController extends Controller
             ->with('facturas')
             ->latest()
             ->get();
-        $pdf = Pdf::loadView('reportes.movimientos', compact('movimientos'));
-        $pdf->setPaper('letter','landscape');
+        $totales = [
+            'precio_real' => $movimientos->sum('precio_real'),
+            'iva' => $movimientos->sum('iva'),
+            'total' => $movimientos->sum('total'),
+            'saldo_total' => $movimientos->sum('saldo_total'),
+            'precio_chofer' => $movimientos->sum('precio_chofer'),
+            'comision_chofer' => $movimientos->sum('comision_chofer'),
+            'saldo_comision_chofer' => $movimientos->sum('saldo_comision_chofer')
+        ];
+        $pdf = Pdf::loadView('reportes.movimientos', compact('movimientos', 'totales'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
         return $pdf->stream();
     }
 }
