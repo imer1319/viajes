@@ -25,6 +25,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'descripcion' => 'required|string|max:255',
+            'abreviacion' => 'required|string|max:255',
         ];
     }
 
@@ -34,6 +35,9 @@ class UpdateRequest extends FormRequest
             'descripcion.required' => 'El campo descripcion es obligatorio.',
             'descripcion.string' => 'El campo descripcion debe ser una cadena de texto.',
             'descripcion.max' => 'El campo descripcion no debe exceder :max caracteres.',
+            'abreviacion.required' => 'El campo abreviacion es obligatorio.',
+            'abreviacion.string' => 'El campo abreviacion debe ser una cadena de texto.',
+            'abreviacion.max' => 'El campo abreviacion no debe exceder :max caracteres.',
         ];
     }
 }

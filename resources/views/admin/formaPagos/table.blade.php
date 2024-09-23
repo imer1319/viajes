@@ -3,6 +3,7 @@
         <tr>
             <th>#</th>
             <th>Descripcion</th>
+            <th>Abreviacion</th>
             <th></th>
         </tr>
     </thead>
@@ -11,6 +12,7 @@
             <tr>
                 <td>{{ $forma->id }}</td>
                 <td>{{ $forma->descripcion }}</td>
+                <td>{{ $forma->abreviacion }}</td>
                 <td>
                     <a href="{{ route('admin.forma-pagos.edit', $forma) }}"
                         class="btn btn-primary btn-sm rounded-pill">

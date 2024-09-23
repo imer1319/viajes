@@ -15,4 +15,9 @@ class FormasPagos extends Model
     {
         $this->attributes['descripcion'] = strtoupper($value);
     }
+
+    public function setAbreviacionAttribute($value)
+    {
+        $this->attributes['abreviacion'] = strtoupper($value);
+    }
 }
