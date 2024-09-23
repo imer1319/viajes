@@ -57,7 +57,13 @@
                             :reduce="(tipo) => tipo.id"
                             label="descripcion"
                             class="w-100"
-                        ></v-select>
+                        >
+                            <template
+                                #no-options="{ search, searching, loading }"
+                            >
+                                No se encontraron tipos de viaje
+                            </template>
+                        </v-select>
                     </div>
                     <button
                         class="btn btn-primary ml-2"

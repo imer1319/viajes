@@ -38,8 +38,14 @@ const actions = {
         try {
             const response = await axios.get(`/api/recibos/${cliente_id}?edit=${state.isEditing}&cliente_id_anterior=${state.cliente_id_anterior}&factura=${state.form.id}`);
             const clienteData = response.data.cliente;
-            const facturas = response.data.facturas;
+            let facturas = response.data.facturas;
             commit('SET_CLIENTE', clienteData);
+            facturas = facturas.map(factura => {
+                return {
+                    ...factura,
+                    pago: factura.saldo_total 
+                };
+            });
 
             if (state.isEditing) {
                 commit('SET_FORM_FACTURAS', facturas);

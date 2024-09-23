@@ -56,7 +56,13 @@
                             v-model="form.tipo_viaje_id"
                             :reduce="(tipo) => tipo.id"
                             label="descripcion"
-                        ></v-select>
+                        >
+                            <template
+                                #no-options="{ search, searching, loading }"
+                            >
+                                No se encontraron tipos de viaje
+                            </template>
+                        </v-select>
                     </div>
                     <button
                         class="btn btn-primary ml-2"
