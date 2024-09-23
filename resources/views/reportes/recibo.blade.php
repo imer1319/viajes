@@ -162,6 +162,9 @@
                         <td class="text-gray-500">Domicilio:</td>
                         <td class="text-gray-500" style="text-align: right">{{ $recibo->cliente->domicilio }}</td>
                     </tr>
+                    <tr>
+                        <td class="text-gray-500">{{ $recibo->cliente->condicionIva->descripcion }}</td>
+                    </tr>
                 </table>
             </td>
             <td style="width:50%; text-align:center; vertical-align:top; padding-top:10px;">
@@ -180,6 +183,15 @@
                         <td class="text-gray-500">Fecha</td>
                         <td class="text-gray-500" style="text-align:right">
                             {{ $recibo->created_at->format('d/m/Y') }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-gray-500">Cuit:</td>
+                        <td class="text-gray-500" style="text-align:right">{{ $recibo->cliente->cuit }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-gray-500">Ing. Brutos:</td>
+                        <td class="text-gray-500" style="text-align:right">{{ $recibo->cliente->numero_ingreso_bruto }}
+                        </td>
                     </tr>
                 </table>
             </td>
