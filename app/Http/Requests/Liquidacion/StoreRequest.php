@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'fecha' => 'required|date',
             'chofer_id' => 'required|exists:chofers,id',
-            'observaciones' => 'required|string',
+            'observaciones' => 'nullable|string',
             'total_liquidacion' => 'required|numeric',
             'numero_interno' => 'required|numeric',
             'movimientos' => 'required|array',
@@ -43,7 +43,6 @@ class StoreRequest extends FormRequest
             'fecha.date' => 'La fecha no tiene un formato válido.',
             'chofer_id.required' => 'El campo chofer es obligatorio.',
             'chofer_id.exists' => 'El chofer seleccionado no es válido.',
-            'observaciones.required' => 'Las observaciones son obligatorias.',
             'total_liquidacion.required' => 'El total de la liquidación es obligatorio.',
             'total_liquidacion.numeric' => 'El total de la liquidación debe ser un número.',
             'numero_interno.required' => 'El número interno es obligatorio.',

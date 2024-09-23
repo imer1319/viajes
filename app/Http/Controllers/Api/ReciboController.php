@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Recibo;
+use App\Models\Cliente;
 use App\Events\ReciboCreado;
+use App\Models\ClienteFactura;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recibo\FacturaRequest;
 use App\Http\Requests\Recibo\FormaPagoRequest;
@@ -10,11 +13,6 @@ use App\Http\Requests\Recibo\FormaPagosRequest;
 use App\Http\Requests\Recibo\HeadRequest;
 use App\Http\Requests\Recibo\StoreRequest;
 use App\Http\Requests\Recibo\UpdateRequest;
-use App\Models\Cliente;
-use App\Models\ClienteFactura;
-use App\Models\FacturaRecibo;
-use App\Models\PagoRecibo;
-use App\Models\Recibo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 

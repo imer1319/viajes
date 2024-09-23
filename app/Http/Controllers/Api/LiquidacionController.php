@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Models\Liquidacion;
 use App\Events\LiquidacionCreada;
 use App\Events\LiquidacionEliminada;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Liquidacion\AnticipoRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Liquidacion\GastoRequest;
 use App\Http\Requests\Liquidacion\HeadRequest;
+use App\Http\Requests\Liquidacion\AnticipoRequest;
 use App\Http\Requests\Liquidacion\MovimientoRequest;
 use App\Http\Requests\Liquidacion\StoreRequest;
 use App\Http\Requests\Liquidacion\UpdateRequest;
-use App\Models\AnticipoChofer;
-use App\Models\Chofer;
-use App\Models\GastoChofer;
-use App\Models\Liquidacion;
-use App\Models\Movimiento;
-use App\Models\PagoLiquidacion;
-use Illuminate\Support\Facades\DB;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class LiquidacionController extends Controller
 {

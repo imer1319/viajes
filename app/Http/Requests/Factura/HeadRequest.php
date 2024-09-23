@@ -24,7 +24,7 @@ class HeadRequest extends FormRequest
     public function rules()
     {
         return [
-            'observaciones' => 'required|string|min:3',
+            'observaciones' => 'nullable|string|min:3',
             'cliente_id' => 'required|exists:clientes,id',
             'fecha' => 'required|date',
             'condiciones_pago_id' => 'required|exists:condiciones_pagos,id',
@@ -36,7 +36,7 @@ class HeadRequest extends FormRequest
     public function messages()
     {
         return [
-            'observaciones.required' => 'Las observaciones son obligatorias.',
+            'observaciones.min' => 'Las observaciones deben tener comi minimo :min caracteres.',
             'fecha.required' => 'La fecha es obligatoria.',
             'fecha.date' => 'La fecha debe ser una fecha válida.',
             'cliente_id.required' => 'El cliente es obligatorio.',

@@ -19,7 +19,7 @@ class CreateLiquidacionsTable extends Migration
             $table->date('fecha');
             $table->foreignId('chofer_id')->constrained('chofers');
             $table->bigInteger('total_liquidacion');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }

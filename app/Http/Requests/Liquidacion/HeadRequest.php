@@ -24,7 +24,7 @@ class HeadRequest extends FormRequest
     public function rules()
     {
         return [
-            'observaciones' => 'required|string|min:3',
+            'observaciones' => 'nullable|string|min:3',
             'chofer_id' => 'required|exists:chofers,id',
             'fecha' => 'required|date'
         ];
@@ -33,7 +33,7 @@ class HeadRequest extends FormRequest
     public function messages()
     {
         return [
-            'observaciones.required' => 'Las observaciones son obligatorias.',
+            'observaciones.min' => 'Las observaciones deben tener comi minimo :min caracteres.',
             'fecha.required' => 'La fecha es obligatoria.',
             'fecha.date' => 'La fecha debe ser una fecha válida.',
             'chofer_id.required' => 'El chofer es obligatorio.',

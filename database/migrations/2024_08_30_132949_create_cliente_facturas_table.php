@@ -21,7 +21,7 @@ class CreateClienteFacturasTable extends Migration
             $table->decimal('iva', 10, 2);
             $table->decimal('total', 10, 2);
             $table->decimal('saldo_total', 10, 2);
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->string('numero_interno');
             $table->string('numero_factura_1');
             $table->string('numero_factura_2');

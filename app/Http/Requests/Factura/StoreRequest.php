@@ -29,7 +29,7 @@ class StoreRequest extends FormRequest
             'numero_factura_1' => 'required|string|max:10',
             'numero_factura_2' => 'required|string|max:10',
             'numero_interno' => 'required|integer',
-            'observaciones' => 'nullable|string|max:255',
+            'observaciones' => 'nullable|string|min:3',
             'condiciones_pago_id' => 'required|integer|exists:condiciones_pagos,id',
             'neto' => 'required|numeric|min:0',
             'iva' => 'required|numeric|min:0',
@@ -46,11 +46,11 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
+            'observaciones.min' => 'Las observaciones deben tener comi minimo :min caracteres.',
             'fecha.required' => 'La fecha es obligatoria.',
             'fecha.date' => 'La fecha no tiene un formato válido.',
             'chofer_id.required' => 'El campo chofer es obligatorio.',
             'chofer_id.exists' => 'El chofer seleccionado no es válido.',
-            'observaciones.required' => 'Las observaciones son obligatorias.',
             'total_liquidacion.required' => 'El total de la liquidación es obligatorio.',
             'total_liquidacion.numeric' => 'El total de la liquidación debe ser un número.',
             'numero_interno.required' => 'El número interno es obligatorio.',

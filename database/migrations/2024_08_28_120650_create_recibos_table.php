@@ -18,7 +18,7 @@ class CreateRecibosTable extends Migration
             $table->bigInteger('numero_interno');
             $table->date('fecha');
             $table->bigInteger('total_recibo');
-            $table->string('observaciones');
+            $table->string('observaciones')->nullable();
             $table->foreignId('cliente_id')->constrained('clientes');
             $table->timestamps();
         });

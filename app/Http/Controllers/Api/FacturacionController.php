@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Events\FacturaCreada;
-use App\Events\FacturaEliminada;
+use App\Http\Controllers\Controller;
 use App\Models\Cliente;
 use App\Models\ClienteFactura;
-use App\Http\Controllers\Controller;
+use App\Events\FacturaCreada;
+use App\Events\FacturaEliminada;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Factura\HeadRequest;
 use App\Http\Requests\Factura\MovimientoRequest;
 use App\Http\Requests\Factura\StoreRequest;
 use App\Http\Requests\Factura\UpdateRequest;
-use App\Models\Movimiento;
-use Illuminate\Support\Facades\DB;
 
 class FacturacionController extends Controller
 {
