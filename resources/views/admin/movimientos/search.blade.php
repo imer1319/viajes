@@ -42,7 +42,8 @@
         </div>
         <div class="col-md-3 mt-3">
             <select name="facturado" id="facturado" class="form-control">
-                <option value="" {{ is_null(request('facturado')) ? 'selected' : '' }} disabled> -- ¿ Facturado ? --</option>
+                <option value="" {{ is_null(request('facturado')) ? 'selected' : '' }} disabled> -- ¿ Facturado ?
+                    --</option>
                 <option value="1" {{ request('facturado') === '1' ? 'selected' : '' }}>Sí</option>
                 <option value="0" {{ request('facturado') === '0' ? 'selected' : '' }}>No</option>
             </select>
@@ -59,12 +60,23 @@
 
     <div class="form-group row">
         <div class="col-md-6">
-            <a href="{{ route('admin.movimientos.create') }}" class="btn btn-primary rounded-pill float-end">
-                <i class="fa fa-plus"></i>
-            </a>
-                <a href="{{ route('admin.movimiento.download.excel', request()->all()) }}" class="btn btn-primary rounded-pill float-end">
+            <span class="tts:right tts-slideIn tts-custom" aria-label="Crear movimiento">
+                <a href="{{ route('admin.movimientos.create') }}" class="btn btn-primary rounded-pill float-end">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </span>
+            <span class="tts:right tts-slideIn tts-custom" aria-label="Exportar a excel">
+                <a href="{{ route('admin.movimiento.download.excel', request()->all()) }}"
+                    class="btn btn-primary rounded-pill float-end">
                     <i class="fas fa-file-excel"></i>
                 </a>
+            </span>
+            <span class="tts:right tts-slideIn tts-custom" aria-label="Imprimir">
+                <a href="{{ route('admin.movimiento.download.print', request()->all()) }}" target="_blank"
+                    class="btn btn-primary rounded-pill float-end">
+                    <i class="fas fa-print"></i>
+                </a>
+            </span>
         </div>
         <div class="col-md-6 text-right">
             <button class="btn btn-primary font-verdana btn-sm" type="button" onclick="search();">

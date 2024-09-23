@@ -1,208 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<title>Orden Compra</title>
+    <title>Movimientos</title>
+    <style>
+        body {
+            font-family: sans-serif
+        }
 
+        tbody,
+        tfoot,
+        thead {
+            text-align: center !important;
+        }
 
-	<style>
-		body {
-			font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-			text-align: center;
-			color: #777;
-		}
+        .relative {
+            position: relative;
+        }
 
-		body h1 {
-			font-weight: 300;
-			margin-bottom: 0px;
-			padding-bottom: 0px;
-			color: #000;
-		}
+        .overflow-x-auto {
+            overflow-x: auto;
+        }
 
-		body h3 {
-			font-weight: 300;
-			margin-top: 10px;
-			margin-bottom: 20px;
-			font-style: italic;
-			color: #555;
-		}
+        .shadow-md {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-		body a {
-			color: #06f;
-		}
+        /* Table settings */
+        .w-full {
+            width: 100%;
+        }
 
-		.invoice-box {
-			max-width: 800px;
-			margin: auto;
-			padding: 30px;
-			border: 1px solid #eee;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-			font-size: 16px;
-			line-height: 24px;
-			font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-			color: #555;
-		}
+        .text-sm {
+            font-size: 0.875rem;
+        }
 
-		.invoice-box table {
-			width: 100%;
-			line-height: inherit;
-			text-align: left;
-			border-collapse: collapse;
-		}
+        .text-left {
+            text-align: left;
+        }
 
-		.invoice-box table td {
-			padding: 5px;
-			vertical-align: top;
-		}
+        .text-right {
+            text-align: right;
+        }
 
-		.invoice-box table tr td:nth-child(2) {
-			text-align: right;
-		}
+        .text-gray-500 {
+            color: #6b7280;
+        }
 
-		.invoice-box table tr.top table td {
-			padding-bottom: 20px;
-		}
+        /* Header settings */
+        .text-xs {
+            font-size: 0.75rem;
+        }
 
-		.invoice-box table tr.top table td.title {
-			font-size: 45px;
-			line-height: 45px;
-			color: #333;
-		}
+        .text-white {
+            color: #fff;
+        }
 
-		.invoice-box table tr.information table td {
-			padding-bottom: 40px;
-		}
+        .text-gray-700 {
+            color: #374151;
+        }
 
-		.heading {
-			background: #eee;
-			border-bottom: 1px solid #ddd;
-			font-weight: bold;
-			padding:.5rem 0;
-			text-align: center;
-		}
+        .uppercase {
+            text-transform: uppercase;
+        }
 
-		.invoice-box table tr.details td {
-			padding-bottom: 20px;
-		}
+        .bg-gray-50 {
+            background-color: #f9fafb;
+        }
 
-		.invoice-box table tr.item td {
-			border-bottom: 1px solid #eee;
-		}
+        .bg-blue-400 {
+            background-color: #007bff;
+        }
 
-		.invoice-box table tr.item.last td {
-			border-bottom: none;
-		}
+        /* Row and cell settings */
+        .border-b {
+            border-bottom-width: 1px;
+        }
 
-		.invoice-box table tr.total td:nth-child(2) {
-			border-top: 2px solid #eee;
-			font-weight: bold;
-		}
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
 
-		@media only screen and (max-width: 600px) {
-			.invoice-box table tr.top table td {
-				width: 100%;
-				display: block;
-				text-align: center;
-			}
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
 
-			.invoice-box table tr.information table td {
-				width: 100%;
-				display: block;
-				text-align: center;
-			}
-		}
-		.line1{
-			width: 100%;
-			background-color: #102562;
-			height: 10px;
-		}
-		.line2{
-			width: 100%;
-			background-color: #DA5649;
-			height: 10px;
-		}
-		.table, .table th, .table td{
-			border: 1px solid #e0d9d9;
-			padding: .5rem;
-			text-align: center;
-		}
-	</style>
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .text-gray-900 {
+            color: #111827;
+        }
+
+        .whitespace-nowrap {
+            white-space: nowrap;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .text-blue-600 {
+            color: #007bff;
+        }
+
+        .hover\:underline:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 1cm;
+            left: 0px;
+            right: 0px;
+            height: 10px;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            border-collapse: collapse;
+        }
+
+        .table-bordered {
+            border: 1px solid #dee2e6;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .table tbody+tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+        .thead-light th {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        header {
+            position: fixed;
+            top: -60px;
+            left: 0px;
+            right: 0px;
+            height: 50px;
+
+            /** Extra personal styles **/
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            line-height: 35px;
+        }
+    </style>
 </head>
+
 <body>
-	<div class="line1"></div>
-	<div class="line2"></div>
-	<h2 style="color:#181A49">CORRALON KYRIOS<br>
-		<b></b>
-	</h2>
-	<div class="invoice-box">
-		<table>
-			<tr>
-				<th colspan="2"><h2>Orden Compra</h2></th>
-			</tr>
-			<tr class="top">
-				<td colspan="2">
-					<table>
-						<tr>
-							<td class="title">
-								<img src="data:image/jpg;base64,{{ base64_encode(file_get_contents(public_path('/icono.png'))) }}" style="height: 130px;" alt="Company logo" >
-							</td>
-
-							<td>
-								EXP #: {{ str_pad($movimientos->id, 5, '0', STR_PAD_LEFT) }}<br />
-								Fecha: {{ date('M d Y') }}<br />
-								Hora: {{ date('H:i A') }}
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-
-			<tr class="information">
-				<td colspan="2">
-					<table>
-						<tr>
-							<td>
-								Orden Compra<br />
-								Fecha<br />
-								Proveedor<br />
-								Condición de pago<br />
-							</td>
-
-							<td>
-								
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
-        <div class="heading">
-			<span colspan="2">Detalles</span>
-            <h4>{{$ordenCompra['detalle_orden_compra']}}</h4>
-		</div>
-		<table class="table table-striped">
-			<tr>
-				<th>Codigo</th>
-				<th>Nombre</th>
-				<th>Cantidad</th>
-				<th>Costo</th>
-				<th>Alicuota</th>
-				<th>Subtotal</th>
-				<th>Subtotal(Impuestos)</th>
-			</tr>
-			
-		</table>
-		<div style="text-align: right">
-			<p><b>Neto:</b> {{ $ordenCompra->neto }} </p>
-		</div>
-		<div style="text-align: right">
-			<p><b>Iva:</b> {{ $ordenCompra->iva }}</p>
-		</div>
-		<div style="text-align: right">
-			<p> <b>Total:</b> {{ $ordenCompra->total }}<</p>
-		</div>
-	</div>
+    <header>
+        <table width="100%">
+            <tr>
+                <td align="center" style="width: 100%; font-size:16px; padding-top:7px">
+                    <span>Listado de movimientos</span>
+                </td>
+            </tr>
+        </table>
+    </header>
+    <footer>
+        <table width="100%" style="border-top: 2px solid #000;">
+            <tr style="vertical-align:bottom">
+                <td align="left" style="width: 50%;  vertical-align:bottom; font-size:13px;">
+                    <span class="text-gray-500">Usuario: {{ auth()->user()->name }}</span>
+                </td>
+                <td align="right" style="width: 50%;  vertical-align:bottom; font-size:13px;">
+                    <span class="text-gray-500">Fecha de impresion: {{ date('d/m/Y') }}</span>
+                </td>
+            </tr>
+        </table>
+    </footer>
+    <table>
+        <tr>
+            <td width="100%" style="vertical-align: top;">
+                <div class="relative overflow-x-auto shadow-md">
+                    <table class="table table-bordered">
+                        <thead class="text-xs text-white uppercase bg-blue-400">
+                            <tr>
+                                <th style="padding: 0.2rem">Int</th>
+                                <th style="padding: 0.2rem">Fecha</th>
+                                <th style="padding: 0.2rem">Cliente</th>
+                                <th style="padding: 0.2rem">Tipo viaje</th>
+                                <th style="padding: 0.2rem"># Remito</th>
+                                <th style="padding: 0.2rem">Total</th>
+                                <th style="padding: 0.2rem">Saldo</th>
+                                <th style="padding: 0.2rem">Flota</th>
+                                <th style="padding: 0.2rem">Chofer</th>
+                                <th style="padding: 0.2rem">Comision chofer</th>
+                                <th style="padding: 0.2rem">Saldo comision chofer</th>
+                                <th style="padding: 0.2rem">Fact</th>
+                                <th style="padding: 0.2rem"># Factura</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($movimientos as $movimiento)
+                                <tr>
+                                    <td>{{ $movimiento->numero_interno }}</td>
+                                    <td>{{ $movimiento->fecha }}</td>
+                                    <td>{{ $movimiento->cliente->razon_social }}</td>
+                                    <td>{{ $movimiento->tipoViaje->descripcion }}</td>
+                                    <td>{{ $movimiento->numero_factura_1 }} - {{ $movimiento->numero_factura_2 }}</td>
+                                    <td>{{ number_format($movimiento->total, 2, ',', '.') }}</td>
+                                    <td>{{ number_format($movimiento->saldo_total, 2, ',', '.') }}</td>
+                                    <td>{{ $movimiento->flota->nombre }}</td>
+                                    <td>{{ $movimiento->chofer->nombre }}</td>
+                                    <td>{{ number_format($movimiento->comision_chofer, 2, ',', '.') }}</td>
+                                    <td>{{ number_format($movimiento->saldo_comision_chofer, 2, ',', '.') }}</td>
+                                    <td>{{ $movimiento->facturado == 1 ? 'Si' : 'No' }}</td>
+                                    <td>
+                                        @if ($movimiento->facturas->isNotEmpty())
+                                            @foreach ($movimiento->facturas as $factura)
+                                                {{ $factura->numero_factura_1 }}-{{ $factura->numero_factura_2 }}
+                                            @endforeach
+                                        @else
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
 </body>
+
 </html>

@@ -44,29 +44,38 @@
                     </td>
                     <td>
                         <div class="d-flex">
-                            <a href="{{ route('admin.movimiento.download.pdf', $movimiento) }}" target="_blank"
-                                class="btn btn-primary btn-sm rounded-pill mr-1">
-                                <i class="fas fa-file-pdf"></i>
-                            </a>
-                            <a href="{{ route('admin.movimientos.show', $movimiento) }}"
-                                class="btn btn-primary btn-sm rounded-pill mr-1">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            @if ($movimiento->facturado != 1)
-                                <a href="{{ route('admin.movimientos.edit', $movimiento) }}"
+                            <span class="tts:left tts-slideIn tts-custom" aria-label="Ver Pdf">
+                                <a href="{{ route('admin.movimiento.download.pdf', $movimiento) }}" target="_blank"
                                     class="btn btn-primary btn-sm rounded-pill mr-1">
-                                    <i class="fa fa-edit"></i>
+                                    <i class="fas fa-file-pdf"></i>
                                 </a>
+                            </span>
+                            <span class="tts:left tts-slideIn tts-custom" aria-label="Ver movimiento">
+                                <a href="{{ route('admin.movimientos.show', $movimiento) }}"
+                                    class="btn btn-primary btn-sm rounded-pill mr-1">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </span>
+                            @if ($movimiento->facturado != 1)
+                                <span class="tts:left tts-slideIn tts-custom" aria-label="Editar movimiento">
+                                    <a href="{{ route('admin.movimientos.edit', $movimiento) }}"
+                                        class="btn btn-primary btn-sm rounded-pill mr-1">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </span>
                             @endif
-                            <form action="{{ route('admin.movimientos.destroy', $movimiento) }}" style="display:flex"
-                                method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill mr-1"
-                                    onclick="return confirm('¿Realmente desea eliminar el movimientos?')"><i
-                                        class="fa fa-trash"></i>
-                                </button>
-                            </form>
+                            <span class="tts:left tts-slideIn tts-custom" aria-label="Eliminar movimiento">
+                                <form action="{{ route('admin.movimientos.destroy', $movimiento) }}"
+                                    style="display:flex" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" name="submit"
+                                        class="btn btn-sm btn-primary rounded-pill mr-1"
+                                        onclick="return confirm('¿Realmente desea eliminar el movimientos?')"><i
+                                            class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </span>
                         </div>
                     </td>
                 </tr>

@@ -62,6 +62,7 @@ class MovimientoController extends Controller
             ->byFacturado($request->input('facturado'))
             ->byDesde($request->input('desde'))
             ->byHasta($request->input('hasta'))
+            ->with('facturas')
             ->latest()
             ->paginate(8);
 
@@ -309,5 +310,23 @@ class MovimientoController extends Controller
     public function downloadExcel(Request $request)
     {
         return Excel::download(new MovimientosExport($request->all()), 'movimientos.xlsx');
+    }
+
+    public function print(Request $request)
+    {
+        $movimientos = Movimiento::query()
+            ->byChoferId($request->input('chofer_id'))
+            ->byTipoViajeId($request->input('tipo_viaje_id'))
+            ->byClienteId($request->input('cliente_id'))
+            ->byFlotaId($request->input('flota_id'))
+            ->byFacturado($request->input('facturado'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->with('facturas')
+            ->latest()
+            ->get();
+        $pdf = Pdf::loadView('reportes.movimientos', compact('movimientos'));
+        $pdf->setPaper('letter','landscape');
+        return $pdf->stream();
     }
 }
