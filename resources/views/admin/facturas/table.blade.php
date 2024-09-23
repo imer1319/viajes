@@ -5,6 +5,7 @@
             <th># factura</th>
             <th>Fecha</th>
             <th>Cliente</th>
+            <th>Email</th>
             <th>Neto</th>
             <th>Iva</th>
             <th>Total</th>
@@ -19,6 +20,7 @@
                 <td>{{ $factura->numero_factura_1 }}-{{ $factura->numero_factura_2 }}</td>
                 <td>{{ $factura->fecha }}</td>
                 <td>{{ $factura->cliente->razon_social }}</td>
+                <td>{{ $factura->cliente->email }}</td>
                 <td>{{ number_format($factura->neto, 2, ',', '.') }}</td>
                 <td>{{ number_format($factura->iva, 2, ',', '.') }}</td>
                 <td>{{ number_format($factura->total, 2, ',', '.') }}</td>
