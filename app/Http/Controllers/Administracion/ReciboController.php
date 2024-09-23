@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Banco;
 use App\Models\Cliente;
-use App\Models\CondicionesPago;
 use App\Models\CondicionIva;
 use App\Models\FormasPagos;
 use App\Models\Provincia;
@@ -28,8 +27,14 @@ class ReciboController extends Controller
 
     public function index()
     {
+        $recibos = Recibo::with('cliente','pagos','pagos.banco')->paginate(8);
+
+        $totales = [
+            'total_recibo' => $recibos->sum('total_recibo'),
+        ];
         return view('admin.recibos.index', [
-            'recibos' => Recibo::with('cliente','pagos','pagos.banco')->paginate(8),
+            'recibos' => $recibos,
+            'totales' => $totales,
             'clientes' => Cliente::all(),
             'formas' => FormasPagos::all(),
         ]);
@@ -46,8 +51,13 @@ class ReciboController extends Controller
             ->paginate(8);
 
         $recibos->appends($request->except('page'));
+
+        $totales = [
+            'total_recibo' => $recibos->sum('total_recibo'),
+        ];
         return view('admin.recibos.index', [
             'recibos' => $recibos,
+            'totales' => $totales,
             'clientes' => Cliente::all(),
             'formas' => FormasPagos::all(),
         ]);

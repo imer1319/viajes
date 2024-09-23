@@ -17,10 +17,16 @@ class GastoController extends Controller
 {
     public function index()
     {
+        $gastos = GastoChofer::with('chofer')->paginate(8);
+        $totales = [
+            'importe' => $gastos->sum('importe'),
+            'saldo' => $gastos->sum('saldo'),
+        ];
         return view('admin.gastos.index', [
-            'gastos' => GastoChofer::with('chofer')->paginate(8),
+            'gastos' => $gastos,
             'choferes' => Chofer::all(),
-            'flotas' => Flota::all()
+            'flotas' => Flota::all(),
+            'totales' => $totales
         ]);
     }
 
@@ -37,10 +43,16 @@ class GastoController extends Controller
             ->paginate(8);
 
         $gastos->appends($request->except('page'));
+
+        $totales = [
+            'importe' => $gastos->sum('importe'),
+            'saldo' => $gastos->sum('saldo'),
+        ];
         return view('admin.gastos.index', [
             'gastos' => $gastos,
             'choferes' => Chofer::all(),
-            'flotas' => Flota::all()
+            'flotas' => Flota::all(),
+            'totales' => $totales,
         ]);
     }
 

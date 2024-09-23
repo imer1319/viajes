@@ -4,8 +4,8 @@
             <th>#</th>
             <th>Fecha</th>
             <th>Cliente</th>
-            <th>Total</th>
             <th>Formas de pago</th>
+            <th>Total</th>
             <th></th>
         </tr>
     </thead>
@@ -15,12 +15,12 @@
                 <td>{{ $recibo->numero_interno }}</td>
                 <td>{{ $recibo->fecha }}</td>
                 <td>{{ $recibo->cliente->razon_social }}</td>
-                <td>{{ number_format($recibo->total_recibo, 2, ',', '.') }}</td>
                 <td>
                     @foreach ($recibo->pagos as $pago)
-                        {{ $pago->forma->descripcion }} <br>
+                    {{ $pago->forma->descripcion }} <br>
                     @endforeach
                 </td>
+                <td>{{ number_format($recibo->total_recibo, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.recibo.download.pdf', $recibo) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-file-pdf"></i>
@@ -40,6 +40,13 @@
             </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="4">Totales</th>
+            <th>{{ number_format($totales['total_recibo'], 2, ',', '.') }}</th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
 <div class="mt-3 d-flex justify-content-end">
     {{ $recibos->links() }}

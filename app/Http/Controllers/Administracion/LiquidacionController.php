@@ -22,10 +22,16 @@ class LiquidacionController extends Controller
 
     public function index()
     {
+        $liquidaciones = Liquidacion::with('chofer')->paginate(8);
+
+        $totales = [
+            'total_liquidacion' => $liquidaciones->sum('total_liquidacion'),
+        ];
         return view('admin.liquidaciones.index', [
-            'liquidaciones' => Liquidacion::with('chofer')->paginate(8),
+            'liquidaciones' => $liquidaciones,
             'formas' => FormasPagos::all(),
             'choferes' => Chofer::all(),
+            'totales' => $totales,
         ]);
     }
 
@@ -41,10 +47,16 @@ class LiquidacionController extends Controller
             ->paginate(8);
 
         $liquidaciones->appends($request->except('page'));
+
+        $totales = [
+            'total_liquidacion' => $liquidaciones->sum('total_liquidacion'),
+        ];
+
         return view('admin.liquidaciones.index', [
             'liquidaciones' => $liquidaciones,
             'choferes' => Chofer::all(),
             'formas' => FormasPagos::all(),
+            'totales' => $totales,
         ]);
     }
     

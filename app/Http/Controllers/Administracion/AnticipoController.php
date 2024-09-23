@@ -17,9 +17,15 @@ class AnticipoController extends Controller
 {
     public function index()
     {
+        $anticipos = AnticipoChofer::with('chofer')->paginate(8);
+        $totales = [
+            'importe' => $anticipos->sum('importe'),
+            'saldo' => $anticipos->sum('saldo'),
+        ];
         return view('admin.anticipos.index', [
-            'anticipos' => AnticipoChofer::with('chofer')->paginate(8),
-            'choferes' => Chofer::all()
+            'anticipos' => $anticipos,
+            'choferes' => Chofer::all(),
+            'totales' => $totales,
         ]);
     }
 
@@ -35,9 +41,16 @@ class AnticipoController extends Controller
             ->paginate(8);
 
         $anticipos->appends($request->except('page'));
+
+        $totales = [
+            'importe' => $anticipos->sum('importe'),
+            'saldo' => $anticipos->sum('saldo'),
+        ];
+
         return view('admin.anticipos.index', [
             'anticipos' => $anticipos,
-            'choferes' => Chofer::all()
+            'choferes' => Chofer::all(),
+            'totales' => $totales,
         ]);
     }
 

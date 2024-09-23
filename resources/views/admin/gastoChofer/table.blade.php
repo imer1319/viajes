@@ -37,6 +37,14 @@
             </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="3">Totales</th>
+            <th>{{ number_format($totales['importe'], 2, ',', '.') }}</th>
+            <th>{{ number_format($totales['saldo'], 2, ',', '.') }}</th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
 <div class="mt-3 d-flex justify-content-end">
     {{ $gastos->links() }}

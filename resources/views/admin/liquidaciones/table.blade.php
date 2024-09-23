@@ -4,8 +4,8 @@
             <th>Int</th>
             <th>Fecha</th>
             <th>Chofer</th>
-            <th>Total</th>
             <th>Formas de pago</th>
+            <th>Total</th>
             <th></th>
         </tr>
     </thead>
@@ -15,12 +15,12 @@
                 <td>{{ $liquidacion->numero_interno }}</td>
                 <td>{{ $liquidacion->fecha }}</td>
                 <td>{{ $liquidacion->chofer->nombre }}</td>
-                <td>{{ number_format($liquidacion->total_liquidacion, 2, ',', '.') }}</td>
                 <td>
                     @foreach ($liquidacion->pagos as $pago)
                         {{ $pago->forma->descripcion }} <br>
                     @endforeach
                 </td>
+                <td>{{ number_format($liquidacion->total_liquidacion, 2, ',', '.') }}</td>
                 <td>
                     <a href="{{ route('admin.liquidacion.download.pdf', $liquidacion) }}" target="_blank"
                         class="btn btn-primary btn-sm rounded-pill">
@@ -47,6 +47,12 @@
             </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="4">Totales</th>
+            <th>{{ number_format($totales['total_liquidacion'], 2, ',', '.') }}</th>
+        </tr>
+    </tfoot>
 </table>
 <div class="mt-3 d-flex justify-content-end">
     {{ $liquidaciones->links() }}

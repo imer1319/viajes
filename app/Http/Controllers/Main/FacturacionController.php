@@ -26,9 +26,18 @@ class FacturacionController extends Controller
 
     public function index()
     {
+        $facturas = ClienteFactura::with('cliente')->paginate(8);
+
+        $totales = [
+            'neto' => $facturas->sum('neto'),
+            'iva' => $facturas->sum('iva'),
+            'total' => $facturas->sum('total'),
+            'saldo_total' => $facturas->sum('saldo_total'),
+        ];
         return view('admin.facturas.index', [
-            'facturas' => ClienteFactura::with('cliente')->paginate(8),
-            'clientes' => Cliente::all()
+            'facturas' => $facturas,
+            'clientes' => Cliente::all(),
+            'totales' => $totales,
         ]);
     }
 
@@ -44,8 +53,17 @@ class FacturacionController extends Controller
             ->paginate(8);
 
         $facturas->appends($request->except('page'));
+
+        $totales = [
+            'neto' => $facturas->sum('neto'),
+            'iva' => $facturas->sum('iva'),
+            'total' => $facturas->sum('total'),
+            'saldo_total' => $facturas->sum('saldo_total'),
+        ];
+
         return view('admin.facturas.index', [
             'facturas' => $facturas,
+            'totales' => $totales,
             'clientes' => Cliente::all()
         ]);
     }

@@ -15,11 +15,17 @@ class GastoChoferController extends Controller
 {
     public function index(Chofer $chofer)
     {
+        $gastos = GastoChofer::with('chofer')->paginate(8);
+        $totales = [
+            'importe' => $gastos->sum('importe'),
+            'saldo' => $gastos->sum('saldo'),
+        ];
         return view('admin.gastoChofer.index', [
             'chofer' => $chofer,
             'gastos' => $chofer->gastos()->paginate(8),
             'choferes' => Chofer::all(),
-            'flotas' => Flota::all()
+            'flotas' => Flota::all(),
+            'totales' => $totales
         ]);
     }
 
@@ -33,12 +39,16 @@ class GastoChoferController extends Controller
             ->with('chofer')
             ->latest()
             ->paginate(8);
-
+        $totales = [
+            'importe' => $gastos->sum('importe'),
+            'saldo' => $gastos->sum('saldo'),
+        ];
         $gastos->appends($request->except('page'));
-        return view('admin.gastos.index', [
+        return view('admin.gastoChofer.index', [
             'gastos' => $gastos,
-            'choferes' => Chofer::all(),
-            'flotas' => Flota::all()
+            'chofer' => $chofer,
+            'flotas' => Flota::all(),
+            'totales' => $totales,
         ]);
     }
 

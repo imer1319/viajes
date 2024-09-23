@@ -52,10 +52,12 @@
                                 class="btn btn-primary btn-sm rounded-pill mr-1">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="{{ route('admin.movimientos.edit', $movimiento) }}"
-                                class="btn btn-primary btn-sm rounded-pill mr-1">
-                                <i class="fa fa-edit"></i>
-                            </a>
+                            @if ($movimiento->facturado != 1)
+                                <a href="{{ route('admin.movimientos.edit', $movimiento) }}"
+                                    class="btn btn-primary btn-sm rounded-pill mr-1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            @endif
                             <form action="{{ route('admin.movimientos.destroy', $movimiento) }}" style="display:flex"
                                 method="post">
                                 @csrf
@@ -70,6 +72,17 @@
                 </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="5">Totales</th>
+                <th>{{ number_format($totales['total'], 2, ',', '.') }}</th>
+                <th>{{ number_format($totales['saldo_total'], 2, ',', '.') }}</th>
+                <th colspan="2"></th>
+                <th>{{ number_format($totales['comision_chofer'], 2, ',', '.') }}</th>
+                <th>{{ number_format($totales['saldo_comision_chofer'], 2, ',', '.') }}</th>
+                <th colspan="3"></th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 <div class="mt-3 d-flex justify-content-end">

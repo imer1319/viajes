@@ -14,8 +14,8 @@
             <select name="saldo" id="saldo" class="form-control">
                 <option value="" {{ is_null(request('saldo')) ? 'selected' : '' }} disabled> -- ¿ PAGADO ? --
                 </option>
-                <option value="1" {{ request('saldo') === '1' ? 'selected' : '' }}>Si</option>
-                <option value="0" {{ request('saldo') === '0' ? 'selected' : '' }}>No</option>
+                <option value="0" {{ request('saldo') === '0' ? 'selected' : '' }}>Si</option>
+                <option value="1" {{ request('saldo') === '1' ? 'selected' : '' }}>No</option>
             </select>
         </div>
         <div class="col-md-3">

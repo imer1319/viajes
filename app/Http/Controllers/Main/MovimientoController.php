@@ -31,12 +31,24 @@ class MovimientoController extends Controller
 {
     public function index()
     {
+        $movimientos = Movimiento::with('facturas')->latest()->paginate(8);
+
+        $totales = [
+            'precio_real' => $movimientos->sum('precio_real'),
+            'iva' => $movimientos->sum('iva'),
+            'total' => $movimientos->sum('total'),
+            'saldo_total' => $movimientos->sum('saldo_total'),
+            'precio_chofer' => $movimientos->sum('precio_chofer'),
+            'comision_chofer' => $movimientos->sum('comision_chofer'),
+            'saldo_comision_chofer' => $movimientos->sum('saldo_comision_chofer')
+        ];
         return view('admin.movimientos.index', [
-            'movimientos' => Movimiento::with('facturas')->latest()->paginate(8),
+            'movimientos' => $movimientos,
             'choferes' => Chofer::all(),
             'tipoViajes' => TipoViaje::all(),
             'flotas' => Flota::all(),
-            'clientes' => Cliente::all()
+            'clientes' => Cliente::all(),
+            'totales' => $totales
         ]);
     }
 
@@ -53,13 +65,23 @@ class MovimientoController extends Controller
             ->latest()
             ->paginate(8);
 
+        $totales = [
+            'precio_real' => $movimientos->sum('precio_real'),
+            'iva' => $movimientos->sum('iva'),
+            'total' => $movimientos->sum('total'),
+            'saldo_total' => $movimientos->sum('saldo_total'),
+            'precio_chofer' => $movimientos->sum('precio_chofer'),
+            'comision_chofer' => $movimientos->sum('comision_chofer'),
+            'saldo_comision_chofer' => $movimientos->sum('saldo_comision_chofer')
+        ];
         $movimientos->appends($request->except('page'));
         return view('admin.movimientos.index', [
             'movimientos' => $movimientos,
             'choferes' => Chofer::all(),
             'tipoViajes' => TipoViaje::all(),
             'flotas' => Flota::all(),
-            'clientes' => Cliente::all()
+            'clientes' => Cliente::all(),
+            'totales' => $totales
         ]);
     }
 
@@ -111,6 +133,10 @@ class MovimientoController extends Controller
 
     public function edit(Movimiento $movimiento)
     {
+        if ($movimiento->facturado == 1) {
+            abort(403, 'No puedes editar un movimiento que ya ha sido facturado.');
+        }
+
         return view('admin.movimientos.edit', [
             'movimiento' => $movimiento
         ]);
@@ -118,6 +144,9 @@ class MovimientoController extends Controller
 
     public function update(Movimiento $movimiento, UpdateRequest $request)
     {
+        if ($movimiento->facturado == 1) {
+            abort(403, 'No puedes editar un movimiento que ya ha sido facturado.');
+        }
         try {
             DB::beginTransaction();
             event(new MovimientoEliminado($movimiento));

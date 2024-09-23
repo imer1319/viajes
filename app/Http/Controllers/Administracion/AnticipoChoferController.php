@@ -13,14 +13,20 @@ class AnticipoChoferController extends Controller
 {
     public function index(Chofer $chofer)
     {
+        $anticipos = $chofer->anticipos()->paginate(8);
+        $totales = [
+            'importe' => $anticipos->sum('importe'),
+            'saldo' => $anticipos->sum('saldo'),
+        ];
         return view('admin.anticipoChofer.index', [
             'chofer' => $chofer,
-            'anticipos' => $chofer->anticipos()->paginate(8)
+            'anticipos' => $anticipos,
+            'totales' => $totales
         ]);
     }
 
     public function search(Request $request, Chofer $chofer)
-    {   
+    {
         $anticipos = $chofer->anticipos()
             ->bySaldo($request->input('saldo'))
             ->byDesde($request->input('desde'))
@@ -28,10 +34,16 @@ class AnticipoChoferController extends Controller
             ->latest()
             ->paginate(8);
 
+        $totales = [
+            'importe' => $anticipos->sum('importe'),
+            'saldo' => $anticipos->sum('saldo'),
+        ];
+
         $anticipos->appends($request->except('page'));
         return view('admin.anticipoChofer.index', [
             'anticipos' => $anticipos,
-            'chofer' => $chofer
+            'chofer' => $chofer,
+            'totales' => $totales
         ]);
     }
 
@@ -53,7 +65,7 @@ class AnticipoChoferController extends Controller
             'anticipos' => $chofer->anticipos()->with('chofer')->paginate(8),
         ]);
     }
-    
+
     public function downloadExcel(Chofer $chofer, Request $request)
     {
         return Excel::download(new AnticipoChoferExport($chofer, $request->all()), 'anticipo_chofer.xlsx');

@@ -51,6 +51,16 @@
             </tr>
         @endforeach
     </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="5">Totales</th>
+            <th>{{ number_format($totales['neto'], 2, ',', '.') }}</th>
+            <th>{{ number_format($totales['iva'], 2, ',', '.') }}</th>
+            <th>{{ number_format($totales['total'], 2, ',', '.') }}</th>
+            <th>{{ number_format($totales['saldo_total'], 2, ',', '.') }}</th>
+            <th colspan="3"></th>
+        </tr>
+    </tfoot>
 </table>
 <div class="mt-3 d-flex justify-content-end">
     {{ $facturas->links() }}
