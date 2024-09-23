@@ -25,6 +25,19 @@
             <div class="card-header">Ver recibo</div>
             <div class="card-body">
                 <div class="row">
+                    <div class="col-md-6">
+                        <p><b>Cliente: </b>{{ $recibo->cliente->razon_social }}</p>
+                        <p><b>Domicilio: </b>{{ $recibo->cliente->domicilio }}</p>
+                        {{ $recibo->cliente->condicionIva->descripcion }}
+                    </div>
+                    <div class="col-md-6">
+                        <p><b>Nro: </b> {{ str_pad($recibo->numero_interno, 5, '0', STR_PAD_LEFT) }}</p>
+                        <p><b>Fecha: </b> {{ $recibo->created_at->format('d/m/Y') }}</p>
+                        <p><b>CUIT: </b> {{ $recibo->cliente->cuit }}</p>
+                        <p><b>Ing. Brutos: </b> {{ $recibo->cliente->numero_ingreso_bruto }}</p>
+                    </div>
+                </div>
+                <div class="row">
                     <table class="table">
                         <thead>
                             <tr>
