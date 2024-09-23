@@ -32,10 +32,13 @@ class FormaPagoRequest extends FormRequest
 
         if ($forma_pago_id == 1) {
             $rules = array_merge($rules, [
-                'form_pago.banco_id' => 'required|integer|exists:bancos,id',
-                'form_pago.fecha_emision' => 'required|date',
                 'form_pago.fecha_vencimiento' => 'required|date|after_or_equal:form_pago.fecha_emision',
+            ]);
+        } elseif(in_array($forma_pago_id, [1,7])) {
+            $rules = array_merge($rules, [
+                'form_pago.banco_id' => 'required|integer|exists:bancos,id',
                 'form_pago.numero' => 'required|string|max:255',
+                'form_pago.fecha_emision' => 'required|date',
             ]);
         } elseif (in_array($forma_pago_id, [3, 4, 5, 6])) {
             $rules = array_merge($rules, [

@@ -3547,6 +3547,56 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    bancos: Array,
+    vuexModule: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    agregar: function agregar() {
+      this.$emit("agregar");
+    },
+    getErrorMessage: function getErrorMessage(error) {
+      return error ? error[0] : "";
+    }
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
+    errors: function errors(state) {
+      return state[this.vuexModule].errors;
+    },
+    form_pago: function form_pago(state) {
+      return state[this.vuexModule].form_pago;
+    },
+    monto_faltante: function monto_faltante(state) {
+      return state[this.vuexModule].monto_faltante;
+    }
+  }))
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js":
 /*!*************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js ***!
@@ -4119,6 +4169,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
+/* harmony import */ var _FormaPago_FormaPago_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../FormaPago/FormaPago.vue */ "./resources/js/Pages/FormaPago/FormaPago.vue");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -4128,10 +4179,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["bancos", "forma_pagos"],
   components: {
-    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    FormaPagoComponent: _FormaPago_FormaPago_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("liquidaciones", ["ELIMINAR_FORMA_PAGO", "AGREGAR_FORMA_PAGO", "SET_PAGO_FORMA_PAGO_ID"])), {}, {
     updateFormaPagoId: function updateFormaPagoId(event) {
@@ -5710,6 +5763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Modal.vue */ "./resources/js/components/Modal.vue");
+/* harmony import */ var _FormaPago_FormaPago_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../FormaPago/FormaPago.vue */ "./resources/js/Pages/FormaPago/FormaPago.vue");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -5719,10 +5773,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["bancos", "forma_pagos"],
   components: {
-    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ModalComponent: _components_Modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    FormaPagoComponent: _FormaPago_FormaPago_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapMutations)("recibos", ["ELIMINAR_FORMA_PAGO", "AGREGAR_FORMA_PAGO", "SET_PAGO_FORMA_PAGO_ID"])), {}, {
     updateFormaPagoId: function updateFormaPagoId(event) {
@@ -9975,6 +10031,198 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=template&id=851205b8":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=template&id=851205b8 ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* binding */ render),
+/* harmony export */   staticRenderFns: () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-12"
+  }, [_c("h5", {
+    staticClass: "text-center"
+  }, [_vm._v("\n            Monto faltante: " + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n        ")])]), _vm._v(" "), [1, 7].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "banco_id"
+    }
+  }, [_vm._v("Bancos")]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.banco_id,
+      expression: "form_pago.banco_id"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      id: "banco_id"
+    },
+    on: {
+      change: function change($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.$set(_vm.form_pago, "banco_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+      }
+    }
+  }, _vm._l(_vm.bancos, function (banco) {
+    return _c("option", {
+      key: banco.id,
+      domProps: {
+        value: banco.id
+      }
+    }, [_vm._v("\n                " + _vm._s(banco.descripcion) + "\n            ")]);
+  }), 0), _vm._v(" "), _vm.errors["form_pago.banco_id"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.banco_id"])) + "\n        ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), [1, 2, 3, 4, 5, 6, 7].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "importe"
+    }
+  }, [_vm._v("Importe")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.importe,
+      expression: "form_pago.importe"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form_pago.importe
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "importe", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors["form_pago.importe"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.importe"])) + "\n        ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), [1, 3, 4, 5, 6, 7].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "numero"
+    }
+  }, [_vm._v("Numero")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.numero,
+      expression: "form_pago.numero"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form_pago.numero
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "numero", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors["form_pago.numero"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.numero"])) + "\n        ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), [1, 3, 4, 5, 6, 7].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "fecha_emision"
+    }
+  }, [_vm._v("Fecha emision")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.fecha_emision,
+      expression: "form_pago.fecha_emision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.form_pago.fecha_emision
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "fecha_emision", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors["form_pago.fecha_emision"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_emision"])) + "\n        ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), [1].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
+    staticClass: "col-md-6"
+  }, [_c("label", {
+    attrs: {
+      "for": "fecha_vencimiento"
+    }
+  }, [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form_pago.fecha_vencimiento,
+      expression: "form_pago.fecha_vencimiento"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.form_pago.fecha_vencimiento
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.form_pago, "fecha_vencimiento", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _vm.errors["form_pago.fecha_vencimiento"] ? _c("span", {
+    staticClass: "text-danger"
+  }, [_vm._v("\n            " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_vencimiento"])) + "\n        ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-md-6"
+  }), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-md-12 mt-3 mx-2"
+  }, [_c("a", {
+    staticClass: "btn btn-primary",
+    on: {
+      click: function click($event) {
+        $event.preventDefault();
+        return _vm.agregar();
+      }
+    }
+  }, [_vm._v("Agregar")])])])]);
+};
+var staticRenderFns = [];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=template&id=5738f1c0":
 /*!************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Gasto/Create.vue?vue&type=template&id=5738f1c0 ***!
@@ -11231,172 +11479,15 @@ var render = function render() {
       modal_id: "modal_formaPagos",
       titulo: "Formas de pago"
     }
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-12"
-  }, [_c("h5", {
-    staticClass: "text-center"
-  }, [_vm._v("\n                    Monto faltante:" + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n                ")])]), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
+  }, [_c("forma-pago-component", {
     attrs: {
-      "for": "banco_id"
-    }
-  }, [_vm._v("Bancos")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.banco_id,
-      expression: "form_pago.banco_id"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "banco_id"
+      vuexModule: "liquidaciones",
+      bancos: _vm.bancos
     },
     on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.form_pago, "banco_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
+      agregar: _vm.agregarPago
     }
-  }, _vm._l(_vm.bancos, function (banco) {
-    return _c("option", {
-      key: banco.id,
-      domProps: {
-        value: banco.id
-      }
-    }, [_vm._v("\n                        " + _vm._s(banco.descripcion) + "\n                    ")]);
-  }), 0), _vm._v(" "), _vm.errors["form_pago.banco_id"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.banco_id"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || _vm.form_pago.forma_pago_id == 2 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
-    attrs: {
-      "for": "importe"
-    }
-  }, [_vm._v("Importe")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.importe,
-      expression: "form_pago.importe"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form_pago.importe
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_pago, "importe", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors["form_pago.importe"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.importe"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
-    attrs: {
-      "for": "numero"
-    }
-  }, [_vm._v("Numero")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.numero,
-      expression: "form_pago.numero"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form_pago.numero
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_pago, "numero", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors["form_pago.numero"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.numero"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
-    attrs: {
-      "for": "fecha_emision"
-    }
-  }, [_vm._v("Fecha emision")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.fecha_emision,
-      expression: "form_pago.fecha_emision"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "date"
-    },
-    domProps: {
-      value: _vm.form_pago.fecha_emision
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_pago, "fecha_emision", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors["form_pago.fecha_emision"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_emision"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
-    attrs: {
-      "for": "fecha_vencimiento"
-    }
-  }, [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.fecha_vencimiento,
-      expression: "form_pago.fecha_vencimiento"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "date"
-    },
-    domProps: {
-      value: _vm.form_pago.fecha_vencimiento
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_pago, "fecha_vencimiento", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors["form_pago.fecha_vencimiento"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_vencimiento"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12 mt-3"
-  }, [_c("a", {
-    staticClass: "btn btn-primary",
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.agregarPago();
-      }
-    }
-  }, [_vm._v("Agregar")])])])])], 1);
+  })], 1)], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -15145,172 +15236,15 @@ var render = function render() {
       modal_id: "modal_formaPagos",
       titulo: "Formas de pago"
     }
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-12"
-  }, [_c("h5", {
-    staticClass: "text-center"
-  }, [_vm._v("\n                    Monto faltante:" + _vm._s(_vm._f("formatNumber")(_vm.monto_faltante)) + "\n                ")])]), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
+  }, [_c("forma-pago-component", {
     attrs: {
-      "for": "banco_id"
-    }
-  }, [_vm._v("Bancos")]), _vm._v(" "), _c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.banco_id,
-      expression: "form_pago.banco_id"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      id: "banco_id"
+      vuexModule: "recibos",
+      bancos: _vm.bancos
     },
     on: {
-      change: function change($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.$set(_vm.form_pago, "banco_id", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-      }
+      agregar: _vm.agregarPago
     }
-  }, _vm._l(_vm.bancos, function (banco) {
-    return _c("option", {
-      key: banco.id,
-      domProps: {
-        value: banco.id
-      }
-    }, [_vm._v("\n                        " + _vm._s(banco.descripcion) + "\n                    ")]);
-  }), 0), _vm._v(" "), _vm.errors["form_pago.banco_id"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.banco_id"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || _vm.form_pago.forma_pago_id == 2 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
-    attrs: {
-      "for": "importe"
-    }
-  }, [_vm._v("Importe")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.importe,
-      expression: "form_pago.importe"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form_pago.importe
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_pago, "importe", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors["form_pago.importe"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.importe"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
-    attrs: {
-      "for": "numero"
-    }
-  }, [_vm._v("Numero")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.numero,
-      expression: "form_pago.numero"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form_pago.numero
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_pago, "numero", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors["form_pago.numero"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.numero"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 || [3, 4, 5, 6].includes(Number(_vm.form_pago.forma_pago_id)) ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
-    attrs: {
-      "for": "fecha_emision"
-    }
-  }, [_vm._v("Fecha emision")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.fecha_emision,
-      expression: "form_pago.fecha_emision"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "date"
-    },
-    domProps: {
-      value: _vm.form_pago.fecha_emision
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_pago, "fecha_emision", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors["form_pago.fecha_emision"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_emision"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _vm.form_pago.forma_pago_id == 1 ? _c("div", {
-    staticClass: "col-md-6"
-  }, [_c("label", {
-    attrs: {
-      "for": "fecha_vencimiento"
-    }
-  }, [_vm._v("Fecha vencimiento")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form_pago.fecha_vencimiento,
-      expression: "form_pago.fecha_vencimiento"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "date"
-    },
-    domProps: {
-      value: _vm.form_pago.fecha_vencimiento
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.$set(_vm.form_pago, "fecha_vencimiento", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _vm.errors["form_pago.fecha_vencimiento"] ? _c("span", {
-    staticClass: "text-danger"
-  }, [_vm._v("\n                    " + _vm._s(_vm.getErrorMessage(_vm.errors["form_pago.fecha_vencimiento"])) + "\n                ")]) : _vm._e()]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12 mt-3"
-  }, [_c("a", {
-    staticClass: "btn btn-primary",
-    on: {
-      click: function click($event) {
-        $event.preventDefault();
-        return _vm.agregarPago();
-      }
-    }
-  }, [_vm._v("Agregar")])])])])], 1);
+  })], 1)], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -20025,6 +19959,45 @@ component.options.__file = "resources/js/Pages/Flota/Table.vue"
 
 /***/ }),
 
+/***/ "./resources/js/Pages/FormaPago/FormaPago.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/FormaPago/FormaPago.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _FormaPago_vue_vue_type_template_id_851205b8__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormaPago.vue?vue&type=template&id=851205b8 */ "./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=template&id=851205b8");
+/* harmony import */ var _FormaPago_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormaPago.vue?vue&type=script&lang=js */ "./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=script&lang=js");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FormaPago_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormaPago_vue_vue_type_template_id_851205b8__WEBPACK_IMPORTED_MODULE_0__.render,
+  _FormaPago_vue_vue_type_template_id_851205b8__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/FormaPago/FormaPago.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Gasto/Create.vue":
 /*!*********************************************!*\
   !*** ./resources/js/Pages/Gasto/Create.vue ***!
@@ -21217,6 +21190,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=script&lang=js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=script&lang=js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormaPago.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=script&lang=js");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js":
 /*!*********************************************************************!*\
   !*** ./resources/js/Pages/Gasto/Create.vue?vue&type=script&lang=js ***!
@@ -21869,6 +21858,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Table_vue_vue_type_template_id_e43f7948__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Table_vue_vue_type_template_id_e43f7948__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Table.vue?vue&type=template&id=e43f7948 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/Flota/Table.vue?vue&type=template&id=e43f7948");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=template&id=851205b8":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=template&id=851205b8 ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   render: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_template_id_851205b8__WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   staticRenderFns: () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_template_id_851205b8__WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_FormaPago_vue_vue_type_template_id_851205b8__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FormaPago.vue?vue&type=template&id=851205b8 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/Pages/FormaPago/FormaPago.vue?vue&type=template&id=851205b8");
 
 
 /***/ }),

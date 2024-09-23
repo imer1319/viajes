@@ -101,130 +101,24 @@
             </button>
         </div>
         <modal-component modal_id="modal_formaPagos" titulo="Formas de pago">
-            <div class="row">
-                <div class="col-12">
-                    <h5 class="text-center">
-                        Monto faltante:{{ monto_faltante | formatNumber }}
-                    </h5>
-                </div>
-                <div class="col-md-6" v-if="form_pago.forma_pago_id == 1">
-                    <label for="banco_id">Bancos</label>
-                    <select
-                        id="banco_id"
-                        class="form-control"
-                        v-model="form_pago.banco_id"
-                    >
-                        <option
-                            :value="banco.id"
-                            v-for="banco in bancos"
-                            :key="banco.id"
-                        >
-                            {{ banco.descripcion }}
-                        </option>
-                    </select>
-                    <span
-                        v-if="errors['form_pago.banco_id']"
-                        class="text-danger"
-                    >
-                        {{ getErrorMessage(errors["form_pago.banco_id"]) }}
-                    </span>
-                </div>
-
-                <div
-                    class="col-md-6"
-                    v-if="
-                        form_pago.forma_pago_id == 1 ||
-                        form_pago.forma_pago_id == 2 ||
-                        [3, 4, 5, 6].includes(Number(form_pago.forma_pago_id))
-                    "
-                >
-                    <label for="importe">Importe</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        v-model="form_pago.importe"
-                    />
-                    <span
-                        v-if="errors['form_pago.importe']"
-                        class="text-danger"
-                    >
-                        {{ getErrorMessage(errors["form_pago.importe"]) }}
-                    </span>
-                </div>
-
-                <div
-                    class="col-md-6"
-                    v-if="
-                        form_pago.forma_pago_id == 1 ||
-                        [3, 4, 5, 6].includes(Number(form_pago.forma_pago_id))
-                    "
-                >
-                    <label for="numero">Numero</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        v-model="form_pago.numero"
-                    />
-                    <span
-                        v-if="errors['form_pago.numero']"
-                        class="text-danger"
-                    >
-                        {{ getErrorMessage(errors["form_pago.numero"]) }}
-                    </span>
-                </div>
-
-                <div
-                    class="col-md-6"
-                    v-if="
-                        form_pago.forma_pago_id == 1 ||
-                        [3, 4, 5, 6].includes(Number(form_pago.forma_pago_id))
-                    "
-                >
-                    <label for="fecha_emision">Fecha emision</label>
-                    <input
-                        type="date"
-                        class="form-control"
-                        v-model="form_pago.fecha_emision"
-                    />
-                    <span
-                        v-if="errors['form_pago.fecha_emision']"
-                        class="text-danger"
-                    >
-                        {{ getErrorMessage(errors["form_pago.fecha_emision"]) }}
-                    </span>
-                </div>
-
-                <div class="col-md-6" v-if="form_pago.forma_pago_id == 1">
-                    <label for="fecha_vencimiento">Fecha vencimiento</label>
-                    <input
-                        type="date"
-                        class="form-control"
-                        v-model="form_pago.fecha_vencimiento"
-                    />
-                    <span
-                        v-if="errors['form_pago.fecha_vencimiento']"
-                        class="text-danger"
-                    >
-                        {{ getErrorMessage(errors["form_pago.fecha_vencimiento"]) }}
-                    </span>
-                </div>
-                <div class="col-md-12 mt-3">
-                    <a @click.prevent="agregarPago()" class="btn btn-primary"
-                        >Agregar</a
-                    >
-                </div>
-            </div>
+            <forma-pago-component
+                vuexModule="liquidaciones"
+                :bancos="bancos"
+                @agregar="agregarPago"
+            />
         </modal-component>
     </div>
 </template>
 <script>
 import { mapState } from "vuex";
 import ModalComponent from "../../components/Modal.vue";
+import FormaPagoComponent from "../FormaPago/FormaPago.vue";
 import { mapMutations } from "vuex";
 export default {
     props: ["bancos", "forma_pagos"],
     components: {
         ModalComponent,
+        FormaPagoComponent,
     },
     methods: {
         ...mapMutations("liquidaciones", [
