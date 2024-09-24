@@ -1,0 +1,4 @@
+descripcion,domicilio,saldo,numero_cuenta,cbu,alias
+Macro, Domicilio 4, 0, 123456789012344, 3051234567890123456787, banco-macro
+Banco Nación,Domicilio 1,0,123456789012345,3051234567890123456789,banco-nacion-alias
+Banco Provincia,Domicilio 2,0,123456789098765,3051234567890123456767,banco-provincia-alias

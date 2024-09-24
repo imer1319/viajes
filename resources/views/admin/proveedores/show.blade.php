@@ -28,7 +28,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-5">
-                        <strong><i class="fas fa-money-check mr-1"></i> Movimiento</strong>
+                        <strong><i class="fas fa-user mr-1"></i> Proveedor</strong>
                         <p class="text-muted">Razon social: {{ $proveedor->razon_social }}</p>
                         <p class="text-muted">CUIT: {{ $proveedor->cuit }}</p>
                         <p class="text-muted"># de ingreso bruto: {{ $proveedor->numero_ingreso_bruto }}</p>

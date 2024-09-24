@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Banco;
 use App\Models\Categoria;
 use App\Models\CentroCosto;
 use App\Models\Chofer;
@@ -69,6 +70,7 @@ class DatabaseSeeder extends Seeder
         OrdenCompra::truncate();
         Ubicacion::truncate();
         CentroCosto::truncate();
+        Banco::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $this->call([
@@ -100,6 +102,7 @@ class DatabaseSeeder extends Seeder
             UbicacionSeeder::class,
             CentroCostoSeeder::class,
             FlotaSeedeer::class,
+            BancoSeedeer::class,
         ]);
     }
 }
