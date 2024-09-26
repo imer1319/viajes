@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
         OrdenCompra::truncate();
         Ubicacion::truncate();
         CentroCosto::truncate();
-        Banco::truncate();
+        // Banco::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $this->call([
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
             UbicacionSeeder::class,
             CentroCostoSeeder::class,
             FlotaSeedeer::class,
-            BancoSeedeer::class,
+            // BancoSeedeer::class,
         ]);
     }
 }
