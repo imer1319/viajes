@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Flotas')
+@section('title', 'Flotas')
 
 @section('content')
     <section class="content-header">
@@ -23,9 +23,11 @@
         <div class="card card-primary card-outline">
             <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
                 <h5>Listado de flotas</h5>
-                <a href="{{ route('admin.flotas.create') }}" class="btn btn-primary rounded-pill float-end">
-                    <i class="fa fa-plus"></i>
-                </a>
+                <span class="tts:left tts-slideIn tts-custom" aria-label="Crear flota">
+                    <a href="{{ route('admin.flotas.create') }}" class="btn btn-primary rounded-pill float-end">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </span>
             </div>
             <div class="card-body">
                 @include('admin.flotas.table')

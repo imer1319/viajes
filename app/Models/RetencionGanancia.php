@@ -18,5 +18,13 @@ class RetencionGanancia extends Model
         'codigo_afip',
     ];
 
+    public function setCodigoAttribute($value)
+    {
+        $this->attributes['codigo'] = strtoupper($value);
+    }
 
+    public function setTipoAttribute($value)
+    {
+        $this->attributes['tipo'] = strtoupper($value);
+    }
 }

@@ -2119,7 +2119,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.$store.dispatch("agregarAnticipo", this.form).then(function () {
         _this.disabled = true;
         if (_this.redirect) {
-          window.location = "/anticipos/".concat(_this.form.chofer_id, "/chofer");
+          window.location = "/anticipos";
           return;
         }
         _this.resetForm();
@@ -2237,7 +2237,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.$store.dispatch("actualizarAnticipo", this.form).then(function () {
         _this.disabled = true;
         if (_this.redirect) {
-          window.location = "/anticipos/".concat(_this.form.chofer_id, "/chofer");
+          window.location = "/anticipos";
           return;
         }
         _this.resetForm();

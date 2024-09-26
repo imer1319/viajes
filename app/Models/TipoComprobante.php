@@ -29,6 +29,11 @@ class TipoComprobante extends Model
         $this->attributes['descripcion'] = strtoupper($value);
     }
     
+    public function setCodigoAttribute($value)
+    {
+        $this->attributes['codigo'] = strtoupper($value);
+    }
+
     public function getLiquidacionAttribute()
     {
         return $this->liquida_iva ? 'Si' : 'No';

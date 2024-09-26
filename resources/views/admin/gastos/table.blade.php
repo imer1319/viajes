@@ -16,26 +16,33 @@
                 <td>{{ $gasto->numero_interno }}</td>
                 <td>{{ $gasto->fecha }}</td>
                 <td>
-                    <a href="{{ route('admin.gastos.chofer.index', $gasto->chofer->id) }}">{{ $gasto->chofer->nombre }}</a>
+                    {{ $gasto->chofer->nombre }}
                 </td>
                 <td>{{ $gasto->flota->nombre }}</td>
                 <td>{{ number_format($gasto->importe, 2, ',', '.') }}</td>
                 <td>{{ number_format($gasto->saldo, 2, ',', '.') }}</td>
                 <td>
-                    <a href="{{ route('admin.gastos.show', $gasto) }}" class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                    <a href="{{ route('admin.gastos.edit', $gasto) }}" class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                    <form action="{{ route('admin.gastos.destroy', $gasto) }}" style="display:inline" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
-                            onclick="return confirm('¿Realmente desea eliminar al gasto?')"><i
-                                class="fa fa-trash"></i>
-                        </button>
-                    </form>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Editar gasto">
+                        <a href="{{ route('admin.gastos.show', $gasto) }}" class="btn btn-primary btn-sm rounded-pill">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Editar gasto">
+                        <a href="{{ route('admin.gastos.edit', $gasto) }}" class="btn btn-primary btn-sm rounded-pill">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Editar gasto">
+                        <form action="{{ route('admin.gastos.destroy', $gasto) }}" style="display:inline"
+                            method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
+                                onclick="return confirm('¿Realmente desea eliminar al gasto?')"><i
+                                    class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </span>
                 </td>
             </tr>
         @endforeach

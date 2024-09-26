@@ -15,4 +15,14 @@ class CondicionIva extends Model
     ];
 
     protected $table = 'condicion_ivas';
+
+    public function setCodigoAttribute($value)
+    {
+        $this->attributes['codigo'] = strtoupper($value);
+    }
+
+    public function setDescripcionAttribute($value)
+    {
+        $this->attributes['descripcion'] = strtoupper($value);
+    }
 }

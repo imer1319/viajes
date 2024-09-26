@@ -2,23 +2,23 @@
     <div class="form-group row">
         <div class="col-md-3">
             <select name="saldo" id="saldo" class="form-control">
-                <option value="" {{ is_null(request('saldo')) ? 'selected' : '' }} disabled> -- ¿ SALDO ? --
+                <option value="" {{ is_null(request('saldo')) ? 'selected' : '' }} disabled> -- ¿ Saldo ? --
                 </option>
-                <option value="1" {{ request('saldo') === '1' ? 'selected' : '' }}>Con saldo</option>
-                <option value="0" {{ request('saldo') === '0' ? 'selected' : '' }}>Sin saldo</option>
+                <option value="1" {{ request('saldo') === '1' ? 'selected' : '' }}>Si</option>
+                <option value="0" {{ request('saldo') === '0' ? 'selected' : '' }}>No</option>
             </select>
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-md-6">
-            <span class="tts:right tts-slideIn tts-custom" aria-label="Crear chofer">
-                <a href="{{ route('admin.choferes.create') }}" class="btn btn-primary rounded-pill float-end">
+            <span class="tts:right tts-slideIn tts-custom" aria-label="Crear cliente">
+                <a href="{{ route('admin.clientes.create') }}" class="btn btn-primary rounded-pill float-end">
                     <i class="fa fa-plus"></i>
                 </a>
             </span>
             <span class="tts:right tts-slideIn tts-custom" aria-label="Exportar a excel">
-                <a href="{{ route('admin.choferes.download.excel', request()->all()) }}"
+                <a href="{{ route('admin.clientes.download.excel', request()->all()) }}"
                     class="btn btn-primary rounded-pill float-end">
                     <i class="fas fa-file-excel"></i>
                 </a>

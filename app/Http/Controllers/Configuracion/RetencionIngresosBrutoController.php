@@ -12,7 +12,7 @@ class RetencionIngresosBrutoController extends Controller
     public function index()
     {
         return view('admin.retencionIngresosBruto.index', [
-            'ingresos' => RetencionIngresosBruto::latest()->paginate(8)
+            'ingresos' => RetencionIngresosBruto::paginate(8)
         ]);
     }
 

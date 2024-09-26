@@ -12,14 +12,39 @@ use App\Models\Provincia;
 use App\Models\RetencionGanancia;
 use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ClienteController extends Controller
 {
     public function index()
     {
+        $clientes =  Cliente::latest()->paginate(8);
+
+        $totales = [
+            'saldo' => $clientes->sum('saldo'),
+        ];
         return view('admin.clientes.index', [
-            'clientes' => Cliente::paginate(8)
+            'clientes' => $clientes,
+            'totales' => $totales,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $clientes = Cliente::query()
+            ->bySaldo($request->input('saldo'))
+            ->latest()
+            ->paginate(8);
+
+        $clientes->appends($request->except('page'));
+
+        $totales = [
+            'saldo' => $clientes->sum('saldo'),
+        ];
+        return view('admin.clientes.index', [
+            'clientes' => $clientes,
+            'totales' => $totales,
         ]);
     }
 

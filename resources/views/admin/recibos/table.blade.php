@@ -17,25 +17,33 @@
                 <td>{{ $recibo->cliente->razon_social }}</td>
                 <td>
                     @foreach ($recibo->pagos as $pago)
-                    {{ $pago->forma->descripcion }} <br>
+                        {{ $pago->forma->descripcion }} <br>
                     @endforeach
                 </td>
                 <td>{{ number_format($recibo->total_recibo, 2, ',', '.') }}</td>
                 <td>
-                    <a href="{{ route('admin.recibo.download.pdf', $recibo) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-file-pdf"></i>
-                    </a>
-                    <a href="{{ route('admin.recibos.show', $recibo) }}" class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                    <form action="{{ route('admin.recibos.destroy', $recibo) }}" style="display:inline" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
-                            onclick="return confirm('¿Realmente desea eliminar al recibo?')"><i
-                                class="fa fa-trash"></i>
-                        </button>
-                    </form>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Ver pdf">
+                        <a href="{{ route('admin.recibo.download.pdf', $recibo) }}" target="_blank"
+                            class="btn btn-primary btn-sm rounded-pill">
+                            <i class="fa fa-file-pdf"></i>
+                        </a>
+                    </span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Ver recibo">
+                        <a href="{{ route('admin.recibos.show', $recibo) }}" class="btn btn-primary btn-sm rounded-pill">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Eliminar recibo">
+                        <form action="{{ route('admin.recibos.destroy', $recibo) }}" style="display:inline"
+                            method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
+                                onclick="return confirm('¿Realmente desea eliminar al recibo?')"><i
+                                    class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </span>
                 </td>
             </tr>
         @endforeach

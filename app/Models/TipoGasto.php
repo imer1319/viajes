@@ -15,4 +15,9 @@ class TipoGasto extends Model
     {
         return $this->belongsToMany(GastoChofer::class, 'chofer_tipo_gasto');
     }
+
+    public function setDescripcionAttribute($value)
+    {
+        $this->attributes['descripcion'] = strtoupper($value);
+    }
 }

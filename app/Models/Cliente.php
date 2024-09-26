@@ -82,4 +82,14 @@ class Cliente extends Model
     {
         return $this->hasMany(ClienteFactura::class);
     }
+
+    public function scopeBySaldo($query, $saldo = null)
+    {
+        if ($saldo === '1') {
+            return $query->where('saldo', '!=', 0);
+        } elseif ($saldo === '0') {
+            return $query->where('saldo', '=', 0);
+        }
+        return $query;
+    }
 }

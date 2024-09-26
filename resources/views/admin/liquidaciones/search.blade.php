@@ -31,13 +31,17 @@
     </div>
     <div class="form-group row">
         <div class="col-md-6">
-            <a href="{{ route('admin.liquidaciones.create') }}" class="btn btn-primary rounded-pill float-end">
-                <i class="fa fa-plus"></i>
-            </a>
-            <a href="{{ route('admin.liquidacion.download.excel', request()->all()) }}"
-                class="btn btn-primary rounded-pill float-end">
-                <i class="fas fa-file-excel"></i>
-            </a>
+            <span class="tts:right tts-slideIn tts-custom" aria-label="Crear liquidacion">
+                <a href="{{ route('admin.liquidaciones.create') }}" class="btn btn-primary rounded-pill float-end">
+                    <i class="fa fa-plus"></i>
+                </a>
+            </span>
+            <span class="tts:right tts-slideIn tts-custom" aria-label="Exportar a excel">
+                <a href="{{ route('admin.liquidacion.download.excel', request()->all()) }}"
+                    class="btn btn-primary rounded-pill float-end">
+                    <i class="fas fa-file-excel"></i>
+                </a>
+            </span>
         </div>
         <div class="col-md-6 text-right">
             <button class="btn btn-primary font-verdana btn-sm" type="button" onclick="search();">

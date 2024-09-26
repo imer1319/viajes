@@ -129,7 +129,7 @@ export default {
                 .then(() => {
                     this.disabled = true;
                     if (this.redirect) {
-                        window.location = `/anticipos/${this.form.chofer_id}/chofer`;
+                        window.location = `/anticipos`;
                         return;
                     }
                     this.resetForm();

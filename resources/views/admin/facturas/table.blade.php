@@ -26,27 +26,35 @@
                 <td>{{ number_format($factura->total, 2, ',', '.') }}</td>
                 <td>{{ number_format($factura->saldo_total, 2, ',', '.') }}</td>
                 <td>
-                    <a href="{{ route('admin.factura.download.pdf', $factura) }}" target="_blank"
-                        class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-file-pdf"></i>
-                    </a>
-                    <a href="{{ route('admin.facturaciones.show', $factura) }}"
-                        class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-eye"></i>
-                    </a>
-                    <a href="{{ route('admin.facturaciones.edit', $factura) }}"
-                        class="btn btn-primary btn-sm rounded-pill">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                    <form action="{{ route('admin.facturaciones.destroy', $factura) }}" style="display:inline"
-                        method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
-                            onclick="return confirm('¿Realmente desea eliminar al factura?')"><i
-                                class="fa fa-trash"></i>
-                        </button>
-                    </form>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Ver pdf">
+                        <a href="{{ route('admin.factura.download.pdf', $factura) }}" target="_blank"
+                            class="btn btn-primary btn-sm rounded-pill">
+                            <i class="fa fa-file-pdf"></i>
+                        </a>
+                    </span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Ver factura">
+                        <a href="{{ route('admin.facturaciones.show', $factura) }}"
+                            class="btn btn-primary btn-sm rounded-pill">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Editar factura">
+                        <a href="{{ route('admin.facturaciones.edit', $factura) }}"
+                            class="btn btn-primary btn-sm rounded-pill">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Eliminar factura">
+                        <form action="{{ route('admin.facturaciones.destroy', $factura) }}" style="display:inline"
+                            method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
+                                onclick="return confirm('¿Realmente desea eliminar al factura?')"><i
+                                    class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </span>
                 </td>
             </tr>
         @endforeach

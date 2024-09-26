@@ -14,8 +14,14 @@ class ChoferController extends Controller
 {
     public function index()
     {
+        $choferes =  Chofer::paginate(8);
+
+        $totales = [
+            'saldo' => $choferes->sum('saldo'),
+        ];
         return view('admin.choferes.index', [
-            'choferes' => Chofer::paginate(8)
+            'choferes' => $choferes,
+            'totales' => $totales,
         ]);
     }
 
@@ -27,8 +33,13 @@ class ChoferController extends Controller
             ->paginate(8);
 
         $choferes->appends($request->except('page'));
+
+        $totales = [
+            'saldo' => $choferes->sum('saldo'),
+        ];
         return view('admin.choferes.index', [
-            'choferes' => $choferes
+            'choferes' => $choferes,
+            'totales' => $totales,
         ]);
     }
 
