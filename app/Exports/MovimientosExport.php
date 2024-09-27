@@ -49,7 +49,7 @@ implements
             ->byHasta($this->filters['hasta'] ?? null)
             ->get();
     }
-    
+
     public function styles(Worksheet $sheet)
     {
         return [
@@ -60,6 +60,9 @@ implements
 
     public function map($movimiento): array
     {
+        $facturas = $movimiento->facturas->map(function ($factura) {
+            return $factura->numero_factura_1 . '-' . $factura->numero_factura_2;
+        })->implode(', ');
         return [
             $movimiento->id,
             $movimiento->numero_interno,
@@ -78,6 +81,8 @@ implements
             $movimiento->porcentaje_pago,
             $movimiento->comision_chofer,
             $movimiento->saldo_comision_chofer,
+            $movimiento->facturado == 1 ? 'Si' : 'No',
+            $facturas ?: 'No Facturado',
         ];
     }
 
@@ -117,6 +122,8 @@ implements
                 '%',
                 'Comision Chofer',
                 'Saldo del chofer',
+                'Facturado',
+                '# Factura',
             ]
         ];
     }
@@ -130,7 +137,7 @@ implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getDelegate()->mergeCells('B2:R2');
+                $event->sheet->getDelegate()->mergeCells('B2:T2');
                 $event->sheet->getDelegate()->getStyle('B2')->applyFromArray([
                     'font' => [
                         'bold' => true,

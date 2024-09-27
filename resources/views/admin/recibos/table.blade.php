@@ -17,7 +17,7 @@
                 <td>{{ $recibo->cliente->razon_social }}</td>
                 <td>
                     @foreach ($recibo->pagos as $pago)
-                        {{ $pago->forma->descripcion }} <br>
+                        <span class="badge badge-primary">{{ $pago->forma->descripcion }}</span> <br>
                     @endforeach
                 </td>
                 <td>{{ number_format($recibo->total_recibo, 2, ',', '.') }}</td>

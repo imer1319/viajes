@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Gastos')
+@section('title', 'Gastos')
 
 @section('content')
     <section class="content-header">
@@ -36,6 +36,13 @@
                         <p class="text-muted">Importe: {{ $gasto->importe }}</p>
                         <p class="text-muted">Saldo: {{ $gasto->saldo }}</p>
                         <p class="text-muted">Detalle: {{ $gasto->detalle }}</p>
+                        <p class="text-muted">Tipos de gasto:</p>
+
+                        @forelse ($gasto->tipoGastos as $tipo)
+                            <p class="badge badge-primary">{{ $tipo->descripcion }}</p>
+                        @empty
+                            <p class="text-muted">No se añadieron tipos de gasto.</p>
+                        @endforelse
                     </div>
                     <div class="col-7">
                     </div>

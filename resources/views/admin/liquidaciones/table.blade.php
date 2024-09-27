@@ -17,7 +17,7 @@
                 <td>{{ $liquidacion->chofer->nombre }}</td>
                 <td>
                     @foreach ($liquidacion->pagos as $pago)
-                        {{ $pago->forma->descripcion }} <br>
+                        <span class="badge badge-primary">{{ $pago->forma->descripcion }}</span> <br>
                     @endforeach
                 </td>
                 <td>{{ number_format($liquidacion->total_liquidacion, 2, ',', '.') }}</td>
