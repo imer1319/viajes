@@ -107,7 +107,6 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="agregarChofer"
-                    :disabled="disabled"
                 >
                     Agregar
                 </button>
@@ -120,7 +119,6 @@ export default {
     props: ["redirect"],
     data() {
         return {
-            disabled: false,
             form: {
                 nombre: "",
                 fecha_nacimiento: "",
@@ -138,7 +136,6 @@ export default {
             this.$store
                 .dispatch("agregarChofer", this.form)
                 .then(() => {
-                    this.disabled = true;
                     if (this.redirect) {
                         window.location = "/choferes";
                         return;

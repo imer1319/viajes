@@ -2306,7 +2306,6 @@ __webpack_require__.r(__webpack_exports__);
   props: ["redirect"],
   data: function data() {
     return {
-      disabled: false,
       form: {
         nombre: "",
         fecha_nacimiento: "",
@@ -2323,7 +2322,6 @@ __webpack_require__.r(__webpack_exports__);
     agregarChofer: function agregarChofer() {
       var _this = this;
       this.$store.dispatch("agregarChofer", this.form).then(function () {
-        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/choferes";
           return;
@@ -2387,7 +2385,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      disabled: false,
       form: {
         id: "",
         nombre: "",
@@ -2416,7 +2413,6 @@ __webpack_require__.r(__webpack_exports__);
     actualizarChofer: function actualizarChofer() {
       var _this = this;
       this.$store.dispatch("actualizarChofer", this.form).then(function () {
-        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/choferes";
           return;
@@ -2559,7 +2555,6 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     agregarCliente: function agregarCliente() {
       var _this = this;
       this.$store.dispatch("agregarCliente", this.form).then(function () {
-        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/clientes";
           return;
@@ -2740,7 +2735,6 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     actualizarCliente: function actualizarCliente() {
       var _this2 = this;
       this.$store.dispatch("actualizarCliente", this.form).then(function () {
-        _this2.disabled = true;
         if (_this2.redirect) {
           window.location = "/clientes";
           return;
@@ -3402,7 +3396,6 @@ __webpack_require__.r(__webpack_exports__);
     agregarFlota: function agregarFlota() {
       var _this = this;
       this.$store.dispatch("agregarFlota", this.form).then(function () {
-        _this.disabled = true;
         _this.resetForm();
         _this.$toast.open({
           message: "Flota agregado exitosamente!",
@@ -3476,7 +3469,6 @@ __webpack_require__.r(__webpack_exports__);
     actualizarFlota: function actualizarFlota() {
       var _this = this;
       this.$store.dispatch("actualizarFlota", this.form).then(function () {
-        _this.disabled = true;
         if (_this.redirect) {
           window.location = "/flotas";
           return;
@@ -6124,7 +6116,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      disabled: false,
       form: {
         descripcion: ""
       }
@@ -6134,10 +6125,9 @@ __webpack_require__.r(__webpack_exports__);
     agregarTipoViaje: function agregarTipoViaje() {
       var _this = this;
       this.$store.dispatch("agregarTipoViaje", this.form).then(function () {
-        _this.disabled = true;
         _this.resetForm();
         _this.$toast.open({
-          message: "Flota agregado exitosamente!",
+          message: "Tipo de viaje agregado exitosamente!",
           type: "success",
           position: "top-right"
         });
@@ -6832,9 +6822,6 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
-    attrs: {
-      disabled: _vm.disabled
-    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -7136,9 +7123,6 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
-    attrs: {
-      disabled: _vm.disabled
-    },
     on: {
       click: function click($event) {
         $event.preventDefault();
@@ -15712,9 +15696,6 @@ var render = function render() {
     staticClass: "col-12 d-flex justify-content-end mt-3"
   }, [_c("button", {
     staticClass: "btn btn-primary btn-sm",
-    attrs: {
-      disabled: _vm.disabled
-    },
     on: {
       click: function click($event) {
         $event.preventDefault();

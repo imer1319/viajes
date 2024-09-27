@@ -131,7 +131,6 @@ export default {
             this.$store
                 .dispatch("actualizarFlota", this.form)
                 .then(() => {
-                    this.disabled = true;
                     if (this.redirect) {
                         window.location = "/flotas";
                         return;

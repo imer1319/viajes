@@ -124,7 +124,6 @@ export default {
             this.$store
                 .dispatch("agregarFlota", this.form)
                 .then(() => {
-                    this.disabled = true;
                     this.resetForm();
                     this.$toast.open({
                         message: "Flota agregado exitosamente!",

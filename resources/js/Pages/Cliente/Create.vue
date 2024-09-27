@@ -370,7 +370,6 @@ export default {
             this.$store
                 .dispatch("agregarCliente", this.form)
                 .then(() => {
-                    this.disabled = true;
                     if (this.redirect) {
                         window.location = "/clientes";
                         return;

@@ -21,7 +21,6 @@
                 <button
                     class="btn btn-primary btn-sm"
                     @click.prevent="agregarTipoViaje"
-                    :disabled="disabled"
                 >
                     Agregar
                 </button>
@@ -33,7 +32,6 @@
 export default {
     data() {
         return {
-            disabled: false,
             form: {
                 descripcion: "",
             },
@@ -44,10 +42,9 @@ export default {
             this.$store
                 .dispatch("agregarTipoViaje", this.form)
                 .then(() => {
-                    this.disabled = true;
                     this.resetForm();
                     this.$toast.open({
-                        message: "Flota agregado exitosamente!",
+                        message: "Tipo de viaje agregado exitosamente!",
                         type: "success",
                         position: "top-right",
                     });
