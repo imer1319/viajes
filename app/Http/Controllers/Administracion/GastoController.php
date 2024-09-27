@@ -17,7 +17,7 @@ class GastoController extends Controller
 {
     public function index()
     {
-        $gastos = GastoChofer::with('chofer')->paginate(8);
+        $gastos = GastoChofer::with('chofer','tipoGastos')->paginate(8);
         $totales = [
             'importe' => $gastos->sum('importe'),
             'saldo' => $gastos->sum('saldo'),
@@ -26,6 +26,7 @@ class GastoController extends Controller
             'gastos' => $gastos,
             'choferes' => Chofer::all(),
             'flotas' => Flota::all(),
+            'tipoGastos' => TipoGasto::all(),
             'totales' => $totales
         ]);
     }
@@ -38,7 +39,8 @@ class GastoController extends Controller
             ->bySaldo($request->input('saldo'))
             ->byDesde($request->input('desde'))
             ->byHasta($request->input('hasta'))
-            ->with('chofer')
+            ->byTipoGastoId($request->input('tipo_gasto_id'))
+            ->with('chofer','tipoGastos')
             ->latest()
             ->paginate(8);
 
@@ -52,6 +54,7 @@ class GastoController extends Controller
             'gastos' => $gastos,
             'choferes' => Chofer::all(),
             'flotas' => Flota::all(),
+            'tipoGastos' => TipoGasto::all(),
             'totales' => $totales,
         ]);
     }

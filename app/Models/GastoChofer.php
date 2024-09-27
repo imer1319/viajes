@@ -81,4 +81,14 @@ class GastoChofer extends Model
         }
         return $query;
     }
+
+    public function scopeByTipoGastoId($query, $tipo_gasto_id = null)
+    {
+        if ($tipo_gasto_id) {
+            return $query->whereHas('tipoGastos', function ($q) use ($tipo_gasto_id) {
+                $q->where('tipo_gasto_id', $tipo_gasto_id);
+            });
+        }
+        return $query;
+    }
 }

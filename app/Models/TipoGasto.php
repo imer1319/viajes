@@ -11,7 +11,7 @@ class TipoGasto extends Model
 
     protected $fillable = ['descripcion'];
 
-    public function gastoChofer()
+    public function gastos()
     {
         return $this->belongsToMany(GastoChofer::class, 'chofer_tipo_gasto');
     }

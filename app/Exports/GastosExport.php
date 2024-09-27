@@ -45,17 +45,21 @@ implements
     }
     public function collection()
     {
-        return GastoChofer::with('proveedor', 'flota', 'chofer')
+        return GastoChofer::with('proveedor', 'flota', 'chofer','tipoGastos')
             ->byChoferId($this->filters['chofer_id'] ?? null)
             ->byFlotaId($this->filters['flota_id'] ?? null)
             ->bySaldo($this->filters['saldo'] ?? null)
             ->byDesde($this->filters['desde'] ?? null)
             ->byHasta($this->filters['hasta'] ?? null)
+            ->byTipoGastoId($this->filters['tipo_gasto_id'] ?? null)
             ->get();
     }
 
     public function map($gasto): array
     {
+        $tipos = $gasto->tipoGastos->map(function ($tipo) {
+            return $tipo->descripcion;
+        })->implode(', ');
         return [
             $gasto->id,
             $gasto->numero_interno,
@@ -66,6 +70,7 @@ implements
             $gasto->chofer->nombre,
             $gasto->flota->nombre,
             $gasto->detalle,
+            $tipos ?: '',
         ];
     }
 
@@ -92,6 +97,7 @@ implements
                 'Chofer',
                 'Flota',
                 'Detalle',
+                'Tipos gasto',
             ]
         ];
     }
@@ -105,7 +111,7 @@ implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $event->sheet->getDelegate()->mergeCells('B2:J2');
+                $event->sheet->getDelegate()->mergeCells('B2:K2');
                 $event->sheet->getDelegate()->getStyle('B2')->applyFromArray([
                     'font' => [
                         'bold' => true,

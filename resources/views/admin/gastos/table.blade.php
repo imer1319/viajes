@@ -7,6 +7,7 @@
             <th>Flota</th>
             <th>Importe</th>
             <th>Saldo</th>
+            <th>Tipos gasto</th>
             <th></th>
         </tr>
     </thead>
@@ -21,6 +22,11 @@
                 <td>{{ $gasto->flota->nombre }}</td>
                 <td>{{ number_format($gasto->importe, 2, ',', '.') }}</td>
                 <td>{{ number_format($gasto->saldo, 2, ',', '.') }}</td>
+                <td>
+                    @foreach ($gasto->tipoGastos as $tipo)
+                        <span class="badge badge-primary">{{ $tipo->descripcion }} </span><br>
+                    @endforeach
+                </td>
                 <td>
                     <span class="tts:left tts-slideIn tts-custom" aria-label="Editar gasto">
                         <a href="{{ route('admin.gastos.show', $gasto) }}" class="btn btn-primary btn-sm rounded-pill">

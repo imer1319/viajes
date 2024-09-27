@@ -36,6 +36,16 @@
                 <option value="0" {{ request('saldo') === '0' ? 'selected' : '' }}>Sin saldo</option>
             </select>
         </div>
+        <div class="col-md-3 mt-3">
+            <select name="tipo_gasto_id" id="tipo_gasto_id" class="form-control">
+                <option value="" disabled selected>-- Seleccione un tipo de gasto --</option>
+                @foreach ($tipoGastos as $tipo)
+                    <option value="{{ $tipo->id }}" {{ request('tipo_gasto_id') == $tipo->id ? 'selected' : '' }}>
+                        {{ $tipo->descripcion }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
     </div>
 
     <div class="form-group row">
