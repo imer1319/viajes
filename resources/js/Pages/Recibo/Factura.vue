@@ -70,9 +70,7 @@
                     <td>{{ factura.total }}</td>
                     <td>{{ factura.saldo_total | formatNumber }}</td>
                     <td width="150">
-                        <input
-                            type="text"
-                            class="form-control"
+                        <input-number
                             v-model="factura.pago"
                             @input="actualizarTotalPago"
                         />
@@ -140,10 +138,12 @@
 <script>
 import { mapState } from "vuex";
 import ModalComponent from "../../components/Modal.vue";
+import InputNumber from "../../components/InputNumber.vue";
 import { mapMutations } from "vuex";
 export default {
     components: {
         ModalComponent,
+        InputNumber
     },
     methods: {
         ...mapMutations("recibos", [

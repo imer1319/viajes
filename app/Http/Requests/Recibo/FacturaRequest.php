@@ -72,6 +72,7 @@ class FacturaRequest extends FormRequest
         return [
             'form.total_saldo.required' => 'El campo total de saldo es obligatorio.',
             'form.total_saldo.numeric' => 'El total de saldo debe ser un número.',
+            'form.saldo_total.min' => 'El total de saldo debe ser al menos :min.',
             'form.facturas.required' => 'El campo facturas es obligatorio.',
             'form.facturas.array' => 'El campo facturas debe ser un arreglo.',
             'form.total_pagado.required' => 'El total de pago es obligatorio.',

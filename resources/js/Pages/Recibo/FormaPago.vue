@@ -162,6 +162,13 @@ export default {
         agregarPago() {
             const formaPagoId = this.form_pago.forma_pago_id;
             const bancoId = this.form_pago.banco_id;
+            if (formaPagoId == 1 || formaPagoId == 7) {
+                if (bancoId == "") {
+                    this.errors["form_pago.banco_id"] =
+                        "Debe seleccionar un banco.";
+                    return;
+                }
+            }
             const forma = this.forma_pagos.find(
                 (forma) => forma.id == formaPagoId
             );

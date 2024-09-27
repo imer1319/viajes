@@ -135,38 +135,21 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="precio_real">Precio real</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    v-model="form.precio_real"
-                    id="precio_real"
-                />
+                <input-number v-model="form.precio_real"/>
                 <span v-if="errors.precio_real" class="text-danger">{{
                     getErrorMessage(errors.precio_real)
                 }}</span>
             </div>
             <div class="col-md-4">
                 <label for="iva">IVA</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    v-model="form.iva"
-                    readonly
-                    id="iva"
-                />
+                <input-number v-model="form.iva" disabled/>
                 <span v-if="errors.iva" class="text-danger">{{
                     getErrorMessage(errors.iva)
                 }}</span>
             </div>
             <div class="col-md-4">
                 <label for="total">Total</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    v-model="form.total"
-                    readonly
-                    id="total"
-                />
+                <input-number v-model="form.total" disabled/>
                 <span v-if="errors.total" class="text-danger">{{
                     getErrorMessage(errors.total)
                 }}</span>
@@ -227,13 +210,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="precio_chofer">Precio Chofer</label>
-                <input
-                    type="number"
-                    class="form-control"
-                    step="0.1"
-                    v-model="form.precio_chofer"
-                    id="precio_chofer"
-                />
+                <input-number v-model="form.precio_chofer" />
                 <span v-if="errors.precio_chofer" class="text-danger">{{
                     getErrorMessage(errors.precio_chofer)
                 }}</span>
@@ -252,13 +229,7 @@
             </div>
             <div class="col-md-4">
                 <label for="comision_chofer">Comision Chofer</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    v-model="form.comision_chofer"
-                    readonly
-                    id="comision_chofer"
-                />
+                <input-number v-model="form.comision_chofer" disabled/>
                 <span v-if="errors.comision_chofer" class="text-danger">{{
                     getErrorMessage(errors.comision_chofer)
                 }}</span>
@@ -315,7 +286,7 @@ import TipoViajeCreate from "../../Pages/TipoViaje/Create.vue";
 import TipoViajeTable from "../../Pages/TipoViaje/Table.vue";
 import ModalComponent from "../../components/Modal.vue";
 import { mapGetters } from "vuex";
-
+import InputNumber from "../../components/InputNumber.vue";
 export default {
     components: {
         ChoferCreate,
@@ -327,6 +298,7 @@ export default {
         TipoViajeCreate,
         TipoViajeTable,
         ModalComponent,
+        InputNumber
     },
     props: ["numero_interno"],
     mounted() {

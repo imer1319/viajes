@@ -36,11 +36,8 @@
             "
         >
             <label for="importe">Importe</label>
-            <input
-                type="text"
-                class="form-control"
-                v-model="form_pago.importe"
-            />
+
+            <input-number v-model="form_pago.importe" />
             <span v-if="errors['form_pago.importe']" class="text-danger">
                 {{ getErrorMessage(errors["form_pago.importe"]) }}
             </span>
@@ -101,8 +98,12 @@
 
 <script>
 import { mapState } from "vuex";
+import InputNumber from "../../components/InputNumber.vue";
 
 export default {
+    components: {
+        InputNumber,
+    },
     props: {
         bancos: Array,
         vuexModule: {
