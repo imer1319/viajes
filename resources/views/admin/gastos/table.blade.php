@@ -5,9 +5,9 @@
             <th>Fecha</th>
             <th>Chofer</th>
             <th>Flota</th>
+            <th>Tipos gasto</th>
             <th>Importe</th>
             <th>Saldo</th>
-            <th>Tipos gasto</th>
             <th></th>
         </tr>
     </thead>
@@ -20,13 +20,14 @@
                     {{ $gasto->chofer->nombre }}
                 </td>
                 <td>{{ $gasto->flota->nombre }}</td>
-                <td>{{ number_format($gasto->importe, 2, ',', '.') }}</td>
-                <td>{{ number_format($gasto->saldo, 2, ',', '.') }}</td>
                 <td>
                     @foreach ($gasto->tipoGastos as $tipo)
                         <span class="badge badge-primary">{{ $tipo->descripcion }} </span><br>
                     @endforeach
                 </td>
+                <td>{{ number_format($gasto->importe, 2, ',', '.') }}</td>
+                <td>{{ number_format($gasto->saldo, 2, ',', '.') }}</td>
+
                 <td>
                     <span class="tts:left tts-slideIn tts-custom" aria-label="Editar gasto">
                         <a href="{{ route('admin.gastos.show', $gasto) }}" class="btn btn-primary btn-sm rounded-pill">
@@ -55,10 +56,9 @@
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="4">Totales</th>
+            <th colspan="5">Totales</th>
             <th>{{ number_format($totales['importe'], 2, ',', '.') }}</th>
             <th>{{ number_format($totales['saldo'], 2, ',', '.') }}</th>
-            <th></th>
         </tr>
     </tfoot>
 </table>

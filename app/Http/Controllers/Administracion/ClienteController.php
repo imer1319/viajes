@@ -14,6 +14,7 @@ use App\Models\RetencionIngresosBruto;
 use App\Models\TipoDocumento;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ClienteController extends Controller
 {
@@ -99,5 +100,24 @@ class ClienteController extends Controller
     public function downloadExcel()
     {
         return Excel::download(new ClienteExport, 'clientes.xlsx');
+    }
+
+    public function print(Request $request)
+    {
+        $clientes = Cliente::query()
+            ->bySaldo($request->input('saldo'))
+            ->get();
+
+        $totales = [
+            'saldo' => $clientes->sum('saldo'),
+        ];
+
+        $pdf = Pdf::loadView('reportes.clientes', compact('clientes', 'totales'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
+        return $pdf->stream();
     }
 }

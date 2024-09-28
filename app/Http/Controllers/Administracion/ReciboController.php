@@ -27,7 +27,7 @@ class ReciboController extends Controller
 
     public function index()
     {
-        $recibos = Recibo::with('cliente','pagos','pagos.banco')->paginate(8);
+        $recibos = Recibo::with('cliente', 'pagos', 'pagos.banco')->paginate(8);
 
         $totales = [
             'total_recibo' => $recibos->sum('total_recibo'),
@@ -62,7 +62,7 @@ class ReciboController extends Controller
             'formas' => FormasPagos::all(),
         ]);
     }
-    
+
     public function create()
     {
         $ultimaRecibo = Recibo::latest()->first();
@@ -137,5 +137,27 @@ class ReciboController extends Controller
     public function downloadExcel(Request $request)
     {
         return Excel::download(new ReciboExport($request->all()), 'recibos.xlsx');
+    }
+
+    public function print(Request $request)
+    {
+        $recibos = Recibo::query()
+            ->byFormaPagoId($request->input('forma_id'))
+            ->byClienteId($request->input('cliente_id'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->get();
+
+        $totales = [
+            'total_recibo' => $recibos->sum('total_recibo'),
+        ];
+
+        $pdf = Pdf::loadView('reportes.recibos', compact('recibos', 'totales'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
+        return $pdf->stream();
     }
 }

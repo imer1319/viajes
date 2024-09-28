@@ -67,7 +67,7 @@ class FacturacionController extends Controller
             'clientes' => Cliente::all()
         ]);
     }
-    
+
     public function create()
     {
         $ultimaLiquidacion = ClienteFactura::latest()->first();
@@ -159,5 +159,31 @@ class FacturacionController extends Controller
     public function downloadExcel(Request $request)
     {
         return Excel::download(new FacturasExport($request->all()), 'facturas.xlsx');
+    }
+
+    public function print(Request $request)
+    {
+        $facturas = ClienteFactura::query()
+            ->byClienteId($request->input('cliente_id'))
+            ->bySaldo($request->input('saldo'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->with('cliente')
+            ->get();
+
+        $totales = [
+            'neto' => $facturas->sum('neto'),
+            'iva' => $facturas->sum('iva'),
+            'total' => $facturas->sum('total'),
+            'saldo_total' => $facturas->sum('saldo_total'),
+        ];
+
+        $pdf = Pdf::loadView('reportes.facturas', compact('facturas', 'totales'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
+        return $pdf->stream();
     }
 }

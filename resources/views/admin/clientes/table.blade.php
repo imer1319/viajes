@@ -1,6 +1,7 @@
 <table class="table table-bordered">
     <thead>
         <tr>
+            <th>#</th>
             <th>Razon social</th>
             <th>Email</th>
             <th># Documento</th>
@@ -11,6 +12,7 @@
     <tbody>
         @foreach ($clientes as $cliente)
             <tr>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $cliente->razon_social }}</td>
                 <td>{{ $cliente->email }}</td>
                 <td>{{ $cliente->numero_documento }}</td>
@@ -45,7 +47,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <th colspan="3">Totales</th>
+            <th colspan="4">Totales</th>
             <th>{{ number_format($totales['saldo'], 2, ',', '.') }}</th>
             <th></th>  
         </tr>

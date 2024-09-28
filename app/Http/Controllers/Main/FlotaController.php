@@ -7,6 +7,7 @@ use App\Http\Requests\Flota\StoreRequest;
 use App\Http\Requests\Flota\UpdateRequest;
 use App\Models\Flota;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class FlotaController extends Controller
 {
@@ -52,5 +53,20 @@ class FlotaController extends Controller
     {
         $flota->delete();
         return redirect()->route('admin.flotas.index')->with('flash', 'Flota eliminada corretamente');
+    }
+
+    public function print()
+    {
+        $flotas = Flota::query()
+            ->latest()
+            ->get();
+       
+        $pdf = Pdf::loadView('reportes.flotas', compact('flotas'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
+        return $pdf->stream();
     }
 }

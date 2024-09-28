@@ -59,7 +59,7 @@ class LiquidacionController extends Controller
             'totales' => $totales,
         ]);
     }
-    
+
     public function create()
     {
         $ultimaLiquidacion = Liquidacion::latest()->first();
@@ -121,7 +121,7 @@ class LiquidacionController extends Controller
             'anticipos.anticipo',
             'chofer'
         ]);
-       
+
         $numero_letra = $this->convertirNumeroALetras($liquidacion->total_liquidacion);
 
         $pdf = Pdf::loadView('reportes.liquidacion', compact('liquidacion', 'numero_letra'));
@@ -131,5 +131,28 @@ class LiquidacionController extends Controller
     public function downloadExcel(Request $request)
     {
         return Excel::download(new LiquidacionesExport($request->all()), 'liquidaciones.xlsx');
+    }
+
+    public function print(Request $request)
+    {
+        $liquidaciones = Liquidacion::query()
+            ->byFormaPagoId($request->input('forma_id'))
+            ->byChoferId($request->input('chofer_id'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->with('chofer')
+            ->get();
+
+        $totales = [
+            'total_liquidacion' => $liquidaciones->sum('total_liquidacion'),
+        ];
+
+        $pdf = Pdf::loadView('reportes.liquidaciones', compact('liquidaciones', 'totales'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
+        return $pdf->stream();
     }
 }

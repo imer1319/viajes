@@ -31,7 +31,6 @@
     <div class="form-group row">
         <div class="col-md-6">
             <span class="tts:right tts-slideIn tts-custom" aria-label="Crear anticipo">
-
                 <a href="{{ route('admin.anticipos.create') }}" class="btn btn-primary rounded-pill float-end">
                     <i class="fa fa-plus"></i>
                 </a>
@@ -40,6 +39,12 @@
                 <a href="{{ route('admin.anticipos.download.excel', request()->all()) }}"
                     class="btn btn-primary rounded-pill float-end">
                     <i class="fas fa-file-excel"></i>
+                </a>
+            </span>
+            <span class="tts:right tts-slideIn tts-custom" aria-label="Imprimir">
+                <a href="{{ route('admin.anticipo.download.print', request()->all()) }}"
+                    target="_blank" class="btn btn-primary rounded-pill float-end">
+                    <i class="fas fa-print"></i>
                 </a>
             </span>
         </div>

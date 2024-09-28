@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Movimientos</title>
+    <title>Recibos</title>
     <style>
         body {
             font-family: sans-serif
@@ -136,7 +136,7 @@
         <table width="100%">
             <tr>
                 <td align="center" style="width: 100%; font-size:16px; padding-top:7px">
-                    <span>Listado de movimientos</span>
+                    <span>Listado de recibos</span>
                 </td>
             </tr>
         </table>
@@ -157,57 +157,32 @@
         <table class="table table-bordered">
             <thead class="text-xs text-white uppercase bg-blue-400">
                 <tr>
-                    <th style="padding: 0.2rem">Int</th>
-                    <th style="padding: 0.2rem">Fecha</th>
-                    <th style="padding: 0.2rem">Cliente</th>
-                    <th style="padding: 0.2rem">Tipo viaje</th>
-                    <th style="padding: 0.2rem"># Remito</th>
-                    <th style="padding: 0.2rem">Total</th>
-                    <th style="padding: 0.2rem">Saldo</th>
-                    <th style="padding: 0.2rem">Flota</th>
-                    <th style="padding: 0.2rem">Chofer</th>
-                    <th style="padding: 0.2rem">Comision chofer</th>
-                    <th style="padding: 0.2rem">Saldo comision chofer</th>
-                    <th style="padding: 0.2rem">Fact</th>
-                    <th style="padding: 0.2rem"># Factura</th>
+                    <th>#</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Formas de pago</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($movimientos as $movimiento)
+                @foreach ($recibos as $recibo)
                     <tr>
-                        <td>{{ $movimiento->numero_interno }}</td>
-                        <td>{{ $movimiento->fecha }}</td>
-                        <td>{{ $movimiento->cliente->razon_social }}</td>
-                        <td>{{ $movimiento->tipoViaje->descripcion }}</td>
-                        <td>{{ $movimiento->numero_factura_1 }} - {{ $movimiento->numero_factura_2 }}
-                        </td>
-                        <td>{{ number_format($movimiento->total, 2, ',', '.') }}</td>
-                        <td>{{ number_format($movimiento->saldo_total, 2, ',', '.') }}</td>
-                        <td>{{ $movimiento->flota->nombre }}</td>
-                        <td>{{ $movimiento->chofer->nombre }}</td>
-                        <td>{{ number_format($movimiento->comision_chofer, 2, ',', '.') }}</td>
-                        <td>{{ number_format($movimiento->saldo_comision_chofer, 2, ',', '.') }}</td>
-                        <td>{{ $movimiento->facturado == 1 ? 'Si' : 'No' }}</td>
+                        <td>{{ $recibo->numero_interno }}</td>
+                        <td>{{ $recibo->fecha }}</td>
+                        <td>{{ $recibo->cliente->razon_social }}</td>
                         <td>
-                            @if ($movimiento->facturas->isNotEmpty())
-                                @foreach ($movimiento->facturas as $factura)
-                                    {{ $factura->numero_factura_1 }}-{{ $factura->numero_factura_2 }}
-                                @endforeach
-                            @else
-                            @endif
+                            @foreach ($recibo->pagos as $pago)
+                                <span class="badge badge-primary">{{ $pago->forma->descripcion }}</span> <br>
+                            @endforeach
                         </td>
+                        <td>{{ number_format($recibo->total_recibo, 2, ',', '.') }}</td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="5">Totales</th>
-                    <th>{{ number_format($totales['total'], 2, ',', '.') }}</th>
-                    <th>{{ number_format($totales['saldo_total'], 2, ',', '.') }}</th>
-                    <th colspan="2"></th>
-                    <th>{{ number_format($totales['comision_chofer'], 2, ',', '.') }}</th>
-                    <th>{{ number_format($totales['saldo_comision_chofer'], 2, ',', '.') }}</th>
-                    <th colspan="3"></th>
+                    <th colspan="4">Totales</th>
+                    <th>{{ number_format($totales['total_recibo'], 2, ',', '.') }}</th>
                 </tr>
             </tfoot>
         </table>

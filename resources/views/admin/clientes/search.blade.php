@@ -23,6 +23,12 @@
                     <i class="fas fa-file-excel"></i>
                 </a>
             </span>
+            <span class="tts:right tts-slideIn tts-custom" aria-label="Imprimir">
+                <a href="{{ route('admin.cliente.download.print', request()->all()) }}" target="_blank"
+                    class="btn btn-primary rounded-pill float-end">
+                    <i class="fas fa-print"></i>
+                </a>
+            </span>
         </div>
         <div class="col-md-6 text-right">
             <button class="btn btn-primary font-verdana btn-sm" type="button" onclick="search();">

@@ -12,12 +12,13 @@ use App\Models\GastoChofer;
 use App\Models\TipoGasto;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class GastoController extends Controller
 {
     public function index()
     {
-        $gastos = GastoChofer::with('chofer','tipoGastos')->paginate(8);
+        $gastos = GastoChofer::with('chofer', 'tipoGastos')->paginate(8);
         $totales = [
             'importe' => $gastos->sum('importe'),
             'saldo' => $gastos->sum('saldo'),
@@ -40,7 +41,7 @@ class GastoController extends Controller
             ->byDesde($request->input('desde'))
             ->byHasta($request->input('hasta'))
             ->byTipoGastoId($request->input('tipo_gasto_id'))
-            ->with('chofer','tipoGastos')
+            ->with('chofer', 'tipoGastos')
             ->latest()
             ->paginate(8);
 
@@ -152,5 +153,31 @@ class GastoController extends Controller
     public function downloadExcel(Request $request)
     {
         return Excel::download(new GastosExport($request->all()), 'gastos.xlsx');
+    }
+
+    public function print(Request $request)
+    {
+        $gastos = GastoChofer::query()
+            ->byChoferId($request->input('chofer_id'))
+            ->byFlotaId($request->input('flota_id'))
+            ->bySaldo($request->input('saldo'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->byTipoGastoId($request->input('tipo_gasto_id'))
+            ->with('chofer', 'tipoGastos')
+            ->get();
+
+        $totales = [
+            'importe' => $gastos->sum('importe'),
+            'saldo' => $gastos->sum('saldo'),
+        ];
+
+        $pdf = Pdf::loadView('reportes.gastos', compact('gastos', 'totales'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
+        return $pdf->stream();
     }
 }

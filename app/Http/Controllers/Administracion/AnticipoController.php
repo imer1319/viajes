@@ -12,6 +12,7 @@ use App\Models\AnticipoChofer;
 use App\Models\Chofer;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AnticipoController extends Controller
 {
@@ -123,5 +124,29 @@ class AnticipoController extends Controller
     public function downloadExcel(Request $request)
     {
         return Excel::download(new AnticiposExport($request->all()), 'anticipos.xlsx');
+    }
+
+
+    public function print(Request $request)
+    {
+        $anticipos = AnticipoChofer::query()
+            ->byChoferId($request->input('chofer_id'))
+            ->bySaldo($request->input('saldo'))
+            ->byDesde($request->input('desde'))
+            ->byHasta($request->input('hasta'))
+            ->with('chofer')
+            ->get();
+        $totales = [
+            'importe' => $anticipos->sum('importe'),
+            'saldo' => $anticipos->sum('saldo'),
+        ];
+
+        $pdf = Pdf::loadView('reportes.anticipos', compact('anticipos', 'totales'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
+        return $pdf->stream();
     }
 }

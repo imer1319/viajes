@@ -9,6 +9,7 @@ use App\Http\Requests\Chofer\UpdateRequest;
 use App\Models\Chofer;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ChoferController extends Controller
 {
@@ -90,5 +91,24 @@ class ChoferController extends Controller
     public function downloadExcel(Chofer $chofer)
     {
         return Excel::download(new ChoferExport($chofer), 'choferes.xlsx');
+    }
+
+    public function print(Request $request)
+    {
+        $choferes = Chofer::query()
+            ->bySaldo($request->input('saldo'))
+            ->paginate(8);
+
+        $totales = [
+            'saldo' => $choferes->sum('saldo'),
+        ];
+
+        $pdf = Pdf::loadView('reportes.choferes', compact('choferes', 'totales'));
+
+        $pdf->setPaper('A4', 'landscape');
+
+        $pdf->set_option('isHtml5ParserEnabled', true);
+
+        return $pdf->stream();
     }
 }

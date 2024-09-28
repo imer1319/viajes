@@ -23,10 +23,17 @@
         <div class="card card-primary card-outline">
             <div class="mx-3 my-2 d-flex align-items-center justify-content-between">
                 <h5>Listado de flotas</h5>
-                <span class="tts:left tts-slideIn tts-custom" aria-label="Crear flota">
-                    <a href="{{ route('admin.flotas.create') }}" class="btn btn-primary rounded-pill float-end">
-                        <i class="fa fa-plus"></i>
-                    </a>
+                <span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Imprimir">
+                        <a href="{{ route('admin.flota.download.print') }}" target="_blank" class="btn btn-primary rounded-pill float-end">
+                            <i class="fas fa-print"></i>
+                        </a>
+                    </span>
+                    <span class="tts:left tts-slideIn tts-custom" aria-label="Crear flota">
+                        <a href="{{ route('admin.flotas.create') }}" class="btn btn-primary rounded-pill float-end">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </span>
                 </span>
             </div>
             <div class="card-body">

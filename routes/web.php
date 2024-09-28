@@ -99,5 +99,12 @@ Route::name('admin.')->middleware(['auth'])->group(function () {
 
     // imprimir
     Route::get('movimiento/print', [MovimientoController::class, 'print'])->name('movimiento.download.print');
-    
+    Route::get('flota/print', [FlotaController::class, 'print'])->name('flota.download.print');
+    Route::get('chofer/print', [ChoferController::class, 'print'])->name('chofer.download.print');
+    Route::get('anticipo/print', [AnticipoController::class, 'print'])->name('anticipo.download.print');
+    Route::get('gasto/print', [GastoController::class, 'print'])->name('gasto.download.print');
+    Route::get('liquidacion/print', [LiquidacionController::class, 'print'])->name('liquidacion.download.print');
+    Route::get('cliente/print', [ClienteController::class, 'print'])->name('cliente.download.print');
+    Route::get('factura/print', [FacturacionController::class, 'print'])->name('factura.download.print');
+    Route::get('recibo/print', [ReciboController::class, 'print'])->name('recibo.download.print');
 });
