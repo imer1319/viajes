@@ -55,13 +55,13 @@ class StoreRequest extends FormRequest
                     })
                     ->ignore($id),
             ],
-            'precio_real' => 'required|numeric|min:0',
+            'precio_real' => 'nullable|numeric|min:0',
             'iva' => 'required|numeric|min:0',
             'total' => 'required|numeric|min:0',
             'saldo_total' => 'required|numeric|min:0',
             'flota_id' => 'required|exists:flotas,id',
             'chofer_id' => 'required|exists:chofers,id',
-            'precio_chofer' => 'required|numeric|min:0',
+            'precio_chofer' => 'nullable|numeric|min:0',
             'porcentaje_pago' => 'required|integer|min:0|max:100',
             'comision_chofer' => 'required|numeric|min:0',
             'saldo_comision_chofer' => 'required|numeric|min:0'
