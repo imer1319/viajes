@@ -20,13 +20,36 @@
         @enderror
     </div>
     <div class="col-md-6">
+        <label for="password">Contraseña</label>
+
+        <div class="form-group">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                name="password" required autocomplete="new-password">
+
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="password-confirm">Confirmar contraseña</label>
+
+        <div class="form-group">
+            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
+                autocomplete="new-password">
+        </div>
+    </div>
+    {{-- <div class="col-md-6">
         <label for="role_id">Rol</label>
         <div>
             @foreach ($roles as $role)
                 <div class="form-check">
                     <input class="form-check-input @error('role_id') is-invalid @enderror" type="radio" name="role_id"
                         id="role_{{ $role->id }}" value="{{ $role->id }}"
-                        {{ old('role_id', $user->role_id) == $role->id ? 'checked' : '' }}>
+                        {{ old('role_id', $user->roles->first()->id ?? '') == $role->id ? 'checked' : '' }}>
                     <label class="form-check-label" for="role_{{ $role->id }}">
                         {{ $role->description }}
                     </label>
@@ -39,7 +62,7 @@
                 </span>
             @enderror
         </div>
-    </div>
+    </div> --}}
 </div>
 <div class="row">
     <div class="col mt-3">

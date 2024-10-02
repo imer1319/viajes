@@ -48,6 +48,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        if ($user->id == 1) {
+            abort(403, 'No se puede eliminar el usuario.');
+        }
         $user->delete();
         return redirect()->route('admin.users.index')->with('flash', 'Usuario eliminado corretamente');
     }

@@ -14,18 +14,19 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    <a href="{{ route('admin.users.edit', $user) }}"
-                        class="btn btn-primary btn-sm rounded-pill">
+                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm rounded-pill">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <form action="{{ route('admin.users.destroy', $user) }}" style="display:inline" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
-                            onclick="return confirm('¿Realmente desea eliminar al usuario?')"><i
-                                class="fa fa-trash"></i>
-                        </button>
-                    </form>
+                    @if ($user->id !== 1)
+                        <form action="{{ route('admin.users.destroy', $user) }}" style="display:inline" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" name="submit" class="btn btn-sm btn-primary rounded-pill"
+                                onclick="return confirm('¿Realmente desea eliminar al usuario?')"><i
+                                    class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    @endif
                 </td>
             </tr>
         @endforeach

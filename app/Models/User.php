@@ -57,21 +57,7 @@ class User extends Authenticatable
         'profile_photo',
     ];
 
-    public function hasProfilePhoto(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->profile_photo_path !== config('custom.profile_default.nombre')
-        );
-    }
-
-    public function profilePhoto(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => !$this->has_profile_photo
-                ? asset("/images/users/{$this->profile_photo_path}")
-                : Storage::disk('profiles')->url($this->profile_photo_path),
-        );
-    }
+ 
     public function scopeMainSearch(Builder $query, Collection $data): Builder
     {
         if ($data->get('name')) {
@@ -84,5 +70,10 @@ class User extends Authenticatable
     public function getRoleDisplayNames()
     {
         return $this->roles->pluck('description')->implode(', ');
+    }
+    
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 }
