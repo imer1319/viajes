@@ -18,7 +18,9 @@ class GastoController extends Controller
 {
     public function index()
     {
-        $gastos = GastoChofer::with('chofer', 'tipoGastos')->paginate(8);
+        $gastos = GastoChofer::query()
+            ->with('chofer', 'tipoGastos')
+            ->paginate(8);
         $totales = [
             'importe' => $gastos->sum('importe'),
             'saldo' => $gastos->sum('saldo'),

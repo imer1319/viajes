@@ -31,7 +31,10 @@ class MovimientoController extends Controller
 {
     public function index()
     {
-        $movimientos = Movimiento::with('facturas')->latest()->paginate(8);
+        $movimientos = Movimiento::query()
+            ->with('facturas', 'tipoViaje', 'chofer', 'cliente', 'flota')
+            ->latest()
+            ->paginate(8);
 
         $totales = [
             'precio_real' => $movimientos->sum('precio_real'),
@@ -62,7 +65,7 @@ class MovimientoController extends Controller
             ->byFacturado($request->input('facturado'))
             ->byDesde($request->input('desde'))
             ->byHasta($request->input('hasta'))
-            ->with('facturas')
+            ->with('facturas', 'tipoViaje', 'chofer', 'cliente', 'flota')
             ->latest()
             ->paginate(8);
 
