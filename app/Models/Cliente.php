@@ -92,4 +92,25 @@ class Cliente extends Model
         }
         return $query;
     }
+
+    public function scopeWithMostMovimientos($query, $desde = null, $hasta = null)
+    {
+        return $query->whereHas('movimientos', function ($query) use ($desde, $hasta) {
+            if ($desde) {
+                $query->whereDate('fecha', '>=', $desde);
+            }
+            if ($hasta) {
+                $query->whereDate('fecha', '<=', $hasta);
+            }
+        })
+            ->withCount(['movimientos' => function ($query) use ($desde, $hasta) {
+                if ($desde) {
+                    $query->whereDate('fecha', '>=', $desde);
+                }
+                if ($hasta) {
+                    $query->whereDate('fecha', '<=', $hasta);
+                }
+            }])
+            ->orderBy('movimientos_count', 'desc');
+    }
 }

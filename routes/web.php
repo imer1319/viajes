@@ -33,6 +33,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/searchCliente', [App\Http\Controllers\HomeController::class, 'searchCliente'])->name('home.searchCliente');
+Route::get('/home/searchChofer', [App\Http\Controllers\HomeController::class, 'searchChofer'])->name('home.searchChofer');
+Route::get('/home/searchFlota', [App\Http\Controllers\HomeController::class, 'searchFlota'])->name('home.searchFlota');
 
 Route::name('admin.')->middleware(['auth'])->group(function () {
     // Configuracion

@@ -23,6 +23,9 @@
         .vs--searchable .vs__dropdown-toggle {
             height: 39px;
         }
+        .content-wrapper>.content{
+            padding: 0 0.5rem 3rem .5rem;
+        }
     </style>
 </head>
 
@@ -37,7 +40,7 @@
         @include('layouts.partials.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" id="app">
+        <div class="content-wrapper" id="app" style="min-height: 1290px;">
             <!-- Content Header (Page header) -->
             @yield('content')
             <!-- /.content -->

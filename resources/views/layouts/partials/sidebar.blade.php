@@ -32,7 +32,10 @@
             <ul class="nav nav-pills nav-sidebar flex-column nav-flat nav-child-indent nav-collapse-hide-child  sidebar-mini-xs"
                 data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link">
+                    <a href="{{ route('home') }}"
+                        class="nav-link {{ setActiveRoute([
+                            'home',
+                        ]) }}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Inicio
