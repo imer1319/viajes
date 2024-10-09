@@ -82,7 +82,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td align="center" colspan="4">No se encontraron clientes</td>
+                                                <td align="center" colspan="5">No se encontraron clientes</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -151,7 +151,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td align="center" colspan="4">No se encontraron choferes</td>
+                                                <td align="center" colspan="5">No se encontraron movimientos</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -219,7 +219,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td align="center" colspan="4">No se encontraron choferes</td>
+                                                <td align="center" colspan="5">No se encontraron movimientos</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -227,6 +227,66 @@
                                         <tr>
                                             <td colspan="4"><strong>Total</strong></td>
                                             <td align="center"><strong>{{ $totales['total_movimientos_flota'] }}</strong>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card card-primary card-outline elevation-1">
+                            <div class="card-header">
+                                <h5>Tipos de viaje con mas movimientos</h5>
+                                <form action="#" method="get" id="form-tipo">
+                                    <div class="row">
+                                        <div class="col-md-4 mt-3">
+                                            <input type="date" class="form-control" name="desde" id="desde"
+                                                value="{{ old('desde', request('desde')) }}">
+                                        </div>
+                                        <div class="col-md-4 mt-3">
+                                            <input type="date" class="form-control" name="hasta" id="hasta"
+                                                value="{{ old('hasta', request('hasta')) }}">
+                                        </div>
+                                        <div class="col-md-4 mt-3 text-right">
+                                            <button class="btn btn-primary font-verdana btn-sm" type="button"
+                                                onclick="searchTipo();">
+                                                <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Buscar
+                                            </button>
+                                            <button class="btn btn-primary font-verdana btn-sm" type="button"
+                                                onclick="limpiar();">
+                                                &nbsp;<i class="fa fa-eraser"></i>&nbsp;Limpiar
+                                            </button>
+                                            <i class="fa fa-spinner custom-spinner fa-spin fa-2x fa-fw spinner-btn"
+                                                style="display: none;"></i>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th>#</th>
+                                        <th>Descripcion</th>
+                                        <th>Movimientos</th>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($tipos as $tipo)
+                                            <tr>
+                                                <td width="10px">{{ $loop->iteration }}</td>
+                                                <td>{{ $tipo->descripcion }}</td>
+                                                <td align="center" width="10px">{{ $tipo->movimientos_count }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td align="center" colspan="4">No se encontraron movimientos</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2"><strong>Total</strong></td>
+                                            <td align="center"><strong>{{ $totales['total_movimientos_tipo'] }}</strong>
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -266,6 +326,14 @@
         $(".btn-importar").hide();
         $(".spinner-btn").show();
         $("#form-flota").submit();
+    }
+    function searchTipo() {
+        var url = "{{ route('home.searchTipo') }}";
+        $("#form-tipo").attr('action', url);
+        $(".btn").hide();
+        $(".btn-importar").hide();
+        $(".spinner-btn").show();
+        $("#form-tipo").submit();
     }
 
     function limpiar() {

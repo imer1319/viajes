@@ -36,6 +36,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/home/searchCliente', [App\Http\Controllers\HomeController::class, 'searchCliente'])->name('home.searchCliente');
 Route::get('/home/searchChofer', [App\Http\Controllers\HomeController::class, 'searchChofer'])->name('home.searchChofer');
 Route::get('/home/searchFlota', [App\Http\Controllers\HomeController::class, 'searchFlota'])->name('home.searchFlota');
+Route::get('/home/searchTipoViaje', [App\Http\Controllers\HomeController::class, 'searchTipoViaje'])->name('home.searchTipo');
 
 Route::name('admin.')->middleware(['auth'])->group(function () {
     // Configuracion

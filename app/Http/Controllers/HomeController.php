@@ -6,6 +6,7 @@ use App\Models\Chofer;
 use App\Models\Cliente;
 use App\Models\Flota;
 use App\Models\Movimiento;
+use App\Models\TipoViaje;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -42,6 +43,12 @@ class HomeController extends Controller
             ->orderBy('movimientos_count', 'desc')
             ->take(5)
             ->get();
+
+        $tipos = TipoViaje::query()
+            ->withCount('movimientos')
+            ->orderBy('movimientos_count', 'desc')
+            ->take(5)
+            ->get();
         $totales = [
             'saldo_cliente' => $clientes->sum('movimientos_sum_total'),
             'total_movimientos_cliente' => $clientes->sum('movimientos_count'),
@@ -49,11 +56,13 @@ class HomeController extends Controller
             'total_comision' => $choferes->sum('movimientos_sum_comision_chofer'),
             'total_movimientos_chofer' => $choferes->sum('movimientos_count'),
             'total_movimientos_flota' => $flotas->sum('movimientos_count'),
+            'total_movimientos_tipo' => $tipos->sum('movimientos_count'),
         ];
         return view('home', [
             'clientes' => $clientes,
             'choferes' => $choferes,
             'flotas' => $flotas,
+            'tipos' => $tipos,
             'totales' => $totales,
             'total_movimientos' => $this->total_movimientos
         ]);
@@ -80,6 +89,11 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
+        $tipos = TipoViaje::query()
+            ->withCount('movimientos')
+            ->orderBy('movimientos_count', 'desc')
+            ->take(5)
+            ->get();
         $totales = [
             'saldo_cliente' => $clientes->sum('movimientos_sum_total'),
             'total_movimientos_cliente' => $clientes->sum('movimientos_count'),
@@ -87,11 +101,13 @@ class HomeController extends Controller
             'total_comision' => $choferes->sum('movimientos_sum_comision_chofer'),
             'total_movimientos_chofer' => $choferes->sum('movimientos_count'),
             'total_movimientos_flota' => $flotas->sum('movimientos_count'),
+            'total_movimientos_tipo' => $tipos->sum('movimientos_count'),
         ];
         return view('home', [
             'clientes' => $clientes,
             'choferes' => $choferes,
             'flotas' => $flotas,
+            'tipos' => $tipos,
             'totales' => $totales,
             'total_movimientos' => $this->total_movimientos
         ]);
@@ -118,6 +134,11 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
+        $tipos = TipoViaje::query()
+            ->withCount('movimientos')
+            ->orderBy('movimientos_count', 'desc')
+            ->take(5)
+            ->get();
         $totales = [
             'saldo_cliente' => $clientes->sum('movimientos_sum_total'),
             'total_movimientos_cliente' => $clientes->sum('movimientos_count'),
@@ -125,11 +146,13 @@ class HomeController extends Controller
             'saldo_chofer' => $choferes->sum('movimientos_sum_comision_chofer'),
             'total_comision' => $choferes->sum('movimientos_sum_comision_chofer'),
             'total_movimientos_flota' => $flotas->sum('movimientos_count'),
+            'total_movimientos_tipo' => $tipos->sum('movimientos_count'),
         ];
         return view('home', [
             'clientes' => $clientes,
             'choferes' => $choferes,
             'flotas' => $flotas,
+            'tipos' => $tipos,
             'totales' => $totales,
             'total_movimientos' => $this->total_movimientos
         ]);
@@ -159,6 +182,11 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
+            $tipos = TipoViaje::query()
+            ->withCount('movimientos')
+            ->orderBy('movimientos_count', 'desc')
+            ->take(5)
+            ->get();
         $totales = [
             'saldo_cliente' => $clientes->sum('movimientos_sum_total'),
             'total_movimientos_cliente' => $clientes->sum('movimientos_count'),
@@ -167,8 +195,57 @@ class HomeController extends Controller
             'total_movimientos_chofer' => $choferes->sum('movimientos_count'),
             'total_movimientos' => $this->total_movimientos,
             'total_movimientos_flota' => $flotas->sum('movimientos_count'),
+            'total_movimientos_tipo' => $tipos->sum('movimientos_count'),
         ];
         return view('home', [
+            'clientes' => $clientes,
+            'choferes' => $choferes,
+            'flotas' => $flotas,
+            'tipos' => $tipos,
+            'totales' => $totales,
+            'total_movimientos' => $this->total_movimientos
+        ]);
+    }
+
+    public function searchTipoViaje(Request $request)
+    {
+        $tipos = TipoViaje::withMostMovimientos(
+            $request->input('desde'),
+            $request->input('hasta')
+        )
+            ->withSum('movimientos', 'total')
+            ->take(5)
+            ->get();
+
+        $clientes = Cliente::query()
+            ->withCount('movimientos')
+            ->withSum('movimientos', 'total')
+            ->orderBy('movimientos_count', 'desc')
+            ->take(5)
+            ->get();
+        $choferes = Chofer::query()
+            ->withCount('movimientos')
+            ->withSum('movimientos', 'comision_chofer')
+            ->orderBy('movimientos_count', 'desc')
+            ->take(5)
+            ->get();
+        $flotas = Flota::query()
+            ->withCount('movimientos')
+            ->orderBy('movimientos_count', 'desc')
+            ->take(5)
+            ->get();
+
+        $totales = [
+            'saldo_cliente' => $clientes->sum('movimientos_sum_total'),
+            'total_movimientos_cliente' => $clientes->sum('movimientos_count'),
+            'saldo_chofer' => $choferes->sum('movimientos_sum_comision_chofer'),
+            'total_comision' => $choferes->sum('movimientos_sum_comision_chofer'),
+            'total_movimientos_chofer' => $choferes->sum('movimientos_count'),
+            'total_movimientos_flota' => $flotas->sum('movimientos_count'),
+            'total_movimientos_tipo' => $tipos->sum('movimientos_count'),
+        ];
+        return view('home', [
+            'tipos' => $tipos,
             'clientes' => $clientes,
             'choferes' => $choferes,
             'flotas' => $flotas,
