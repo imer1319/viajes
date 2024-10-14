@@ -23,12 +23,12 @@ class CreateMovimientosTable extends Migration
             $table->string('numero_factura_1');
             $table->string('numero_factura_2');
             $table->decimal('precio_real', 15, 2)->nullable();
-            $table->bigInteger('iva');
+            $table->decimal('iva', 15, 2);
             $table->decimal('total', 15, 2);
             $table->decimal('saldo_total', 15, 2);
             $table->foreignId('flota_id')->constrained('flotas');
             $table->foreignId('chofer_id')->constrained('chofers');
-            $table->bigInteger('precio_chofer')->nullable();
+            $table->decimal('precio_chofer')->nullable();
             $table->integer('porcentaje_pago');
             $table->decimal('comision_chofer', 10, 2);
             $table->decimal('saldo_comision_chofer', 15, 2);

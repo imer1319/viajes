@@ -135,21 +135,24 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="precio_real">Precio real</label>
-                <input-number v-model="form.precio_real"/>
+                <input-number
+                    v-model="form.precio_real"
+                    class="input-precio-real"
+                />
                 <span v-if="errors.precio_real" class="text-danger">{{
                     getErrorMessage(errors.precio_real)
                 }}</span>
             </div>
             <div class="col-md-4">
                 <label for="iva">IVA</label>
-                <input-number v-model="form.iva" disabled/>
+                <input v-model="ivaFormateado" class="form-control" disabled />
                 <span v-if="errors.iva" class="text-danger">{{
                     getErrorMessage(errors.iva)
                 }}</span>
             </div>
             <div class="col-md-4">
                 <label for="total">Total</label>
-                <input-number v-model="form.total" disabled/>
+                <input-number v-model="totalFormateado" disabled />
                 <span v-if="errors.total" class="text-danger">{{
                     getErrorMessage(errors.total)
                 }}</span>
@@ -229,7 +232,7 @@
             </div>
             <div class="col-md-4">
                 <label for="comision_chofer">Comision Chofer</label>
-                <input-number v-model="form.comision_chofer" disabled/>
+                <input-number v-model="comisionChoferFormateado" disabled />
                 <span v-if="errors.comision_chofer" class="text-danger">{{
                     getErrorMessage(errors.comision_chofer)
                 }}</span>
@@ -287,6 +290,7 @@ import TipoViajeTable from "../../Pages/TipoViaje/Table.vue";
 import ModalComponent from "../../components/Modal.vue";
 import { mapGetters } from "vuex";
 import InputNumber from "../../components/InputNumber.vue";
+import Cleave from "cleave.js";
 export default {
     components: {
         ChoferCreate,
@@ -298,7 +302,7 @@ export default {
         TipoViajeCreate,
         TipoViajeTable,
         ModalComponent,
-        InputNumber
+        InputNumber,
     },
     props: ["numero_interno"],
     mounted() {
@@ -339,13 +343,41 @@ export default {
         errors() {
             return this.$store.getters.getErrors;
         },
+        ivaFormateado: {
+            get() {
+                return this.formatearNumero(this.form.iva);
+            },
+            set(newVal) {
+                this.form.iva = parseFloat(newVal.replace(/,/g, ""));
+            },
+        },
+        comisionChoferFormateado: {
+            get() {
+                return this.formatearNumero(this.form.comision_chofer);
+            },
+            set(newVal) {
+                this.form.comision_chofer = parseFloat(newVal.replace(/,/g, ""));
+            },
+        },
+        totalFormateado: {
+            get() {
+                return this.formatearNumero(this.form.total);
+            },
+            set(newVal) {
+                this.form.total = parseFloat(newVal.replace(/,/g, ""));
+            },
+        },
     },
     watch: {
         "form.precio_real": function (newVal) {
-            this.form.iva = (newVal * 0.21).toFixed(2);
-            this.form.total = (
-                parseFloat(newVal) + parseFloat(this.form.iva)
-            ).toFixed(2);
+            const precioRealRaw = parseFloat(newVal);
+            const precioRealFixed = Math.floor(precioRealRaw * 100) / 100;
+            
+            const ivaSinFormato = precioRealFixed * 0.21;
+            const totalSinFormato = precioRealFixed + ivaSinFormato;
+
+            this.form.iva = ivaSinFormato;
+            this.form.total = totalSinFormato;
         },
         "form.precio_chofer": function (newVal) {
             this.form.comision_chofer = (
@@ -375,6 +407,15 @@ export default {
         },
     },
     methods: {
+        formatearNumero(value) {
+            if (value !== null && value !== undefined) {
+                return parseFloat(value).toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                });
+            }
+            return value;
+        },
         getErrorMessage(error) {
             return Array.isArray(error) ? error[0] : error;
         },

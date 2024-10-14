@@ -20,7 +20,6 @@
                     getErrorMessage(errors.fecha)
                 }}</span>
             </div>
-
             <div class="col-md-6">
                 <label for="cliente_id">Cliente</label>
                 <div class="d-flex w-100">
@@ -137,21 +136,25 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="precio_real">Precio real</label>
-                <input-number v-model="form.precio_real"/>
+                <input-number v-model="form.precio_real" />
                 <span v-if="errors.precio_real" class="text-danger">{{
                     getErrorMessage(errors.precio_real)
                 }}</span>
             </div>
             <div class="col-md-4">
                 <label for="iva">IVA</label>
-                <input-number v-model="form.iva" disabled/>
+                <input v-model="ivaFormateado" class="form-control" disabled />
                 <span v-if="errors.iva" class="text-danger">{{
                     getErrorMessage(errors.iva)
                 }}</span>
             </div>
             <div class="col-md-4">
                 <label for="total">Total</label>
-                <input-number v-model="form.total" disabled/>
+                <input
+                    v-model="totalFormateado"
+                    class="form-control"
+                    disabled
+                />
                 <span v-if="errors.total" class="text-danger">{{
                     getErrorMessage(errors.total)
                 }}</span>
@@ -213,7 +216,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="precio_chofer">Precio Chofer</label>
-                <input-number v-model="form.precio_chofer"/>
+                <input-number v-model="form.precio_chofer" />
                 <span v-if="errors.precio_chofer" class="text-danger">{{
                     getErrorMessage(errors.precio_chofer)
                 }}</span>
@@ -232,7 +235,7 @@
             </div>
             <div class="col-md-4">
                 <label for="comision_chofer">Comision Chofer</label>
-                <input-number v-model="form.comision_chofer" disabled/>
+                <input-number v-model="comisionChoferFormateado" disabled />
                 <span v-if="errors.comision_chofer" class="text-danger">{{
                     getErrorMessage(errors.comision_chofer)
                 }}</span>
@@ -302,12 +305,16 @@ export default {
         TipoViajeCreate,
         TipoViajeTable,
         ModalComponent,
-        InputNumber
+        InputNumber,
     },
     props: ["movimiento"],
     mounted() {
         if (this.movimiento) {
             this.setFormValues(this.movimiento);
+            this.form.precio_real = this.formatearNumero(this.form.precio_real);
+            this.form.precio_chofer = this.formatearNumero(
+                this.form.precio_chofer
+            );
         }
     },
     data() {
@@ -345,19 +352,52 @@ export default {
         errors() {
             return this.$store.getters.getErrors;
         },
+        ivaFormateado: {
+            get() {
+                return this.formatearNumero(this.form.iva);
+            },
+            set(newVal) {
+                this.form.iva = parseFloat(newVal.replace(/,/g, ""));
+            },
+        },
+        comisionChoferFormateado: {
+            get() {
+                return this.formatearNumero(this.form.comision_chofer);
+            },
+            set(newVal) {
+                this.form.comision_chofer = parseFloat(
+                    newVal.replace(/,/g, "")
+                );
+            },
+        },
+        totalFormateado: {
+            get() {
+                return this.formatearNumero(this.form.total);
+            },
+            set(newVal) {
+                this.form.total = parseFloat(newVal.replace(/,/g, ""));
+            },
+        },
     },
     watch: {
         "form.precio_real": function (newVal) {
-            this.form.iva = (newVal * 0.21).toFixed(2);
-            this.form.total = (
-                parseFloat(newVal) + parseFloat(this.form.iva)
-            ).toFixed(2);
+            const precioRealRaw = parseFloat(newVal.replace(/,/g, ""));
+            const precioRealFixed = Math.floor(precioRealRaw * 100) / 100;
+
+            const ivaSinFormato = precioRealFixed * 0.21;
+            const totalSinFormato = precioRealFixed + ivaSinFormato;
+            this.form.iva = ivaSinFormato;
+            this.form.total = totalSinFormato;
         },
         "form.precio_chofer": function (newVal) {
-            this.form.comision_chofer = (
-                newVal *
+            const precioChoferRaw = parseFloat(newVal.replace(/,/g, ""));
+            const precioChoferFixed = Math.floor(precioChoferRaw * 100) / 100;
+
+            const comisionSinFormato = (
+                precioChoferFixed *
                 (this.form.porcentaje_pago / 100)
             ).toFixed(2);
+            this.form.comision_chofer = comisionSinFormato;
         },
         "form.chofer_id": function (newVal) {
             this.$nextTick(() => {
@@ -381,6 +421,15 @@ export default {
         },
     },
     methods: {
+        formatearNumero(value) {
+            if (value !== null && value !== undefined) {
+                return parseFloat(value).toLocaleString("en-US", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                });
+            }
+            return value;
+        },
         setFormValues(movimiento) {
             this.form.id = movimiento.id;
             this.form.numero_interno = movimiento.numero_interno;
@@ -406,6 +455,12 @@ export default {
         },
         actualizarMovimiento() {
             this.form.saldo_total = this.form.total;
+            this.form.precio_real = parseFloat(
+                this.form.precio_real.replace(/,/g, "")
+            );
+            this.form.precio_chofer = parseFloat(
+                this.form.precio_chofer.replace(/,/g, "")
+            );
             this.form.saldo_comision_chofer = this.form.comision_chofer;
             this.$store
                 .dispatch("actualizarMovimiento", this.form)

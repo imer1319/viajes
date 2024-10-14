@@ -1,5 +1,6 @@
 <template>
     <input
+        ref="input"
         type="text"
         class="form-control"
         :title="title"
@@ -8,20 +9,43 @@
 </template>
 
 <script>
-import NumberFormat from "number-format.js";
+import Cleave from "cleave.js";
 
 export default {
     props: ["title", "value"],
+    data() {
+        return {
+            cleave: null,
+        };
+    },
     computed: {
         formatted: {
             get() {
-                return NumberFormat("#,##0.####", this.value);
+                return this.value ? this.value.toString() : '';
             },
             set(newValue) {
                 const cleanValue = newValue.replace(/,/g, "");
-                const intValue = parseInt(cleanValue, 10);
-                this.$emit("input", intValue || 0);
+                this.$emit("input", cleanValue);
             },
+        },
+    },
+    mounted() {
+        this.initializeCleave();
+    },
+    watch: {
+        value(newValue) {
+            this.cleave.setRawValue(newValue);
+        },
+    },
+    methods: {
+        initializeCleave() {
+            this.cleave = new Cleave(this.$refs.input, {
+                numeral: true,
+                numeralThousandsGroupStyle: "thousand",
+                numeralDecimalMark: ".",
+                numeralDecimalScale: 2,
+            });
+            this.cleave.setRawValue(this.value);
         },
     },
 };
