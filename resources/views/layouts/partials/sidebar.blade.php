@@ -1,5 +1,5 @@
 <aside class="main-sidebar elevation-4 sidebar-light-primary">
-    <a href="../../index3.html" class="brand-link">
+    <a href="{{ route('login') }}" class="brand-link">
         <img src="{{ asset('img/icono.jpg') }}" alt="Logo" class="brand-image "
             style="opacity: .8">
         <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
