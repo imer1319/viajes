@@ -9,6 +9,9 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Icono -->
+    <link rel="shortcut icon" href="{{ asset('img/logo.jpg') }}">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
@@ -23,7 +26,8 @@
         .vs--searchable .vs__dropdown-toggle {
             height: 39px;
         }
-        .content-wrapper>.content{
+
+        .content-wrapper>.content {
             padding: 0 0.5rem 3rem .5rem;
         }
     </style>

@@ -2,5 +2,5 @@
     <div class="float-right d-none d-sm-block">
         
     </div>
-    <strong>CINTIOLI &copy; {{ date('Y') }} </strong>
+    <strong>{{ config('app.name') }} &copy; {{ date('Y') }} </strong>
 </footer>

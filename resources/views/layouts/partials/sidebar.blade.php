@@ -1,20 +1,20 @@
 <aside class="main-sidebar elevation-4 sidebar-light-primary">
     <a href="../../index3.html" class="brand-link">
-        <img src="{{ asset('img/icono.jpg') }}" alt="Logo" class="brand-image img-circle elevation-3"
+        <img src="{{ asset('img/icono.jpg') }}" alt="Logo" class="brand-image "
             style="opacity: .8">
         <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
     </a>
 
-    <div class="sidebar os-theme-dark">
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="sidebar os-theme-dark mt-3">
+        {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="{{ asset('admin/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                    alt="User Image">
+                    alt="User Image"> 
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{ auth()->user()->name }}</a>
             </div>
-        </div>
+        </div> --}}
 
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
@@ -117,13 +117,13 @@
                                 <p>Condiciones Iva</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{ route('admin.medidas.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.medidas.*') }}">
                                 <i class="fas fa-ruler-combined nav-icon"></i>
                                 <p>Medidas</p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ route('admin.bancos.index') }}"
                                 class="nav-link {{ setActiveRoute('admin.bancos.*') }}">

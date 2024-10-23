@@ -31,6 +31,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box mb-3 elevation-1">
+                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Clientes con saldo</span>
+                                <span class="info-box-number h3">{{ $clientes_saldo }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box mb-3 elevation-1">
+                            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-user"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Choferes con saldo</span>
+                                <span class="info-box-number h3">{{ $choferes_saldo }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -306,7 +324,7 @@
         $("#form-cliente").attr('action', url);
         $(".btn").hide();
         $(".btn-importar").hide();
-        $(".spinner-btn").show();
+        // $(".spinner-btn").show();
         $("#form-cliente").submit();
     }
 
@@ -315,7 +333,7 @@
         $("#form-chofer").attr('action', url);
         $(".btn").hide();
         $(".btn-importar").hide();
-        $(".spinner-btn").show();
+        // $(".spinner-btn").show();
         $("#form-chofer").submit();
     }
 
@@ -324,7 +342,7 @@
         $("#form-flota").attr('action', url);
         $(".btn").hide();
         $(".btn-importar").hide();
-        $(".spinner-btn").show();
+        // $(".spinner-btn").show();
         $("#form-flota").submit();
     }
     function searchTipo() {
@@ -332,14 +350,14 @@
         $("#form-tipo").attr('action', url);
         $(".btn").hide();
         $(".btn-importar").hide();
-        $(".spinner-btn").show();
+        // $(".spinner-btn").show();
         $("#form-tipo").submit();
     }
 
     function limpiar() {
         $(".btn").hide();
         $(".btn-importar").hide();
-        $(".spinner-btn").show();
+        // $(".spinner-btn").show();
         window.location.href = "{{ route('home') }}";
     }
 </script>

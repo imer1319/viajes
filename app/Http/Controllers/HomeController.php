@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     protected $total_movimientos;
+    protected $clientes_saldo = 0;
+    protected $choferes_saldo = 0;
 
     public function __construct()
     {
@@ -20,6 +22,8 @@ class HomeController extends Controller
             ->selectRaw("COUNT(CASE WHEN saldo_total != 0 THEN 1 END) AS con_saldo")
             ->selectRaw("COUNT(CASE WHEN saldo_total = 0 THEN 1 END) AS sin_saldo")
             ->first();
+        $this->clientes_saldo = Cliente::where('saldo', '!=', 0)->count();
+        $this->choferes_saldo = Chofer::where('saldo', '!=', 0)->count();
     }
 
     public function index()
@@ -64,7 +68,9 @@ class HomeController extends Controller
             'flotas' => $flotas,
             'tipos' => $tipos,
             'totales' => $totales,
-            'total_movimientos' => $this->total_movimientos
+            'total_movimientos' => $this->total_movimientos,
+            'clientes_saldo' => $this->clientes_saldo,
+            'choferes_saldo' => $this->choferes_saldo,
         ]);
     }
 
@@ -109,7 +115,9 @@ class HomeController extends Controller
             'flotas' => $flotas,
             'tipos' => $tipos,
             'totales' => $totales,
-            'total_movimientos' => $this->total_movimientos
+            'total_movimientos' => $this->total_movimientos,
+            'clientes_saldo' => $this->clientes_saldo,
+            'choferes_saldo' => $this->choferes_saldo,
         ]);
     }
 
@@ -154,7 +162,9 @@ class HomeController extends Controller
             'flotas' => $flotas,
             'tipos' => $tipos,
             'totales' => $totales,
-            'total_movimientos' => $this->total_movimientos
+            'total_movimientos' => $this->total_movimientos,
+            'clientes_saldo' => $this->clientes_saldo,
+            'choferes_saldo' => $this->choferes_saldo,
         ]);
     }
 
@@ -182,7 +192,7 @@ class HomeController extends Controller
             ->take(5)
             ->get();
 
-            $tipos = TipoViaje::query()
+        $tipos = TipoViaje::query()
             ->withCount('movimientos')
             ->orderBy('movimientos_count', 'desc')
             ->take(5)
@@ -203,7 +213,9 @@ class HomeController extends Controller
             'flotas' => $flotas,
             'tipos' => $tipos,
             'totales' => $totales,
-            'total_movimientos' => $this->total_movimientos
+            'total_movimientos' => $this->total_movimientos,
+            'clientes_saldo' => $this->clientes_saldo,
+            'choferes_saldo' => $this->choferes_saldo,
         ]);
     }
 
@@ -250,7 +262,9 @@ class HomeController extends Controller
             'choferes' => $choferes,
             'flotas' => $flotas,
             'totales' => $totales,
-            'total_movimientos' => $this->total_movimientos
+            'total_movimientos' => $this->total_movimientos,
+            'clientes_saldo' => $this->clientes_saldo,
+            'choferes_saldo' => $this->choferes_saldo,
         ]);
     }
 }

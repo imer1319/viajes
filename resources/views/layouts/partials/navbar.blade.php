@@ -16,9 +16,9 @@
                 {{ auth()->user()->name }}
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
+                {{-- <a href="#" class="dropdown-item">
                     Rol: {{ auth()->user()->getRoleDisplayNames() }}
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item dropdown-footer" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
